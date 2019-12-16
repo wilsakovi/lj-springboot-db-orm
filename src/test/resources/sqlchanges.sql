@@ -3417,4 +3417,6 @@ CHANGE COLUMN `report_excluded_flag` `report_excluded_flag` INT(1) NOT NULL DEFA
 
   /////// APPLIED DEV  and Prod
   
+================================12/16/19==========================================
+update graduate_status set active_flag= 0 where id in (15,20); 
 
