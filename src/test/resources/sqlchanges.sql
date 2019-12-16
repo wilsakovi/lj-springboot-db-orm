@@ -3407,7 +3407,7 @@ ADD COLUMN `shared_role_codes` JSON NULL AFTER `shared_flag`,
 ADD COLUMN `saved_by_user_role_code` CHAR(3) NULL AFTER `shared_role_codes`,
 ADD COLUMN `description` TEXT NULL AFTER `saved_by_user_role_code`;
 
-  /////// APPLIED DEV  and Prod
+
   
   ================================11/17/19==========================================
   update ally_profile set report_excluded_flag = 0 where report_excluded_flag is null;
@@ -3415,4 +3415,6 @@ ADD COLUMN `description` TEXT NULL AFTER `saved_by_user_role_code`;
   ALTER TABLE `ally_profile` 
 CHANGE COLUMN `report_excluded_flag` `report_excluded_flag` INT(1) NOT NULL DEFAULT 0 ;
 
+  /////// APPLIED DEV  and Prod
+  
 
