@@ -19,7 +19,7 @@ public class SiteDB implements EntityDB<Site>{
 
 	private static String TABLE_NAME = "SITE";
 
-	private static String TABLE_ALIAS = "A_sit_872";
+	private static String TABLE_ALIAS = "A_sit_317";
 
 	public static String getTableName()
 	{

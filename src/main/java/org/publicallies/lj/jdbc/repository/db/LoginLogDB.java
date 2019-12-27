@@ -19,7 +19,7 @@ public class LoginLogDB implements EntityDB<LoginLog>{
 
 	private static String TABLE_NAME = "LOGIN_LOG";
 
-	private static String TABLE_ALIAS = "A_ll_415";
+	private static String TABLE_ALIAS = "A_ll_227";
 
 	public static String getTableName()
 	{

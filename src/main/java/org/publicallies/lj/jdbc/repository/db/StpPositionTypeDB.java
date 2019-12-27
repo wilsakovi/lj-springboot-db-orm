@@ -18,7 +18,7 @@ public class StpPositionTypeDB implements EntityDB<StpPositionType>{
 
 	private static String TABLE_NAME = "STP_POSITION_TYPE";
 
-	private static String TABLE_ALIAS = "A_spt_57";
+	private static String TABLE_ALIAS = "A_spt_853";
 
 	public static String getTableName()
 	{

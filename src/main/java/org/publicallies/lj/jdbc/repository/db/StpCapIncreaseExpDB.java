@@ -18,7 +18,7 @@ public class StpCapIncreaseExpDB implements EntityDB<StpCapIncreaseExp>{
 
 	private static String TABLE_NAME = "STP_CAP_INCREASE_EXP";
 
-	private static String TABLE_ALIAS = "A_scie_81";
+	private static String TABLE_ALIAS = "A_scie_37";
 
 	public static String getTableName()
 	{

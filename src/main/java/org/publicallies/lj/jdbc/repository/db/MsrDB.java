@@ -19,7 +19,7 @@ public class MsrDB implements EntityDB<Msr>{
 
 	private static String TABLE_NAME = "MSR";
 
-	private static String TABLE_ALIAS = "A_msr_237";
+	private static String TABLE_ALIAS = "A_msr_146";
 
 	public static String getTableName()
 	{

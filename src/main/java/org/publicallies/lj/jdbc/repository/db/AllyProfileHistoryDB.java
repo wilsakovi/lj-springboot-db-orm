@@ -19,7 +19,7 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 
 	private static String TABLE_NAME = "ALLY_PROFILE_HISTORY";
 
-	private static String TABLE_ALIAS = "A_aph_579";
+	private static String TABLE_ALIAS = "A_aph_328";
 
 	public static String getTableName()
 	{
@@ -47,15 +47,13 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 		ALLY_PROFILE_ID("ally_profile_id", false, ""),
 		GRADUATE_STATUS_ID("graduate_status_id", false, ""),
 		GRADUATE_STATUS_DATE("graduate_status_date", false, ""),
-		CREATED_BY("created_by", false, ""),
-		EXIT_REASON("exit_reason", false, ""),
 		NOTES("notes", false, ""),
 		ALLY_EXIT_REASON_ID("ally_exit_reason_id", false, ""),
 		CREATED_AT("created_at", false, ""),
 		UPDATED_AT("updated_at", false, ""),
-		OLD_ID("old_id", false, ""),
 		HISTORY("history", true, ""),
 		STATUS_END_DATE("status_end_date", false, ""),
+		UPDATED_BY_USER_ID("updated_by_user_id", false, ""),
 		;
 
 		private String columnName;
@@ -129,10 +127,6 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			if (rs.wasNull()) obj.setGraduateStatusId(null);
 			obj.setGraduateStatusDate(rs.getTimestamp(COLUMNS.GRADUATE_STATUS_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setGraduateStatusDate(null);
-			obj.setCreatedBy(rs.getString(COLUMNS.CREATED_BY.getColumnName()));
-			if (rs.wasNull()) obj.setCreatedBy(null);
-			obj.setExitReason(rs.getString(COLUMNS.EXIT_REASON.getColumnName()));
-			if (rs.wasNull()) obj.setExitReason(null);
 			obj.setNotes(rs.getString(COLUMNS.NOTES.getColumnName()));
 			if (rs.wasNull()) obj.setNotes(null);
 			obj.setAllyExitReasonId(rs.getInt(COLUMNS.ALLY_EXIT_REASON_ID.getColumnName()));
@@ -141,12 +135,12 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnName()));
-			if (rs.wasNull()) obj.setOldId(null);
 			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnName()));
 			if (rs.wasNull()) obj.setHistory(null);
 			obj.setStatusEndDate(rs.getTimestamp(COLUMNS.STATUS_END_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setStatusEndDate(null);
+			obj.setUpdatedByUserId(rs.getInt(COLUMNS.UPDATED_BY_USER_ID.getColumnName()));
+			if (rs.wasNull()) obj.setUpdatedByUserId(null);
 			return obj;
 		}
 	}
@@ -162,18 +156,16 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			mapping.put(COLUMNS.GRADUATE_STATUS_ID.getColumnName(), allyprofilehistory.getGraduateStatusId());
 			if (allyprofilehistory.getGraduateStatusDate() != null)
 				mapping.put(COLUMNS.GRADUATE_STATUS_DATE.getColumnName(), new Timestamp (allyprofilehistory.getGraduateStatusDate().getTime()));
-			mapping.put(COLUMNS.CREATED_BY.getColumnName(), allyprofilehistory.getCreatedBy());
-			mapping.put(COLUMNS.EXIT_REASON.getColumnName(), allyprofilehistory.getExitReason());
 			mapping.put(COLUMNS.NOTES.getColumnName(), allyprofilehistory.getNotes());
 			mapping.put(COLUMNS.ALLY_EXIT_REASON_ID.getColumnName(), allyprofilehistory.getAllyExitReasonId());
 			if (allyprofilehistory.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (allyprofilehistory.getCreatedAt().getTime()));
 			if (allyprofilehistory.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (allyprofilehistory.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.OLD_ID.getColumnName(), allyprofilehistory.getOldId());
 			mapping.put(COLUMNS.HISTORY.getColumnName(), allyprofilehistory.getHistory());
 			if (allyprofilehistory.getStatusEndDate() != null)
 				mapping.put(COLUMNS.STATUS_END_DATE.getColumnName(), new Timestamp (allyprofilehistory.getStatusEndDate().getTime()));
+			mapping.put(COLUMNS.UPDATED_BY_USER_ID.getColumnName(), allyprofilehistory.getUpdatedByUserId());
 			return mapping;
 		}
 	}
@@ -216,10 +208,6 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			if (rs.wasNull()) obj.setGraduateStatusId(null);
 			obj.setGraduateStatusDate(rs.getTimestamp(COLUMNS.GRADUATE_STATUS_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setGraduateStatusDate(null);
-			obj.setCreatedBy(rs.getString(COLUMNS.CREATED_BY.getColumnAliasName()));
-			if (rs.wasNull()) obj.setCreatedBy(null);
-			obj.setExitReason(rs.getString(COLUMNS.EXIT_REASON.getColumnAliasName()));
-			if (rs.wasNull()) obj.setExitReason(null);
 			obj.setNotes(rs.getString(COLUMNS.NOTES.getColumnAliasName()));
 			if (rs.wasNull()) obj.setNotes(null);
 			obj.setAllyExitReasonId(rs.getInt(COLUMNS.ALLY_EXIT_REASON_ID.getColumnAliasName()));
@@ -228,12 +216,12 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setOldId(null);
 			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnAliasName()));
 			if (rs.wasNull()) obj.setHistory(null);
 			obj.setStatusEndDate(rs.getTimestamp(COLUMNS.STATUS_END_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setStatusEndDate(null);
+			obj.setUpdatedByUserId(rs.getInt(COLUMNS.UPDATED_BY_USER_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setUpdatedByUserId(null);
 			if (this.loadAllFKeys || this.loadAllyExitReason)
 				obj.setAllyExitReason(AllyExitReasonDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadAllyProfile)

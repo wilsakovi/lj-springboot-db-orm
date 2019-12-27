@@ -18,7 +18,7 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 
 	private static String TABLE_NAME = "ALLY_EXIT_REASON";
 
-	private static String TABLE_ALIAS = "A_aer_473";
+	private static String TABLE_ALIAS = "A_aer_904";
 
 	public static String getTableName()
 	{

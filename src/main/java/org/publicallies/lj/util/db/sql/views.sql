@@ -415,12 +415,11 @@ p.phone_office_ext as p_phone_office_ext,
 p.fax as p_fax,
 p.website as p_website,
 va.last_college_period_name as a_last_college_period_name,
-aer.name as ap_ally_exit_reason_name,
 va.employment_title as a_employment_title,
 va.employer_name as a_employer_name,
 va.unemployment_period_name as a_unemployment_period_name,
 va.employment_period_name as a_employment_period_name,
-(select group_concat(concat_ws(' ', graduate_status.name, getUsDate(aph.graduate_status_date), aph.notes )  SEPARATOR '; ') from ally_profile_history aph join graduate_status on (graduate_status.id = aph.graduate_status_id) where aph.ally_profile_id = ap.id) as ap_status_history,
+(select group_concat(concat_ws(' ', graduate_status.name, getUsDate(aph.graduate_status_date), aer.name, aph.notes )  SEPARATOR '; ') from ally_profile_history aph join graduate_status on (graduate_status.id = aph.graduate_status_id) left join ally_exit_reason aer on (aer.id = aph.ally_exit_reason_id) where aph.ally_profile_id = ap.id) as ap_status_history,
 concat_ws(' ', pgen_contact.first_name, pgen_contact.last_name, 'Email:', pgen_contact.email, 'Phone: ', pgen_contact.phone_office, 'Ext: ', pgen_contact.phone_office_ext)  as p_general_contact,
 concat_ws(' ', pfin_contact.first_name, pfin_contact.last_name, 'Email:', pfin_contact.email, 'Phone: ', pfin_contact.phone_office, 'Ext: ', pfin_contact.phone_office_ext)  as p_financial_contact,
 concat_ws(' ', pexec_contact.first_name, pexec_contact.last_name, 'Email:', pexec_contact.email, 'Phone: ', pexec_contact.phone_office, 'Ext: ', pexec_contact.phone_office_ext)  as p_executive_contact
@@ -446,7 +445,6 @@ left join state pstate on (pstate.id = p.state_id)
 left join contact as pgen_contact on (pgen_contact.id = p.contact_gen_id)
 left join contact as pfin_contact on (pfin_contact.id = p.contact_finance_id)
 left join contact as pexec_contact on (pexec_contact.id = p.contact_exec_id)
-left join ally_exit_reason aer on (aer.id = ap.ally_exit_reason_id)
 ;
 
 

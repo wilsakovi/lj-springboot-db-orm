@@ -3420,3 +3420,19 @@ CHANGE COLUMN `report_excluded_flag` `report_excluded_flag` INT(1) NOT NULL DEFA
 ================================12/16/19==========================================
 update graduate_status set active_flag= 0 where id in (15,20); 
 
+===========================12/26/19==============================================
+update ally_profile_history aph, ally_profile ap
+set aph.ally_exit_reason_id = ap.ally_exit_reason_id
+where aph.ally_profile_id = ap.id and aph.graduate_status_id in (20,25,35,40);
+
+ALTER TABLE `ally_profile_history` DROP COLUMN `exit_reason`;
+
+ALTER TABLE `ally_profile_history` 
+DROP COLUMN `old_id`,
+DROP COLUMN `created_by`,
+ADD COLUMN `updated_by` VARCHAR(100) NULL AFTER `status_end_date`,
+DROP INDEX `old_id_UNIQUE` ;
+
+ALTER TABLE `ally_profile_history` 
+CHANGE COLUMN `updated_by` `updated_by_user_id` INT(11) NULL DEFAULT NULL ;
+

@@ -33,12 +33,6 @@ public class AllyProfileHistory implements Persistable<Integer> , CommonIdCUH<In
 	@NotNull
 	private Date graduateStatusDate;
 
-	@Size (max = 100)
-	private String createdBy;
-
-	@Size (max = 65535)
-	private String exitReason;
-
 	@Size (max = 65535)
 	private String notes;
 
@@ -48,11 +42,11 @@ public class AllyProfileHistory implements Persistable<Integer> , CommonIdCUH<In
 
 	private Date updatedAt = new Date();
 
-	private Integer oldId;
-
 	private String history;
 
 	private Date statusEndDate;
+
+	private Integer updatedByUserId;
 
 	private transient boolean persisted;
 
@@ -110,26 +104,6 @@ public class AllyProfileHistory implements Persistable<Integer> , CommonIdCUH<In
 		return this.graduateStatusDate;
 	}
 
-	public void setCreatedBy (String createdBy)
-	{
-		this.createdBy = createdBy;
-	}
-
-	public String getCreatedBy ()
-	{
-		return this.createdBy;
-	}
-
-	public void setExitReason (String exitReason)
-	{
-		this.exitReason = exitReason;
-	}
-
-	public String getExitReason ()
-	{
-		return this.exitReason;
-	}
-
 	public void setNotes (String notes)
 	{
 		this.notes = notes;
@@ -170,16 +144,6 @@ public class AllyProfileHistory implements Persistable<Integer> , CommonIdCUH<In
 		return this.updatedAt;
 	}
 
-	public void setOldId (Integer oldId)
-	{
-		this.oldId = oldId;
-	}
-
-	public Integer getOldId ()
-	{
-		return this.oldId;
-	}
-
 	public void setHistory (String history)
 	{
 		this.history = history;
@@ -198,6 +162,16 @@ public class AllyProfileHistory implements Persistable<Integer> , CommonIdCUH<In
 	public Date getStatusEndDate ()
 	{
 		return this.statusEndDate;
+	}
+
+	public void setUpdatedByUserId (Integer updatedByUserId)
+	{
+		this.updatedByUserId = updatedByUserId;
+	}
+
+	public Integer getUpdatedByUserId ()
+	{
+		return this.updatedByUserId;
 	}
 
 	public void setPersisted (Boolean persisted)

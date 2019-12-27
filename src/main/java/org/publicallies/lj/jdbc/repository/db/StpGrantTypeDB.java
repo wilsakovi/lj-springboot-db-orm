@@ -18,7 +18,7 @@ public class StpGrantTypeDB implements EntityDB<StpGrantType>{
 
 	private static String TABLE_NAME = "STP_GRANT_TYPE";
 
-	private static String TABLE_ALIAS = "A_sgt_849";
+	private static String TABLE_ALIAS = "A_sgt_250";
 
 	public static String getTableName()
 	{
