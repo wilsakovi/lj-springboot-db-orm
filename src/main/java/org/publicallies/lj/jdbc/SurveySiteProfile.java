@@ -77,6 +77,10 @@ public class SurveySiteProfile implements Persistable<Integer> , CommonIdCUH<Int
 
 	private String apIds;
 
+	private Integer allyProgramStatusFlag;
+
+	private String graduateStatusIds;
+
 	private transient boolean persisted;
 
 	private SurveyCollector collector;
@@ -322,6 +326,26 @@ public class SurveySiteProfile implements Persistable<Integer> , CommonIdCUH<Int
 	public String getApIds ()
 	{
 		return this.apIds;
+	}
+
+	public void setAllyProgramStatusFlag (Integer allyProgramStatusFlag)
+	{
+		this.allyProgramStatusFlag = allyProgramStatusFlag;
+	}
+
+	public Integer getAllyProgramStatusFlag ()
+	{
+		return this.allyProgramStatusFlag;
+	}
+
+	public void setGraduateStatusIds (String graduateStatusIds)
+	{
+		this.graduateStatusIds = graduateStatusIds;
+	}
+
+	public String getGraduateStatusIds ()
+	{
+		return this.graduateStatusIds;
 	}
 
 	public void setPersisted (Boolean persisted)

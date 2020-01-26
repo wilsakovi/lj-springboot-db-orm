@@ -19,7 +19,7 @@ public class SurveyCollectorDB implements EntityDB<SurveyCollector>{
 
 	private static String TABLE_NAME = "SURVEY_COLLECTOR";
 
-	private static String TABLE_ALIAS = "A_sc_971";
+	private static String TABLE_ALIAS = "A_sc_879";
 
 	public static String getTableName()
 	{

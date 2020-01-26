@@ -19,7 +19,7 @@ public class MsrActionActivityDB implements EntityDB<MsrActionActivity>{
 
 	private static String TABLE_NAME = "MSR_ACTION_ACTIVITY";
 
-	private static String TABLE_ALIAS = "A_maa_179";
+	private static String TABLE_ALIAS = "A_maa_980";
 
 	public static String getTableName()
 	{

@@ -19,7 +19,7 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 
 	private static String TABLE_NAME = "JOB_OBJECTIVE";
 
-	private static String TABLE_ALIAS = "A_jo_365";
+	private static String TABLE_ALIAS = "A_jo_892";
 
 	public static String getTableName()
 	{
@@ -44,13 +44,6 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 	public enum COLUMNS
 	{
 		ID("id", false, ""),
-		TERM_ID("term_id", false, ""),
-		SITE_ID("site_id", false, ""),
-		SITE_PROFILE_ID("site_profile_id", false, ""),
-		PARTNER_ID("partner_id", false, ""),
-		PARTNER_PROFILE_ID("partner_profile_id", false, ""),
-		PARTNER_SUPERVISOR_ID("partner_supervisor_id", false, ""),
-		ALLY_ID("ally_id", false, ""),
 		TITLE("title", false, ""),
 		ACTIVITIES("activities", false, ""),
 		MEASURE_OUTCOMES("measure_outcomes", false, ""),
@@ -134,20 +127,6 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 			JobObjective obj = new JobObjective();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnName()));
 			if (rs.wasNull()) obj.setId(null);
-			obj.setTermId(rs.getInt(COLUMNS.TERM_ID.getColumnName()));
-			if (rs.wasNull()) obj.setTermId(null);
-			obj.setSiteId(rs.getInt(COLUMNS.SITE_ID.getColumnName()));
-			if (rs.wasNull()) obj.setSiteId(null);
-			obj.setSiteProfileId(rs.getInt(COLUMNS.SITE_PROFILE_ID.getColumnName()));
-			if (rs.wasNull()) obj.setSiteProfileId(null);
-			obj.setPartnerId(rs.getInt(COLUMNS.PARTNER_ID.getColumnName()));
-			if (rs.wasNull()) obj.setPartnerId(null);
-			obj.setPartnerProfileId(rs.getInt(COLUMNS.PARTNER_PROFILE_ID.getColumnName()));
-			if (rs.wasNull()) obj.setPartnerProfileId(null);
-			obj.setPartnerSupervisorId(rs.getInt(COLUMNS.PARTNER_SUPERVISOR_ID.getColumnName()));
-			if (rs.wasNull()) obj.setPartnerSupervisorId(null);
-			obj.setAllyId(rs.getInt(COLUMNS.ALLY_ID.getColumnName()));
-			if (rs.wasNull()) obj.setAllyId(null);
 			obj.setTitle(rs.getString(COLUMNS.TITLE.getColumnName()));
 			if (rs.wasNull()) obj.setTitle(null);
 			obj.setActivities(rs.getString(COLUMNS.ACTIVITIES.getColumnName()));
@@ -191,13 +170,6 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), jobobjective.getId());
-			mapping.put(COLUMNS.TERM_ID.getColumnName(), jobobjective.getTermId());
-			mapping.put(COLUMNS.SITE_ID.getColumnName(), jobobjective.getSiteId());
-			mapping.put(COLUMNS.SITE_PROFILE_ID.getColumnName(), jobobjective.getSiteProfileId());
-			mapping.put(COLUMNS.PARTNER_ID.getColumnName(), jobobjective.getPartnerId());
-			mapping.put(COLUMNS.PARTNER_PROFILE_ID.getColumnName(), jobobjective.getPartnerProfileId());
-			mapping.put(COLUMNS.PARTNER_SUPERVISOR_ID.getColumnName(), jobobjective.getPartnerSupervisorId());
-			mapping.put(COLUMNS.ALLY_ID.getColumnName(), jobobjective.getAllyId());
 			mapping.put(COLUMNS.TITLE.getColumnName(), jobobjective.getTitle());
 			mapping.put(COLUMNS.ACTIVITIES.getColumnName(), jobobjective.getActivities());
 			mapping.put(COLUMNS.MEASURE_OUTCOMES.getColumnName(), jobobjective.getMeasureOutcomes());
@@ -243,20 +215,6 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 			JobObjective obj = new JobObjective();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setId(null);
-			obj.setTermId(rs.getInt(COLUMNS.TERM_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setTermId(null);
-			obj.setSiteId(rs.getInt(COLUMNS.SITE_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setSiteId(null);
-			obj.setSiteProfileId(rs.getInt(COLUMNS.SITE_PROFILE_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setSiteProfileId(null);
-			obj.setPartnerId(rs.getInt(COLUMNS.PARTNER_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setPartnerId(null);
-			obj.setPartnerProfileId(rs.getInt(COLUMNS.PARTNER_PROFILE_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setPartnerProfileId(null);
-			obj.setPartnerSupervisorId(rs.getInt(COLUMNS.PARTNER_SUPERVISOR_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setPartnerSupervisorId(null);
-			obj.setAllyId(rs.getInt(COLUMNS.ALLY_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setAllyId(null);
 			obj.setTitle(rs.getString(COLUMNS.TITLE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTitle(null);
 			obj.setActivities(rs.getString(COLUMNS.ACTIVITIES.getColumnAliasName()));

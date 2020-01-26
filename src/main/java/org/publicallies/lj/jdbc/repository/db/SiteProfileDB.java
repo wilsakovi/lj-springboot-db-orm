@@ -19,7 +19,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 
 	private static String TABLE_NAME = "SITE_PROFILE";
 
-	private static String TABLE_ALIAS = "A_sp_521";
+	private static String TABLE_ALIAS = "A_sp_149";
 
 	public static String getTableName()
 	{

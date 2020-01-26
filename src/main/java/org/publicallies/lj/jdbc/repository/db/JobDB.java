@@ -19,7 +19,7 @@ public class JobDB implements EntityDB<Job>{
 
 	private static String TABLE_NAME = "JOB";
 
-	private static String TABLE_ALIAS = "A_job_887";
+	private static String TABLE_ALIAS = "A_job_126";
 
 	public static String getTableName()
 	{
@@ -44,24 +44,16 @@ public class JobDB implements EntityDB<Job>{
 	public enum COLUMNS
 	{
 		ID("id", false, ""),
-		TERM_ID("term_id", false, ""),
-		SITE_ID("site_id", false, ""),
 		SITE_PROFILE_ID("site_profile_id", false, ""),
 		PARTNER_ID("partner_id", false, ""),
 		PARTNER_PROFILE_ID("partner_profile_id", false, ""),
 		PARTNER_SUPERVISOR_ID("partner_supervisor_id", false, ""),
-		ALLY_ID("ally_id", false, ""),
 		TITLE("title", false, ""),
-		DESCRIPTION("description", false, ""),
-		PRIMARY_ISSUE_AREA("primary_issue_area", false, ""),
-		SECONDARY_ISSUE_AREA("secondary_issue_area", false, ""),
-		JOB_STATUS_ID("job_status_id", false, ""),
 		CREATED_AT("created_at", false, ""),
 		UPDATED_AT("updated_at", false, ""),
 		START_DATE("start_date", false, ""),
 		END_DATE("end_date", false, ""),
 		CNCS_ID("cncs_id", false, ""),
-		CAP_TYPE_ID("cap_type_id", false, ""),
 		ACCESS_DISABLES("access_disables", false, ""),
 		ADDITIONAL_INFO("additional_info", false, ""),
 		PDG_ID("pdg_id", false, ""),
@@ -154,10 +146,6 @@ public class JobDB implements EntityDB<Job>{
 			Job obj = new Job();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnName()));
 			if (rs.wasNull()) obj.setId(null);
-			obj.setTermId(rs.getInt(COLUMNS.TERM_ID.getColumnName()));
-			if (rs.wasNull()) obj.setTermId(null);
-			obj.setSiteId(rs.getInt(COLUMNS.SITE_ID.getColumnName()));
-			if (rs.wasNull()) obj.setSiteId(null);
 			obj.setSiteProfileId(rs.getInt(COLUMNS.SITE_PROFILE_ID.getColumnName()));
 			if (rs.wasNull()) obj.setSiteProfileId(null);
 			obj.setPartnerId(rs.getInt(COLUMNS.PARTNER_ID.getColumnName()));
@@ -166,18 +154,8 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setPartnerProfileId(null);
 			obj.setPartnerSupervisorId(rs.getInt(COLUMNS.PARTNER_SUPERVISOR_ID.getColumnName()));
 			if (rs.wasNull()) obj.setPartnerSupervisorId(null);
-			obj.setAllyId(rs.getInt(COLUMNS.ALLY_ID.getColumnName()));
-			if (rs.wasNull()) obj.setAllyId(null);
 			obj.setTitle(rs.getString(COLUMNS.TITLE.getColumnName()));
 			if (rs.wasNull()) obj.setTitle(null);
-			obj.setDescription(rs.getString(COLUMNS.DESCRIPTION.getColumnName()));
-			if (rs.wasNull()) obj.setDescription(null);
-			obj.setPrimaryIssueArea(rs.getString(COLUMNS.PRIMARY_ISSUE_AREA.getColumnName()));
-			if (rs.wasNull()) obj.setPrimaryIssueArea(null);
-			obj.setSecondaryIssueArea(rs.getString(COLUMNS.SECONDARY_ISSUE_AREA.getColumnName()));
-			if (rs.wasNull()) obj.setSecondaryIssueArea(null);
-			obj.setJobStatusId(rs.getInt(COLUMNS.JOB_STATUS_ID.getColumnName()));
-			if (rs.wasNull()) obj.setJobStatusId(null);
 			obj.setCreatedAt(rs.getTimestamp(COLUMNS.CREATED_AT.getColumnName()));
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnName()));
@@ -188,8 +166,6 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setEndDate(null);
 			obj.setCncsId(rs.getByte(COLUMNS.CNCS_ID.getColumnName()));
 			if (rs.wasNull()) obj.setCncsId(null);
-			obj.setCapTypeId(rs.getShort(COLUMNS.CAP_TYPE_ID.getColumnName()));
-			if (rs.wasNull()) obj.setCapTypeId(null);
 			obj.setAccessDisables(rs.getByte(COLUMNS.ACCESS_DISABLES.getColumnName()));
 			if (rs.wasNull()) obj.setAccessDisables(null);
 			obj.setAdditionalInfo(rs.getString(COLUMNS.ADDITIONAL_INFO.getColumnName()));
@@ -251,18 +227,11 @@ public class JobDB implements EntityDB<Job>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), job.getId());
-			mapping.put(COLUMNS.TERM_ID.getColumnName(), job.getTermId());
-			mapping.put(COLUMNS.SITE_ID.getColumnName(), job.getSiteId());
 			mapping.put(COLUMNS.SITE_PROFILE_ID.getColumnName(), job.getSiteProfileId());
 			mapping.put(COLUMNS.PARTNER_ID.getColumnName(), job.getPartnerId());
 			mapping.put(COLUMNS.PARTNER_PROFILE_ID.getColumnName(), job.getPartnerProfileId());
 			mapping.put(COLUMNS.PARTNER_SUPERVISOR_ID.getColumnName(), job.getPartnerSupervisorId());
-			mapping.put(COLUMNS.ALLY_ID.getColumnName(), job.getAllyId());
 			mapping.put(COLUMNS.TITLE.getColumnName(), job.getTitle());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), job.getDescription());
-			mapping.put(COLUMNS.PRIMARY_ISSUE_AREA.getColumnName(), job.getPrimaryIssueArea());
-			mapping.put(COLUMNS.SECONDARY_ISSUE_AREA.getColumnName(), job.getSecondaryIssueArea());
-			mapping.put(COLUMNS.JOB_STATUS_ID.getColumnName(), job.getJobStatusId());
 			if (job.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (job.getCreatedAt().getTime()));
 			if (job.getUpdatedAt() != null)
@@ -272,7 +241,6 @@ public class JobDB implements EntityDB<Job>{
 			if (job.getEndDate() != null)
 				mapping.put(COLUMNS.END_DATE.getColumnName(), new Timestamp (job.getEndDate().getTime()));
 			mapping.put(COLUMNS.CNCS_ID.getColumnName(), job.getCncsId());
-			mapping.put(COLUMNS.CAP_TYPE_ID.getColumnName(), job.getCapTypeId());
 			mapping.put(COLUMNS.ACCESS_DISABLES.getColumnName(), job.getAccessDisables());
 			mapping.put(COLUMNS.ADDITIONAL_INFO.getColumnName(), job.getAdditionalInfo());
 			mapping.put(COLUMNS.PDG_ID.getColumnName(), job.getPdgId());
@@ -354,10 +322,6 @@ public class JobDB implements EntityDB<Job>{
 			Job obj = new Job();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setId(null);
-			obj.setTermId(rs.getInt(COLUMNS.TERM_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setTermId(null);
-			obj.setSiteId(rs.getInt(COLUMNS.SITE_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setSiteId(null);
 			obj.setSiteProfileId(rs.getInt(COLUMNS.SITE_PROFILE_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSiteProfileId(null);
 			obj.setPartnerId(rs.getInt(COLUMNS.PARTNER_ID.getColumnAliasName()));
@@ -366,18 +330,8 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setPartnerProfileId(null);
 			obj.setPartnerSupervisorId(rs.getInt(COLUMNS.PARTNER_SUPERVISOR_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setPartnerSupervisorId(null);
-			obj.setAllyId(rs.getInt(COLUMNS.ALLY_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setAllyId(null);
 			obj.setTitle(rs.getString(COLUMNS.TITLE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTitle(null);
-			obj.setDescription(rs.getString(COLUMNS.DESCRIPTION.getColumnAliasName()));
-			if (rs.wasNull()) obj.setDescription(null);
-			obj.setPrimaryIssueArea(rs.getString(COLUMNS.PRIMARY_ISSUE_AREA.getColumnAliasName()));
-			if (rs.wasNull()) obj.setPrimaryIssueArea(null);
-			obj.setSecondaryIssueArea(rs.getString(COLUMNS.SECONDARY_ISSUE_AREA.getColumnAliasName()));
-			if (rs.wasNull()) obj.setSecondaryIssueArea(null);
-			obj.setJobStatusId(rs.getInt(COLUMNS.JOB_STATUS_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setJobStatusId(null);
 			obj.setCreatedAt(rs.getTimestamp(COLUMNS.CREATED_AT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnAliasName()));
@@ -388,8 +342,6 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setEndDate(null);
 			obj.setCncsId(rs.getByte(COLUMNS.CNCS_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setCncsId(null);
-			obj.setCapTypeId(rs.getShort(COLUMNS.CAP_TYPE_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setCapTypeId(null);
 			obj.setAccessDisables(rs.getByte(COLUMNS.ACCESS_DISABLES.getColumnAliasName()));
 			if (rs.wasNull()) obj.setAccessDisables(null);
 			obj.setAdditionalInfo(rs.getString(COLUMNS.ADDITIONAL_INFO.getColumnAliasName()));

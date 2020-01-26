@@ -24,20 +24,6 @@ public class JobObjective implements Persistable<Integer> , CommonIdCU<Integer>
 	@Null (groups = { Default.class })
 	private Integer id;
 
-	private Integer termId = 0;
-
-	private Integer siteId;
-
-	private Integer siteProfileId;
-
-	private Integer partnerId;
-
-	private Integer partnerProfileId;
-
-	private Integer partnerSupervisorId;
-
-	private Integer allyId;
-
 	@Size (max = 100)
 	private String title;
 
@@ -100,76 +86,6 @@ public class JobObjective implements Persistable<Integer> , CommonIdCU<Integer>
 	public void setId(Integer id)
 	{
 		this.id = id;
-	}
-
-	public void setTermId (Integer termId)
-	{
-		this.termId = termId;
-	}
-
-	public Integer getTermId ()
-	{
-		return this.termId;
-	}
-
-	public void setSiteId (Integer siteId)
-	{
-		this.siteId = siteId;
-	}
-
-	public Integer getSiteId ()
-	{
-		return this.siteId;
-	}
-
-	public void setSiteProfileId (Integer siteProfileId)
-	{
-		this.siteProfileId = siteProfileId;
-	}
-
-	public Integer getSiteProfileId ()
-	{
-		return this.siteProfileId;
-	}
-
-	public void setPartnerId (Integer partnerId)
-	{
-		this.partnerId = partnerId;
-	}
-
-	public Integer getPartnerId ()
-	{
-		return this.partnerId;
-	}
-
-	public void setPartnerProfileId (Integer partnerProfileId)
-	{
-		this.partnerProfileId = partnerProfileId;
-	}
-
-	public Integer getPartnerProfileId ()
-	{
-		return this.partnerProfileId;
-	}
-
-	public void setPartnerSupervisorId (Integer partnerSupervisorId)
-	{
-		this.partnerSupervisorId = partnerSupervisorId;
-	}
-
-	public Integer getPartnerSupervisorId ()
-	{
-		return this.partnerSupervisorId;
-	}
-
-	public void setAllyId (Integer allyId)
-	{
-		this.allyId = allyId;
-	}
-
-	public Integer getAllyId ()
-	{
-		return this.allyId;
 	}
 
 	public void setTitle (String title)

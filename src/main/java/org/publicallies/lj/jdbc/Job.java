@@ -24,10 +24,6 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	@Null (groups = { Default.class })
 	private Integer id;
 
-	private Integer termId;
-
-	private Integer siteId;
-
 	private Integer siteProfileId;
 
 	private Integer partnerId;
@@ -36,21 +32,8 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 
 	private Integer partnerSupervisorId;
 
-	private Integer allyId;
-
 	@Size (max = 100)
 	private String title;
-
-	@Size (max = 65535)
-	private String description;
-
-	@Size (max = 100)
-	private String primaryIssueArea;
-
-	@Size (max = 100)
-	private String secondaryIssueArea;
-
-	private Integer jobStatusId;
 
 	private Date createdAt = new Date();
 
@@ -61,8 +44,6 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	private Date endDate;
 
 	private Byte cncsId;
-
-	private Short capTypeId;
 
 	private Byte accessDisables;
 
@@ -153,26 +134,6 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 		this.id = id;
 	}
 
-	public void setTermId (Integer termId)
-	{
-		this.termId = termId;
-	}
-
-	public Integer getTermId ()
-	{
-		return this.termId;
-	}
-
-	public void setSiteId (Integer siteId)
-	{
-		this.siteId = siteId;
-	}
-
-	public Integer getSiteId ()
-	{
-		return this.siteId;
-	}
-
 	public void setSiteProfileId (Integer siteProfileId)
 	{
 		this.siteProfileId = siteProfileId;
@@ -213,16 +174,6 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 		return this.partnerSupervisorId;
 	}
 
-	public void setAllyId (Integer allyId)
-	{
-		this.allyId = allyId;
-	}
-
-	public Integer getAllyId ()
-	{
-		return this.allyId;
-	}
-
 	public void setTitle (String title)
 	{
 		this.title = title;
@@ -231,46 +182,6 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	public String getTitle ()
 	{
 		return this.title;
-	}
-
-	public void setDescription (String description)
-	{
-		this.description = description;
-	}
-
-	public String getDescription ()
-	{
-		return this.description;
-	}
-
-	public void setPrimaryIssueArea (String primaryIssueArea)
-	{
-		this.primaryIssueArea = primaryIssueArea;
-	}
-
-	public String getPrimaryIssueArea ()
-	{
-		return this.primaryIssueArea;
-	}
-
-	public void setSecondaryIssueArea (String secondaryIssueArea)
-	{
-		this.secondaryIssueArea = secondaryIssueArea;
-	}
-
-	public String getSecondaryIssueArea ()
-	{
-		return this.secondaryIssueArea;
-	}
-
-	public void setJobStatusId (Integer jobStatusId)
-	{
-		this.jobStatusId = jobStatusId;
-	}
-
-	public Integer getJobStatusId ()
-	{
-		return this.jobStatusId;
 	}
 
 	public void setCreatedAt (Date createdAt)
@@ -321,16 +232,6 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	public Byte getCncsId ()
 	{
 		return this.cncsId;
-	}
-
-	public void setCapTypeId (Short capTypeId)
-	{
-		this.capTypeId = capTypeId;
-	}
-
-	public Short getCapTypeId ()
-	{
-		return this.capTypeId;
 	}
 
 	public void setAccessDisables (Byte accessDisables)

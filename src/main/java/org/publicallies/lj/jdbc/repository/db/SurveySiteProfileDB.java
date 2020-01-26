@@ -19,7 +19,7 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 
 	private static String TABLE_NAME = "SURVEY_SITE_PROFILE";
 
-	private static String TABLE_ALIAS = "A_ssp_347";
+	private static String TABLE_ALIAS = "A_ssp_987";
 
 	public static String getTableName()
 	{
@@ -66,6 +66,8 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 		START_DATE("start_date", false, ""),
 		DEPLOYED_FLAG("deployed_flag", false, ""),
 		APIDS("apIds", true, ""),
+		ALLY_PROGRAM_STATUS_FLAG("ally_program_status_flag", false, ""),
+		GRADUATE_STATUS_IDS("graduate_status_ids", true, ""),
 		;
 
 		private String columnName;
@@ -177,6 +179,10 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 			if (rs.wasNull()) obj.setDeployedFlag(null);
 			obj.setApIds(rs.getString(COLUMNS.APIDS.getColumnName()));
 			if (rs.wasNull()) obj.setApIds(null);
+			obj.setAllyProgramStatusFlag(rs.getInt(COLUMNS.ALLY_PROGRAM_STATUS_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setAllyProgramStatusFlag(null);
+			obj.setGraduateStatusIds(rs.getString(COLUMNS.GRADUATE_STATUS_IDS.getColumnName()));
+			if (rs.wasNull()) obj.setGraduateStatusIds(null);
 			return obj;
 		}
 	}
@@ -214,6 +220,8 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 				mapping.put(COLUMNS.START_DATE.getColumnName(), new Timestamp (surveysiteprofile.getStartDate().getTime()));
 			mapping.put(COLUMNS.DEPLOYED_FLAG.getColumnName(), surveysiteprofile.getDeployedFlag());
 			mapping.put(COLUMNS.APIDS.getColumnName(), surveysiteprofile.getApIds());
+			mapping.put(COLUMNS.ALLY_PROGRAM_STATUS_FLAG.getColumnName(), surveysiteprofile.getAllyProgramStatusFlag());
+			mapping.put(COLUMNS.GRADUATE_STATUS_IDS.getColumnName(), surveysiteprofile.getGraduateStatusIds());
 			return mapping;
 		}
 	}
@@ -300,6 +308,10 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 			if (rs.wasNull()) obj.setDeployedFlag(null);
 			obj.setApIds(rs.getString(COLUMNS.APIDS.getColumnAliasName()));
 			if (rs.wasNull()) obj.setApIds(null);
+			obj.setAllyProgramStatusFlag(rs.getInt(COLUMNS.ALLY_PROGRAM_STATUS_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setAllyProgramStatusFlag(null);
+			obj.setGraduateStatusIds(rs.getString(COLUMNS.GRADUATE_STATUS_IDS.getColumnAliasName()));
+			if (rs.wasNull()) obj.setGraduateStatusIds(null);
 			if (this.loadAllFKeys || this.loadCollector)
 				obj.setCollector(SurveyCollectorDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadRespondentGroup)

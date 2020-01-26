@@ -3415,7 +3415,7 @@ ADD COLUMN `description` TEXT NULL AFTER `saved_by_user_role_code`;
   ALTER TABLE `ally_profile` 
 CHANGE COLUMN `report_excluded_flag` `report_excluded_flag` INT(1) NOT NULL DEFAULT 0 ;
 
-  /////// APPLIED DEV  and Prod
+  /////// APPLIED  Prod
   
 ================================12/16/19==========================================
 update graduate_status set active_flag= 0 where id in (15,20); 
@@ -3435,4 +3435,43 @@ DROP INDEX `old_id_UNIQUE` ;
 
 ALTER TABLE `ally_profile_history` 
 CHANGE COLUMN `updated_by` `updated_by_user_id` INT(11) NULL DEFAULT NULL ;
+
+============================ 01/19/20===================================================
+ALTER TABLE `job` 
+DROP COLUMN `cap_type_id`,
+DROP COLUMN `job_status_id`,
+DROP COLUMN `secondary_issue_area`,
+DROP COLUMN `primary_issue_area`,
+DROP COLUMN `description`,
+DROP COLUMN `ally_id`,
+DROP COLUMN `site_id`,
+DROP COLUMN `term_id`;
+
+ALTER TABLE `job_objective` 
+DROP COLUMN `ally_id`,
+DROP COLUMN `partner_supervisor_id`,
+DROP COLUMN `partner_profile_id`,
+DROP COLUMN `partner_id`,
+DROP COLUMN `site_profile_id`,
+DROP COLUMN `site_id`,
+DROP COLUMN `term_id`;
+
+ALTER TABLE `survey_site_profile` 
+ADD COLUMN `ally_program_status_flag` INT(1) NULL,
+ADD COLUMN `graduate_status_ids` JSON NULL;
+
+
+
+update `survey_site_profile` set ally_program_status_flag = 0 where id > 0;
+
+ALTER TABLE `survey_site_profile` 
+CHANGE COLUMN `ally_program_status_flag` `ally_program_status_flag` INT(1) NOT NULL ;
+
+ALTER TABLE `survey_site_profile` 
+CHANGE COLUMN `ally_program_status_flag` `ally_program_status_flag` INT(1)  NULL ;
+
+  /////// APPLIED DEV 
+
+
+
 
