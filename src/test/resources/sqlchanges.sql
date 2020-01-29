@@ -3415,7 +3415,6 @@ ADD COLUMN `description` TEXT NULL AFTER `saved_by_user_role_code`;
   ALTER TABLE `ally_profile` 
 CHANGE COLUMN `report_excluded_flag` `report_excluded_flag` INT(1) NOT NULL DEFAULT 0 ;
 
-  /////// APPLIED  Prod
   
 ================================12/16/19==========================================
 update graduate_status set active_flag= 0 where id in (15,20); 
@@ -3470,7 +3469,7 @@ CHANGE COLUMN `ally_program_status_flag` `ally_program_status_flag` INT(1) NOT N
 ALTER TABLE `survey_site_profile` 
 CHANGE COLUMN `ally_program_status_flag` `ally_program_status_flag` INT(1)  NULL ;
 
-  /////// APPLIED DEV 
+  /////// APPLIED DEV and PROD
 
 
 
