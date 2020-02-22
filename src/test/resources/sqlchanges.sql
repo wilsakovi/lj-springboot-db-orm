@@ -3470,7 +3470,39 @@ ALTER TABLE `survey_site_profile`
 CHANGE COLUMN `ally_program_status_flag` `ally_program_status_flag` INT(1)  NULL ;
 
   /////// APPLIED DEV and PROD
+  
+  update survey_site_profile set `ally_program_status_flag` = 1, `graduate_status_ids` = '[10,15,30]' where all_allies_flag = 1;
 
+  update `survey_site_profile` set ally_program_status_flag = 0 where all_allies_flag = 0;
+  
+ALTER TABLE `survey_site_profile` CHANGE COLUMN `ally_program_status_flag` `ally_program_status_flag` INT(1) NOT NULL ;
+  
+  ALTER TABLE `survey_site_profile` CHANGE COLUMN `all_allies_flag` `all_allies_flag` INT(1) NULL ;
 
+   update ally_profile set 
+ assigned_survey_site = "[]"
+  where graduation_status_id not in (10,15,30);
+  
+  update ally_profile uap,
+  (
+  select ap.id, GROUP_CONCAT(distinct sp.id separator ',') as js from ally_profile ap, survey_site_profile sp
+  where sp.ally_program_status_flag = 0 and 
+  JSON_CONTAINS(sp.apIds, CAST(ap.id as JSON), '$')
+  group by ap.id) sq
+  set uap.assigned_survey_site = concat("[", sq.js, "]")
+  where uap.id = sq.id and uap.graduation_status_id not in (10,15,30);
+
+  
+  delete from 
+survey_response 
+where
+submitted_flag != 1
+and target_id in 
+(select id from ally_profile where graduation_status_id not in (10,15,30))
+and survey_site_id in (select id from survey_site_profile where ally_program_status_flag = 1);
+
+// VIEW vw_ap_tl_approval has been updated
+
+  /////// APPLIED DEV
 
 

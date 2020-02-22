@@ -18,7 +18,7 @@ public class StpHttpClientDB implements EntityDB<StpHttpClient>{
 
 	private static String TABLE_NAME = "STP_HTTP_CLIENT";
 
-	private static String TABLE_ALIAS = "A_shc_150";
+	private static String TABLE_ALIAS = "A_shc_547";
 
 	public static String getTableName()
 	{

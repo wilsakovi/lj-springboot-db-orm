@@ -19,7 +19,7 @@ public class ActsObjectiveDB implements EntityDB<ActsObjective>{
 
 	private static String TABLE_NAME = "ACTS_OBJECTIVE";
 
-	private static String TABLE_ALIAS = "A_ao_97";
+	private static String TABLE_ALIAS = "A_ao_509";
 
 	public static String getTableName()
 	{

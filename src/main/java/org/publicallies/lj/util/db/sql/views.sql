@@ -174,28 +174,30 @@ CREATE or replace VIEW vw_ap_tl_approval AS
 SELECT ap.id,  sq.* 
 FROM ally_profile ap 
 LEFT JOIN (
-	SELECT p.ally_profile_id as ally_profile_id, 
-	       month(p.period_end_date) as period_month,
-           year(p.period_end_date) as period_year,
-			COUNT(p.id) as total_generated, 
-			 sum(IF(p.pm_approval_status_code = 'AP', grand_total, 0)) grand_total, 
-			 sum(IF(p.pm_approval_status_code = 'AP', total_placement, 0)) total_placement,
-			 sum(IF(p.pm_approval_status_code = 'AP', total_fundraising, 0)) total_fundraising,
-			 sum(IF(p.pm_approval_status_code = 'AP', total_tsp, 0)) total_tsp,
-			 sum(IF(p.pm_approval_status_code = 'AP', total_service, 0)) total_service,
-			 sum(IF(p.pm_approval_status_code = 'AP', total_training, 0)) total_training,
-			SUM(IF(p.ally_submit_status_code = 'SB', 1, 0)) AS ally_sb_total,
-			SUM(IF(p.ally_submit_status_code = 'SB', grand_total, 0)) AS ally_sb_total_hours, 
-			SUM(IF(p.pos_approval_status_code = 'AP', 1, 0)) AS pos_ap_total,
-			SUM(IF(p.pos_approval_status_code = 'AP', grand_total, 0)) AS pos_ap_total_hours,
-			SUM(IF(p.pm_approval_status_code = 'AP', 1, 0)) AS pm_ap_total,
-			SUM(IF(p.pm_approval_status_code = 'AP', grand_total, 0)) AS pm_ap_total_hours,
-		    SUM(IF(p.pm_approval_status_code = 'AP' AND to_days(p.pm_approved_date) <= to_days(p.period_end_date) + 10, 1, 0)) AS approved_10_total,
-		    SUM(IF(p.pm_approval_status_code = 'AP' AND to_days(p.pm_approved_date) <= to_days(p.period_end_date) + 10, grand_total, 0)) AS approved_10_total_hours,
-		    SUM(IF(p.pm_approval_status_code = 'AP' AND to_days(p.pm_approved_date) > to_days(p.period_end_date) + 10, grand_total, 0)) AS approved_outside_10_total_hours
-	FROM pay_period p
-	GROUP BY p.ally_profile_id, period_month, period_year
-	) sq on (ap.id = sq.ally_profile_id);
+  SELECT p.ally_profile_id as ally_profile_id, 
+  month(p.period_end_date) as period_month,
+  year(p.period_end_date) as period_year,
+  COUNT(p.id) as total_generated,
+  sum(IF(p.pm_approval_status_code = 'AP', grand_total, 0)) grand_total,
+  sum(IF(p.pm_approval_status_code = 'AP', total_placement, 0)) total_placement,
+  sum(IF(p.pm_approval_status_code = 'AP', total_fundraising, 0)) total_fundraising,
+  sum(IF(p.pm_approval_status_code = 'AP', total_tsp, 0)) total_tsp,
+  sum(IF(p.pm_approval_status_code = 'AP', total_service, 0)) total_service,
+  sum(IF(p.pm_approval_status_code = 'AP', total_training, 0)) total_training,
+  SUM(IF(p.ally_submit_status_code = 'SB', 1, 0)) AS ally_sb_total,
+  SUM(IF(p.ally_submit_status_code = 'SB', grand_total, 0)) AS ally_sb_total_hours,
+  SUM(IF(p.ally_submit_status_code = 'SB' AND to_days(p.period_end_date) < to_days(now()), grand_total, 0)) AS pdr_ally_sb_total_hours, 
+  SUM(IF(p.pos_approval_status_code = 'AP', 1, 0)) AS pos_ap_total,
+  SUM(IF(p.pos_approval_status_code = 'AP', grand_total, 0)) AS pos_ap_total_hours,
+  SUM(IF(p.pm_approval_status_code = 'AP', 1, 0)) AS pm_ap_total,
+  SUM(IF(p.pm_approval_status_code = 'AP', grand_total, 0)) AS pm_ap_total_hours,
+  SUM(IF(p.pm_approval_status_code = 'AP' AND to_days(p.period_end_date) < to_days(now()), grand_total, 0)) AS pdr_pm_ap_total_hours,
+  SUM(IF(p.pm_approval_status_code = 'AP' AND to_days(p.pm_approved_date) <= to_days(p.period_end_date) + 10, 1, 0)) AS approved_10_total,
+  SUM(IF(p.pm_approval_status_code = 'AP' AND to_days(p.pm_approved_date) <= to_days(p.period_end_date) + 10, grand_total, 0)) AS approved_10_total_hours,
+  SUM(IF(p.pm_approval_status_code = 'AP' AND to_days(p.pm_approved_date) > to_days(p.period_end_date) + 10, grand_total, 0)) AS approved_outside_10_total_hours
+FROM pay_period p
+GROUP BY p.ally_profile_id, period_month, period_year
+) sq on (ap.id = sq.ally_profile_id);
 	
 
 CREATE or replace VIEW vw_users AS

@@ -56,7 +56,6 @@ public class SurveySiteProfile implements Persistable<Integer> , CommonIdCUH<Int
 
 	private String history;
 
-	@NotNull
 	private Integer allAlliesFlag;
 
 	@NotNull
