@@ -19,7 +19,7 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 
 	private static String TABLE_NAME = "TIME_SHEET";
 
-	private static String TABLE_ALIAS = "A_ts_854";
+	private static String TABLE_ALIAS = "A_ts_484";
 
 	public static String getTableName()
 	{

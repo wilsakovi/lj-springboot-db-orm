@@ -19,7 +19,7 @@ public class MsrPathwaysDB implements EntityDB<MsrPathways>{
 
 	private static String TABLE_NAME = "MSR_PATHWAYS";
 
-	private static String TABLE_ALIAS = "A_mp_693";
+	private static String TABLE_ALIAS = "A_mp_375";
 
 	public static String getTableName()
 	{

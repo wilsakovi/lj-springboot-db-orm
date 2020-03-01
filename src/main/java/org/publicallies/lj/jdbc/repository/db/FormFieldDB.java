@@ -18,7 +18,7 @@ public class FormFieldDB implements EntityDB<FormField>{
 
 	private static String TABLE_NAME = "FORM_FIELD";
 
-	private static String TABLE_ALIAS = "A_ff_12";
+	private static String TABLE_ALIAS = "A_ff_573";
 
 	public static String getTableName()
 	{

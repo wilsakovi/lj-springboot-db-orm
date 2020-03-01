@@ -76,6 +76,7 @@ public class SurveySiteProfile implements Persistable<Integer> , CommonIdCUH<Int
 
 	private String apIds;
 
+	@NotNull
 	private Integer allyProgramStatusFlag;
 
 	private String graduateStatusIds;

@@ -19,7 +19,7 @@ public class PaFormDB implements EntityDB<PaForm>{
 
 	private static String TABLE_NAME = "PA_FORM";
 
-	private static String TABLE_ALIAS = "A_pf_850";
+	private static String TABLE_ALIAS = "A_pf_853";
 
 	public static String getTableName()
 	{

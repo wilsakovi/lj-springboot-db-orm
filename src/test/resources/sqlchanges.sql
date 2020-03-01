@@ -3504,5 +3504,32 @@ and survey_site_id in (select id from survey_site_profile where ally_program_sta
 // VIEW vw_ap_tl_approval has been updated
 
   /////// APPLIED DEV
+ ====================== 02/23/2020========================================= 
+  CREATE TABLE `sp_demographic_snapshot` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `partner_supervisor_id` int(11) NOT NULL,
+  `term_id` smallint(3) NOT NULL,
+  `gender_id` int(1) DEFAULT NULL,
+  `gender_name` varchar(100) DEFAULT NULL,
+  `gender_other` varchar(100) DEFAULT NULL,
+  `race_ids_json` json DEFAULT NULL,
+  `race_names_json` json DEFAULT NULL,
+  `race_other` varchar(100) DEFAULT NULL,
+  `higher_education_id` int(2) DEFAULT NULL,
+  `higher_education_name` varchar(100) DEFAULT NULL,
+  `sex_orientation_id` int(2) DEFAULT NULL,
+  `sex_orientation_name` varchar(100) DEFAULT NULL,
+  `sex_orientation_other` varchar(100) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `lgbtq_flag` varchar(15) DEFAULT NULL,
+  `p_position_period` int(2) DEFAULT NULL,
+  `c_position_period` int(2) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `sp_demo_snapshot_id_UNIQUE` (`partner_supervisor_id`, term_id),
+  CONSTRAINT `fk_sp_demo_sp` FOREIGN KEY (`partner_supervisor_id`) REFERENCES `partner_supervisor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_sp_demo_term` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB   CHARSET=latin1;
 
 
