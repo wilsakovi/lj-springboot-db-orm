@@ -3533,3 +3533,8 @@ and survey_site_id in (select id from survey_site_profile where ally_program_sta
 ) ENGINE=InnoDB   CHARSET=latin1;
 
 
+ALTER TABLE `survey_site_profile` 
+CHANGE COLUMN `due_date_trigger` `due_date_trigger` ENUM('ALLY_START_DATE', 'ALLY_END_DATE', 'ALLY_PROGRAM_STATUS_EFFECTIVE_DATE') NULL DEFAULT NULL ,
+CHANGE COLUMN `start_date_trigger` `start_date_trigger` ENUM('ALLY_START_DATE', 'ALLY_END_DATE', 'ALLY_PROGRAM_STATUS_EFFECTIVE_DATE') NULL DEFAULT NULL ;
+
+
