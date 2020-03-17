@@ -166,7 +166,7 @@ ally_profile
 WHERE
 ((ISNULL(ally_profile.refilled)
 OR (ally_profile.refilled <> 1))
-AND (ally_profile.graduation_status_id IN (10 , 15))
+AND (ally_profile.graduation_status_id IN (10 , 15)))
 GROUP BY ally_profile.site_profile_id) sq1 ON ((sq1.site_profile_id = sp.id)));   
 
 
