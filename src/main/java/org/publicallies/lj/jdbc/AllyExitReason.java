@@ -26,7 +26,8 @@ public class AllyExitReason implements Persistable<Integer>
 	@Size (max = 50)
 	private String name;
 
-	private Byte oldId;
+	@NotNull
+	private Integer cpcExitOnlyFlag = 0;
 
 	private transient boolean persisted;
 
@@ -61,14 +62,14 @@ public class AllyExitReason implements Persistable<Integer>
 		return this.name;
 	}
 
-	public void setOldId (Byte oldId)
+	public void setCpcExitOnlyFlag (Integer cpcExitOnlyFlag)
 	{
-		this.oldId = oldId;
+		this.cpcExitOnlyFlag = cpcExitOnlyFlag;
 	}
 
-	public Byte getOldId ()
+	public Integer getCpcExitOnlyFlag ()
 	{
-		return this.oldId;
+		return this.cpcExitOnlyFlag;
 	}
 
 	public void setPersisted (Boolean persisted)

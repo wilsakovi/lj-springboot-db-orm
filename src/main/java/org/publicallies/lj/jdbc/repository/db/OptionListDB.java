@@ -18,7 +18,7 @@ public class OptionListDB implements EntityDB<OptionList>{
 
 	private static String TABLE_NAME = "OPTION_LIST";
 
-	private static String TABLE_ALIAS = "A_ol_244";
+	private static String TABLE_ALIAS = "A_ol_761";
 
 	public static String getTableName()
 	{

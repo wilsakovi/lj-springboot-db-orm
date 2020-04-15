@@ -19,7 +19,7 @@ public class ActionStepObjectiveDB implements EntityDB<ActionStepObjective>{
 
 	private static String TABLE_NAME = "ACTION_STEP_OBJECTIVE";
 
-	private static String TABLE_ALIAS = "A_aso_344";
+	private static String TABLE_ALIAS = "A_aso_946";
 
 	public static String getTableName()
 	{

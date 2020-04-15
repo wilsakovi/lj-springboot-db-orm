@@ -19,7 +19,7 @@ public class MessagingDB implements EntityDB<Messaging>{
 
 	private static String TABLE_NAME = "MESSAGING";
 
-	private static String TABLE_ALIAS = "A_mes_405";
+	private static String TABLE_ALIAS = "A_mes_246";
 
 	public static String getTableName()
 	{

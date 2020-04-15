@@ -46,12 +46,12 @@ public class SurveySiteProfile implements Persistable<Integer> , CommonIdCUH<Int
 	@NotNull
 	private Integer hardDueDateFlag;
 
-	@Size (max = 16)
+	@Size (max = 34)
 	private String dueDateTrigger;
 
 	private Integer daysToDueDate;
 
-	@Size (max = 7)
+	@Size (max = 6)
 	private String toDueDateDirection;
 
 	private String history;
@@ -61,12 +61,12 @@ public class SurveySiteProfile implements Persistable<Integer> , CommonIdCUH<Int
 	@NotNull
 	private Integer hardStartDateFlag;
 
-	@Size (max = 16)
+	@Size (max = 34)
 	private String startDateTrigger;
 
 	private Integer daysToStartDate;
 
-	@Size (max = 7)
+	@Size (max = 6)
 	private String toStartDateDirection;
 
 	private Date startDate;

@@ -3469,7 +3469,7 @@ CHANGE COLUMN `ally_program_status_flag` `ally_program_status_flag` INT(1) NOT N
 ALTER TABLE `survey_site_profile` 
 CHANGE COLUMN `ally_program_status_flag` `ally_program_status_flag` INT(1)  NULL ;
 
-  /////// APPLIED DEV and PROD
+
   
   update survey_site_profile set `ally_program_status_flag` = 1, `graduate_status_ids` = '[10,15,30]' where all_allies_flag = 1;
 
@@ -3503,7 +3503,7 @@ and survey_site_id in (select id from survey_site_profile where ally_program_sta
 
 // VIEW vw_ap_tl_approval has been updated
 
-  /////// APPLIED DEV
+
  ====================== 02/23/2020========================================= 
   CREATE TABLE `sp_demographic_snapshot` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -3536,5 +3536,15 @@ and survey_site_id in (select id from survey_site_profile where ally_program_sta
 ALTER TABLE `survey_site_profile` 
 CHANGE COLUMN `due_date_trigger` `due_date_trigger` ENUM('ALLY_START_DATE', 'ALLY_END_DATE', 'ALLY_PROGRAM_STATUS_EFFECTIVE_DATE') NULL DEFAULT NULL ,
 CHANGE COLUMN `start_date_trigger` `start_date_trigger` ENUM('ALLY_START_DATE', 'ALLY_END_DATE', 'ALLY_PROGRAM_STATUS_EFFECTIVE_DATE') NULL DEFAULT NULL ;
+
+  /////// APPLIED DEV and PROD
+
+============================ 04/08/20=====================================================================
+ALTER TABLE `ally_exit_reason` ADD COLUMN `cpc_exit_only_flag` INT(1) NOT NULL DEFAULT 0 AFTER `old_id`;
+
+INSERT INTO `ally_exit_reason` (`id`, `name`, `cpc_exit_only_flag`) VALUES ('8', 'COVID-19 / Coronavirus', '1');
+
+ALTER TABLE `ally_exit_reason` DROP COLUMN `old_id`;
+
 
 

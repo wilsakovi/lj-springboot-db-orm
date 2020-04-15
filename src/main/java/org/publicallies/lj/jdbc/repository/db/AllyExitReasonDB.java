@@ -18,7 +18,7 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 
 	private static String TABLE_NAME = "ALLY_EXIT_REASON";
 
-	private static String TABLE_ALIAS = "A_aer_840";
+	private static String TABLE_ALIAS = "A_aer_676";
 
 	public static String getTableName()
 	{
@@ -44,7 +44,7 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 	{
 		ID("id", false, ""),
 		NAME("name", false, ""),
-		OLD_ID("old_id", false, ""),
+		CPC_EXIT_ONLY_FLAG("cpc_exit_only_flag", false, ""),
 		;
 
 		private String columnName;
@@ -114,8 +114,8 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setName(rs.getString(COLUMNS.NAME.getColumnName()));
 			if (rs.wasNull()) obj.setName(null);
-			obj.setOldId(rs.getByte(COLUMNS.OLD_ID.getColumnName()));
-			if (rs.wasNull()) obj.setOldId(null);
+			obj.setCpcExitOnlyFlag(rs.getInt(COLUMNS.CPC_EXIT_ONLY_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setCpcExitOnlyFlag(null);
 			return obj;
 		}
 	}
@@ -128,7 +128,7 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), allyexitreason.getId());
 			mapping.put(COLUMNS.NAME.getColumnName(), allyexitreason.getName());
-			mapping.put(COLUMNS.OLD_ID.getColumnName(), allyexitreason.getOldId());
+			mapping.put(COLUMNS.CPC_EXIT_ONLY_FLAG.getColumnName(), allyexitreason.getCpcExitOnlyFlag());
 			return mapping;
 		}
 	}
@@ -143,8 +143,8 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setName(rs.getString(COLUMNS.NAME.getColumnAliasName()));
 			if (rs.wasNull()) obj.setName(null);
-			obj.setOldId(rs.getByte(COLUMNS.OLD_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setOldId(null);
+			obj.setCpcExitOnlyFlag(rs.getInt(COLUMNS.CPC_EXIT_ONLY_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setCpcExitOnlyFlag(null);
 			return obj;
 		}
 	}

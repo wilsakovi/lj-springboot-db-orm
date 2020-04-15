@@ -4,6 +4,7 @@ import javax.validation.groups.Default;
 import javax.validation.constraints.Size;
 import org.springframework.data.domain.Persistable;
 import org.hibernate.validator.constraints.NotEmpty;
+import java.util.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.publicallies.lj.jdbc.common.*;
 import javax.validation.constraints.NotNull;

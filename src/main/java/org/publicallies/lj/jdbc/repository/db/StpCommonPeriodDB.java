@@ -18,7 +18,7 @@ public class StpCommonPeriodDB implements EntityDB<StpCommonPeriod>{
 
 	private static String TABLE_NAME = "STP_COMMON_PERIOD";
 
-	private static String TABLE_ALIAS = "A_scp_227";
+	private static String TABLE_ALIAS = "A_scp_681";
 
 	public static String getTableName()
 	{

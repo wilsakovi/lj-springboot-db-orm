@@ -19,7 +19,7 @@ public class ActsReportDB implements EntityDB<ActsReport>{
 
 	private static String TABLE_NAME = "ACTS_REPORT";
 
-	private static String TABLE_ALIAS = "A_ar_493";
+	private static String TABLE_ALIAS = "A_ar_323";
 
 	public static String getTableName()
 	{

@@ -6,6 +6,7 @@ import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
+import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 import org.publicallies.lj.jdbc.State;
 
@@ -18,7 +19,7 @@ public class StateDB implements EntityDB<State>{
 
 	private static String TABLE_NAME = "STATE";
 
-	private static String TABLE_ALIAS = "A_sta_148";
+	private static String TABLE_ALIAS = "A_sta_228";
 
 	public static String getTableName()
 	{

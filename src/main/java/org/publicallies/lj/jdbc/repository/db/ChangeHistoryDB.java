@@ -19,7 +19,7 @@ public class ChangeHistoryDB implements EntityDB<ChangeHistory>{
 
 	private static String TABLE_NAME = "CHANGE_HISTORY";
 
-	private static String TABLE_ALIAS = "A_ch_176";
+	private static String TABLE_ALIAS = "A_ch_341";
 
 	public static String getTableName()
 	{

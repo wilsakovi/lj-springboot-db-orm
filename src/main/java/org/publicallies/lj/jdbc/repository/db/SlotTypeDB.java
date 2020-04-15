@@ -18,7 +18,7 @@ public class SlotTypeDB implements EntityDB<SlotType>{
 
 	private static String TABLE_NAME = "SLOT_TYPE";
 
-	private static String TABLE_ALIAS = "A_st_826";
+	private static String TABLE_ALIAS = "A_st_240";
 
 	public static String getTableName()
 	{

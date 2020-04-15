@@ -19,7 +19,7 @@ public class TspReportUploadFilesDB implements EntityDB<TspReportUploadFiles>{
 
 	private static String TABLE_NAME = "TSP_REPORT_UPLOAD_FILES";
 
-	private static String TABLE_ALIAS = "A_truf_352";
+	private static String TABLE_ALIAS = "A_truf_993";
 
 	public static String getTableName()
 	{

@@ -18,7 +18,7 @@ public class JobAssessmentDB implements EntityDB<JobAssessment>{
 
 	private static String TABLE_NAME = "JOB_ASSESSMENT";
 
-	private static String TABLE_ALIAS = "A_ja_720";
+	private static String TABLE_ALIAS = "A_ja_349";
 
 	public static String getTableName()
 	{

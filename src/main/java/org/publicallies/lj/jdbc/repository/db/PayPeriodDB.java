@@ -19,7 +19,7 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 
 	private static String TABLE_NAME = "PAY_PERIOD";
 
-	private static String TABLE_ALIAS = "A_pp_674";
+	private static String TABLE_ALIAS = "A_pp_194";
 
 	public static String getTableName()
 	{

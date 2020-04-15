@@ -31,7 +31,7 @@ public class SurveyResponse implements Persistable<Integer> , CommonIdCU<Integer
 	private Integer targetId;
 
 	@NotEmpty
-	@Size (max = 5)
+	@Size (max = 4)
 	private String targetType;
 
 	private Integer surveyId;
@@ -77,11 +77,11 @@ public class SurveyResponse implements Persistable<Integer> , CommonIdCU<Integer
 	private Integer closedFlag = 0;
 
 	@NotEmpty
-	@Size (max = 3)
+	@Size (max = 2)
 	private String targetIdType;
 
 	@NotEmpty
-	@Size (max = 3)
+	@Size (max = 2)
 	private String respondentIdType;
 
 	@NotNull
