@@ -19,7 +19,7 @@ public class ActsPartnerDB implements EntityDB<ActsPartner>{
 
 	private static String TABLE_NAME = "ACTS_PARTNER";
 
-	private static String TABLE_ALIAS = "A_ap_449";
+	private static String TABLE_ALIAS = "A_ap_454";
 
 	public static String getTableName()
 	{

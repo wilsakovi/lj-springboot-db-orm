@@ -114,18 +114,6 @@ public class PayPeriodRepository extends JdbcRepository<PayPeriod, Integer>
 		return this.jdbcOperations.query (sql, new Object[] { jobId }, PayPeriodDB.ROW_MAPPER);
 	}
 
-	public List<PayPeriod> getPayPeriodsByProgramYearId (Long programYearId)
-	{
-		String sql = "select * from " + PayPeriodDB.getTableName() + " where " + PayPeriodDB.COLUMNS.PROGRAM_YEAR_ID.getColumnName() + " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { programYearId }, PayPeriodDB.ROW_MAPPER);
-	}
-
-	public List<PayPeriod> getPayPeriodsBySiteProfileId (Long siteProfileId)
-	{
-		String sql = "select * from " + PayPeriodDB.getTableName() + " where " + PayPeriodDB.COLUMNS.SITE_PROFILE_ID.getColumnName() + " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { siteProfileId }, PayPeriodDB.ROW_MAPPER);
-	}
-
 
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 

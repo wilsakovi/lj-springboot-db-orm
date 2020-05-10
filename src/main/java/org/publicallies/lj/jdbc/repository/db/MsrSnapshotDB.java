@@ -19,7 +19,7 @@ public class MsrSnapshotDB implements EntityDB<MsrSnapshot>{
 
 	private static String TABLE_NAME = "MSR_SNAPSHOT";
 
-	private static String TABLE_ALIAS = "A_ms_813";
+	private static String TABLE_ALIAS = "A_ms_533";
 
 	public static String getTableName()
 	{

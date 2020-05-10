@@ -19,7 +19,7 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 
 	private static String TABLE_NAME = "SURVEY_SITE_PROFILE";
 
-	private static String TABLE_ALIAS = "A_ssp_268";
+	private static String TABLE_ALIAS = "A_ssp_98";
 
 	public static String getTableName()
 	{

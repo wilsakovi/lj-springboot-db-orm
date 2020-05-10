@@ -24,12 +24,8 @@ public class TimeSheet implements Persistable<Integer> , CommonIdCU<Integer>
 	@Null (groups = { Default.class })
 	private Integer id;
 
-	private Short programYearId;
-
 	@NotNull (groups = { Default.class, Default.class })
 	private Integer payPeriodId;
-
-	private Integer allyProfileId;
 
 	private Float training = 0.0F;
 
@@ -49,19 +45,11 @@ public class TimeSheet implements Persistable<Integer> , CommonIdCU<Integer>
 
 	private Date timeSheetDate;
 
-	@Size (max = 10)
-	private String timeSheetDay;
-
-	@Size (max = 65535)
-	private String notes;
-
 	private Byte activeFlag = new Byte("1");
 
 	private Date createdAt = new Date();
 
 	private Date updatedAt = new Date();
-
-	private Integer oldId;
 
 	private Float reflection = 0.0F;
 
@@ -73,9 +61,7 @@ public class TimeSheet implements Persistable<Integer> , CommonIdCU<Integer>
 
 	private transient boolean persisted;
 
-	private AllyProfile allyProfile;
 	private PayPeriod payPeriod;
-	private ProgramYear programYear;
 
 	public TimeSheet ()
 	{
@@ -97,16 +83,6 @@ public class TimeSheet implements Persistable<Integer> , CommonIdCU<Integer>
 		this.id = id;
 	}
 
-	public void setProgramYearId (Short programYearId)
-	{
-		this.programYearId = programYearId;
-	}
-
-	public Short getProgramYearId ()
-	{
-		return this.programYearId;
-	}
-
 	public void setPayPeriodId (Integer payPeriodId)
 	{
 		this.payPeriodId = payPeriodId;
@@ -115,16 +91,6 @@ public class TimeSheet implements Persistable<Integer> , CommonIdCU<Integer>
 	public Integer getPayPeriodId ()
 	{
 		return this.payPeriodId;
-	}
-
-	public void setAllyProfileId (Integer allyProfileId)
-	{
-		this.allyProfileId = allyProfileId;
-	}
-
-	public Integer getAllyProfileId ()
-	{
-		return this.allyProfileId;
 	}
 
 	public void setTraining (Float training)
@@ -217,26 +183,6 @@ public class TimeSheet implements Persistable<Integer> , CommonIdCU<Integer>
 		return this.timeSheetDate;
 	}
 
-	public void setTimeSheetDay (String timeSheetDay)
-	{
-		this.timeSheetDay = timeSheetDay;
-	}
-
-	public String getTimeSheetDay ()
-	{
-		return this.timeSheetDay;
-	}
-
-	public void setNotes (String notes)
-	{
-		this.notes = notes;
-	}
-
-	public String getNotes ()
-	{
-		return this.notes;
-	}
-
 	public void setActiveFlag (Byte activeFlag)
 	{
 		this.activeFlag = activeFlag;
@@ -265,16 +211,6 @@ public class TimeSheet implements Persistable<Integer> , CommonIdCU<Integer>
 	public Date getUpdatedAt ()
 	{
 		return this.updatedAt;
-	}
-
-	public void setOldId (Integer oldId)
-	{
-		this.oldId = oldId;
-	}
-
-	public Integer getOldId ()
-	{
-		return this.oldId;
 	}
 
 	public void setReflection (Float reflection)
@@ -327,16 +263,6 @@ public class TimeSheet implements Persistable<Integer> , CommonIdCU<Integer>
 		return this.persisted;
 	}
 
-	public void setAllyProfile (AllyProfile allyProfile)
-	{
-		this.allyProfile = allyProfile;
-	}
-
-	public AllyProfile getAllyProfile ()
-	{
-		return this.allyProfile;
-	}
-
 	public void setPayPeriod (PayPeriod payPeriod)
 	{
 		this.payPeriod = payPeriod;
@@ -345,16 +271,6 @@ public class TimeSheet implements Persistable<Integer> , CommonIdCU<Integer>
 	public PayPeriod getPayPeriod ()
 	{
 		return this.payPeriod;
-	}
-
-	public void setProgramYear (ProgramYear programYear)
-	{
-		this.programYear = programYear;
-	}
-
-	public ProgramYear getProgramYear ()
-	{
-		return this.programYear;
 	}
 
 	@Override

@@ -102,22 +102,10 @@ public class TimeSheetRepository extends JdbcRepository<TimeSheet, Integer>
 	}
 
 
-	public List<TimeSheet> getTimeSheetsByAllyProfileId (Long allyProfileId)
-	{
-		String sql = "select * from " + TimeSheetDB.getTableName() + " where " + TimeSheetDB.COLUMNS.ALLY_PROFILE_ID.getColumnName() + " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { allyProfileId }, TimeSheetDB.ROW_MAPPER);
-	}
-
 	public List<TimeSheet> getTimeSheetsByPayPeriodId (Long payPeriodId)
 	{
 		String sql = "select * from " + TimeSheetDB.getTableName() + " where " + TimeSheetDB.COLUMNS.PAY_PERIOD_ID.getColumnName() + " = ? ";
 		return this.jdbcOperations.query (sql, new Object[] { payPeriodId }, TimeSheetDB.ROW_MAPPER);
-	}
-
-	public List<TimeSheet> getTimeSheetsByProgramYearId (Long programYearId)
-	{
-		String sql = "select * from " + TimeSheetDB.getTableName() + " where " + TimeSheetDB.COLUMNS.PROGRAM_YEAR_ID.getColumnName() + " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { programYearId }, TimeSheetDB.ROW_MAPPER);
 	}
 
 

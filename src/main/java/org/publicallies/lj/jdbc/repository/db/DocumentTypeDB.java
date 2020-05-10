@@ -18,7 +18,7 @@ public class DocumentTypeDB implements EntityDB<DocumentType>{
 
 	private static String TABLE_NAME = "DOCUMENT_TYPE";
 
-	private static String TABLE_ALIAS = "A_dt_178";
+	private static String TABLE_ALIAS = "A_dt_13";
 
 	public static String getTableName()
 	{

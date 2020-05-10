@@ -19,7 +19,7 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 
 	private static String TABLE_NAME = "TIME_SHEET";
 
-	private static String TABLE_ALIAS = "A_ts_745";
+	private static String TABLE_ALIAS = "A_ts_155";
 
 	public static String getTableName()
 	{
@@ -44,9 +44,7 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 	public enum COLUMNS
 	{
 		ID("id", false, ""),
-		PROGRAM_YEAR_ID("program_year_id", false, ""),
 		PAY_PERIOD_ID("pay_period_id", false, ""),
-		ALLY_PROFILE_ID("ally_profile_id", false, ""),
 		TRAINING("training", false, ""),
 		FUNDRAISING("fundraising", false, ""),
 		PLACEMENT("placement", false, ""),
@@ -56,12 +54,9 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 		LATE("late", false, ""),
 		ABSENT("absent", false, ""),
 		TIME_SHEET_DATE("time_sheet_date", false, ""),
-		TIME_SHEET_DAY("time_sheet_day", false, ""),
-		NOTES("notes", false, ""),
 		ACTIVE_FLAG("active_flag", false, ""),
 		CREATED_AT("created_at", false, ""),
 		UPDATED_AT("updated_at", false, ""),
-		OLD_ID("old_id", false, ""),
 		REFLECTION("reflection", false, ""),
 		SHEET_DETAIL("sheet_detail", true, ""),
 		WEEKDAY_ID("weekday_id", false, ""),
@@ -133,12 +128,8 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 			TimeSheet obj = new TimeSheet();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnName()));
 			if (rs.wasNull()) obj.setId(null);
-			obj.setProgramYearId(rs.getShort(COLUMNS.PROGRAM_YEAR_ID.getColumnName()));
-			if (rs.wasNull()) obj.setProgramYearId(null);
 			obj.setPayPeriodId(rs.getInt(COLUMNS.PAY_PERIOD_ID.getColumnName()));
 			if (rs.wasNull()) obj.setPayPeriodId(null);
-			obj.setAllyProfileId(rs.getInt(COLUMNS.ALLY_PROFILE_ID.getColumnName()));
-			if (rs.wasNull()) obj.setAllyProfileId(null);
 			obj.setTraining(rs.getFloat(COLUMNS.TRAINING.getColumnName()));
 			if (rs.wasNull()) obj.setTraining(null);
 			obj.setFundraising(rs.getFloat(COLUMNS.FUNDRAISING.getColumnName()));
@@ -157,18 +148,12 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 			if (rs.wasNull()) obj.setAbsent(null);
 			obj.setTimeSheetDate(rs.getTimestamp(COLUMNS.TIME_SHEET_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setTimeSheetDate(null);
-			obj.setTimeSheetDay(rs.getString(COLUMNS.TIME_SHEET_DAY.getColumnName()));
-			if (rs.wasNull()) obj.setTimeSheetDay(null);
-			obj.setNotes(rs.getString(COLUMNS.NOTES.getColumnName()));
-			if (rs.wasNull()) obj.setNotes(null);
 			obj.setActiveFlag(rs.getByte(COLUMNS.ACTIVE_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
 			obj.setCreatedAt(rs.getTimestamp(COLUMNS.CREATED_AT.getColumnName()));
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnName()));
-			if (rs.wasNull()) obj.setOldId(null);
 			obj.setReflection(rs.getFloat(COLUMNS.REFLECTION.getColumnName()));
 			if (rs.wasNull()) obj.setReflection(null);
 			obj.setSheetDetail(rs.getString(COLUMNS.SHEET_DETAIL.getColumnName()));
@@ -188,9 +173,7 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), timesheet.getId());
-			mapping.put(COLUMNS.PROGRAM_YEAR_ID.getColumnName(), timesheet.getProgramYearId());
 			mapping.put(COLUMNS.PAY_PERIOD_ID.getColumnName(), timesheet.getPayPeriodId());
-			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), timesheet.getAllyProfileId());
 			mapping.put(COLUMNS.TRAINING.getColumnName(), timesheet.getTraining());
 			mapping.put(COLUMNS.FUNDRAISING.getColumnName(), timesheet.getFundraising());
 			mapping.put(COLUMNS.PLACEMENT.getColumnName(), timesheet.getPlacement());
@@ -201,14 +184,11 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 			mapping.put(COLUMNS.ABSENT.getColumnName(), timesheet.getAbsent());
 			if (timesheet.getTimeSheetDate() != null)
 				mapping.put(COLUMNS.TIME_SHEET_DATE.getColumnName(), new Timestamp (timesheet.getTimeSheetDate().getTime()));
-			mapping.put(COLUMNS.TIME_SHEET_DAY.getColumnName(), timesheet.getTimeSheetDay());
-			mapping.put(COLUMNS.NOTES.getColumnName(), timesheet.getNotes());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), timesheet.getActiveFlag());
 			if (timesheet.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (timesheet.getCreatedAt().getTime()));
 			if (timesheet.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (timesheet.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.OLD_ID.getColumnName(), timesheet.getOldId());
 			mapping.put(COLUMNS.REFLECTION.getColumnName(), timesheet.getReflection());
 			mapping.put(COLUMNS.SHEET_DETAIL.getColumnName(), timesheet.getSheetDetail());
 			mapping.put(COLUMNS.WEEKDAY_ID.getColumnName(), timesheet.getWeekdayId());
@@ -226,22 +206,10 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 			this.loadAllFKeys = loadAllFKeys;
 		}
 
-		private boolean loadAllyProfile = false;
-		public void setLoadAllyProfile (boolean loadAllyProfile)
-		{
-			this.loadAllyProfile = loadAllyProfile;
-		}
-
 		private boolean loadPayPeriod = false;
 		public void setLoadPayPeriod (boolean loadPayPeriod)
 		{
 			this.loadPayPeriod = loadPayPeriod;
-		}
-
-		private boolean loadProgramYear = false;
-		public void setLoadProgramYear (boolean loadProgramYear)
-		{
-			this.loadProgramYear = loadProgramYear;
 		}
 
 		public TimeSheet mapRow(ResultSet rs, int rowNum) throws SQLException 
@@ -249,12 +217,8 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 			TimeSheet obj = new TimeSheet();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setId(null);
-			obj.setProgramYearId(rs.getShort(COLUMNS.PROGRAM_YEAR_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setProgramYearId(null);
 			obj.setPayPeriodId(rs.getInt(COLUMNS.PAY_PERIOD_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setPayPeriodId(null);
-			obj.setAllyProfileId(rs.getInt(COLUMNS.ALLY_PROFILE_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setAllyProfileId(null);
 			obj.setTraining(rs.getFloat(COLUMNS.TRAINING.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTraining(null);
 			obj.setFundraising(rs.getFloat(COLUMNS.FUNDRAISING.getColumnAliasName()));
@@ -273,18 +237,12 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 			if (rs.wasNull()) obj.setAbsent(null);
 			obj.setTimeSheetDate(rs.getTimestamp(COLUMNS.TIME_SHEET_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTimeSheetDate(null);
-			obj.setTimeSheetDay(rs.getString(COLUMNS.TIME_SHEET_DAY.getColumnAliasName()));
-			if (rs.wasNull()) obj.setTimeSheetDay(null);
-			obj.setNotes(rs.getString(COLUMNS.NOTES.getColumnAliasName()));
-			if (rs.wasNull()) obj.setNotes(null);
 			obj.setActiveFlag(rs.getByte(COLUMNS.ACTIVE_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
 			obj.setCreatedAt(rs.getTimestamp(COLUMNS.CREATED_AT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setOldId(null);
 			obj.setReflection(rs.getFloat(COLUMNS.REFLECTION.getColumnAliasName()));
 			if (rs.wasNull()) obj.setReflection(null);
 			obj.setSheetDetail(rs.getString(COLUMNS.SHEET_DETAIL.getColumnAliasName()));
@@ -293,12 +251,8 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 			if (rs.wasNull()) obj.setWeekdayId(null);
 			obj.setDateRowOrder(rs.getShort(COLUMNS.DATE_ROW_ORDER.getColumnAliasName()));
 			if (rs.wasNull()) obj.setDateRowOrder(null);
-			if (this.loadAllFKeys || this.loadAllyProfile)
-				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadPayPeriod)
 				obj.setPayPeriod(PayPeriodDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadProgramYear)
-				obj.setProgramYear(ProgramYearDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}

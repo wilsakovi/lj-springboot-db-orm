@@ -19,7 +19,7 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 
 	private static String TABLE_NAME = "PAY_PERIOD";
 
-	private static String TABLE_ALIAS = "A_pp_194";
+	private static String TABLE_ALIAS = "A_pp_708";
 
 	public static String getTableName()
 	{
@@ -45,7 +45,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 	{
 		ID("id", false, ""),
 		APPROVED("approved", false, ""),
-		SITE_PROFILE_ID("site_profile_id", false, ""),
 		ALLY_PROFILE_ID("ally_profile_id", false, ""),
 		TOTAL_TRAINING("total_training", false, ""),
 		TOTAL_SERVICE("total_service", false, ""),
@@ -71,7 +70,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 		RETURNED_BY_PM_COUNTER("returned_by_pm_counter", false, ""),
 		CREATED_AT("created_at", false, ""),
 		UPDATED_AT("updated_at", false, ""),
-		OLD_ID("old_id", false, ""),
 		POS_INITIALS("pos_initials", false, ""),
 		PM_INITIALS("pm_initials", false, ""),
 		HISTORY("history", false, ""),
@@ -79,7 +77,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 		COACHING_SESSION_PM_COUNT("coaching_session_pm_count", false, ""),
 		MEETING_MENTOR_FLAG("meeting_mentor_flag", false, ""),
 		MEETING_MENTOR_COUNT("meeting_mentor_count", false, ""),
-		PROGRAM_YEAR_ID("program_year_id", false, ""),
 		ACTIVE_FLAG("active_flag", false, ""),
 		ADDITIONAL_DETAIL("additional_detail", true, ""),
 		HOUR_GROUPS("hour_groups", true, ""),
@@ -163,8 +160,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setApproved(rs.getInt(COLUMNS.APPROVED.getColumnName()));
 			if (rs.wasNull()) obj.setApproved(null);
-			obj.setSiteProfileId(rs.getInt(COLUMNS.SITE_PROFILE_ID.getColumnName()));
-			if (rs.wasNull()) obj.setSiteProfileId(null);
 			obj.setAllyProfileId(rs.getInt(COLUMNS.ALLY_PROFILE_ID.getColumnName()));
 			if (rs.wasNull()) obj.setAllyProfileId(null);
 			obj.setTotalTraining(rs.getFloat(COLUMNS.TOTAL_TRAINING.getColumnName()));
@@ -215,8 +210,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnName()));
-			if (rs.wasNull()) obj.setOldId(null);
 			obj.setPosInitials(rs.getString(COLUMNS.POS_INITIALS.getColumnName()));
 			if (rs.wasNull()) obj.setPosInitials(null);
 			obj.setPmInitials(rs.getString(COLUMNS.PM_INITIALS.getColumnName()));
@@ -231,8 +224,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			if (rs.wasNull()) obj.setMeetingMentorFlag(null);
 			obj.setMeetingMentorCount(rs.getByte(COLUMNS.MEETING_MENTOR_COUNT.getColumnName()));
 			if (rs.wasNull()) obj.setMeetingMentorCount(null);
-			obj.setProgramYearId(rs.getShort(COLUMNS.PROGRAM_YEAR_ID.getColumnName()));
-			if (rs.wasNull()) obj.setProgramYearId(null);
 			obj.setActiveFlag(rs.getInt(COLUMNS.ACTIVE_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
 			obj.setAdditionalDetail(rs.getString(COLUMNS.ADDITIONAL_DETAIL.getColumnName()));
@@ -273,7 +264,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), payperiod.getId());
 			mapping.put(COLUMNS.APPROVED.getColumnName(), payperiod.getApproved());
-			mapping.put(COLUMNS.SITE_PROFILE_ID.getColumnName(), payperiod.getSiteProfileId());
 			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), payperiod.getAllyProfileId());
 			mapping.put(COLUMNS.TOTAL_TRAINING.getColumnName(), payperiod.getTotalTraining());
 			mapping.put(COLUMNS.TOTAL_SERVICE.getColumnName(), payperiod.getTotalService());
@@ -306,7 +296,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (payperiod.getCreatedAt().getTime()));
 			if (payperiod.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (payperiod.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.OLD_ID.getColumnName(), payperiod.getOldId());
 			mapping.put(COLUMNS.POS_INITIALS.getColumnName(), payperiod.getPosInitials());
 			mapping.put(COLUMNS.PM_INITIALS.getColumnName(), payperiod.getPmInitials());
 			mapping.put(COLUMNS.HISTORY.getColumnName(), payperiod.getHistory());
@@ -314,7 +303,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			mapping.put(COLUMNS.COACHING_SESSION_PM_COUNT.getColumnName(), payperiod.getCoachingSessionPmCount());
 			mapping.put(COLUMNS.MEETING_MENTOR_FLAG.getColumnName(), payperiod.getMeetingMentorFlag());
 			mapping.put(COLUMNS.MEETING_MENTOR_COUNT.getColumnName(), payperiod.getMeetingMentorCount());
-			mapping.put(COLUMNS.PROGRAM_YEAR_ID.getColumnName(), payperiod.getProgramYearId());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), payperiod.getActiveFlag());
 			mapping.put(COLUMNS.ADDITIONAL_DETAIL.getColumnName(), payperiod.getAdditionalDetail());
 			mapping.put(COLUMNS.HOUR_GROUPS.getColumnName(), payperiod.getHourGroups());
@@ -354,18 +342,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			this.loadJob = loadJob;
 		}
 
-		private boolean loadProgramYear = false;
-		public void setLoadProgramYear (boolean loadProgramYear)
-		{
-			this.loadProgramYear = loadProgramYear;
-		}
-
-		private boolean loadSiteProfile = false;
-		public void setLoadSiteProfile (boolean loadSiteProfile)
-		{
-			this.loadSiteProfile = loadSiteProfile;
-		}
-
 		public PayPeriod mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			PayPeriod obj = new PayPeriod();
@@ -373,8 +349,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setApproved(rs.getInt(COLUMNS.APPROVED.getColumnAliasName()));
 			if (rs.wasNull()) obj.setApproved(null);
-			obj.setSiteProfileId(rs.getInt(COLUMNS.SITE_PROFILE_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setSiteProfileId(null);
 			obj.setAllyProfileId(rs.getInt(COLUMNS.ALLY_PROFILE_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setAllyProfileId(null);
 			obj.setTotalTraining(rs.getFloat(COLUMNS.TOTAL_TRAINING.getColumnAliasName()));
@@ -425,8 +399,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setOldId(null);
 			obj.setPosInitials(rs.getString(COLUMNS.POS_INITIALS.getColumnAliasName()));
 			if (rs.wasNull()) obj.setPosInitials(null);
 			obj.setPmInitials(rs.getString(COLUMNS.PM_INITIALS.getColumnAliasName()));
@@ -441,8 +413,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			if (rs.wasNull()) obj.setMeetingMentorFlag(null);
 			obj.setMeetingMentorCount(rs.getByte(COLUMNS.MEETING_MENTOR_COUNT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setMeetingMentorCount(null);
-			obj.setProgramYearId(rs.getShort(COLUMNS.PROGRAM_YEAR_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setProgramYearId(null);
 			obj.setActiveFlag(rs.getInt(COLUMNS.ACTIVE_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
 			obj.setAdditionalDetail(rs.getString(COLUMNS.ADDITIONAL_DETAIL.getColumnAliasName()));
@@ -475,10 +445,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadJob)
 				obj.setJob(JobDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadProgramYear)
-				obj.setProgramYear(ProgramYearDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadSiteProfile)
-				obj.setSiteProfile(SiteProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}

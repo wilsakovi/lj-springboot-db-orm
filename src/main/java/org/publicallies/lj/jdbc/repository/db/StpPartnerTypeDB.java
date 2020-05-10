@@ -18,7 +18,7 @@ public class StpPartnerTypeDB implements EntityDB<StpPartnerType>{
 
 	private static String TABLE_NAME = "STP_PARTNER_TYPE";
 
-	private static String TABLE_ALIAS = "A_spt_387";
+	private static String TABLE_ALIAS = "A_spt_316";
 
 	public static String getTableName()
 	{

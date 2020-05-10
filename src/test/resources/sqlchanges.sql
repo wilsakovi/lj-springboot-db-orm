@@ -3542,9 +3542,64 @@ CHANGE COLUMN `start_date_trigger` `start_date_trigger` ENUM('ALLY_START_DATE', 
 ============================ 04/08/20=====================================================================
 ALTER TABLE `ally_exit_reason` ADD COLUMN `cpc_exit_only_flag` INT(1) NOT NULL DEFAULT 0 AFTER `old_id`;
 
-INSERT INTO `ally_exit_reason` (`id`, `name`, `cpc_exit_only_flag`) VALUES ('8', 'COVID-19 / Coronavirus', '1');
+// In prod// INSERT INTO `ally_exit_reason` (`id`, `name`, `cpc_exit_only_flag`) VALUES ('8', 'COVID-19 / Coronavirus', '1');
 
 ALTER TABLE `ally_exit_reason` DROP COLUMN `old_id`;
+
+
+===============================================  04/18/2020 ==================================================
+CREATE TABLE `hst_pay_period` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `pay_period_id` INT NULL,
+  `system_flag` INT(1) NOT NULL,
+  `users_id` INT NULL,
+  `action_description` TEXT NULL,
+  `created_at` DATETIME NULL,
+  CONSTRAINT `fk_hst_pp_pp` FOREIGN KEY (`pay_period_id`) REFERENCES `pay_period` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_hst_pp_usr` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  PRIMARY KEY (`id`));
+  
+  
+    CREATE TABLE `stp_timesheet_elt` (
+  `id` INT(3) NOT NULL,
+  `name` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`));
+  
+  insert into stp_timesheet_elt (id, name) select id, name from ref_table_data where ref_table_code = 'TRC';
+  
+  ALTER TABLE `time_sheet` 
+DROP FOREIGN KEY `FKtfo76mjn9xcg7yfw7fmff8tuc`,
+DROP FOREIGN KEY `FKn8xpbbp0b45vmoqq90dnphmih`;
+
+ALTER TABLE `time_sheet` 
+DROP COLUMN `old_id`,
+DROP COLUMN `notes`,
+DROP COLUMN `time_sheet_day`,
+DROP COLUMN `ally_profile_id`,
+DROP COLUMN `program_year_id`,
+DROP INDEX `FKtfo76mjn9xcg7yfw7fmff8tuc` ,
+DROP INDEX `FKn8xpbbp0b45vmoqq90dnphmih` ;
+;
+
+ALTER TABLE `pay_period` 
+DROP FOREIGN KEY `FKs2hhyroaem9o92gnwgvp59cvx`,
+DROP FOREIGN KEY `FKbtpyp9qqfwj1c0vai5hiw4fhd`,
+DROP FOREIGN KEY `fk_payP_siteP`,
+DROP FOREIGN KEY `fk_payP_Py`;
+
+ALTER TABLE `pay_period` 
+DROP COLUMN `program_year_id`,
+DROP COLUMN `old_id`,
+DROP COLUMN `site_profile_id`,
+DROP INDEX `fk_payP_Py_idx` ,
+DROP INDEX `fk_payP_siteP` ;
+
+ALTER TABLE `hst_pay_period` 
+ADD COLUMN `old_full_name` VARCHAR(100) NULL AFTER `created_at`;
+
+
+// vw_ap_tl_approval has been updated.
+
 
 
 

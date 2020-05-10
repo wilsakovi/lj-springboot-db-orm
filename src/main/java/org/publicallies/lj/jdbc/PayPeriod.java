@@ -27,8 +27,6 @@ public class PayPeriod implements Persistable<Integer> , CommonIdCUH<Integer>
 	@NotNull
 	private Integer approved = 0;
 
-	private Integer siteProfileId;
-
 	private Integer allyProfileId;
 
 	@NotNull
@@ -90,8 +88,6 @@ public class PayPeriod implements Persistable<Integer> , CommonIdCUH<Integer>
 
 	private Date updatedAt = new Date();
 
-	private Integer oldId;
-
 	@Size (max = 5)
 	private String posInitials;
 
@@ -108,8 +104,6 @@ public class PayPeriod implements Persistable<Integer> , CommonIdCUH<Integer>
 	private Byte meetingMentorFlag;
 
 	private Byte meetingMentorCount;
-
-	private Short programYearId;
 
 	private Integer activeFlag = 1;
 
@@ -150,8 +144,6 @@ public class PayPeriod implements Persistable<Integer> , CommonIdCUH<Integer>
 
 	private AllyProfile allyProfile;
 	private Job job;
-	private ProgramYear programYear;
-	private SiteProfile siteProfile;
 
 	public PayPeriod ()
 	{
@@ -181,16 +173,6 @@ public class PayPeriod implements Persistable<Integer> , CommonIdCUH<Integer>
 	public Integer getApproved ()
 	{
 		return this.approved;
-	}
-
-	public void setSiteProfileId (Integer siteProfileId)
-	{
-		this.siteProfileId = siteProfileId;
-	}
-
-	public Integer getSiteProfileId ()
-	{
-		return this.siteProfileId;
 	}
 
 	public void setAllyProfileId (Integer allyProfileId)
@@ -443,16 +425,6 @@ public class PayPeriod implements Persistable<Integer> , CommonIdCUH<Integer>
 		return this.updatedAt;
 	}
 
-	public void setOldId (Integer oldId)
-	{
-		this.oldId = oldId;
-	}
-
-	public Integer getOldId ()
-	{
-		return this.oldId;
-	}
-
 	public void setPosInitials (String posInitials)
 	{
 		this.posInitials = posInitials;
@@ -521,16 +493,6 @@ public class PayPeriod implements Persistable<Integer> , CommonIdCUH<Integer>
 	public Byte getMeetingMentorCount ()
 	{
 		return this.meetingMentorCount;
-	}
-
-	public void setProgramYearId (Short programYearId)
-	{
-		this.programYearId = programYearId;
-	}
-
-	public Short getProgramYearId ()
-	{
-		return this.programYearId;
 	}
 
 	public void setActiveFlag (Integer activeFlag)
@@ -701,26 +663,6 @@ public class PayPeriod implements Persistable<Integer> , CommonIdCUH<Integer>
 	public Job getJob ()
 	{
 		return this.job;
-	}
-
-	public void setProgramYear (ProgramYear programYear)
-	{
-		this.programYear = programYear;
-	}
-
-	public ProgramYear getProgramYear ()
-	{
-		return this.programYear;
-	}
-
-	public void setSiteProfile (SiteProfile siteProfile)
-	{
-		this.siteProfile = siteProfile;
-	}
-
-	public SiteProfile getSiteProfile ()
-	{
-		return this.siteProfile;
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class StpFieldTypeDB implements EntityDB<StpFieldType>{
 
 	private static String TABLE_NAME = "STP_FIELD_TYPE";
 
-	private static String TABLE_ALIAS = "A_sft_383";
+	private static String TABLE_ALIAS = "A_sft_142";
 
 	public static String getTableName()
 	{

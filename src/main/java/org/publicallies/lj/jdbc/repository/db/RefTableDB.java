@@ -18,7 +18,7 @@ public class RefTableDB implements EntityDB<RefTable>{
 
 	private static String TABLE_NAME = "REF_TABLE";
 
-	private static String TABLE_ALIAS = "A_rt_193";
+	private static String TABLE_ALIAS = "A_rt_198";
 
 	public static String getTableName()
 	{
