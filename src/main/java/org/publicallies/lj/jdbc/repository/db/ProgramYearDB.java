@@ -19,7 +19,7 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 
 	private static String TABLE_NAME = "PROGRAM_YEAR";
 
-	private static String TABLE_ALIAS = "A_py_67";
+	private static String TABLE_ALIAS = "A_py_248";
 
 	public static String getTableName()
 	{
@@ -59,6 +59,12 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 		TL_CATEGORIES("tl_categories", true, ""),
 		ACTIVE_REPORTING("active_reporting", false, ""),
 		SF_FLAG("sf_flag", false, ""),
+		TIMELOG_FLAG("timelog_flag", false, ""),
+		MSR_FLAG("msr_flag", false, ""),
+		PATHWAYS_FLAG("pathways_flag", false, ""),
+		EY_ASSESS_FLAG("ey_assess_flag", false, ""),
+		TSP_FLAG("tsp_flag", false, ""),
+		CAP_BUILD_ASSESS_FLAG("cap_build_assess_flag", false, ""),
 		;
 
 		private String columnName;
@@ -156,6 +162,18 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 			if (rs.wasNull()) obj.setActiveReporting(null);
 			obj.setSfFlag(rs.getByte(COLUMNS.SF_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setSfFlag(null);
+			obj.setTimelogFlag(rs.getInt(COLUMNS.TIMELOG_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setTimelogFlag(null);
+			obj.setMsrFlag(rs.getInt(COLUMNS.MSR_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setMsrFlag(null);
+			obj.setPathwaysFlag(rs.getInt(COLUMNS.PATHWAYS_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setPathwaysFlag(null);
+			obj.setEyAssessFlag(rs.getInt(COLUMNS.EY_ASSESS_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setEyAssessFlag(null);
+			obj.setTspFlag(rs.getInt(COLUMNS.TSP_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setTspFlag(null);
+			obj.setCapBuildAssessFlag(rs.getInt(COLUMNS.CAP_BUILD_ASSESS_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setCapBuildAssessFlag(null);
 			return obj;
 		}
 	}
@@ -186,6 +204,12 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 			mapping.put(COLUMNS.TL_CATEGORIES.getColumnName(), programyear.getTlCategories());
 			mapping.put(COLUMNS.ACTIVE_REPORTING.getColumnName(), programyear.getActiveReporting());
 			mapping.put(COLUMNS.SF_FLAG.getColumnName(), programyear.getSfFlag());
+			mapping.put(COLUMNS.TIMELOG_FLAG.getColumnName(), programyear.getTimelogFlag());
+			mapping.put(COLUMNS.MSR_FLAG.getColumnName(), programyear.getMsrFlag());
+			mapping.put(COLUMNS.PATHWAYS_FLAG.getColumnName(), programyear.getPathwaysFlag());
+			mapping.put(COLUMNS.EY_ASSESS_FLAG.getColumnName(), programyear.getEyAssessFlag());
+			mapping.put(COLUMNS.TSP_FLAG.getColumnName(), programyear.getTspFlag());
+			mapping.put(COLUMNS.CAP_BUILD_ASSESS_FLAG.getColumnName(), programyear.getCapBuildAssessFlag());
 			return mapping;
 		}
 	}
@@ -246,6 +270,18 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 			if (rs.wasNull()) obj.setActiveReporting(null);
 			obj.setSfFlag(rs.getByte(COLUMNS.SF_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSfFlag(null);
+			obj.setTimelogFlag(rs.getInt(COLUMNS.TIMELOG_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setTimelogFlag(null);
+			obj.setMsrFlag(rs.getInt(COLUMNS.MSR_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setMsrFlag(null);
+			obj.setPathwaysFlag(rs.getInt(COLUMNS.PATHWAYS_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPathwaysFlag(null);
+			obj.setEyAssessFlag(rs.getInt(COLUMNS.EY_ASSESS_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setEyAssessFlag(null);
+			obj.setTspFlag(rs.getInt(COLUMNS.TSP_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setTspFlag(null);
+			obj.setCapBuildAssessFlag(rs.getInt(COLUMNS.CAP_BUILD_ASSESS_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setCapBuildAssessFlag(null);
 			if (this.loadAllFKeys || this.loadProgram)
 				obj.setProgram(ProgramDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadTerm)

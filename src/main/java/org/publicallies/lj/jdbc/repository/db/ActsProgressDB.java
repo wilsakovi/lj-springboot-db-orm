@@ -19,7 +19,7 @@ public class ActsProgressDB implements EntityDB<ActsProgress>{
 
 	private static String TABLE_NAME = "ACTS_PROGRESS";
 
-	private static String TABLE_ALIAS = "A_ap_244";
+	private static String TABLE_ALIAS = "A_ap_795";
 
 	public static String getTableName()
 	{

@@ -19,7 +19,7 @@ public class AllyProfileJobHistoryDB implements EntityDB<AllyProfileJobHistory>{
 
 	private static String TABLE_NAME = "ALLY_PROFILE_JOB_HISTORY";
 
-	private static String TABLE_ALIAS = "A_apjh_686";
+	private static String TABLE_ALIAS = "A_apjh_449";
 
 	public static String getTableName()
 	{

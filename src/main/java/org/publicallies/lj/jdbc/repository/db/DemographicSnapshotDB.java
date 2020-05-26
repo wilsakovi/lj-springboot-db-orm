@@ -19,7 +19,7 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 
 	private static String TABLE_NAME = "DEMOGRAPHIC_SNAPSHOT";
 
-	private static String TABLE_ALIAS = "A_ds_51";
+	private static String TABLE_ALIAS = "A_ds_280";
 
 	public static String getTableName()
 	{

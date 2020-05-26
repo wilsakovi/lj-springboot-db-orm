@@ -19,7 +19,7 @@ public class HstPayPeriodDB implements EntityDB<HstPayPeriod>{
 
 	private static String TABLE_NAME = "HST_PAY_PERIOD";
 
-	private static String TABLE_ALIAS = "A_hpp_713";
+	private static String TABLE_ALIAS = "A_hpp_775";
 
 	public static String getTableName()
 	{

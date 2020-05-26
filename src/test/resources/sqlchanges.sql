@@ -3599,6 +3599,25 @@ ADD COLUMN `old_full_name` VARCHAR(100) NULL AFTER `created_at`;
 
 
 // vw_ap_tl_approval has been updated.
+// Run the process fix url
+
+====================== 05/14/2020======================================
+ALTER TABLE `program_year` 
+ADD COLUMN `timelog_flag` INT(1) NOT NULL DEFAULT 1 AFTER `sf_flag`,
+ADD COLUMN `msr_flag` INT(1) NOT NULL DEFAULT 1 AFTER `timelog_flag`,
+ADD COLUMN `pathways_flag` INT(1) NOT NULL DEFAULT 1 AFTER `msr_flag`,
+ADD COLUMN `job_assess_flag` INT(1) NOT NULL DEFAULT 1,
+ADD COLUMN `tsp_flag` INT(1) NOT NULL DEFAULT 1 ,
+ADD COLUMN `ey_assess_flag` INT(1) NOT NULL DEFAULT 1;
+
+ALTER TABLE `program_year` 
+CHANGE COLUMN `ey_assess_flag` `cap_build_assess_flag` INT NOT NULL DEFAULT 1 ;
+
+ALTER TABLE `program_year` 
+CHANGE COLUMN `job_assess_flag` `ey_assess_flag` INT NOT NULL DEFAULT 1 ;
+
+
+
 
 
 

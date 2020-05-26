@@ -19,7 +19,7 @@ public class OutputMeasureDB implements EntityDB<OutputMeasure>{
 
 	private static String TABLE_NAME = "OUTPUT_MEASURE";
 
-	private static String TABLE_ALIAS = "A_om_341";
+	private static String TABLE_ALIAS = "A_om_682";
 
 	public static String getTableName()
 	{

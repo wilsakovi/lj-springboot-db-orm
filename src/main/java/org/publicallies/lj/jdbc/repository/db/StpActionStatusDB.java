@@ -18,7 +18,7 @@ public class StpActionStatusDB implements EntityDB<StpActionStatus>{
 
 	private static String TABLE_NAME = "STP_ACTION_STATUS";
 
-	private static String TABLE_ALIAS = "A_sas_309";
+	private static String TABLE_ALIAS = "A_sas_226";
 
 	public static String getTableName()
 	{

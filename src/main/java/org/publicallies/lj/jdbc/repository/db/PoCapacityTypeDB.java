@@ -18,7 +18,7 @@ public class PoCapacityTypeDB implements EntityDB<PoCapacityType>{
 
 	private static String TABLE_NAME = "PO_CAPACITY_TYPE";
 
-	private static String TABLE_ALIAS = "A_pct_901";
+	private static String TABLE_ALIAS = "A_pct_645";
 
 	public static String getTableName()
 	{

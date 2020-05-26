@@ -58,6 +58,24 @@ public class ProgramYear implements Persistable<Short> , CommonIdCU<Short>
 
 	private Byte sfFlag = new Byte("0");
 
+	@NotNull
+	private Integer timelogFlag = 1;
+
+	@NotNull
+	private Integer msrFlag = 1;
+
+	@NotNull
+	private Integer pathwaysFlag = 1;
+
+	@NotNull
+	private Integer eyAssessFlag = 1;
+
+	@NotNull
+	private Integer tspFlag = 1;
+
+	@NotNull
+	private Integer capBuildAssessFlag = 1;
+
 	private transient boolean persisted;
 
 	private Program program;
@@ -231,6 +249,66 @@ public class ProgramYear implements Persistable<Short> , CommonIdCU<Short>
 	public Byte getSfFlag ()
 	{
 		return this.sfFlag;
+	}
+
+	public void setTimelogFlag (Integer timelogFlag)
+	{
+		this.timelogFlag = timelogFlag;
+	}
+
+	public Integer getTimelogFlag ()
+	{
+		return this.timelogFlag;
+	}
+
+	public void setMsrFlag (Integer msrFlag)
+	{
+		this.msrFlag = msrFlag;
+	}
+
+	public Integer getMsrFlag ()
+	{
+		return this.msrFlag;
+	}
+
+	public void setPathwaysFlag (Integer pathwaysFlag)
+	{
+		this.pathwaysFlag = pathwaysFlag;
+	}
+
+	public Integer getPathwaysFlag ()
+	{
+		return this.pathwaysFlag;
+	}
+
+	public void setEyAssessFlag (Integer eyAssessFlag)
+	{
+		this.eyAssessFlag = eyAssessFlag;
+	}
+
+	public Integer getEyAssessFlag ()
+	{
+		return this.eyAssessFlag;
+	}
+
+	public void setTspFlag (Integer tspFlag)
+	{
+		this.tspFlag = tspFlag;
+	}
+
+	public Integer getTspFlag ()
+	{
+		return this.tspFlag;
+	}
+
+	public void setCapBuildAssessFlag (Integer capBuildAssessFlag)
+	{
+		this.capBuildAssessFlag = capBuildAssessFlag;
+	}
+
+	public Integer getCapBuildAssessFlag ()
+	{
+		return this.capBuildAssessFlag;
 	}
 
 	public void setPersisted (Boolean persisted)

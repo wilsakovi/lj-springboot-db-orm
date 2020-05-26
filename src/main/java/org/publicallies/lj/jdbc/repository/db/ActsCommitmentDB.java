@@ -19,7 +19,7 @@ public class ActsCommitmentDB implements EntityDB<ActsCommitment>{
 
 	private static String TABLE_NAME = "ACTS_COMMITMENT";
 
-	private static String TABLE_ALIAS = "A_ac_443";
+	private static String TABLE_ALIAS = "A_ac_401";
 
 	public static String getTableName()
 	{
