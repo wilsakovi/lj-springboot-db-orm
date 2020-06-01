@@ -3571,6 +3571,41 @@ CREATE TABLE `hst_pay_period` (
 DROP FOREIGN KEY `FKtfo76mjn9xcg7yfw7fmff8tuc`,
 DROP FOREIGN KEY `FKn8xpbbp0b45vmoqq90dnphmih`;
 
+<<<<<<< .mine
+ALTER TABLE `time_sheet` 
+DROP COLUMN `old_id`,
+DROP COLUMN `notes`,
+DROP COLUMN `time_sheet_day`,
+DROP COLUMN `ally_profile_id`,
+DROP COLUMN `program_year_id`,
+DROP INDEX `FKtfo76mjn9xcg7yfw7fmff8tuc` ,
+DROP INDEX `FKn8xpbbp0b45vmoqq90dnphmih` ;
+;
+
+ALTER TABLE `pay_period` 
+DROP FOREIGN KEY `FKs2hhyroaem9o92gnwgvp59cvx`,
+DROP FOREIGN KEY `FKbtpyp9qqfwj1c0vai5hiw4fhd`,
+DROP FOREIGN KEY `fk_payP_siteP`,
+DROP FOREIGN KEY `fk_payP_Py`;
+
+ALTER TABLE `pay_period` 
+DROP COLUMN `program_year_id`,
+DROP COLUMN `old_id`,
+DROP COLUMN `site_profile_id`,
+DROP INDEX `fk_payP_Py_idx` ,
+DROP INDEX `fk_payP_siteP` ;
+
+ALTER TABLE `hst_pay_period` 
+ADD COLUMN `old_full_name` VARCHAR(100) NULL AFTER `created_at`;
+
+
+// vw_ap_tl_approval has been updated.
+
+
+
+
+||||||| .r98
+=======
 ALTER TABLE `time_sheet` 
 DROP COLUMN `old_id`,
 DROP COLUMN `notes`,
@@ -3616,9 +3651,6 @@ CHANGE COLUMN `ey_assess_flag` `cap_build_assess_flag` INT NOT NULL DEFAULT 1 ;
 ALTER TABLE `program_year` 
 CHANGE COLUMN `job_assess_flag` `ey_assess_flag` INT NOT NULL DEFAULT 1 ;
 
-
-
-
-
-
+====================== 05/29/2020======================================
+// vw_site_profile has been updated.
 
