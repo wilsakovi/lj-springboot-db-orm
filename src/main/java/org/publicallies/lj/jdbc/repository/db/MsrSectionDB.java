@@ -18,7 +18,7 @@ public class MsrSectionDB implements EntityDB<MsrSection>{
 
 	private static String TABLE_NAME = "MSR_SECTION";
 
-	private static String TABLE_ALIAS = "A_ms_110";
+	private static String TABLE_ALIAS = "A_ms_947";
 
 	public static String getTableName()
 	{
@@ -130,8 +130,8 @@ public class MsrSectionDB implements EntityDB<MsrSection>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), msrsection.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), msrsection.getName());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), msrsection.getDescription());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrsection.getName()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrsection.getDescription()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), msrsection.getActiveFlag());
 			return mapping;
 		}

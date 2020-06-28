@@ -19,7 +19,7 @@ public class MessagingDB implements EntityDB<Messaging>{
 
 	private static String TABLE_NAME = "MESSAGING";
 
-	private static String TABLE_ALIAS = "A_mes_64";
+	private static String TABLE_ALIAS = "A_mes_131";
 
 	public static String getTableName()
 	{
@@ -152,12 +152,12 @@ public class MessagingDB implements EntityDB<Messaging>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), messaging.getId());
-			mapping.put(COLUMNS.REPORT_TYPE.getColumnName(), messaging.getReportType());
-			mapping.put(COLUMNS.SUBJECT.getColumnName(), messaging.getSubject());
-			mapping.put(COLUMNS.BODY.getColumnName(), messaging.getBody());
+			mapping.put(COLUMNS.REPORT_TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(messaging.getReportType()));
+			mapping.put(COLUMNS.SUBJECT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(messaging.getSubject()));
+			mapping.put(COLUMNS.BODY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(messaging.getBody()));
 			mapping.put(COLUMNS.SENDER_ID.getColumnName(), messaging.getSenderId());
 			mapping.put(COLUMNS.RECEIVER_ID.getColumnName(), messaging.getReceiverId());
-			mapping.put(COLUMNS.STATUS.getColumnName(), messaging.getStatus());
+			mapping.put(COLUMNS.STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(messaging.getStatus()));
 			if (messaging.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (messaging.getCreatedAt().getTime()));
 			if (messaging.getReadAt() != null)

@@ -19,7 +19,7 @@ public class LoginLogDB implements EntityDB<LoginLog>{
 
 	private static String TABLE_NAME = "LOGIN_LOG";
 
-	private static String TABLE_ALIAS = "A_ll_242";
+	private static String TABLE_ALIAS = "A_ll_537";
 
 	public static String getTableName()
 	{
@@ -146,15 +146,15 @@ public class LoginLogDB implements EntityDB<LoginLog>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), loginlog.getId());
-			mapping.put(COLUMNS.USERNAME.getColumnName(), loginlog.getUsername());
-			mapping.put(COLUMNS.LOGIN_TYPE.getColumnName(), loginlog.getLoginType());
+			mapping.put(COLUMNS.USERNAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginlog.getUsername()));
+			mapping.put(COLUMNS.LOGIN_TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginlog.getLoginType()));
 			mapping.put(COLUMNS.STATUS.getColumnName(), loginlog.getStatus());
 			if (loginlog.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (loginlog.getCreatedAt().getTime()));
 			if (loginlog.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (loginlog.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.USERS_ID.getColumnName(), loginlog.getUsersId());
-			mapping.put(COLUMNS.IP.getColumnName(), loginlog.getIp());
+			mapping.put(COLUMNS.IP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginlog.getIp()));
 			mapping.put(COLUMNS.CLIENT_ID.getColumnName(), loginlog.getClientId());
 			return mapping;
 		}

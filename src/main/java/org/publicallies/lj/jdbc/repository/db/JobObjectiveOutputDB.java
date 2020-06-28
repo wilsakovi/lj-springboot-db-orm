@@ -19,7 +19,7 @@ public class JobObjectiveOutputDB implements EntityDB<JobObjectiveOutput>{
 
 	private static String TABLE_NAME = "JOB_OBJECTIVE_OUTPUT";
 
-	private static String TABLE_ALIAS = "A_joo_355";
+	private static String TABLE_ALIAS = "A_joo_926";
 
 	public static String getTableName()
 	{
@@ -152,8 +152,8 @@ public class JobObjectiveOutputDB implements EntityDB<JobObjectiveOutput>{
 			mapping.put(COLUMNS.OUTPUT_TARGET.getColumnName(), jobobjectiveoutput.getOutputTarget());
 			mapping.put(COLUMNS.OUTPUT_MEASURE_ID.getColumnName(), jobobjectiveoutput.getOutputMeasureId());
 			mapping.put(COLUMNS.JOB_OBJECTIVE_ID.getColumnName(), jobobjectiveoutput.getJobObjectiveId());
-			mapping.put(COLUMNS.ACTIVITY_MEASURED.getColumnName(), jobobjectiveoutput.getActivityMeasured());
-			mapping.put(COLUMNS.ADDITIONAL_DETAIL.getColumnName(), jobobjectiveoutput.getAdditionalDetail());
+			mapping.put(COLUMNS.ACTIVITY_MEASURED.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobobjectiveoutput.getActivityMeasured()));
+			mapping.put(COLUMNS.ADDITIONAL_DETAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobobjectiveoutput.getAdditionalDetail()));
 			if (jobobjectiveoutput.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (jobobjectiveoutput.getCreatedAt().getTime()));
 			if (jobobjectiveoutput.getUpdatedAt() != null)

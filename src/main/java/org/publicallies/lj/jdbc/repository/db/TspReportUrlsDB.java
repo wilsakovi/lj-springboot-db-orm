@@ -19,7 +19,7 @@ public class TspReportUrlsDB implements EntityDB<TspReportUrls>{
 
 	private static String TABLE_NAME = "TSP_REPORT_URLS";
 
-	private static String TABLE_ALIAS = "A_tru_981";
+	private static String TABLE_ALIAS = "A_tru_749";
 
 	public static String getTableName()
 	{
@@ -137,8 +137,8 @@ public class TspReportUrlsDB implements EntityDB<TspReportUrls>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), tspreporturls.getId());
-			mapping.put(COLUMNS.URL.getColumnName(), tspreporturls.getUrl());
-			mapping.put(COLUMNS.COMMENT.getColumnName(), tspreporturls.getComment());
+			mapping.put(COLUMNS.URL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreporturls.getUrl()));
+			mapping.put(COLUMNS.COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreporturls.getComment()));
 			mapping.put(COLUMNS.TSP_REPORT_ID.getColumnName(), tspreporturls.getTspReportId());
 			if (tspreporturls.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (tspreporturls.getCreatedAt().getTime()));

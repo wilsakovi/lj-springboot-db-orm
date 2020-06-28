@@ -19,7 +19,7 @@ public class AllyDB implements EntityDB<Ally>{
 
 	private static String TABLE_NAME = "ALLY";
 
-	private static String TABLE_ALIAS = "A_all_610";
+	private static String TABLE_ALIAS = "A_all_546";
 
 	public static String getTableName()
 	{
@@ -251,8 +251,8 @@ public class AllyDB implements EntityDB<Ally>{
 			mapping.put(COLUMNS.PARENT_GRADUATE_COLLEGE.getColumnName(), ally.getParentGraduateCollege());
 			mapping.put(COLUMNS.TAXABLE_EARN_INCOME.getColumnName(), ally.getTaxableEarnIncome());
 			mapping.put(COLUMNS.EMPLOYMENT_STATUS_ID.getColumnName(), ally.getEmploymentStatusId());
-			mapping.put(COLUMNS.EMPLOYMENT_TITLE.getColumnName(), ally.getEmploymentTitle());
-			mapping.put(COLUMNS.EMPLOYER_NAME.getColumnName(), ally.getEmployerName());
+			mapping.put(COLUMNS.EMPLOYMENT_TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ally.getEmploymentTitle()));
+			mapping.put(COLUMNS.EMPLOYER_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ally.getEmployerName()));
 			mapping.put(COLUMNS.UNEMPLOYMENT_PERIOD.getColumnName(), ally.getUnemploymentPeriod());
 			mapping.put(COLUMNS.WORKED_PROFESSIONAL_FLAG.getColumnName(), ally.getWorkedProfessionalFlag());
 			mapping.put(COLUMNS.EMPLOYED_NPO_FLAG.getColumnName(), ally.getEmployedNpoFlag());
@@ -269,8 +269,8 @@ public class AllyDB implements EntityDB<Ally>{
 			mapping.put(COLUMNS.INITIALTERMID.getColumnName(), ally.getInitialTermId());
 			mapping.put(COLUMNS.MILITARY_VETERAN.getColumnName(), ally.getMilitaryVeteran());
 			mapping.put(COLUMNS.MARITAL_STATUS_ID.getColumnName(), ally.getMaritalStatusId());
-			mapping.put(COLUMNS.SOCIAL_ASSISTS.getColumnName(), ally.getSocialAssists());
-			mapping.put(COLUMNS.ALUMNI_SFID.getColumnName(), ally.getAlumniSfId());
+			mapping.put(COLUMNS.SOCIAL_ASSISTS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ally.getSocialAssists()));
+			mapping.put(COLUMNS.ALUMNI_SFID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ally.getAlumniSfId()));
 			if (ally.getSelfUpdateDate() != null)
 				mapping.put(COLUMNS.SELF_UPDATE_DATE.getColumnName(), new Timestamp (ally.getSelfUpdateDate().getTime()));
 			mapping.put(COLUMNS.CHILD_COUNT.getColumnName(), ally.getChildCount());
@@ -278,7 +278,7 @@ public class AllyDB implements EntityDB<Ally>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (ally.getCreatedAt().getTime()));
 			if (ally.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (ally.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.HISTORY.getColumnName(), ally.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ally.getHistory()));
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), ally.getSfFailedFlag());
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), ally.getLastUpdatedUsersId());
 			return mapping;

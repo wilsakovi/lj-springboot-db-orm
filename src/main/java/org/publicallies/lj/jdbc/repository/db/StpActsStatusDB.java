@@ -18,7 +18,7 @@ public class StpActsStatusDB implements EntityDB<StpActsStatus>{
 
 	private static String TABLE_NAME = "STP_ACTS_STATUS";
 
-	private static String TABLE_ALIAS = "A_sas_185";
+	private static String TABLE_ALIAS = "A_sas_746";
 
 	public static String getTableName()
 	{
@@ -133,8 +133,8 @@ public class StpActsStatusDB implements EntityDB<StpActsStatus>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpactsstatus.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpactsstatus.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpactsstatus.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpactsstatus.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpactsstatus.getName()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stpactsstatus.getActiveFlag());
 			mapping.put(COLUMNS.STEP_RANK.getColumnName(), stpactsstatus.getStepRank());
 			return mapping;

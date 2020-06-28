@@ -19,7 +19,7 @@ public class DocumentDB implements EntityDB<Document>{
 
 	private static String TABLE_NAME = "DOCUMENT";
 
-	private static String TABLE_ALIAS = "A_doc_471";
+	private static String TABLE_ALIAS = "A_doc_825";
 
 	public static String getTableName()
 	{
@@ -177,10 +177,10 @@ public class DocumentDB implements EntityDB<Document>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), document.getId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), document.getOldId());
-			mapping.put(COLUMNS.FILENAME.getColumnName(), document.getFilename());
-			mapping.put(COLUMNS.FILESYSTEM_PATH.getColumnName(), document.getFilesystemPath());
-			mapping.put(COLUMNS.TITLE.getColumnName(), document.getTitle());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), document.getDescription());
+			mapping.put(COLUMNS.FILENAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(document.getFilename()));
+			mapping.put(COLUMNS.FILESYSTEM_PATH.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(document.getFilesystemPath()));
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(document.getTitle()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(document.getDescription()));
 			mapping.put(COLUMNS.OWNER_ID.getColumnName(), document.getOwnerId());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), document.getActiveFlag());
 			mapping.put(COLUMNS.DOCUMENT_TYPE_ID.getColumnName(), document.getDocumentTypeId());
@@ -189,10 +189,10 @@ public class DocumentDB implements EntityDB<Document>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (document.getCreatedAt().getTime()));
 			if (document.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (document.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.TARGET_FIRST_NAME.getColumnName(), document.getTargetFirstName());
-			mapping.put(COLUMNS.TARGET_LAST_NAME.getColumnName(), document.getTargetLastName());
+			mapping.put(COLUMNS.TARGET_FIRST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(document.getTargetFirstName()));
+			mapping.put(COLUMNS.TARGET_LAST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(document.getTargetLastName()));
 			mapping.put(COLUMNS.LINK_FLAG.getColumnName(), document.getLinkFlag());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), document.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(document.getHistory()));
 			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), document.getAllyProfileId());
 			mapping.put(COLUMNS.SITE_PROFILE_ID.getColumnName(), document.getSiteProfileId());
 			mapping.put(COLUMNS.STAFF_ID.getColumnName(), document.getStaffId());

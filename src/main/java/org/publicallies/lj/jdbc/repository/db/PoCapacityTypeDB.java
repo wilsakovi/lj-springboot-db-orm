@@ -18,7 +18,7 @@ public class PoCapacityTypeDB implements EntityDB<PoCapacityType>{
 
 	private static String TABLE_NAME = "PO_CAPACITY_TYPE";
 
-	private static String TABLE_ALIAS = "A_pct_645";
+	private static String TABLE_ALIAS = "A_pct_104";
 
 	public static String getTableName()
 	{
@@ -136,11 +136,11 @@ public class PoCapacityTypeDB implements EntityDB<PoCapacityType>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), pocapacitytype.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), pocapacitytype.getName());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), pocapacitytype.getDescription());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(pocapacitytype.getName()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(pocapacitytype.getDescription()));
 			mapping.put(COLUMNS.PDG_ID.getColumnName(), pocapacitytype.getPdgId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), pocapacitytype.getOldId());
-			mapping.put(COLUMNS.PROGRAM_YEAR_IDS.getColumnName(), pocapacitytype.getProgramYearIds());
+			mapping.put(COLUMNS.PROGRAM_YEAR_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(pocapacitytype.getProgramYearIds()));
 			return mapping;
 		}
 	}

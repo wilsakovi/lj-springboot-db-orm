@@ -18,7 +18,7 @@ public class StpGenderDB implements EntityDB<StpGender>{
 
 	private static String TABLE_NAME = "STP_GENDER";
 
-	private static String TABLE_ALIAS = "A_sg_516";
+	private static String TABLE_ALIAS = "A_sg_791";
 
 	public static String getTableName()
 	{
@@ -136,11 +136,11 @@ public class StpGenderDB implements EntityDB<StpGender>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpgender.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpgender.getName());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpgender.getCode());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpgender.getName()));
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpgender.getCode()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), stpgender.getOldId());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stpgender.getActiveFlag());
-			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), stpgender.getSpecialFlag());
+			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpgender.getSpecialFlag()));
 			return mapping;
 		}
 	}

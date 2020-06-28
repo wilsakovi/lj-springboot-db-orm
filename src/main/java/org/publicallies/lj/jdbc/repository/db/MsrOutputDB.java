@@ -19,7 +19,7 @@ public class MsrOutputDB implements EntityDB<MsrOutput>{
 
 	private static String TABLE_NAME = "MSR_OUTPUT";
 
-	private static String TABLE_ALIAS = "A_mo_940";
+	private static String TABLE_ALIAS = "A_mo_869";
 
 	public static String getTableName()
 	{
@@ -150,7 +150,7 @@ public class MsrOutputDB implements EntityDB<MsrOutput>{
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (msroutput.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.JOB_OBJECTIVE_OUTPUT_ID.getColumnName(), msroutput.getJobObjectiveOutputId());
 			mapping.put(COLUMNS.MSR_JOB_OBJECTIVE_ID.getColumnName(), msroutput.getMsrJobObjectiveId());
-			mapping.put(COLUMNS.UNDERSERVED_POPULATION.getColumnName(), msroutput.getUnderservedPopulation());
+			mapping.put(COLUMNS.UNDERSERVED_POPULATION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msroutput.getUnderservedPopulation()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), msroutput.getOldId());
 			return mapping;
 		}

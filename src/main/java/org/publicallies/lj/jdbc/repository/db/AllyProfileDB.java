@@ -19,7 +19,7 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 
 	private static String TABLE_NAME = "ALLY_PROFILE";
 
-	private static String TABLE_ALIAS = "A_ap_876";
+	private static String TABLE_ALIAS = "A_ap_482";
 
 	public static String getTableName()
 	{
@@ -292,7 +292,7 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			mapping.put(COLUMNS.TEAM_LEAD_FLAG.getColumnName(), allyprofile.getTeamLeadFlag());
 			mapping.put(COLUMNS.POS_APPROVES_PISD_FLAG.getColumnName(), allyprofile.getPosApprovesPisdFlag());
 			mapping.put(COLUMNS.GRADUATION_STATUS_ID.getColumnName(), allyprofile.getGraduationStatusId());
-			mapping.put(COLUMNS.TERMINATION_DISCHARGE_REASON.getColumnName(), allyprofile.getTerminationDischargeReason());
+			mapping.put(COLUMNS.TERMINATION_DISCHARGE_REASON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofile.getTerminationDischargeReason()));
 			mapping.put(COLUMNS.REPORT_EXCLUDED_FLAG.getColumnName(), allyprofile.getReportExcludedFlag());
 			mapping.put(COLUMNS.ALLY_PROFILE_STATUS_ID.getColumnName(), allyprofile.getAllyProfileStatusId());
 			if (allyprofile.getAllyStartDate() != null)
@@ -324,7 +324,7 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			mapping.put(COLUMNS.AUDIT_STATUS.getColumnName(), allyprofile.getAuditStatus());
 			if (allyprofile.getAuditDate() != null)
 				mapping.put(COLUMNS.AUDIT_DATE.getColumnName(), new Timestamp (allyprofile.getAuditDate().getTime()));
-			mapping.put(COLUMNS.AUDIT_COMMENT.getColumnName(), allyprofile.getAuditComment());
+			mapping.put(COLUMNS.AUDIT_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofile.getAuditComment()));
 			mapping.put(COLUMNS.AUDITED_BY.getColumnName(), allyprofile.getAuditedBy());
 			mapping.put(COLUMNS.PATHWAYS.getColumnName(), allyprofile.getPathways());
 			mapping.put(COLUMNS.FAFSA_COMPLETED.getColumnName(), allyprofile.getFafsaCompleted());
@@ -335,18 +335,18 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			mapping.put(COLUMNS.POSITION_ACCEPTED.getColumnName(), allyprofile.getPositionAccepted());
 			mapping.put(COLUMNS.POSITION_TYPE.getColumnName(), allyprofile.getPositionType());
 			mapping.put(COLUMNS.POSITION_WITHPO.getColumnName(), allyprofile.getPositionWithpo());
-			mapping.put(COLUMNS.COMPANY_NAME.getColumnName(), allyprofile.getCompanyName());
-			mapping.put(COLUMNS.POSITION_TITLE.getColumnName(), allyprofile.getPositionTitle());
+			mapping.put(COLUMNS.COMPANY_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofile.getCompanyName()));
+			mapping.put(COLUMNS.POSITION_TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofile.getPositionTitle()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), allyprofile.getActiveFlag());
 			if (allyprofile.getStatusEffectiveDate() != null)
 				mapping.put(COLUMNS.STATUS_EFFECTIVE_DATE.getColumnName(), new Timestamp (allyprofile.getStatusEffectiveDate().getTime()));
 			mapping.put(COLUMNS.ALLY_EXIT_REASON_ID.getColumnName(), allyprofile.getAllyExitReasonId());
-			mapping.put(COLUMNS.SF_ID.getColumnName(), allyprofile.getSfId());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), allyprofile.getHistory());
+			mapping.put(COLUMNS.SF_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofile.getSfId()));
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofile.getHistory()));
 			if (allyprofile.getAnticipatedGraduationDate() != null)
 				mapping.put(COLUMNS.ANTICIPATED_GRADUATION_DATE.getColumnName(), new Timestamp (allyprofile.getAnticipatedGraduationDate().getTime()));
-			mapping.put(COLUMNS.DEMOGRAMPHIC_SNAPSHOT.getColumnName(), allyprofile.getDemogramphicSnapshot());
-			mapping.put(COLUMNS.ASSIGNED_SURVEY_SITE.getColumnName(), allyprofile.getAssignedSurveySite());
+			mapping.put(COLUMNS.DEMOGRAMPHIC_SNAPSHOT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofile.getDemogramphicSnapshot()));
+			mapping.put(COLUMNS.ASSIGNED_SURVEY_SITE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofile.getAssignedSurveySite()));
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), allyprofile.getLastUpdatedUsersId());
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), allyprofile.getSfFailedFlag());
 			return mapping;

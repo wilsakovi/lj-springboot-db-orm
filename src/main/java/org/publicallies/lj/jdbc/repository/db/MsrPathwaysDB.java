@@ -267,35 +267,35 @@ public class MsrPathwaysDB implements EntityDB<MsrPathways>{
 			mapping.put(COLUMNS.COLLEGE_ACCEPTED.getColumnName(), msrpathways.getCollegeAccepted());
 			mapping.put(COLUMNS.FINAID_APPLIED.getColumnName(), msrpathways.getFinaidApplied());
 			mapping.put(COLUMNS.COLLEGE_REGIS_COMPLETED.getColumnName(), msrpathways.getCollegeRegisCompleted());
-			mapping.put(COLUMNS.COLLEGE_NAME.getColumnName(), msrpathways.getCollegeName());
+			mapping.put(COLUMNS.COLLEGE_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getCollegeName()));
 			mapping.put(COLUMNS.NETEVENT_ATTENDED.getColumnName(), msrpathways.getNeteventAttended());
 			mapping.put(COLUMNS.RESUME_COMPLETED.getColumnName(), msrpathways.getResumeCompleted());
 			mapping.put(COLUMNS.JOB_APPLIED.getColumnName(), msrpathways.getJobApplied());
 			mapping.put(COLUMNS.JOB_INTERVIEW.getColumnName(), msrpathways.getJobInterview());
 			mapping.put(COLUMNS.POSITION_ACCEPTED.getColumnName(), msrpathways.getPositionAccepted());
-			mapping.put(COLUMNS.POSITION_TYPE_CODE.getColumnName(), msrpathways.getPositionTypeCode());
+			mapping.put(COLUMNS.POSITION_TYPE_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getPositionTypeCode()));
 			mapping.put(COLUMNS.POSITION_WITHPO.getColumnName(), msrpathways.getPositionWithpo());
-			mapping.put(COLUMNS.COMPANY_NAME.getColumnName(), msrpathways.getCompanyName());
-			mapping.put(COLUMNS.POSITION_TITLE.getColumnName(), msrpathways.getPositionTitle());
+			mapping.put(COLUMNS.COMPANY_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getCompanyName()));
+			mapping.put(COLUMNS.POSITION_TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getPositionTitle()));
 			mapping.put(COLUMNS.STEP_INLINE.getColumnName(), msrpathways.getStepInline());
 			mapping.put(COLUMNS.NATIONAL_SERVICE_APPLIED.getColumnName(), msrpathways.getNationalServiceApplied());
-			mapping.put(COLUMNS.PAST_PATHWAYS_CODE.getColumnName(), msrpathways.getPastPathwaysCode());
+			mapping.put(COLUMNS.PAST_PATHWAYS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getPastPathwaysCode()));
 			mapping.put(COLUMNS.PATHWAYS_SAME.getColumnName(), msrpathways.getPathwaysSame());
-			mapping.put(COLUMNS.CURRENT_PATHWAYS_CODE.getColumnName(), msrpathways.getCurrentPathwaysCode());
+			mapping.put(COLUMNS.CURRENT_PATHWAYS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getCurrentPathwaysCode()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), msrpathways.getOldId());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), msrpathways.getHistory());
-			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), msrpathways.getPosComment());
-			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), msrpathways.getStaffComment());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getHistory()));
+			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getPosComment()));
+			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getStaffComment()));
 			mapping.put(COLUMNS.POS_USER_ID.getColumnName(), msrpathways.getPosUserId());
 			mapping.put(COLUMNS.STAFF_USER_ID.getColumnName(), msrpathways.getStaffUserId());
 			if (msrpathways.getPosCommentDate() != null)
 				mapping.put(COLUMNS.POS_COMMENT_DATE.getColumnName(), new Timestamp (msrpathways.getPosCommentDate().getTime()));
 			if (msrpathways.getStaffCommentDate() != null)
 				mapping.put(COLUMNS.STAFF_COMMENT_DATE.getColumnName(), new Timestamp (msrpathways.getStaffCommentDate().getTime()));
-			mapping.put(COLUMNS.PATHWAY_TYPE_CODE.getColumnName(), msrpathways.getPathwayTypeCode());
+			mapping.put(COLUMNS.PATHWAY_TYPE_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getPathwayTypeCode()));
 			mapping.put(COLUMNS.TAKING_ADD_STEP.getColumnName(), msrpathways.getTakingAddStep());
-			mapping.put(COLUMNS.ADDITIONAL_STEP.getColumnName(), msrpathways.getAdditionalStep());
-			mapping.put(COLUMNS.CURRENT_CONNECTION.getColumnName(), msrpathways.getCurrentConnection());
+			mapping.put(COLUMNS.ADDITIONAL_STEP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getAdditionalStep()));
+			mapping.put(COLUMNS.CURRENT_CONNECTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getCurrentConnection()));
 			if (msrpathways.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (msrpathways.getCreatedAt().getTime()));
 			if (msrpathways.getUpdatedAt() != null)
@@ -305,11 +305,11 @@ public class MsrPathwaysDB implements EntityDB<MsrPathways>{
 			mapping.put(COLUMNS.SUBMITTED_FAFSA_FORMS.getColumnName(), msrpathways.getSubmittedFafsaForms());
 			mapping.put(COLUMNS.COACHING_SESSION_PM.getColumnName(), msrpathways.getCoachingSessionPm());
 			mapping.put(COLUMNS.COACHING_SESSION_PM_COUNT.getColumnName(), msrpathways.getCoachingSessionPmCount());
-			mapping.put(COLUMNS.POS_CONTRIBUTION_ACHIEVE.getColumnName(), msrpathways.getPosContributionAchieve());
-			mapping.put(COLUMNS.STAFF_CONTRIBUTION_ACHIEVE.getColumnName(), msrpathways.getStaffContributionAchieve());
-			mapping.put(COLUMNS.POS_CONTRIBUTED_ACHIEVING.getColumnName(), msrpathways.getPosContributedAchieving());
-			mapping.put(COLUMNS.STAFF_CONTRIBUTED_ACHIEVING.getColumnName(), msrpathways.getStaffContributedAchieving());
-			mapping.put(COLUMNS.STAFF_TRACK_ACHIEVEMENT.getColumnName(), msrpathways.getStaffTrackAchievement());
+			mapping.put(COLUMNS.POS_CONTRIBUTION_ACHIEVE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getPosContributionAchieve()));
+			mapping.put(COLUMNS.STAFF_CONTRIBUTION_ACHIEVE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getStaffContributionAchieve()));
+			mapping.put(COLUMNS.POS_CONTRIBUTED_ACHIEVING.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getPosContributedAchieving()));
+			mapping.put(COLUMNS.STAFF_CONTRIBUTED_ACHIEVING.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getStaffContributedAchieving()));
+			mapping.put(COLUMNS.STAFF_TRACK_ACHIEVEMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpathways.getStaffTrackAchievement()));
 			return mapping;
 		}
 	}

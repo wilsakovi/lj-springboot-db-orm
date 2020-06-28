@@ -19,7 +19,7 @@ public class MsrVolunteerDB implements EntityDB<MsrVolunteer>{
 
 	private static String TABLE_NAME = "MSR_VOLUNTEER";
 
-	private static String TABLE_ALIAS = "A_mv_403";
+	private static String TABLE_ALIAS = "A_mv_298";
 
 	public static String getTableName()
 	{
@@ -168,7 +168,7 @@ public class MsrVolunteerDB implements EntityDB<MsrVolunteer>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), msrvolunteer.getId());
 			mapping.put(COLUMNS.TOTAL_VOLUNTEER_HOURS.getColumnName(), msrvolunteer.getTotalVolunteerHours());
-			mapping.put(COLUMNS.IMPACT_DESCRIPTION.getColumnName(), msrvolunteer.getImpactDescription());
+			mapping.put(COLUMNS.IMPACT_DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrvolunteer.getImpactDescription()));
 			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), msrvolunteer.getAllyProfileId());
 			if (msrvolunteer.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (msrvolunteer.getCreatedAt().getTime()));
@@ -178,8 +178,8 @@ public class MsrVolunteerDB implements EntityDB<MsrVolunteer>{
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), msrvolunteer.getOldId());
 			mapping.put(COLUMNS.VOLUNTEER_IN_ORG.getColumnName(), msrvolunteer.getVolunteerInOrg());
 			mapping.put(COLUMNS.VOLUNTEER_OUT_ORG.getColumnName(), msrvolunteer.getVolunteerOutOrg());
-			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), msrvolunteer.getPosComment());
-			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), msrvolunteer.getStaffComment());
+			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrvolunteer.getPosComment()));
+			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrvolunteer.getStaffComment()));
 			mapping.put(COLUMNS.POS_USER_ID.getColumnName(), msrvolunteer.getPosUserId());
 			mapping.put(COLUMNS.STAFF_USER_ID.getColumnName(), msrvolunteer.getStaffUserId());
 			if (msrvolunteer.getPosCommentDate() != null)

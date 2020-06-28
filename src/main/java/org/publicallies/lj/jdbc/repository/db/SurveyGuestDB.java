@@ -19,7 +19,7 @@ public class SurveyGuestDB implements EntityDB<SurveyGuest>{
 
 	private static String TABLE_NAME = "SURVEY_GUEST";
 
-	private static String TABLE_ALIAS = "A_sg_489";
+	private static String TABLE_ALIAS = "A_sg_807";
 
 	public static String getTableName()
 	{
@@ -149,17 +149,17 @@ public class SurveyGuestDB implements EntityDB<SurveyGuest>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), surveyguest.getId());
-			mapping.put(COLUMNS.FIRST_NAME.getColumnName(), surveyguest.getFirstName());
-			mapping.put(COLUMNS.LAST_NAME.getColumnName(), surveyguest.getLastName());
-			mapping.put(COLUMNS.EMAIL.getColumnName(), surveyguest.getEmail());
-			mapping.put(COLUMNS.GUEST_CODE.getColumnName(), surveyguest.getGuestCode());
+			mapping.put(COLUMNS.FIRST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveyguest.getFirstName()));
+			mapping.put(COLUMNS.LAST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveyguest.getLastName()));
+			mapping.put(COLUMNS.EMAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveyguest.getEmail()));
+			mapping.put(COLUMNS.GUEST_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveyguest.getGuestCode()));
 			if (surveyguest.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (surveyguest.getCreatedAt().getTime()));
 			if (surveyguest.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (surveyguest.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.USER_ID.getColumnName(), surveyguest.getUserId());
-			mapping.put(COLUMNS.RELATIONSHIP.getColumnName(), surveyguest.getRelationship());
-			mapping.put(COLUMNS.TITLE.getColumnName(), surveyguest.getTitle());
+			mapping.put(COLUMNS.RELATIONSHIP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveyguest.getRelationship()));
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveyguest.getTitle()));
 			return mapping;
 		}
 	}

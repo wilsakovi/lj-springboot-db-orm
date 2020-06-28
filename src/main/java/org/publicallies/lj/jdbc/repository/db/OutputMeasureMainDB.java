@@ -19,7 +19,7 @@ public class OutputMeasureMainDB implements EntityDB<OutputMeasureMain>{
 
 	private static String TABLE_NAME = "OUTPUT_MEASURE_MAIN";
 
-	private static String TABLE_ALIAS = "A_omm_529";
+	private static String TABLE_ALIAS = "A_omm_259";
 
 	public static String getTableName()
 	{
@@ -164,11 +164,11 @@ public class OutputMeasureMainDB implements EntityDB<OutputMeasureMain>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), outputmeasuremain.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), outputmeasuremain.getName());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), outputmeasuremain.getDescription());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(outputmeasuremain.getName()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(outputmeasuremain.getDescription()));
 			if (outputmeasuremain.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (outputmeasuremain.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.SHORT_DESCRIPTION.getColumnName(), outputmeasuremain.getShortDescription());
+			mapping.put(COLUMNS.SHORT_DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(outputmeasuremain.getShortDescription()));
 			mapping.put(COLUMNS.HAS_CNCS_REPORT.getColumnName(), outputmeasuremain.getHasCncsReport());
 			mapping.put(COLUMNS.HAS_POPULATION_REPORT.getColumnName(), outputmeasuremain.getHasPopulationReport());
 			mapping.put(COLUMNS.HAS_ACTIVITY_MEASURED.getColumnName(), outputmeasuremain.getHasActivityMeasured());
@@ -176,7 +176,7 @@ public class OutputMeasureMainDB implements EntityDB<OutputMeasureMain>{
 			mapping.put(COLUMNS.HAS_BENEFICIARY.getColumnName(), outputmeasuremain.getHasBeneficiary());
 			mapping.put(COLUMNS.PDG_ID.getColumnName(), outputmeasuremain.getPdgId());
 			mapping.put(COLUMNS.MEASURE_REQUIREMENT.getColumnName(), outputmeasuremain.getMeasureRequirement());
-			mapping.put(COLUMNS.TARGET_NAME.getColumnName(), outputmeasuremain.getTargetName());
+			mapping.put(COLUMNS.TARGET_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(outputmeasuremain.getTargetName()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), outputmeasuremain.getOldId());
 			mapping.put(COLUMNS.CAP_BUILDING_FLAG.getColumnName(), outputmeasuremain.getCapBuildingFlag());
 			return mapping;

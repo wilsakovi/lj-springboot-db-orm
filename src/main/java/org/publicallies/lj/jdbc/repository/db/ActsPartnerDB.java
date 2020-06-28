@@ -19,7 +19,7 @@ public class ActsPartnerDB implements EntityDB<ActsPartner>{
 
 	private static String TABLE_NAME = "ACTS_PARTNER";
 
-	private static String TABLE_ALIAS = "A_ap_979";
+	private static String TABLE_ALIAS = "A_ap_607";
 
 	public static String getTableName()
 	{
@@ -143,10 +143,10 @@ public class ActsPartnerDB implements EntityDB<ActsPartner>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), actspartner.getId());
-			mapping.put(COLUMNS.CONTACT_NAME.getColumnName(), actspartner.getContactName());
-			mapping.put(COLUMNS.ORGANIZATION.getColumnName(), actspartner.getOrganization());
-			mapping.put(COLUMNS.SUPPORT_DETAIL.getColumnName(), actspartner.getSupportDetail());
-			mapping.put(COLUMNS.FUTURE_ACTION.getColumnName(), actspartner.getFutureAction());
+			mapping.put(COLUMNS.CONTACT_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actspartner.getContactName()));
+			mapping.put(COLUMNS.ORGANIZATION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actspartner.getOrganization()));
+			mapping.put(COLUMNS.SUPPORT_DETAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actspartner.getSupportDetail()));
+			mapping.put(COLUMNS.FUTURE_ACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actspartner.getFutureAction()));
 			mapping.put(COLUMNS.OBJECTIVE_ID.getColumnName(), actspartner.getObjectiveId());
 			if (actspartner.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (actspartner.getCreatedAt().getTime()));

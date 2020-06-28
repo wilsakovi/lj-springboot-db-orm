@@ -19,7 +19,7 @@ public class SfFailureLogDB implements EntityDB<SfFailureLog>{
 
 	private static String TABLE_NAME = "SF_FAILURE_LOG";
 
-	private static String TABLE_ALIAS = "A_sfl_78";
+	private static String TABLE_ALIAS = "A_sfl_657";
 
 	public static String getTableName()
 	{
@@ -140,12 +140,12 @@ public class SfFailureLogDB implements EntityDB<SfFailureLog>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), sffailurelog.getId());
-			mapping.put(COLUMNS.SF_ID.getColumnName(), sffailurelog.getSfId());
-			mapping.put(COLUMNS.LJ_OBJECTS.getColumnName(), sffailurelog.getLjObjects());
-			mapping.put(COLUMNS.ERROR.getColumnName(), sffailurelog.getError());
+			mapping.put(COLUMNS.SF_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(sffailurelog.getSfId()));
+			mapping.put(COLUMNS.LJ_OBJECTS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(sffailurelog.getLjObjects()));
+			mapping.put(COLUMNS.ERROR.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(sffailurelog.getError()));
 			if (sffailurelog.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (sffailurelog.getCreatedAt().getTime()));
-			mapping.put(COLUMNS.SF_OBJECT.getColumnName(), sffailurelog.getSfObject());
+			mapping.put(COLUMNS.SF_OBJECT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(sffailurelog.getSfObject()));
 			mapping.put(COLUMNS.TASK_ID.getColumnName(), sffailurelog.getTaskId());
 			return mapping;
 		}

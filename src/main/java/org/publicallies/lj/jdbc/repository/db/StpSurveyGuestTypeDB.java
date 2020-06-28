@@ -18,7 +18,7 @@ public class StpSurveyGuestTypeDB implements EntityDB<StpSurveyGuestType>{
 
 	private static String TABLE_NAME = "STP_SURVEY_GUEST_TYPE";
 
-	private static String TABLE_ALIAS = "A_ssgt_997";
+	private static String TABLE_ALIAS = "A_ssgt_301";
 
 	public static String getTableName()
 	{
@@ -130,8 +130,8 @@ public class StpSurveyGuestTypeDB implements EntityDB<StpSurveyGuestType>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpsurveyguesttype.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpsurveyguesttype.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpsurveyguesttype.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsurveyguesttype.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsurveyguesttype.getName()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stpsurveyguesttype.getActiveFlag());
 			return mapping;
 		}

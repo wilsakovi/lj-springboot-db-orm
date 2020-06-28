@@ -19,7 +19,7 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 
 	private static String TABLE_NAME = "MSR_JOB_OBJECTIVE";
 
-	private static String TABLE_ALIAS = "A_mjo_17";
+	private static String TABLE_ALIAS = "A_mjo_752";
 
 	public static String getTableName()
 	{
@@ -174,20 +174,20 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), msrjobobjective.getId());
 			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), msrjobobjective.getAllyProfileId());
-			mapping.put(COLUMNS.ACTIVITY_DESCRIPTION.getColumnName(), msrjobobjective.getActivityDescription());
+			mapping.put(COLUMNS.ACTIVITY_DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getActivityDescription()));
 			if (msrjobobjective.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (msrjobobjective.getCreatedAt().getTime()));
 			if (msrjobobjective.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (msrjobobjective.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.JOB_OBJECTIVE_ID.getColumnName(), msrjobobjective.getJobObjectiveId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), msrjobobjective.getOldId());
-			mapping.put(COLUMNS.SUCCESS_COMMENT.getColumnName(), msrjobobjective.getSuccessComment());
-			mapping.put(COLUMNS.LEARNING_COMMENT.getColumnName(), msrjobobjective.getLearningComment());
+			mapping.put(COLUMNS.SUCCESS_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getSuccessComment()));
+			mapping.put(COLUMNS.LEARNING_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getLearningComment()));
 			mapping.put(COLUMNS.ACTS_REPORT_ID.getColumnName(), msrjobobjective.getActsReportId());
 			mapping.put(COLUMNS.MSR_ID.getColumnName(), msrjobobjective.getMsrId());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), msrjobobjective.getHistory());
-			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), msrjobobjective.getPosComment());
-			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), msrjobobjective.getStaffComment());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getHistory()));
+			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getPosComment()));
+			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getStaffComment()));
 			mapping.put(COLUMNS.POS_USER_ID.getColumnName(), msrjobobjective.getPosUserId());
 			mapping.put(COLUMNS.STAFF_USER_ID.getColumnName(), msrjobobjective.getStaffUserId());
 			if (msrjobobjective.getPosCommentDate() != null)

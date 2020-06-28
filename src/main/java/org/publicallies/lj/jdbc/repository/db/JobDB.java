@@ -19,7 +19,7 @@ public class JobDB implements EntityDB<Job>{
 
 	private static String TABLE_NAME = "JOB";
 
-	private static String TABLE_ALIAS = "A_job_280";
+	private static String TABLE_ALIAS = "A_job_249";
 
 	public static String getTableName()
 	{
@@ -231,7 +231,7 @@ public class JobDB implements EntityDB<Job>{
 			mapping.put(COLUMNS.PARTNER_ID.getColumnName(), job.getPartnerId());
 			mapping.put(COLUMNS.PARTNER_PROFILE_ID.getColumnName(), job.getPartnerProfileId());
 			mapping.put(COLUMNS.PARTNER_SUPERVISOR_ID.getColumnName(), job.getPartnerSupervisorId());
-			mapping.put(COLUMNS.TITLE.getColumnName(), job.getTitle());
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getTitle()));
 			if (job.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (job.getCreatedAt().getTime()));
 			if (job.getUpdatedAt() != null)
@@ -242,31 +242,31 @@ public class JobDB implements EntityDB<Job>{
 				mapping.put(COLUMNS.END_DATE.getColumnName(), new Timestamp (job.getEndDate().getTime()));
 			mapping.put(COLUMNS.CNCS_ID.getColumnName(), job.getCncsId());
 			mapping.put(COLUMNS.ACCESS_DISABLES.getColumnName(), job.getAccessDisables());
-			mapping.put(COLUMNS.ADDITIONAL_INFO.getColumnName(), job.getAdditionalInfo());
+			mapping.put(COLUMNS.ADDITIONAL_INFO.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getAdditionalInfo()));
 			mapping.put(COLUMNS.PDG_ID.getColumnName(), job.getPdgId());
 			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), job.getAllyProfileId());
-			mapping.put(COLUMNS.CAPACITY_GAP.getColumnName(), job.getCapacityGap());
-			mapping.put(COLUMNS.OUTCOME_DIFFERENCE.getColumnName(), job.getOutcomeDifference());
+			mapping.put(COLUMNS.CAPACITY_GAP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getCapacityGap()));
+			mapping.put(COLUMNS.OUTCOME_DIFFERENCE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getOutcomeDifference()));
 			mapping.put(COLUMNS.ACTIVITY_AREA_TERM_ID.getColumnName(), job.getActivityAreaTermId());
 			mapping.put(COLUMNS.PROGRAM_YEAR_ID.getColumnName(), job.getProgramYearId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), job.getOldId());
 			mapping.put(COLUMNS.ID_FK.getColumnName(), job.getIdFK());
-			mapping.put(COLUMNS.ACTIVITY_SERVE_COMMUNITY.getColumnName(), job.getActivityServeCommunity());
+			mapping.put(COLUMNS.ACTIVITY_SERVE_COMMUNITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getActivityServeCommunity()));
 			mapping.put(COLUMNS.SUBMITTED_BY_USERS_ID.getColumnName(), job.getSubmittedByUsersId());
-			mapping.put(COLUMNS.SUBMISSION_COMMENT.getColumnName(), job.getSubmissionComment());
+			mapping.put(COLUMNS.SUBMISSION_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getSubmissionComment()));
 			if (job.getSubmissionDate() != null)
 				mapping.put(COLUMNS.SUBMISSION_DATE.getColumnName(), new Timestamp (job.getSubmissionDate().getTime()));
 			mapping.put(COLUMNS.APPROVAL_USERS_ID.getColumnName(), job.getApprovalUsersId());
 			if (job.getApprovalDate() != null)
 				mapping.put(COLUMNS.APPROVAL_DATE.getColumnName(), new Timestamp (job.getApprovalDate().getTime()));
-			mapping.put(COLUMNS.APPROVAL_COMMENT.getColumnName(), job.getApprovalComment());
-			mapping.put(COLUMNS.APPROVAL_STATUS.getColumnName(), job.getApprovalStatus());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), job.getHistory());
+			mapping.put(COLUMNS.APPROVAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getApprovalComment()));
+			mapping.put(COLUMNS.APPROVAL_STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getApprovalStatus()));
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getHistory()));
 			mapping.put(COLUMNS.PARTNER_FEE.getColumnName(), job.getPartnerFee());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), job.getActiveFlag());
 			mapping.put(COLUMNS.ENFORCE_DATES.getColumnName(), job.getEnforceDates());
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), job.getLastUpdatedUsersId());
-			mapping.put(COLUMNS.SF_ID.getColumnName(), job.getSfId());
+			mapping.put(COLUMNS.SF_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getSfId()));
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), job.getSfFailedFlag());
 			return mapping;
 		}

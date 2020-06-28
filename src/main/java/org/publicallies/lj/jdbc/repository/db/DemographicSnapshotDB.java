@@ -19,7 +19,7 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 
 	private static String TABLE_NAME = "DEMOGRAPHIC_SNAPSHOT";
 
-	private static String TABLE_ALIAS = "A_ds_280";
+	private static String TABLE_ALIAS = "A_ds_647";
 
 	public static String getTableName()
 	{
@@ -268,50 +268,50 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 			mapping.put(COLUMNS.ID.getColumnName(), demographicsnapshot.getId());
 			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), demographicsnapshot.getAllyProfileId());
 			mapping.put(COLUMNS.GENDER_ID.getColumnName(), demographicsnapshot.getGenderId());
-			mapping.put(COLUMNS.GENDER_NAME.getColumnName(), demographicsnapshot.getGenderName());
-			mapping.put(COLUMNS.GENDER_OTHER.getColumnName(), demographicsnapshot.getGenderOther());
-			mapping.put(COLUMNS.RACE_IDS_JSON.getColumnName(), demographicsnapshot.getRaceIdsJson());
-			mapping.put(COLUMNS.RACE_NAMES_JSON.getColumnName(), demographicsnapshot.getRaceNamesJson());
-			mapping.put(COLUMNS.RACE_OTHER.getColumnName(), demographicsnapshot.getRaceOther());
+			mapping.put(COLUMNS.GENDER_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getGenderName()));
+			mapping.put(COLUMNS.GENDER_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getGenderOther()));
+			mapping.put(COLUMNS.RACE_IDS_JSON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getRaceIdsJson()));
+			mapping.put(COLUMNS.RACE_NAMES_JSON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getRaceNamesJson()));
+			mapping.put(COLUMNS.RACE_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getRaceOther()));
 			mapping.put(COLUMNS.HIGHER_EDUCATION_ID.getColumnName(), demographicsnapshot.getHigherEducationId());
-			mapping.put(COLUMNS.HIGHER_EDUCATION_NAME.getColumnName(), demographicsnapshot.getHigherEducationName());
+			mapping.put(COLUMNS.HIGHER_EDUCATION_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getHigherEducationName()));
 			mapping.put(COLUMNS.SEX_ORIENTATION_ID.getColumnName(), demographicsnapshot.getSexOrientationId());
-			mapping.put(COLUMNS.SEX_ORIENTATION_NAME.getColumnName(), demographicsnapshot.getSexOrientationName());
-			mapping.put(COLUMNS.SEX_ORIENTATION_OTHER.getColumnName(), demographicsnapshot.getSexOrientationOther());
+			mapping.put(COLUMNS.SEX_ORIENTATION_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getSexOrientationName()));
+			mapping.put(COLUMNS.SEX_ORIENTATION_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getSexOrientationOther()));
 			if (demographicsnapshot.getDob() != null)
 				mapping.put(COLUMNS.DOB.getColumnName(), new Timestamp (demographicsnapshot.getDob().getTime()));
-			mapping.put(COLUMNS.PRIOR_AMERICORP.getColumnName(), demographicsnapshot.getPriorAmericorp());
+			mapping.put(COLUMNS.PRIOR_AMERICORP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getPriorAmericorp()));
 			mapping.put(COLUMNS.AGE_ENTERING_PROGRAM.getColumnName(), demographicsnapshot.getAgeEnteringProgram());
-			mapping.put(COLUMNS.LAST_EDUCATION.getColumnName(), demographicsnapshot.getLastEducation());
-			mapping.put(COLUMNS.FIRST_MEMBER_COLLEGE.getColumnName(), demographicsnapshot.getFirstMemberCollege());
-			mapping.put(COLUMNS.POVERTY_FLAG.getColumnName(), demographicsnapshot.getPovertyFlag());
-			mapping.put(COLUMNS.RECEIVED_GOV_ASSIST.getColumnName(), demographicsnapshot.getReceivedGovAssist());
-			mapping.put(COLUMNS.SOCIAL_ASSISTS_JSON.getColumnName(), demographicsnapshot.getSocialAssistsJson());
-			mapping.put(COLUMNS.APPLIED_GOV_ASSIST.getColumnName(), demographicsnapshot.getAppliedGovAssist());
-			mapping.put(COLUMNS.CURRENT_RECEIVE_GOV_ASSIST.getColumnName(), demographicsnapshot.getCurrentReceiveGovAssist());
-			mapping.put(COLUMNS.PARENT_GRADUATE_COLLEGE.getColumnName(), demographicsnapshot.getParentGraduateCollege());
+			mapping.put(COLUMNS.LAST_EDUCATION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getLastEducation()));
+			mapping.put(COLUMNS.FIRST_MEMBER_COLLEGE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getFirstMemberCollege()));
+			mapping.put(COLUMNS.POVERTY_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getPovertyFlag()));
+			mapping.put(COLUMNS.RECEIVED_GOV_ASSIST.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getReceivedGovAssist()));
+			mapping.put(COLUMNS.SOCIAL_ASSISTS_JSON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getSocialAssistsJson()));
+			mapping.put(COLUMNS.APPLIED_GOV_ASSIST.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getAppliedGovAssist()));
+			mapping.put(COLUMNS.CURRENT_RECEIVE_GOV_ASSIST.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getCurrentReceiveGovAssist()));
+			mapping.put(COLUMNS.PARENT_GRADUATE_COLLEGE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getParentGraduateCollege()));
 			mapping.put(COLUMNS.TAXABLE_EARN_INCOME.getColumnName(), demographicsnapshot.getTaxableEarnIncome());
 			mapping.put(COLUMNS.EMPLOYMENT_STATUS_ID.getColumnName(), demographicsnapshot.getEmploymentStatusId());
-			mapping.put(COLUMNS.EMPLOYMENT_STATUS_NAME.getColumnName(), demographicsnapshot.getEmploymentStatusName());
-			mapping.put(COLUMNS.EMPLOYMENT_TITLE.getColumnName(), demographicsnapshot.getEmploymentTitle());
-			mapping.put(COLUMNS.EMPLOYER_NAME.getColumnName(), demographicsnapshot.getEmployerName());
+			mapping.put(COLUMNS.EMPLOYMENT_STATUS_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getEmploymentStatusName()));
+			mapping.put(COLUMNS.EMPLOYMENT_TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getEmploymentTitle()));
+			mapping.put(COLUMNS.EMPLOYER_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getEmployerName()));
 			mapping.put(COLUMNS.UNEMPLOYMENT_PERIOD_ID.getColumnName(), demographicsnapshot.getUnemploymentPeriodId());
-			mapping.put(COLUMNS.UNEMPLOYMENT_PERIOD_NAME.getColumnName(), demographicsnapshot.getUnemploymentPeriodName());
-			mapping.put(COLUMNS.WORKED_PROFESSIONAL_FLAG.getColumnName(), demographicsnapshot.getWorkedProfessionalFlag());
-			mapping.put(COLUMNS.EMPLOYED_NPO_FLAG.getColumnName(), demographicsnapshot.getEmployedNpoFlag());
-			mapping.put(COLUMNS.RECEIVED_SOCIAL_ASSIST.getColumnName(), demographicsnapshot.getReceivedSocialAssist());
-			mapping.put(COLUMNS.CONVICTED_FLAG.getColumnName(), demographicsnapshot.getConvictedFlag());
-			mapping.put(COLUMNS.ENROLLED24COLLEGE_FLAG.getColumnName(), demographicsnapshot.getEnrolled24collegeFlag());
+			mapping.put(COLUMNS.UNEMPLOYMENT_PERIOD_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getUnemploymentPeriodName()));
+			mapping.put(COLUMNS.WORKED_PROFESSIONAL_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getWorkedProfessionalFlag()));
+			mapping.put(COLUMNS.EMPLOYED_NPO_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getEmployedNpoFlag()));
+			mapping.put(COLUMNS.RECEIVED_SOCIAL_ASSIST.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getReceivedSocialAssist()));
+			mapping.put(COLUMNS.CONVICTED_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getConvictedFlag()));
+			mapping.put(COLUMNS.ENROLLED24COLLEGE_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getEnrolled24collegeFlag()));
 			mapping.put(COLUMNS.ENROLLED_COLLEGE_PERIOD.getColumnName(), demographicsnapshot.getEnrolledCollegePeriod());
-			mapping.put(COLUMNS.ENROLLED_COLLEGE_PERIOD_NAME.getColumnName(), demographicsnapshot.getEnrolledCollegePeriodName());
+			mapping.put(COLUMNS.ENROLLED_COLLEGE_PERIOD_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getEnrolledCollegePeriodName()));
 			mapping.put(COLUMNS.EMPLOYMENT_PERIOD_ID.getColumnName(), demographicsnapshot.getEmploymentPeriodId());
-			mapping.put(COLUMNS.EMPLOYMENT_PERIOD_NAME.getColumnName(), demographicsnapshot.getEmploymentPeriodName());
-			mapping.put(COLUMNS.MILITARY_VETERAN.getColumnName(), demographicsnapshot.getMilitaryVeteran());
+			mapping.put(COLUMNS.EMPLOYMENT_PERIOD_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getEmploymentPeriodName()));
+			mapping.put(COLUMNS.MILITARY_VETERAN.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getMilitaryVeteran()));
 			mapping.put(COLUMNS.MARITAL_STATUS_ID.getColumnName(), demographicsnapshot.getMaritalStatusId());
-			mapping.put(COLUMNS.MARITAL_STATUS_NAME.getColumnName(), demographicsnapshot.getMaritalStatusName());
-			mapping.put(COLUMNS.LGBTQ_FLAG.getColumnName(), demographicsnapshot.getLgbtqFlag());
-			mapping.put(COLUMNS.DISABILITY_FLAG.getColumnName(), demographicsnapshot.getDisabilityFlag());
-			mapping.put(COLUMNS.DISABILITY_DESC.getColumnName(), demographicsnapshot.getDisabilityDesc());
+			mapping.put(COLUMNS.MARITAL_STATUS_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getMaritalStatusName()));
+			mapping.put(COLUMNS.LGBTQ_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getLgbtqFlag()));
+			mapping.put(COLUMNS.DISABILITY_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getDisabilityFlag()));
+			mapping.put(COLUMNS.DISABILITY_DESC.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getDisabilityDesc()));
 			mapping.put(COLUMNS.CHILD_COUNT.getColumnName(), demographicsnapshot.getChildCount());
 			if (demographicsnapshot.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (demographicsnapshot.getCreatedAt().getTime()));

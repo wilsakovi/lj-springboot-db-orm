@@ -19,7 +19,7 @@ public class ActsReportDB implements EntityDB<ActsReport>{
 
 	private static String TABLE_NAME = "ACTS_REPORT";
 
-	private static String TABLE_ALIAS = "A_ar_888";
+	private static String TABLE_ALIAS = "A_ar_979";
 
 	public static String getTableName()
 	{
@@ -170,23 +170,23 @@ public class ActsReportDB implements EntityDB<ActsReport>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), actsreport.getId());
-			mapping.put(COLUMNS.SUCCESS_NOTE.getColumnName(), actsreport.getSuccessNote());
-			mapping.put(COLUMNS.LEARNING_NOTE.getColumnName(), actsreport.getLearningNote());
-			mapping.put(COLUMNS.SNAPSHOT_NOTE.getColumnName(), actsreport.getSnapshotNote());
+			mapping.put(COLUMNS.SUCCESS_NOTE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsreport.getSuccessNote()));
+			mapping.put(COLUMNS.LEARNING_NOTE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsreport.getLearningNote()));
+			mapping.put(COLUMNS.SNAPSHOT_NOTE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsreport.getSnapshotNote()));
 			if (actsreport.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (actsreport.getCreatedAt().getTime()));
 			if (actsreport.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (actsreport.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.OBJECTIVE_ID.getColumnName(), actsreport.getObjectiveId());
 			mapping.put(COLUMNS.SUBMITTED_FLAG.getColumnName(), actsreport.getSubmittedFlag());
-			mapping.put(COLUMNS.ADD_NOTE.getColumnName(), actsreport.getAddNote());
+			mapping.put(COLUMNS.ADD_NOTE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsreport.getAddNote()));
 			mapping.put(COLUMNS.REVIEW_COMPLETED_FLAG.getColumnName(), actsreport.getReviewCompletedFlag());
 			mapping.put(COLUMNS.REVIEW_FLAG.getColumnName(), actsreport.getReviewFlag());
 			mapping.put(COLUMNS.STAFF_REVIEWER_ID.getColumnName(), actsreport.getStaffReviewerId());
-			mapping.put(COLUMNS.REVIEWER_FIRST_NAME.getColumnName(), actsreport.getReviewerFirstName());
-			mapping.put(COLUMNS.REVIEWER_LAST_NAME.getColumnName(), actsreport.getReviewerLastName());
-			mapping.put(COLUMNS.REVIEWER_EMAIL.getColumnName(), actsreport.getReviewerEmail());
-			mapping.put(COLUMNS.REVIEW_NOTE.getColumnName(), actsreport.getReviewNote());
+			mapping.put(COLUMNS.REVIEWER_FIRST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsreport.getReviewerFirstName()));
+			mapping.put(COLUMNS.REVIEWER_LAST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsreport.getReviewerLastName()));
+			mapping.put(COLUMNS.REVIEWER_EMAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsreport.getReviewerEmail()));
+			mapping.put(COLUMNS.REVIEW_NOTE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsreport.getReviewNote()));
 			if (actsreport.getReviewSubmittedDate() != null)
 				mapping.put(COLUMNS.REVIEW_SUBMITTED_DATE.getColumnName(), new Timestamp (actsreport.getReviewSubmittedDate().getTime()));
 			return mapping;

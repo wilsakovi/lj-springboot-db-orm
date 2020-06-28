@@ -19,7 +19,7 @@ public class SurveyCollectorDB implements EntityDB<SurveyCollector>{
 
 	private static String TABLE_NAME = "SURVEY_COLLECTOR";
 
-	private static String TABLE_ALIAS = "A_sc_92";
+	private static String TABLE_ALIAS = "A_sc_195";
 
 	public static String getTableName()
 	{
@@ -176,23 +176,23 @@ public class SurveyCollectorDB implements EntityDB<SurveyCollector>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), surveycollector.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), surveycollector.getName());
-			mapping.put(COLUMNS.STATUS.getColumnName(), surveycollector.getStatus());
-			mapping.put(COLUMNS.REDIRECT_URL.getColumnName(), surveycollector.getRedirectUrl());
-			mapping.put(COLUMNS.THANKS_MSG.getColumnName(), surveycollector.getThanksMsg());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveycollector.getName()));
+			mapping.put(COLUMNS.STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveycollector.getStatus()));
+			mapping.put(COLUMNS.REDIRECT_URL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveycollector.getRedirectUrl()));
+			mapping.put(COLUMNS.THANKS_MSG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveycollector.getThanksMsg()));
 			mapping.put(COLUMNS.RESPONSE_COUNT.getColumnName(), surveycollector.getResponseCount());
-			mapping.put(COLUMNS.CLOSED_MSG.getColumnName(), surveycollector.getClosedMsg());
-			mapping.put(COLUMNS.URL.getColumnName(), surveycollector.getUrl());
+			mapping.put(COLUMNS.CLOSED_MSG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveycollector.getClosedMsg()));
+			mapping.put(COLUMNS.URL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveycollector.getUrl()));
 			mapping.put(COLUMNS.SURVEY_ID.getColumnName(), surveycollector.getSurveyId());
-			mapping.put(COLUMNS.HREF.getColumnName(), surveycollector.getHref());
+			mapping.put(COLUMNS.HREF.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveycollector.getHref()));
 			if (surveycollector.getCloseDate() != null)
 				mapping.put(COLUMNS.CLOSE_DATE.getColumnName(), new Timestamp (surveycollector.getCloseDate().getTime()));
-			mapping.put(COLUMNS.TYPE.getColumnName(), surveycollector.getType());
+			mapping.put(COLUMNS.TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveycollector.getType()));
 			if (surveycollector.getSmCreatedDate() != null)
 				mapping.put(COLUMNS.SM_CREATED_DATE.getColumnName(), new Timestamp (surveycollector.getSmCreatedDate().getTime()));
 			if (surveycollector.getSmModifiedDate() != null)
 				mapping.put(COLUMNS.SM_MODIFIED_DATE.getColumnName(), new Timestamp (surveycollector.getSmModifiedDate().getTime()));
-			mapping.put(COLUMNS.SM_ID.getColumnName(), surveycollector.getSmId());
+			mapping.put(COLUMNS.SM_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveycollector.getSmId()));
 			mapping.put(COLUMNS.MULTIPLE_RESPONSE_FLAG.getColumnName(), surveycollector.getMultipleResponseFlag());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), surveycollector.getActiveFlag());
 			if (surveycollector.getCreatedAt() != null)

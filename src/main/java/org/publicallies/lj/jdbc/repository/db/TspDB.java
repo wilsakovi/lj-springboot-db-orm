@@ -19,7 +19,7 @@ public class TspDB implements EntityDB<Tsp>{
 
 	private static String TABLE_NAME = "TSP";
 
-	private static String TABLE_ALIAS = "A_tsp_59";
+	private static String TABLE_ALIAS = "A_tsp_512";
 
 	public static String getTableName()
 	{
@@ -200,7 +200,7 @@ public class TspDB implements EntityDB<Tsp>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), tsp.getId());
-			mapping.put(COLUMNS.TITLE.getColumnName(), tsp.getTitle());
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getTitle()));
 			mapping.put(COLUMNS.SITE_PROFILE_ID.getColumnName(), tsp.getSiteProfileId());
 			mapping.put(COLUMNS.STAFF_ID.getColumnName(), tsp.getStaffId());
 			mapping.put(COLUMNS.CNCS_ID.getColumnName(), tsp.getCncsId());
@@ -208,26 +208,26 @@ public class TspDB implements EntityDB<Tsp>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (tsp.getCreatedAt().getTime()));
 			if (tsp.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (tsp.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.STATUS.getColumnName(), tsp.getStatus());
+			mapping.put(COLUMNS.STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getStatus()));
 			mapping.put(COLUMNS.CREATED_USER_ID.getColumnName(), tsp.getCreatedUserId());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), tsp.getActiveFlag());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), tsp.getHistory());
-			mapping.put(COLUMNS.DESIRED_RESULT.getColumnName(), tsp.getDesiredResult());
-			mapping.put(COLUMNS.CHALLENGE_EVIDENCE.getColumnName(), tsp.getChallengeEvidence());
-			mapping.put(COLUMNS.COMMUNICATION_ASSET.getColumnName(), tsp.getCommunicationAsset());
-			mapping.put(COLUMNS.LEADERSHIP_ACTION.getColumnName(), tsp.getLeadershipAction());
-			mapping.put(COLUMNS.TEAM_MEMBER_ROLE.getColumnName(), tsp.getTeamMemberRole());
-			mapping.put(COLUMNS.TEAM_ACCOUNTABILITY.getColumnName(), tsp.getTeamAccountability());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getHistory()));
+			mapping.put(COLUMNS.DESIRED_RESULT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getDesiredResult()));
+			mapping.put(COLUMNS.CHALLENGE_EVIDENCE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getChallengeEvidence()));
+			mapping.put(COLUMNS.COMMUNICATION_ASSET.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getCommunicationAsset()));
+			mapping.put(COLUMNS.LEADERSHIP_ACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getLeadershipAction()));
+			mapping.put(COLUMNS.TEAM_MEMBER_ROLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getTeamMemberRole()));
+			mapping.put(COLUMNS.TEAM_ACCOUNTABILITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getTeamAccountability()));
 			mapping.put(COLUMNS.SUCCESS_COMPLETED.getColumnName(), tsp.getSuccessCompleted());
-			mapping.put(COLUMNS.COMMUNITY_ORGS.getColumnName(), tsp.getCommunityOrgs());
+			mapping.put(COLUMNS.COMMUNITY_ORGS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getCommunityOrgs()));
 			mapping.put(COLUMNS.COMMUNITY_ORGS_COUNT.getColumnName(), tsp.getCommunityOrgsCount());
-			mapping.put(COLUMNS.ACTUAL_RESULT.getColumnName(), tsp.getActualResult());
-			mapping.put(COLUMNS.ACTUAL_LEADERSHIP_ACTION.getColumnName(), tsp.getActualLeadershipAction());
-			mapping.put(COLUMNS.ACTUAL_TEAM_ACCOUNTABILITY.getColumnName(), tsp.getActualTeamAccountability());
-			mapping.put(COLUMNS.COMMUNITY_CONTRIBUTED.getColumnName(), tsp.getCommunityContributed());
-			mapping.put(COLUMNS.TEAM_LEARNING.getColumnName(), tsp.getTeamLearning());
+			mapping.put(COLUMNS.ACTUAL_RESULT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getActualResult()));
+			mapping.put(COLUMNS.ACTUAL_LEADERSHIP_ACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getActualLeadershipAction()));
+			mapping.put(COLUMNS.ACTUAL_TEAM_ACCOUNTABILITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getActualTeamAccountability()));
+			mapping.put(COLUMNS.COMMUNITY_CONTRIBUTED.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getCommunityContributed()));
+			mapping.put(COLUMNS.TEAM_LEARNING.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getTeamLearning()));
 			mapping.put(COLUMNS.COMPLETED.getColumnName(), tsp.getCompleted());
-			mapping.put(COLUMNS.COMMUNITY_IMPACT.getColumnName(), tsp.getCommunityImpact());
+			mapping.put(COLUMNS.COMMUNITY_IMPACT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getCommunityImpact()));
 			return mapping;
 		}
 	}

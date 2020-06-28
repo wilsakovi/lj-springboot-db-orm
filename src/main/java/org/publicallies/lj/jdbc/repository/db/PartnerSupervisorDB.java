@@ -19,7 +19,7 @@ public class PartnerSupervisorDB implements EntityDB<PartnerSupervisor>{
 
 	private static String TABLE_NAME = "PARTNER_SUPERVISOR";
 
-	private static String TABLE_ALIAS = "A_ps_270";
+	private static String TABLE_ALIAS = "A_ps_289";
 
 	public static String getTableName()
 	{
@@ -167,7 +167,7 @@ public class PartnerSupervisorDB implements EntityDB<PartnerSupervisor>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), partnersupervisor.getId());
-			mapping.put(COLUMNS.NOTES.getColumnName(), partnersupervisor.getNotes());
+			mapping.put(COLUMNS.NOTES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partnersupervisor.getNotes()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), partnersupervisor.getActiveFlag());
 			if (partnersupervisor.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (partnersupervisor.getCreatedAt().getTime()));
@@ -175,15 +175,15 @@ public class PartnerSupervisorDB implements EntityDB<PartnerSupervisor>{
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (partnersupervisor.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.PARTNER_ID.getColumnName(), partnersupervisor.getPartnerId());
 			mapping.put(COLUMNS.USERS_ID.getColumnName(), partnersupervisor.getUsersId());
-			mapping.put(COLUMNS.PARTNER_IDS.getColumnName(), partnersupervisor.getPartnerIds());
-			mapping.put(COLUMNS.SITE_IDS.getColumnName(), partnersupervisor.getSiteIds());
-			mapping.put(COLUMNS.SF_IDS.getColumnName(), partnersupervisor.getSfIds());
+			mapping.put(COLUMNS.PARTNER_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partnersupervisor.getPartnerIds()));
+			mapping.put(COLUMNS.SITE_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partnersupervisor.getSiteIds()));
+			mapping.put(COLUMNS.SF_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partnersupervisor.getSfIds()));
 			mapping.put(COLUMNS.C_POSITION_PERIOD.getColumnName(), partnersupervisor.getCPositionPeriod());
 			mapping.put(COLUMNS.P_POSITION_PERIOD.getColumnName(), partnersupervisor.getPPositionPeriod());
 			if (partnersupervisor.getSelfUpdateDate() != null)
 				mapping.put(COLUMNS.SELF_UPDATE_DATE.getColumnName(), new Timestamp (partnersupervisor.getSelfUpdateDate().getTime()));
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), partnersupervisor.getLastUpdatedUsersId());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), partnersupervisor.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partnersupervisor.getHistory()));
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), partnersupervisor.getSfFailedFlag());
 			return mapping;
 		}

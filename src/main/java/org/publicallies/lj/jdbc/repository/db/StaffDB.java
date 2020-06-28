@@ -19,7 +19,7 @@ public class StaffDB implements EntityDB<Staff>{
 
 	private static String TABLE_NAME = "STAFF";
 
-	private static String TABLE_ALIAS = "A_sta_176";
+	private static String TABLE_ALIAS = "A_sta_201";
 
 	public static String getTableName()
 	{
@@ -177,22 +177,22 @@ public class StaffDB implements EntityDB<Staff>{
 				mapping.put(COLUMNS.START_DATE.getColumnName(), new Timestamp (staff.getStartDate().getTime()));
 			if (staff.getEndDate() != null)
 				mapping.put(COLUMNS.END_DATE.getColumnName(), new Timestamp (staff.getEndDate().getTime()));
-			mapping.put(COLUMNS.REASON_FOR_LEAVING.getColumnName(), staff.getReasonForLeaving());
-			mapping.put(COLUMNS.USER_GROUP.getColumnName(), staff.getUserGroup());
+			mapping.put(COLUMNS.REASON_FOR_LEAVING.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(staff.getReasonForLeaving()));
+			mapping.put(COLUMNS.USER_GROUP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(staff.getUserGroup()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), staff.getOldId());
-			mapping.put(COLUMNS.NOTES.getColumnName(), staff.getNotes());
+			mapping.put(COLUMNS.NOTES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(staff.getNotes()));
 			mapping.put(COLUMNS.MAIN_SITE_ID.getColumnName(), staff.getMainSiteId());
 			mapping.put(COLUMNS.ACTIVE_STATUS.getColumnName(), staff.getActiveStatus());
 			mapping.put(COLUMNS.USERS_ID.getColumnName(), staff.getUsersId());
-			mapping.put(COLUMNS.STAFF_TYPE.getColumnName(), staff.getStaffType());
-			mapping.put(COLUMNS.SERVICING_SITES.getColumnName(), staff.getServicingSites());
-			mapping.put(COLUMNS.SF_IDS.getColumnName(), staff.getSfIds());
+			mapping.put(COLUMNS.STAFF_TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(staff.getStaffType()));
+			mapping.put(COLUMNS.SERVICING_SITES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(staff.getServicingSites()));
+			mapping.put(COLUMNS.SF_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(staff.getSfIds()));
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), staff.getLastUpdatedUsersId());
 			if (staff.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (staff.getCreatedAt().getTime()));
 			if (staff.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (staff.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.HISTORY.getColumnName(), staff.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(staff.getHistory()));
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), staff.getSfFailedFlag());
 			return mapping;
 		}

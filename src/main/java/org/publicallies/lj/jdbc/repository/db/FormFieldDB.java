@@ -18,7 +18,7 @@ public class FormFieldDB implements EntityDB<FormField>{
 
 	private static String TABLE_NAME = "FORM_FIELD";
 
-	private static String TABLE_ALIAS = "A_ff_444";
+	private static String TABLE_ALIAS = "A_ff_790";
 
 	public static String getTableName()
 	{
@@ -202,16 +202,16 @@ public class FormFieldDB implements EntityDB<FormField>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), formfield.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), formfield.getName());
-			mapping.put(COLUMNS.LABEL.getColumnName(), formfield.getLabel());
-			mapping.put(COLUMNS.PLACEHOLDER_TEXT.getColumnName(), formfield.getPlaceholderText());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(formfield.getName()));
+			mapping.put(COLUMNS.LABEL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(formfield.getLabel()));
+			mapping.put(COLUMNS.PLACEHOLDER_TEXT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(formfield.getPlaceholderText()));
 			mapping.put(COLUMNS.TEXTAREA_ROWS.getColumnName(), formfield.getTextareaRows());
 			mapping.put(COLUMNS.TEXTAREA_COLS.getColumnName(), formfield.getTextareaCols());
 			mapping.put(COLUMNS.REQUIRED_FLAG.getColumnName(), formfield.getRequiredFlag());
 			mapping.put(COLUMNS.SELECT_SIZE.getColumnName(), formfield.getSelectSize());
 			mapping.put(COLUMNS.LABEL_ABOVE_FLAG.getColumnName(), formfield.getLabelAboveFlag());
-			mapping.put(COLUMNS.GLYPHICON.getColumnName(), formfield.getGlyphicon());
-			mapping.put(COLUMNS.INSTRUCTION_TEXT.getColumnName(), formfield.getInstructionText());
+			mapping.put(COLUMNS.GLYPHICON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(formfield.getGlyphicon()));
+			mapping.put(COLUMNS.INSTRUCTION_TEXT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(formfield.getInstructionText()));
 			mapping.put(COLUMNS.GLYPHICON_LEFT.getColumnName(), formfield.getGlyphiconLeft());
 			mapping.put(COLUMNS.LABEL_FLEX.getColumnName(), formfield.getLabelFlex());
 			mapping.put(COLUMNS.FIELD_FLEX.getColumnName(), formfield.getFieldFlex());
@@ -222,10 +222,10 @@ public class FormFieldDB implements EntityDB<FormField>{
 			mapping.put(COLUMNS.MAXIMUM_VALUE.getColumnName(), formfield.getMaximumValue());
 			mapping.put(COLUMNS.MAXIMUM_LENGTH.getColumnName(), formfield.getMaximumLength());
 			mapping.put(COLUMNS.OPTION_LIST_ID.getColumnName(), formfield.getOptionListId());
-			mapping.put(COLUMNS.DEFAULT_VALUE.getColumnName(), formfield.getDefaultValue());
+			mapping.put(COLUMNS.DEFAULT_VALUE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(formfield.getDefaultValue()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), formfield.getActiveFlag());
 			mapping.put(COLUMNS.FIELD_ORDER.getColumnName(), formfield.getFieldOrder());
-			mapping.put(COLUMNS.TOOLTIP_TEXT.getColumnName(), formfield.getTooltipText());
+			mapping.put(COLUMNS.TOOLTIP_TEXT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(formfield.getTooltipText()));
 			mapping.put(COLUMNS.ALLOW_FUTURE_VALUE.getColumnName(), formfield.getAllowFutureValue());
 			mapping.put(COLUMNS.ALLOW_PAST_VALUE.getColumnName(), formfield.getAllowPastValue());
 			mapping.put(COLUMNS.FORM_ID.getColumnName(), formfield.getFormId());

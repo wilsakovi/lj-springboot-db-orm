@@ -19,7 +19,7 @@ public class ActionStepObjectiveDB implements EntityDB<ActionStepObjective>{
 
 	private static String TABLE_NAME = "ACTION_STEP_OBJECTIVE";
 
-	private static String TABLE_ALIAS = "A_aso_247";
+	private static String TABLE_ALIAS = "A_aso_743";
 
 	public static String getTableName()
 	{
@@ -152,20 +152,20 @@ public class ActionStepObjectiveDB implements EntityDB<ActionStepObjective>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), actionstepobjective.getId());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), actionstepobjective.getDescription());
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actionstepobjective.getDescription()));
 			if (actionstepobjective.getStartDate() != null)
 				mapping.put(COLUMNS.START_DATE.getColumnName(), new Timestamp (actionstepobjective.getStartDate().getTime()));
 			if (actionstepobjective.getEndDate() != null)
 				mapping.put(COLUMNS.END_DATE.getColumnName(), new Timestamp (actionstepobjective.getEndDate().getTime()));
 			mapping.put(COLUMNS.USERS_ID.getColumnName(), actionstepobjective.getUsersId());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), actionstepobjective.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actionstepobjective.getHistory()));
 			if (actionstepobjective.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (actionstepobjective.getCreatedAt().getTime()));
 			if (actionstepobjective.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (actionstepobjective.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.CATEGORY_IDS.getColumnName(), actionstepobjective.getCategoryIds());
+			mapping.put(COLUMNS.CATEGORY_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actionstepobjective.getCategoryIds()));
 			mapping.put(COLUMNS.COMPLETED_FLAG.getColumnName(), actionstepobjective.getCompletedFlag());
-			mapping.put(COLUMNS.FINAL_COMMENT.getColumnName(), actionstepobjective.getFinalComment());
+			mapping.put(COLUMNS.FINAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actionstepobjective.getFinalComment()));
 			return mapping;
 		}
 	}

@@ -18,7 +18,7 @@ public class StpSurveyRtypeDB implements EntityDB<StpSurveyRtype>{
 
 	private static String TABLE_NAME = "STP_SURVEY_RTYPE";
 
-	private static String TABLE_ALIAS = "A_ssr_202";
+	private static String TABLE_ALIAS = "A_ssr_596";
 
 	public static String getTableName()
 	{
@@ -130,8 +130,8 @@ public class StpSurveyRtypeDB implements EntityDB<StpSurveyRtype>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpsurveyrtype.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpsurveyrtype.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpsurveyrtype.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsurveyrtype.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsurveyrtype.getName()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stpsurveyrtype.getActiveFlag());
 			return mapping;
 		}

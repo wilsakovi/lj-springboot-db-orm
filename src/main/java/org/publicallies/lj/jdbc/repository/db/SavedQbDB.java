@@ -19,7 +19,7 @@ public class SavedQbDB implements EntityDB<SavedQb>{
 
 	private static String TABLE_NAME = "SAVED_QB";
 
-	private static String TABLE_ALIAS = "A_sq_30";
+	private static String TABLE_ALIAS = "A_sq_17";
 
 	public static String getTableName()
 	{
@@ -152,17 +152,17 @@ public class SavedQbDB implements EntityDB<SavedQb>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), savedqb.getId());
-			mapping.put(COLUMNS.QB_STATE.getColumnName(), savedqb.getQbState());
+			mapping.put(COLUMNS.QB_STATE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(savedqb.getQbState()));
 			mapping.put(COLUMNS.SAVED_BY_USERS_ID.getColumnName(), savedqb.getSavedByUsersId());
-			mapping.put(COLUMNS.SHARED_SITE_IDS.getColumnName(), savedqb.getSharedSiteIds());
-			mapping.put(COLUMNS.TITLE.getColumnName(), savedqb.getTitle());
+			mapping.put(COLUMNS.SHARED_SITE_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(savedqb.getSharedSiteIds()));
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(savedqb.getTitle()));
 			mapping.put(COLUMNS.RUN_COUNT.getColumnName(), savedqb.getRunCount());
 			if (savedqb.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (savedqb.getCreatedAt().getTime()));
 			mapping.put(COLUMNS.SHARED_FLAG.getColumnName(), savedqb.getSharedFlag());
-			mapping.put(COLUMNS.SHARED_ROLE_CODES.getColumnName(), savedqb.getSharedRoleCodes());
-			mapping.put(COLUMNS.SAVED_BY_USER_ROLE_CODE.getColumnName(), savedqb.getSavedByUserRoleCode());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), savedqb.getDescription());
+			mapping.put(COLUMNS.SHARED_ROLE_CODES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(savedqb.getSharedRoleCodes()));
+			mapping.put(COLUMNS.SAVED_BY_USER_ROLE_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(savedqb.getSavedByUserRoleCode()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(savedqb.getDescription()));
 			return mapping;
 		}
 	}

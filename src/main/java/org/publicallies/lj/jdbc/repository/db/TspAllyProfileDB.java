@@ -19,7 +19,7 @@ public class TspAllyProfileDB implements EntityDB<TspAllyProfile>{
 
 	private static String TABLE_NAME = "TSP_ALLY_PROFILE";
 
-	private static String TABLE_ALIAS = "A_tap_106";
+	private static String TABLE_ALIAS = "A_tap_576";
 
 	public static String getTableName()
 	{
@@ -159,15 +159,15 @@ public class TspAllyProfileDB implements EntityDB<TspAllyProfile>{
 			mapping.put(COLUMNS.TSP_ID.getColumnName(), tspallyprofile.getTspId());
 			mapping.put(COLUMNS.PARTIAL_CREADIT_FLAG.getColumnName(), tspallyprofile.getPartialCreaditFlag());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), tspallyprofile.getActiveFlag());
-			mapping.put(COLUMNS.ADD_DETAIL.getColumnName(), tspallyprofile.getAddDetail());
+			mapping.put(COLUMNS.ADD_DETAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspallyprofile.getAddDetail()));
 			if (tspallyprofile.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (tspallyprofile.getCreatedAt().getTime()));
 			if (tspallyprofile.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (tspallyprofile.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.ROLE_RESPONSABILITY.getColumnName(), tspallyprofile.getRoleResponsability());
-			mapping.put(COLUMNS.GREATEST_LEARNING.getColumnName(), tspallyprofile.getGreatestLearning());
-			mapping.put(COLUMNS.GOALS.getColumnName(), tspallyprofile.getGoals());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), tspallyprofile.getHistory());
+			mapping.put(COLUMNS.ROLE_RESPONSABILITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspallyprofile.getRoleResponsability()));
+			mapping.put(COLUMNS.GREATEST_LEARNING.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspallyprofile.getGreatestLearning()));
+			mapping.put(COLUMNS.GOALS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspallyprofile.getGoals()));
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspallyprofile.getHistory()));
 			return mapping;
 		}
 	}

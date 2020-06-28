@@ -19,7 +19,7 @@ public class LoginPermissionDB implements EntityDB<LoginPermission>{
 
 	private static String TABLE_NAME = "LOGIN_PERMISSION";
 
-	private static String TABLE_ALIAS = "A_lp_726";
+	private static String TABLE_ALIAS = "A_lp_538";
 
 	public static String getTableName()
 	{
@@ -145,11 +145,11 @@ public class LoginPermissionDB implements EntityDB<LoginPermission>{
 			mapping.put(COLUMNS.ID.getColumnName(), loginpermission.getId());
 			if (loginpermission.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (loginpermission.getCreatedAt().getTime()));
-			mapping.put(COLUMNS.USERNAME.getColumnName(), loginpermission.getUsername());
+			mapping.put(COLUMNS.USERNAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginpermission.getUsername()));
 			mapping.put(COLUMNS.USERS_ID.getColumnName(), loginpermission.getUsersId());
-			mapping.put(COLUMNS.ROLES.getColumnName(), loginpermission.getRoles());
-			mapping.put(COLUMNS.RESOURCES.getColumnName(), loginpermission.getResources());
-			mapping.put(COLUMNS.ROLE_TYPE.getColumnName(), loginpermission.getRoleType());
+			mapping.put(COLUMNS.ROLES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginpermission.getRoles()));
+			mapping.put(COLUMNS.RESOURCES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginpermission.getResources()));
+			mapping.put(COLUMNS.ROLE_TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginpermission.getRoleType()));
 			mapping.put(COLUMNS.DENIED.getColumnName(), loginpermission.getDenied());
 			return mapping;
 		}

@@ -18,7 +18,7 @@ public class StpPartnerTypeDB implements EntityDB<StpPartnerType>{
 
 	private static String TABLE_NAME = "STP_PARTNER_TYPE";
 
-	private static String TABLE_ALIAS = "A_spt_702";
+	private static String TABLE_ALIAS = "A_spt_51";
 
 	public static String getTableName()
 	{
@@ -130,8 +130,8 @@ public class StpPartnerTypeDB implements EntityDB<StpPartnerType>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stppartnertype.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stppartnertype.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stppartnertype.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stppartnertype.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stppartnertype.getName()));
 			mapping.put(COLUMNS.SF_FLAG.getColumnName(), stppartnertype.getSfFlag());
 			return mapping;
 		}

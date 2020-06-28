@@ -18,7 +18,7 @@ public class StpSocialAssistDB implements EntityDB<StpSocialAssist>{
 
 	private static String TABLE_NAME = "STP_SOCIAL_ASSIST";
 
-	private static String TABLE_ALIAS = "A_ssa_191";
+	private static String TABLE_ALIAS = "A_ssa_280";
 
 	public static String getTableName()
 	{
@@ -133,10 +133,10 @@ public class StpSocialAssistDB implements EntityDB<StpSocialAssist>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpsocialassist.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpsocialassist.getName());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpsocialassist.getCode());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsocialassist.getName()));
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsocialassist.getCode()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), stpsocialassist.getOldId());
-			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), stpsocialassist.getSpecialFlag());
+			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsocialassist.getSpecialFlag()));
 			return mapping;
 		}
 	}

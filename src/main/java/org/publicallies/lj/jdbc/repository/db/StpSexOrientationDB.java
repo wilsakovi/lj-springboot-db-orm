@@ -18,7 +18,7 @@ public class StpSexOrientationDB implements EntityDB<StpSexOrientation>{
 
 	private static String TABLE_NAME = "STP_SEX_ORIENTATION";
 
-	private static String TABLE_ALIAS = "A_sso_64";
+	private static String TABLE_ALIAS = "A_sso_72";
 
 	public static String getTableName()
 	{
@@ -133,10 +133,10 @@ public class StpSexOrientationDB implements EntityDB<StpSexOrientation>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpsexorientation.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpsexorientation.getName());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpsexorientation.getCode());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsexorientation.getName()));
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsexorientation.getCode()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stpsexorientation.getActiveFlag());
-			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), stpsexorientation.getSpecialFlag());
+			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsexorientation.getSpecialFlag()));
 			return mapping;
 		}
 	}

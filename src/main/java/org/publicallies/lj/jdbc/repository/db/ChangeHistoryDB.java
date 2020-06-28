@@ -19,7 +19,7 @@ public class ChangeHistoryDB implements EntityDB<ChangeHistory>{
 
 	private static String TABLE_NAME = "CHANGE_HISTORY";
 
-	private static String TABLE_ALIAS = "A_ch_710";
+	private static String TABLE_ALIAS = "A_ch_861";
 
 	public static String getTableName()
 	{
@@ -147,14 +147,14 @@ public class ChangeHistoryDB implements EntityDB<ChangeHistory>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), changehistory.getId());
 			mapping.put(COLUMNS.PK_ID.getColumnName(), changehistory.getPkId());
-			mapping.put(COLUMNS.PRIOR_JSON.getColumnName(), changehistory.getPriorJson());
-			mapping.put(COLUMNS.AFTER_JSON.getColumnName(), changehistory.getAfterJson());
+			mapping.put(COLUMNS.PRIOR_JSON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(changehistory.getPriorJson()));
+			mapping.put(COLUMNS.AFTER_JSON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(changehistory.getAfterJson()));
 			mapping.put(COLUMNS.BY_USERS_ID.getColumnName(), changehistory.getByUsersId());
-			mapping.put(COLUMNS.ACTION_COMMENT.getColumnName(), changehistory.getActionComment());
-			mapping.put(COLUMNS.OBJECT_NAME.getColumnName(), changehistory.getObjectName());
+			mapping.put(COLUMNS.ACTION_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(changehistory.getActionComment()));
+			mapping.put(COLUMNS.OBJECT_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(changehistory.getObjectName()));
 			if (changehistory.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (changehistory.getCreatedAt().getTime()));
-			mapping.put(COLUMNS.CHANGE_DIFF.getColumnName(), changehistory.getChangeDiff());
+			mapping.put(COLUMNS.CHANGE_DIFF.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(changehistory.getChangeDiff()));
 			return mapping;
 		}
 	}

@@ -19,7 +19,7 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 
 	private static String TABLE_NAME = "LOGIN_ACTIVITY";
 
-	private static String TABLE_ALIAS = "A_la_252";
+	private static String TABLE_ALIAS = "A_la_279";
 
 	public static String getTableName()
 	{
@@ -146,9 +146,9 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), loginactivity.getId());
-			mapping.put(COLUMNS.USERNAME.getColumnName(), loginactivity.getUsername());
-			mapping.put(COLUMNS.ACTIVITY_TYPE.getColumnName(), loginactivity.getActivityType());
-			mapping.put(COLUMNS.ACTIVITY.getColumnName(), loginactivity.getActivity());
+			mapping.put(COLUMNS.USERNAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getUsername()));
+			mapping.put(COLUMNS.ACTIVITY_TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getActivityType()));
+			mapping.put(COLUMNS.ACTIVITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getActivity()));
 			mapping.put(COLUMNS.PRIORITY_LEVEL.getColumnName(), loginactivity.getPriorityLevel());
 			mapping.put(COLUMNS.STATUS.getColumnName(), loginactivity.getStatus());
 			if (loginactivity.getCreatedAt() != null)

@@ -19,7 +19,7 @@ public class MsrSnapshotDB implements EntityDB<MsrSnapshot>{
 
 	private static String TABLE_NAME = "MSR_SNAPSHOT";
 
-	private static String TABLE_ALIAS = "A_ms_10";
+	private static String TABLE_ALIAS = "A_ms_933";
 
 	public static String getTableName()
 	{
@@ -156,14 +156,14 @@ public class MsrSnapshotDB implements EntityDB<MsrSnapshot>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), msrsnapshot.getId());
 			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), msrsnapshot.getAllyProfileId());
-			mapping.put(COLUMNS.SUCCESS_STORY.getColumnName(), msrsnapshot.getSuccessStory());
+			mapping.put(COLUMNS.SUCCESS_STORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrsnapshot.getSuccessStory()));
 			if (msrsnapshot.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (msrsnapshot.getCreatedAt().getTime()));
 			if (msrsnapshot.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (msrsnapshot.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.MSR_ID.getColumnName(), msrsnapshot.getMsrId());
-			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), msrsnapshot.getPosComment());
-			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), msrsnapshot.getStaffComment());
+			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrsnapshot.getPosComment()));
+			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrsnapshot.getStaffComment()));
 			mapping.put(COLUMNS.POS_USER_ID.getColumnName(), msrsnapshot.getPosUserId());
 			mapping.put(COLUMNS.STAFF_USER_ID.getColumnName(), msrsnapshot.getStaffUserId());
 			if (msrsnapshot.getPosCommentDate() != null)

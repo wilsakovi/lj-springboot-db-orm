@@ -19,7 +19,7 @@ public class MsrCommentDB implements EntityDB<MsrComment>{
 
 	private static String TABLE_NAME = "MSR_COMMENT";
 
-	private static String TABLE_ALIAS = "A_mc_8";
+	private static String TABLE_ALIAS = "A_mc_933";
 
 	public static String getTableName()
 	{
@@ -161,9 +161,9 @@ public class MsrCommentDB implements EntityDB<MsrComment>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), msrcomment.getId());
-			mapping.put(COLUMNS.ALLY_COMMENT.getColumnName(), msrcomment.getAllyComment());
-			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), msrcomment.getPosComment());
-			mapping.put(COLUMNS.PM_COMMENT.getColumnName(), msrcomment.getPmComment());
+			mapping.put(COLUMNS.ALLY_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrcomment.getAllyComment()));
+			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrcomment.getPosComment()));
+			mapping.put(COLUMNS.PM_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrcomment.getPmComment()));
 			if (msrcomment.getAllyDateComment() != null)
 				mapping.put(COLUMNS.ALLY_DATE_COMMENT.getColumnName(), new Timestamp (msrcomment.getAllyDateComment().getTime()));
 			if (msrcomment.getPosDateComment() != null)

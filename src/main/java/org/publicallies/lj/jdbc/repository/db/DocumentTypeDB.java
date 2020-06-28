@@ -18,7 +18,7 @@ public class DocumentTypeDB implements EntityDB<DocumentType>{
 
 	private static String TABLE_NAME = "DOCUMENT_TYPE";
 
-	private static String TABLE_ALIAS = "A_dt_340";
+	private static String TABLE_ALIAS = "A_dt_143";
 
 	public static String getTableName()
 	{
@@ -140,8 +140,8 @@ public class DocumentTypeDB implements EntityDB<DocumentType>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), documenttype.getId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), documenttype.getOldId());
-			mapping.put(COLUMNS.DISPLAY_NAME.getColumnName(), documenttype.getDisplayName());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), documenttype.getDescription());
+			mapping.put(COLUMNS.DISPLAY_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(documenttype.getDisplayName()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(documenttype.getDescription()));
 			mapping.put(COLUMNS.SORT_ORDER.getColumnName(), documenttype.getSortOrder());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), documenttype.getActiveFlag());
 			mapping.put(COLUMNS.ALLY_FLAG.getColumnName(), documenttype.getAllyFlag());

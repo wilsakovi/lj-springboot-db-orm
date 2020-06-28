@@ -19,7 +19,7 @@ public class TermDB implements EntityDB<Term>{
 
 	private static String TABLE_NAME = "TERM";
 
-	private static String TABLE_ALIAS = "A_ter_462";
+	private static String TABLE_ALIAS = "A_ter_897";
 
 	public static String getTableName()
 	{
@@ -152,14 +152,14 @@ public class TermDB implements EntityDB<Term>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), term.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), term.getName());
-			mapping.put(COLUMNS.PDG_NAME.getColumnName(), term.getPdgName());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(term.getName()));
+			mapping.put(COLUMNS.PDG_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(term.getPdgName()));
 			mapping.put(COLUMNS.TERM_RANK.getColumnName(), term.getTermRank());
 			if (term.getStartDate() != null)
 				mapping.put(COLUMNS.START_DATE.getColumnName(), new Timestamp (term.getStartDate().getTime()));
 			if (term.getEndDate() != null)
 				mapping.put(COLUMNS.END_DATE.getColumnName(), new Timestamp (term.getEndDate().getTime()));
-			mapping.put(COLUMNS.NOTE.getColumnName(), term.getNote());
+			mapping.put(COLUMNS.NOTE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(term.getNote()));
 			if (term.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (term.getCreatedAt().getTime()));
 			if (term.getUpdatedAt() != null)

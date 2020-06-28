@@ -18,7 +18,7 @@ public class StpPathwaysTypeDB implements EntityDB<StpPathwaysType>{
 
 	private static String TABLE_NAME = "STP_PATHWAYS_TYPE";
 
-	private static String TABLE_ALIAS = "A_spt_278";
+	private static String TABLE_ALIAS = "A_spt_149";
 
 	public static String getTableName()
 	{
@@ -127,8 +127,8 @@ public class StpPathwaysTypeDB implements EntityDB<StpPathwaysType>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stppathwaystype.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stppathwaystype.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stppathwaystype.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stppathwaystype.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stppathwaystype.getName()));
 			return mapping;
 		}
 	}

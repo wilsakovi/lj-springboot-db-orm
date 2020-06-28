@@ -18,7 +18,7 @@ public class StpFieldTypeDB implements EntityDB<StpFieldType>{
 
 	private static String TABLE_NAME = "STP_FIELD_TYPE";
 
-	private static String TABLE_ALIAS = "A_sft_662";
+	private static String TABLE_ALIAS = "A_sft_554";
 
 	public static String getTableName()
 	{
@@ -130,9 +130,9 @@ public class StpFieldTypeDB implements EntityDB<StpFieldType>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpfieldtype.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpfieldtype.getName());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpfieldtype.getName()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stpfieldtype.getActiveFlag());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), stpfieldtype.getDescription());
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpfieldtype.getDescription()));
 			return mapping;
 		}
 	}

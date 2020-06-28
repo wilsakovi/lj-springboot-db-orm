@@ -19,7 +19,7 @@ public class PaFormDB implements EntityDB<PaForm>{
 
 	private static String TABLE_NAME = "PA_FORM";
 
-	private static String TABLE_ALIAS = "A_pf_877";
+	private static String TABLE_ALIAS = "A_pf_335";
 
 	public static String getTableName()
 	{
@@ -140,14 +140,14 @@ public class PaFormDB implements EntityDB<PaForm>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), paform.getId());
-			mapping.put(COLUMNS.TITLE.getColumnName(), paform.getTitle());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), paform.getDescription());
-			mapping.put(COLUMNS.STATUS.getColumnName(), paform.getStatus());
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(paform.getTitle()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(paform.getDescription()));
+			mapping.put(COLUMNS.STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(paform.getStatus()));
 			if (paform.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (paform.getCreatedAt().getTime()));
 			if (paform.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (paform.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.HISTORY.getColumnName(), paform.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(paform.getHistory()));
 			return mapping;
 		}
 	}

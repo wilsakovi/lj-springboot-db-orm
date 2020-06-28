@@ -18,7 +18,7 @@ public class StpHttpClientDB implements EntityDB<StpHttpClient>{
 
 	private static String TABLE_NAME = "STP_HTTP_CLIENT";
 
-	private static String TABLE_ALIAS = "A_shc_581";
+	private static String TABLE_ALIAS = "A_shc_23";
 
 	public static String getTableName()
 	{
@@ -127,8 +127,8 @@ public class StpHttpClientDB implements EntityDB<StpHttpClient>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stphttpclient.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stphttpclient.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stphttpclient.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stphttpclient.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stphttpclient.getName()));
 			return mapping;
 		}
 	}

@@ -19,7 +19,7 @@ public class UsersDB implements EntityDB<Users>{
 
 	private static String TABLE_NAME = "USERS";
 
-	private static String TABLE_ALIAS = "A_use_205";
+	private static String TABLE_ALIAS = "A_use_726";
 
 	public static String getTableName()
 	{
@@ -323,73 +323,73 @@ public class UsersDB implements EntityDB<Users>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), users.getId());
-			mapping.put(COLUMNS.USER_NAME.getColumnName(), users.getUserName());
-			mapping.put(COLUMNS.PASSWORD.getColumnName(), users.getPassword());
-			mapping.put(COLUMNS.SALT.getColumnName(), users.getSalt());
-			mapping.put(COLUMNS.FIRST_NAME.getColumnName(), users.getFirstName());
-			mapping.put(COLUMNS.LAST_NAME.getColumnName(), users.getLastName());
-			mapping.put(COLUMNS.MIDDLE_NAME.getColumnName(), users.getMiddleName());
-			mapping.put(COLUMNS.TITLE.getColumnName(), users.getTitle());
-			mapping.put(COLUMNS.ADDRESS1.getColumnName(), users.getAddress1());
-			mapping.put(COLUMNS.ADDRESS2.getColumnName(), users.getAddress2());
-			mapping.put(COLUMNS.CITY.getColumnName(), users.getCity());
-			mapping.put(COLUMNS.ZIP.getColumnName(), users.getZip());
+			mapping.put(COLUMNS.USER_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getUserName()));
+			mapping.put(COLUMNS.PASSWORD.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPassword()));
+			mapping.put(COLUMNS.SALT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getSalt()));
+			mapping.put(COLUMNS.FIRST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getFirstName()));
+			mapping.put(COLUMNS.LAST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getLastName()));
+			mapping.put(COLUMNS.MIDDLE_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getMiddleName()));
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getTitle()));
+			mapping.put(COLUMNS.ADDRESS1.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getAddress1()));
+			mapping.put(COLUMNS.ADDRESS2.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getAddress2()));
+			mapping.put(COLUMNS.CITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getCity()));
+			mapping.put(COLUMNS.ZIP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getZip()));
 			mapping.put(COLUMNS.STATE_ID.getColumnName(), users.getStateId());
-			mapping.put(COLUMNS.EMAIL.getColumnName(), users.getEmail());
-			mapping.put(COLUMNS.PHONE_HOME.getColumnName(), users.getPhoneHome());
-			mapping.put(COLUMNS.PHONE_CELL.getColumnName(), users.getPhoneCell());
-			mapping.put(COLUMNS.PHONE_OFFICE.getColumnName(), users.getPhoneOffice());
-			mapping.put(COLUMNS.PHONE_OFFICE_EXT.getColumnName(), users.getPhoneOfficeExt());
-			mapping.put(COLUMNS.FAX.getColumnName(), users.getFax());
+			mapping.put(COLUMNS.EMAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getEmail()));
+			mapping.put(COLUMNS.PHONE_HOME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPhoneHome()));
+			mapping.put(COLUMNS.PHONE_CELL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPhoneCell()));
+			mapping.put(COLUMNS.PHONE_OFFICE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPhoneOffice()));
+			mapping.put(COLUMNS.PHONE_OFFICE_EXT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPhoneOfficeExt()));
+			mapping.put(COLUMNS.FAX.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getFax()));
 			if (users.getDob() != null)
 				mapping.put(COLUMNS.DOB.getColumnName(), new Timestamp (users.getDob().getTime()));
 			mapping.put(COLUMNS.SECURITY_QUESTION_ID1.getColumnName(), users.getSecurityQuestionId1());
 			mapping.put(COLUMNS.SECURITY_QUESTION_ID2.getColumnName(), users.getSecurityQuestionId2());
 			mapping.put(COLUMNS.SECURITY_QUESTION_ID3.getColumnName(), users.getSecurityQuestionId3());
-			mapping.put(COLUMNS.SECURITY_ANSWER1.getColumnName(), users.getSecurityAnswer1());
-			mapping.put(COLUMNS.SECURITY_ANSWER2.getColumnName(), users.getSecurityAnswer2());
-			mapping.put(COLUMNS.SECURITY_ANSWER3.getColumnName(), users.getSecurityAnswer3());
+			mapping.put(COLUMNS.SECURITY_ANSWER1.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getSecurityAnswer1()));
+			mapping.put(COLUMNS.SECURITY_ANSWER2.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getSecurityAnswer2()));
+			mapping.put(COLUMNS.SECURITY_ANSWER3.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getSecurityAnswer3()));
 			mapping.put(COLUMNS.SQ_FAILED_ORDER.getColumnName(), users.getSqFailedOrder());
 			mapping.put(COLUMNS.SQ_FAILED_COUNT.getColumnName(), users.getSqFailedCount());
-			mapping.put(COLUMNS.PDG_ID.getColumnName(), users.getPdgId());
-			mapping.put(COLUMNS.SALESFORCE_ID.getColumnName(), users.getSalesforceId());
+			mapping.put(COLUMNS.PDG_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPdgId()));
+			mapping.put(COLUMNS.SALESFORCE_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getSalesforceId()));
 			mapping.put(COLUMNS.STATUS.getColumnName(), users.getStatus());
 			if (users.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (users.getCreatedAt().getTime()));
 			if (users.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (users.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.PERM_ADDRESS_STREET.getColumnName(), users.getPermAddressStreet());
-			mapping.put(COLUMNS.PERM_ADDRESS_STREET2.getColumnName(), users.getPermAddressStreet2());
-			mapping.put(COLUMNS.PERM_ADDRESS_CITY.getColumnName(), users.getPermAddressCity());
-			mapping.put(COLUMNS.PERM_ADDRESS_ZIP.getColumnName(), users.getPermAddressZip());
+			mapping.put(COLUMNS.PERM_ADDRESS_STREET.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPermAddressStreet()));
+			mapping.put(COLUMNS.PERM_ADDRESS_STREET2.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPermAddressStreet2()));
+			mapping.put(COLUMNS.PERM_ADDRESS_CITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPermAddressCity()));
+			mapping.put(COLUMNS.PERM_ADDRESS_ZIP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPermAddressZip()));
 			mapping.put(COLUMNS.DISABILITY_FLAG.getColumnName(), users.getDisabilityFlag());
-			mapping.put(COLUMNS.DISABILITY_DESC.getColumnName(), users.getDisabilityDesc());
+			mapping.put(COLUMNS.DISABILITY_DESC.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getDisabilityDesc()));
 			mapping.put(COLUMNS.LGBTQ_FLAG.getColumnName(), users.getLgbtqFlag());
 			mapping.put(COLUMNS.PERM_ADDRESS_STATE_ID.getColumnName(), users.getPermAddressStateId());
 			mapping.put(COLUMNS.GENDER_ID.getColumnName(), users.getGenderId());
 			mapping.put(COLUMNS.SUPPORTER_ID.getColumnName(), users.getSupporterId());
 			mapping.put(COLUMNS.OLD_USER_ID.getColumnName(), users.getOldUserId());
-			mapping.put(COLUMNS.RACE_IDS.getColumnName(), users.getRaceIds());
-			mapping.put(COLUMNS.RACE_OTHER.getColumnName(), users.getRaceOther());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), users.getHistory());
-			mapping.put(COLUMNS.PIN.getColumnName(), users.getPin());
+			mapping.put(COLUMNS.RACE_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getRaceIds()));
+			mapping.put(COLUMNS.RACE_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getRaceOther()));
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getHistory()));
+			mapping.put(COLUMNS.PIN.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPin()));
 			mapping.put(COLUMNS.TOTAL_PASSFAILED.getColumnName(), users.getTotalPassfailed());
 			mapping.put(COLUMNS.CURRENT_PASSFAILED.getColumnName(), users.getCurrentPassfailed());
 			if (users.getLastPassfailedDate() != null)
 				mapping.put(COLUMNS.LAST_PASSFAILED_DATE.getColumnName(), new Timestamp (users.getLastPassfailedDate().getTime()));
 			if (users.getLastPassUpdated() != null)
 				mapping.put(COLUMNS.LAST_PASS_UPDATED.getColumnName(), new Timestamp (users.getLastPassUpdated().getTime()));
-			mapping.put(COLUMNS.TEMP_PASSWORD.getColumnName(), users.getTempPassword());
+			mapping.put(COLUMNS.TEMP_PASSWORD.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getTempPassword()));
 			if (users.getTempPassdate() != null)
 				mapping.put(COLUMNS.TEMP_PASSDATE.getColumnName(), new Timestamp (users.getTempPassdate().getTime()));
 			mapping.put(COLUMNS.ACCOUNT_LOCKED_FLAG.getColumnName(), users.getAccountLockedFlag());
-			mapping.put(COLUMNS.PAASSWORD_TEMP.getColumnName(), users.getPaasswordTemp());
+			mapping.put(COLUMNS.PAASSWORD_TEMP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPaasswordTemp()));
 			mapping.put(COLUMNS.PASSWORD_FAILED_COUNT.getColumnName(), users.getPasswordFailedCount());
 			mapping.put(COLUMNS.PASSWORD_TEMP_TIME.getColumnName(), users.getPasswordTempTime());
-			mapping.put(COLUMNS.SF_ID.getColumnName(), users.getSfId());
+			mapping.put(COLUMNS.SF_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getSfId()));
 			mapping.put(COLUMNS.HIGHER_EDUCATION_ID.getColumnName(), users.getHigherEducationId());
-			mapping.put(COLUMNS.GENDER_OTHER.getColumnName(), users.getGenderOther());
-			mapping.put(COLUMNS.SEX_ORIENTATION_OTHER.getColumnName(), users.getSexOrientationOther());
+			mapping.put(COLUMNS.GENDER_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getGenderOther()));
+			mapping.put(COLUMNS.SEX_ORIENTATION_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getSexOrientationOther()));
 			mapping.put(COLUMNS.SEX_ORIENTATION_ID.getColumnName(), users.getSexOrientationId());
 			mapping.put(COLUMNS.ACTIVE_LOGIN_FLAG.getColumnName(), users.getActiveLoginFlag());
 			mapping.put(COLUMNS.ACR_FLAG.getColumnName(), users.getAcrFlag());

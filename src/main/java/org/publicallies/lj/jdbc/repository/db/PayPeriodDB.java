@@ -19,7 +19,7 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 
 	private static String TABLE_NAME = "PAY_PERIOD";
 
-	private static String TABLE_ALIAS = "A_pp_856";
+	private static String TABLE_ALIAS = "A_pp_790";
 
 	public static String getTableName()
 	{
@@ -270,18 +270,18 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			mapping.put(COLUMNS.GRAND_TOTAL.getColumnName(), payperiod.getGrandTotal());
 			mapping.put(COLUMNS.LATE_DAYS.getColumnName(), payperiod.getLateDays());
 			mapping.put(COLUMNS.ABSENT_DAYS.getColumnName(), payperiod.getAbsentDays());
-			mapping.put(COLUMNS.ABSENT_EXPLAIN.getColumnName(), payperiod.getAbsentExplain());
-			mapping.put(COLUMNS.NOTES_ALLY.getColumnName(), payperiod.getNotesAlly());
-			mapping.put(COLUMNS.NOTES_PM.getColumnName(), payperiod.getNotesPm());
-			mapping.put(COLUMNS.NOTES_POS.getColumnName(), payperiod.getNotesPos());
-			mapping.put(COLUMNS.ALLY_SUBMIT_STATUS_CODE.getColumnName(), payperiod.getAllySubmitStatusCode());
-			mapping.put(COLUMNS.POS_APPROVAL_STATUS_CODE.getColumnName(), payperiod.getPosApprovalStatusCode());
-			mapping.put(COLUMNS.PM_APPROVAL_STATUS_CODE.getColumnName(), payperiod.getPmApprovalStatusCode());
-			mapping.put(COLUMNS.PAY_PERIOD_STATUS_CODE.getColumnName(), payperiod.getPayPeriodStatusCode());
+			mapping.put(COLUMNS.ABSENT_EXPLAIN.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getAbsentExplain()));
+			mapping.put(COLUMNS.NOTES_ALLY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getNotesAlly()));
+			mapping.put(COLUMNS.NOTES_PM.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getNotesPm()));
+			mapping.put(COLUMNS.NOTES_POS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getNotesPos()));
+			mapping.put(COLUMNS.ALLY_SUBMIT_STATUS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getAllySubmitStatusCode()));
+			mapping.put(COLUMNS.POS_APPROVAL_STATUS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getPosApprovalStatusCode()));
+			mapping.put(COLUMNS.PM_APPROVAL_STATUS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getPmApprovalStatusCode()));
+			mapping.put(COLUMNS.PAY_PERIOD_STATUS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getPayPeriodStatusCode()));
 			if (payperiod.getAllySubmitDate() != null)
 				mapping.put(COLUMNS.ALLY_SUBMIT_DATE.getColumnName(), new Timestamp (payperiod.getAllySubmitDate().getTime()));
 			mapping.put(COLUMNS.ALLY_AGREE.getColumnName(), payperiod.getAllyAgree());
-			mapping.put(COLUMNS.ALLY_INITIALS.getColumnName(), payperiod.getAllyInitials());
+			mapping.put(COLUMNS.ALLY_INITIALS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getAllyInitials()));
 			if (payperiod.getPosApprovedDate() != null)
 				mapping.put(COLUMNS.POS_APPROVED_DATE.getColumnName(), new Timestamp (payperiod.getPosApprovedDate().getTime()));
 			if (payperiod.getPmApprovedDate() != null)
@@ -296,27 +296,27 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (payperiod.getCreatedAt().getTime()));
 			if (payperiod.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (payperiod.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.POS_INITIALS.getColumnName(), payperiod.getPosInitials());
-			mapping.put(COLUMNS.PM_INITIALS.getColumnName(), payperiod.getPmInitials());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), payperiod.getHistory());
+			mapping.put(COLUMNS.POS_INITIALS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getPosInitials()));
+			mapping.put(COLUMNS.PM_INITIALS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getPmInitials()));
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getHistory()));
 			mapping.put(COLUMNS.COACHING_SESSION_PM_FLAG.getColumnName(), payperiod.getCoachingSessionPmFlag());
 			mapping.put(COLUMNS.COACHING_SESSION_PM_COUNT.getColumnName(), payperiod.getCoachingSessionPmCount());
 			mapping.put(COLUMNS.MEETING_MENTOR_FLAG.getColumnName(), payperiod.getMeetingMentorFlag());
 			mapping.put(COLUMNS.MEETING_MENTOR_COUNT.getColumnName(), payperiod.getMeetingMentorCount());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), payperiod.getActiveFlag());
-			mapping.put(COLUMNS.ADDITIONAL_DETAIL.getColumnName(), payperiod.getAdditionalDetail());
-			mapping.put(COLUMNS.HOUR_GROUPS.getColumnName(), payperiod.getHourGroups());
+			mapping.put(COLUMNS.ADDITIONAL_DETAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getAdditionalDetail()));
+			mapping.put(COLUMNS.HOUR_GROUPS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getHourGroups()));
 			mapping.put(COLUMNS.JOB_ID.getColumnName(), payperiod.getJobId());
-			mapping.put(COLUMNS.HISTORY_JSON.getColumnName(), payperiod.getHistoryJson());
-			mapping.put(COLUMNS.PAY_PERIOD_STATUS.getColumnName(), payperiod.getPayPeriodStatus());
+			mapping.put(COLUMNS.HISTORY_JSON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getHistoryJson()));
+			mapping.put(COLUMNS.PAY_PERIOD_STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getPayPeriodStatus()));
 			mapping.put(COLUMNS.APPROVED_PM_USERS_ID.getColumnName(), payperiod.getApprovedPmUsersId());
 			mapping.put(COLUMNS.APPROVED_POS_USERS_ID.getColumnName(), payperiod.getApprovedPosUsersId());
 			mapping.put(COLUMNS.TOTAL_PLACEMENT.getColumnName(), payperiod.getTotalPlacement());
 			mapping.put(COLUMNS.TOTAL_FUNDRAISING.getColumnName(), payperiod.getTotalFundraising());
 			mapping.put(COLUMNS.TOTAL_TSP.getColumnName(), payperiod.getTotalTsp());
-			mapping.put(COLUMNS.ALLY_SUBMITTED_FROM_IP.getColumnName(), payperiod.getAllySubmittedFromIp());
-			mapping.put(COLUMNS.POS_APPROVED_FROM_IP.getColumnName(), payperiod.getPosApprovedFromIp());
-			mapping.put(COLUMNS.PM_APPROVED_FROM_IP.getColumnName(), payperiod.getPmApprovedFromIp());
+			mapping.put(COLUMNS.ALLY_SUBMITTED_FROM_IP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getAllySubmittedFromIp()));
+			mapping.put(COLUMNS.POS_APPROVED_FROM_IP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getPosApprovedFromIp()));
+			mapping.put(COLUMNS.PM_APPROVED_FROM_IP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getPmApprovedFromIp()));
 			return mapping;
 		}
 	}

@@ -19,7 +19,7 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 
 	private static String TABLE_NAME = "ALLY_PROFILE_HISTORY";
 
-	private static String TABLE_ALIAS = "A_aph_992";
+	private static String TABLE_ALIAS = "A_aph_105";
 
 	public static String getTableName()
 	{
@@ -156,13 +156,13 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			mapping.put(COLUMNS.GRADUATE_STATUS_ID.getColumnName(), allyprofilehistory.getGraduateStatusId());
 			if (allyprofilehistory.getGraduateStatusDate() != null)
 				mapping.put(COLUMNS.GRADUATE_STATUS_DATE.getColumnName(), new Timestamp (allyprofilehistory.getGraduateStatusDate().getTime()));
-			mapping.put(COLUMNS.NOTES.getColumnName(), allyprofilehistory.getNotes());
+			mapping.put(COLUMNS.NOTES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofilehistory.getNotes()));
 			mapping.put(COLUMNS.ALLY_EXIT_REASON_ID.getColumnName(), allyprofilehistory.getAllyExitReasonId());
 			if (allyprofilehistory.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (allyprofilehistory.getCreatedAt().getTime()));
 			if (allyprofilehistory.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (allyprofilehistory.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.HISTORY.getColumnName(), allyprofilehistory.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofilehistory.getHistory()));
 			if (allyprofilehistory.getStatusEndDate() != null)
 				mapping.put(COLUMNS.STATUS_END_DATE.getColumnName(), new Timestamp (allyprofilehistory.getStatusEndDate().getTime()));
 			mapping.put(COLUMNS.UPDATED_BY_USER_ID.getColumnName(), allyprofilehistory.getUpdatedByUserId());

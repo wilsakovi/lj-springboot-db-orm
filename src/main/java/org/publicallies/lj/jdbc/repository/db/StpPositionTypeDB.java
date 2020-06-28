@@ -18,7 +18,7 @@ public class StpPositionTypeDB implements EntityDB<StpPositionType>{
 
 	private static String TABLE_NAME = "STP_POSITION_TYPE";
 
-	private static String TABLE_ALIAS = "A_spt_168";
+	private static String TABLE_ALIAS = "A_spt_547";
 
 	public static String getTableName()
 	{
@@ -127,8 +127,8 @@ public class StpPositionTypeDB implements EntityDB<StpPositionType>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stppositiontype.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stppositiontype.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stppositiontype.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stppositiontype.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stppositiontype.getName()));
 			return mapping;
 		}
 	}

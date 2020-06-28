@@ -19,7 +19,7 @@ public class ContactDB implements EntityDB<Contact>{
 
 	private static String TABLE_NAME = "CONTACT";
 
-	private static String TABLE_ALIAS = "A_con_149";
+	private static String TABLE_ALIAS = "A_con_567";
 
 	public static String getTableName()
 	{
@@ -185,20 +185,20 @@ public class ContactDB implements EntityDB<Contact>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), contact.getId());
-			mapping.put(COLUMNS.FIRST_NAME.getColumnName(), contact.getFirstName());
-			mapping.put(COLUMNS.LAST_NAME.getColumnName(), contact.getLastName());
-			mapping.put(COLUMNS.EMAIL.getColumnName(), contact.getEmail());
-			mapping.put(COLUMNS.TITLE.getColumnName(), contact.getTitle());
-			mapping.put(COLUMNS.ADDRESS1.getColumnName(), contact.getAddress1());
-			mapping.put(COLUMNS.ADDRESS2.getColumnName(), contact.getAddress2());
-			mapping.put(COLUMNS.CITY.getColumnName(), contact.getCity());
-			mapping.put(COLUMNS.ZIP.getColumnName(), contact.getZip());
-			mapping.put(COLUMNS.PHONE_HOME.getColumnName(), contact.getPhoneHome());
-			mapping.put(COLUMNS.PHONE_CELL.getColumnName(), contact.getPhoneCell());
-			mapping.put(COLUMNS.PHONE_OFFICE.getColumnName(), contact.getPhoneOffice());
-			mapping.put(COLUMNS.PHONE_OFFICE_EXT.getColumnName(), contact.getPhoneOfficeExt());
-			mapping.put(COLUMNS.FAX.getColumnName(), contact.getFax());
-			mapping.put(COLUMNS.COMMENT.getColumnName(), contact.getComment());
+			mapping.put(COLUMNS.FIRST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getFirstName()));
+			mapping.put(COLUMNS.LAST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getLastName()));
+			mapping.put(COLUMNS.EMAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getEmail()));
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getTitle()));
+			mapping.put(COLUMNS.ADDRESS1.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getAddress1()));
+			mapping.put(COLUMNS.ADDRESS2.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getAddress2()));
+			mapping.put(COLUMNS.CITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getCity()));
+			mapping.put(COLUMNS.ZIP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getZip()));
+			mapping.put(COLUMNS.PHONE_HOME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getPhoneHome()));
+			mapping.put(COLUMNS.PHONE_CELL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getPhoneCell()));
+			mapping.put(COLUMNS.PHONE_OFFICE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getPhoneOffice()));
+			mapping.put(COLUMNS.PHONE_OFFICE_EXT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getPhoneOfficeExt()));
+			mapping.put(COLUMNS.FAX.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getFax()));
+			mapping.put(COLUMNS.COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getComment()));
 			mapping.put(COLUMNS.STATE_ID.getColumnName(), contact.getStateId());
 			if (contact.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (contact.getCreatedAt().getTime()));
@@ -206,7 +206,7 @@ public class ContactDB implements EntityDB<Contact>{
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (contact.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), contact.getActiveFlag());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), contact.getOldId());
-			mapping.put(COLUMNS.SF_ID.getColumnName(), contact.getSfId());
+			mapping.put(COLUMNS.SF_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(contact.getSfId()));
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), contact.getSfFailedFlag());
 			return mapping;
 		}

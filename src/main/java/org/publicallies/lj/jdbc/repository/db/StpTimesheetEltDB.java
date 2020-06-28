@@ -18,7 +18,7 @@ public class StpTimesheetEltDB implements EntityDB<StpTimesheetElt>{
 
 	private static String TABLE_NAME = "STP_TIMESHEET_ELT";
 
-	private static String TABLE_ALIAS = "A_ste_567";
+	private static String TABLE_ALIAS = "A_ste_136";
 
 	public static String getTableName()
 	{
@@ -124,7 +124,7 @@ public class StpTimesheetEltDB implements EntityDB<StpTimesheetElt>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stptimesheetelt.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), stptimesheetelt.getName());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stptimesheetelt.getName()));
 			return mapping;
 		}
 	}

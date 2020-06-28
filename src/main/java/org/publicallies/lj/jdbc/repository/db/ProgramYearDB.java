@@ -19,7 +19,7 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 
 	private static String TABLE_NAME = "PROGRAM_YEAR";
 
-	private static String TABLE_ALIAS = "A_py_248";
+	private static String TABLE_ALIAS = "A_py_519";
 
 	public static String getTableName()
 	{
@@ -186,8 +186,8 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), programyear.getId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), programyear.getOldId());
-			mapping.put(COLUMNS.TITLE.getColumnName(), programyear.getTitle());
-			mapping.put(COLUMNS.NOTES.getColumnName(), programyear.getNotes());
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(programyear.getTitle()));
+			mapping.put(COLUMNS.NOTES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(programyear.getNotes()));
 			if (programyear.getStartDate() != null)
 				mapping.put(COLUMNS.START_DATE.getColumnName(), new Timestamp (programyear.getStartDate().getTime()));
 			if (programyear.getEndDate() != null)
@@ -201,7 +201,7 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), programyear.getActiveFlag());
 			mapping.put(COLUMNS.PROGRAM_ID.getColumnName(), programyear.getProgramId());
 			mapping.put(COLUMNS.TERM_ID.getColumnName(), programyear.getTermId());
-			mapping.put(COLUMNS.TL_CATEGORIES.getColumnName(), programyear.getTlCategories());
+			mapping.put(COLUMNS.TL_CATEGORIES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(programyear.getTlCategories()));
 			mapping.put(COLUMNS.ACTIVE_REPORTING.getColumnName(), programyear.getActiveReporting());
 			mapping.put(COLUMNS.SF_FLAG.getColumnName(), programyear.getSfFlag());
 			mapping.put(COLUMNS.TIMELOG_FLAG.getColumnName(), programyear.getTimelogFlag());

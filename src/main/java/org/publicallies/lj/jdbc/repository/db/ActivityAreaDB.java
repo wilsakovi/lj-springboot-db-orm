@@ -19,7 +19,7 @@ public class ActivityAreaDB implements EntityDB<ActivityArea>{
 
 	private static String TABLE_NAME = "ACTIVITY_AREA";
 
-	private static String TABLE_ALIAS = "A_aa_980";
+	private static String TABLE_ALIAS = "A_aa_949";
 
 	public static String getTableName()
 	{
@@ -143,14 +143,14 @@ public class ActivityAreaDB implements EntityDB<ActivityArea>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), activityarea.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), activityarea.getName());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), activityarea.getDescription());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(activityarea.getName()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(activityarea.getDescription()));
 			if (activityarea.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (activityarea.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.PDG_ID.getColumnName(), activityarea.getPdgId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), activityarea.getOldId());
-			mapping.put(COLUMNS.PROGRAM_YEAR_IDS.getColumnName(), activityarea.getProgramYearIds());
-			mapping.put(COLUMNS.ACTIVITY_BUILDING_DESC.getColumnName(), activityarea.getActivityBuildingDesc());
+			mapping.put(COLUMNS.PROGRAM_YEAR_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(activityarea.getProgramYearIds()));
+			mapping.put(COLUMNS.ACTIVITY_BUILDING_DESC.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(activityarea.getActivityBuildingDesc()));
 			return mapping;
 		}
 	}

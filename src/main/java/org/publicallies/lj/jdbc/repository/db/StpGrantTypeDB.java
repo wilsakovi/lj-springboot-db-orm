@@ -18,7 +18,7 @@ public class StpGrantTypeDB implements EntityDB<StpGrantType>{
 
 	private static String TABLE_NAME = "STP_GRANT_TYPE";
 
-	private static String TABLE_ALIAS = "A_sgt_41";
+	private static String TABLE_ALIAS = "A_sgt_461";
 
 	public static String getTableName()
 	{
@@ -130,8 +130,8 @@ public class StpGrantTypeDB implements EntityDB<StpGrantType>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpgranttype.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpgranttype.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpgranttype.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpgranttype.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpgranttype.getName()));
 			mapping.put(COLUMNS.SF_FLAG.getColumnName(), stpgranttype.getSfFlag());
 			return mapping;
 		}

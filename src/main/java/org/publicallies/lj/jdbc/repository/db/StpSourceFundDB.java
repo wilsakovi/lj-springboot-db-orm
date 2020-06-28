@@ -18,7 +18,7 @@ public class StpSourceFundDB implements EntityDB<StpSourceFund>{
 
 	private static String TABLE_NAME = "STP_SOURCE_FUND";
 
-	private static String TABLE_ALIAS = "A_ssf_957";
+	private static String TABLE_ALIAS = "A_ssf_540";
 
 	public static String getTableName()
 	{
@@ -130,8 +130,8 @@ public class StpSourceFundDB implements EntityDB<StpSourceFund>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpsourcefund.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpsourcefund.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpsourcefund.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsourcefund.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpsourcefund.getName()));
 			mapping.put(COLUMNS.SF_FLAG.getColumnName(), stpsourcefund.getSfFlag());
 			return mapping;
 		}

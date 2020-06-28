@@ -19,7 +19,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 
 	private static String TABLE_NAME = "SITE_PROFILE";
 
-	private static String TABLE_ALIAS = "A_sp_778";
+	private static String TABLE_ALIAS = "A_sp_207";
 
 	public static String getTableName()
 	{
@@ -225,7 +225,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), siteprofile.getId());
 			mapping.put(COLUMNS.SITE_ID.getColumnName(), siteprofile.getSiteId());
-			mapping.put(COLUMNS.SITE_PROFILE_NAME.getColumnName(), siteprofile.getSiteProfileName());
+			mapping.put(COLUMNS.SITE_PROFILE_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getSiteProfileName()));
 			mapping.put(COLUMNS.TYPE.getColumnName(), siteprofile.getType());
 			if (siteprofile.getStartDate() != null)
 				mapping.put(COLUMNS.START_DATE.getColumnName(), new Timestamp (siteprofile.getStartDate().getTime()));
@@ -246,7 +246,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			mapping.put(COLUMNS.ACTIVE_ALLIES.getColumnName(), siteprofile.getActiveAllies());
 			mapping.put(COLUMNS.TERMINATED_ALLIES.getColumnName(), siteprofile.getTerminatedAllies());
 			mapping.put(COLUMNS.GRADUATED_ALLIES.getColumnName(), siteprofile.getGraduatedAllies());
-			mapping.put(COLUMNS.NOTES.getColumnName(), siteprofile.getNotes());
+			mapping.put(COLUMNS.NOTES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getNotes()));
 			if (siteprofile.getLastTimeCalculationDataUpdated() != null)
 				mapping.put(COLUMNS.LAST_TIME_CALCULATION_DATA_UPDATED.getColumnName(), new Timestamp (siteprofile.getLastTimeCalculationDataUpdated().getTime()));
 			mapping.put(COLUMNS.EDIT_REFILLMENT_ACTIVE.getColumnName(), siteprofile.getEditRefillmentActive());
@@ -257,17 +257,17 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (siteprofile.getCreatedAt().getTime()));
 			if (siteprofile.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (siteprofile.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.SLOTS.getColumnName(), siteprofile.getSlots());
+			mapping.put(COLUMNS.SLOTS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getSlots()));
 			mapping.put(COLUMNS.PROGRAM_YEAR_ID.getColumnName(), siteprofile.getProgramYearId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), siteprofile.getOldId());
 			mapping.put(COLUMNS.FUNDING_COMMISSION_ID.getColumnName(), siteprofile.getFundingCommissionId());
 			mapping.put(COLUMNS.OPERATION_PARTNER_ID.getColumnName(), siteprofile.getOperationPartnerId());
-			mapping.put(COLUMNS.GRANT_NUMBER.getColumnName(), siteprofile.getGrantNumber());
+			mapping.put(COLUMNS.GRANT_NUMBER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getGrantNumber()));
 			mapping.put(COLUMNS.FUNDING_COMMISION.getColumnName(), siteprofile.getFundingCommision());
-			mapping.put(COLUMNS.SF_ID.getColumnName(), siteprofile.getSfId());
+			mapping.put(COLUMNS.SF_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getSfId()));
 			mapping.put(COLUMNS.SLOT_TYPE_ID.getColumnName(), siteprofile.getSlotTypeId());
 			mapping.put(COLUMNS.SRC_FUND_ID.getColumnName(), siteprofile.getSrcFundId());
-			mapping.put(COLUMNS.ADDITIONAL_INFO.getColumnName(), siteprofile.getAdditionalInfo());
+			mapping.put(COLUMNS.ADDITIONAL_INFO.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getAdditionalInfo()));
 			return mapping;
 		}
 	}

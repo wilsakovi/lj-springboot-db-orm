@@ -18,7 +18,7 @@ public class EnvPropertiesDB implements EntityDB<EnvProperties>{
 
 	private static String TABLE_NAME = "ENV_PROPERTIES";
 
-	private static String TABLE_ALIAS = "A_ep_85";
+	private static String TABLE_ALIAS = "A_ep_579";
 
 	public static String getTableName()
 	{
@@ -130,8 +130,8 @@ public class EnvPropertiesDB implements EntityDB<EnvProperties>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), envproperties.getId());
-			mapping.put(COLUMNS.KEYCODE.getColumnName(), envproperties.getKeycode());
-			mapping.put(COLUMNS.KEYVALUE.getColumnName(), envproperties.getKeyValue());
+			mapping.put(COLUMNS.KEYCODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(envproperties.getKeycode()));
+			mapping.put(COLUMNS.KEYVALUE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(envproperties.getKeyValue()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), envproperties.getActiveFlag());
 			return mapping;
 		}

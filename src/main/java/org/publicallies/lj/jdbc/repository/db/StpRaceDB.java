@@ -18,7 +18,7 @@ public class StpRaceDB implements EntityDB<StpRace>{
 
 	private static String TABLE_NAME = "STP_RACE";
 
-	private static String TABLE_ALIAS = "A_sr_621";
+	private static String TABLE_ALIAS = "A_sr_848";
 
 	public static String getTableName()
 	{
@@ -133,9 +133,9 @@ public class StpRaceDB implements EntityDB<StpRace>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stprace.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), stprace.getName());
-			mapping.put(COLUMNS.CODE.getColumnName(), stprace.getCode());
-			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), stprace.getSpecialFlag());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stprace.getName()));
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stprace.getCode()));
+			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stprace.getSpecialFlag()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), stprace.getOldId());
 			return mapping;
 		}

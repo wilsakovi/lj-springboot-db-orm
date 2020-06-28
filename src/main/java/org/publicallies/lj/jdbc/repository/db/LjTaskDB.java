@@ -19,7 +19,7 @@ public class LjTaskDB implements EntityDB<LjTask>{
 
 	private static String TABLE_NAME = "LJ_TASK";
 
-	private static String TABLE_ALIAS = "A_lt_332";
+	private static String TABLE_ALIAS = "A_lt_230";
 
 	public static String getTableName()
 	{
@@ -155,19 +155,19 @@ public class LjTaskDB implements EntityDB<LjTask>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), ljtask.getId());
-			mapping.put(COLUMNS.TITLE.getColumnName(), ljtask.getTitle());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), ljtask.getDescription());
-			mapping.put(COLUMNS.ASSIGNED_ROLE.getColumnName(), ljtask.getAssignedRole());
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ljtask.getTitle()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ljtask.getDescription()));
+			mapping.put(COLUMNS.ASSIGNED_ROLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ljtask.getAssignedRole()));
 			mapping.put(COLUMNS.ASSIGNED_USERS_ID.getColumnName(), ljtask.getAssignedUsersId());
 			mapping.put(COLUMNS.ASSIGNED_SITE_ID.getColumnName(), ljtask.getAssignedSiteId());
-			mapping.put(COLUMNS.STATUS_CODE.getColumnName(), ljtask.getStatusCode());
-			mapping.put(COLUMNS.LJ_TABLE.getColumnName(), ljtask.getLjTable());
+			mapping.put(COLUMNS.STATUS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ljtask.getStatusCode()));
+			mapping.put(COLUMNS.LJ_TABLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ljtask.getLjTable()));
 			mapping.put(COLUMNS.LJ_PK_ID.getColumnName(), ljtask.getLjPkId());
 			if (ljtask.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (ljtask.getCreatedAt().getTime()));
 			if (ljtask.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (ljtask.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.HISTORY.getColumnName(), ljtask.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ljtask.getHistory()));
 			return mapping;
 		}
 	}

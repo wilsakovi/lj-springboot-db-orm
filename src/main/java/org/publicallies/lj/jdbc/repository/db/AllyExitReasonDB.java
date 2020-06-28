@@ -18,7 +18,7 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 
 	private static String TABLE_NAME = "ALLY_EXIT_REASON";
 
-	private static String TABLE_ALIAS = "A_aer_434";
+	private static String TABLE_ALIAS = "A_aer_831";
 
 	public static String getTableName()
 	{
@@ -127,7 +127,7 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), allyexitreason.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), allyexitreason.getName());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyexitreason.getName()));
 			mapping.put(COLUMNS.CPC_EXIT_ONLY_FLAG.getColumnName(), allyexitreason.getCpcExitOnlyFlag());
 			return mapping;
 		}

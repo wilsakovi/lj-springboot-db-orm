@@ -19,7 +19,7 @@ public class HstPayPeriodDB implements EntityDB<HstPayPeriod>{
 
 	private static String TABLE_NAME = "HST_PAY_PERIOD";
 
-	private static String TABLE_ALIAS = "A_hpp_775";
+	private static String TABLE_ALIAS = "A_hpp_761";
 
 	public static String getTableName()
 	{
@@ -143,10 +143,10 @@ public class HstPayPeriodDB implements EntityDB<HstPayPeriod>{
 			mapping.put(COLUMNS.PAY_PERIOD_ID.getColumnName(), hstpayperiod.getPayPeriodId());
 			mapping.put(COLUMNS.SYSTEM_FLAG.getColumnName(), hstpayperiod.getSystemFlag());
 			mapping.put(COLUMNS.USERS_ID.getColumnName(), hstpayperiod.getUsersId());
-			mapping.put(COLUMNS.ACTION_DESCRIPTION.getColumnName(), hstpayperiod.getActionDescription());
+			mapping.put(COLUMNS.ACTION_DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(hstpayperiod.getActionDescription()));
 			if (hstpayperiod.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (hstpayperiod.getCreatedAt().getTime()));
-			mapping.put(COLUMNS.OLD_FULL_NAME.getColumnName(), hstpayperiod.getOldFullName());
+			mapping.put(COLUMNS.OLD_FULL_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(hstpayperiod.getOldFullName()));
 			return mapping;
 		}
 	}

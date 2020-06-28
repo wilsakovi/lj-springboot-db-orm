@@ -18,7 +18,7 @@ public class OptionListOptionDB implements EntityDB<OptionListOption>{
 
 	private static String TABLE_NAME = "OPTION_LIST_OPTION";
 
-	private static String TABLE_ALIAS = "A_olo_367";
+	private static String TABLE_ALIAS = "A_olo_966";
 
 	public static String getTableName()
 	{
@@ -139,12 +139,12 @@ public class OptionListOptionDB implements EntityDB<OptionListOption>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), optionlistoption.getId());
-			mapping.put(COLUMNS.DISPLAY_TEXT.getColumnName(), optionlistoption.getDisplayText());
-			mapping.put(COLUMNS.ACTUAL_VALUE.getColumnName(), optionlistoption.getActualValue());
+			mapping.put(COLUMNS.DISPLAY_TEXT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(optionlistoption.getDisplayText()));
+			mapping.put(COLUMNS.ACTUAL_VALUE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(optionlistoption.getActualValue()));
 			mapping.put(COLUMNS.OPTION_LIST_ID.getColumnName(), optionlistoption.getOptionListId());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), optionlistoption.getActiveFlag());
 			mapping.put(COLUMNS.ORDER_WEIGHT.getColumnName(), optionlistoption.getOrderWeight());
-			mapping.put(COLUMNS.ORDER_BY.getColumnName(), optionlistoption.getOrderBy());
+			mapping.put(COLUMNS.ORDER_BY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(optionlistoption.getOrderBy()));
 			return mapping;
 		}
 	}

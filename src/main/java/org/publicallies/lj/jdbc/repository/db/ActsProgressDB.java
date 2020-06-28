@@ -19,7 +19,7 @@ public class ActsProgressDB implements EntityDB<ActsProgress>{
 
 	private static String TABLE_NAME = "ACTS_PROGRESS";
 
-	private static String TABLE_ALIAS = "A_ap_795";
+	private static String TABLE_ALIAS = "A_ap_711";
 
 	public static String getTableName()
 	{
@@ -141,7 +141,7 @@ public class ActsProgressDB implements EntityDB<ActsProgress>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), actsprogress.getId());
 			mapping.put(COLUMNS.COMMITMENT_ID.getColumnName(), actsprogress.getCommitmentId());
-			mapping.put(COLUMNS.PROGRESS_DETAIL.getColumnName(), actsprogress.getProgressDetail());
+			mapping.put(COLUMNS.PROGRESS_DETAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsprogress.getProgressDetail()));
 			mapping.put(COLUMNS.STATUS_ID.getColumnName(), actsprogress.getStatusId());
 			if (actsprogress.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (actsprogress.getCreatedAt().getTime()));

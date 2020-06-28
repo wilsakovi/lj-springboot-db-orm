@@ -19,7 +19,7 @@ public class MsrTrainingDB implements EntityDB<MsrTraining>{
 
 	private static String TABLE_NAME = "MSR_TRAINING";
 
-	private static String TABLE_ALIAS = "A_mt_466";
+	private static String TABLE_ALIAS = "A_mt_803";
 
 	public static String getTableName()
 	{
@@ -155,7 +155,7 @@ public class MsrTrainingDB implements EntityDB<MsrTraining>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), msrtraining.getId());
-			mapping.put(COLUMNS.ACTIVITY_TITLE.getColumnName(), msrtraining.getActivityTitle());
+			mapping.put(COLUMNS.ACTIVITY_TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrtraining.getActivityTitle()));
 			if (msrtraining.getActivityDate() != null)
 				mapping.put(COLUMNS.ACTIVITY_DATE.getColumnName(), new Timestamp (msrtraining.getActivityDate().getTime()));
 			if (msrtraining.getCreatedAt() != null)
@@ -164,10 +164,10 @@ public class MsrTrainingDB implements EntityDB<MsrTraining>{
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (msrtraining.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.MSR_ID.getColumnName(), msrtraining.getMsrId());
 			mapping.put(COLUMNS.TRAINING_TYPE.getColumnName(), msrtraining.getTrainingType());
-			mapping.put(COLUMNS.TRAINING_LESSON.getColumnName(), msrtraining.getTrainingLesson());
+			mapping.put(COLUMNS.TRAINING_LESSON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrtraining.getTrainingLesson()));
 			mapping.put(COLUMNS.UNDERSTAND_LEVEL.getColumnName(), msrtraining.getUnderstandLevel());
 			mapping.put(COLUMNS.CONFIDENCE_LEVEL.getColumnName(), msrtraining.getConfidenceLevel());
-			mapping.put(COLUMNS.REACTION_LEVEL.getColumnName(), msrtraining.getReactionLevel());
+			mapping.put(COLUMNS.REACTION_LEVEL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrtraining.getReactionLevel()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), msrtraining.getOldId());
 			return mapping;
 		}

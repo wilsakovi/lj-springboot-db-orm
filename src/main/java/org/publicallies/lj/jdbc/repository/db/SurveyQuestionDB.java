@@ -18,7 +18,7 @@ public class SurveyQuestionDB implements EntityDB<SurveyQuestion>{
 
 	private static String TABLE_NAME = "SURVEY_QUESTION";
 
-	private static String TABLE_ALIAS = "A_sq_990";
+	private static String TABLE_ALIAS = "A_sq_5";
 
 	public static String getTableName()
 	{
@@ -142,11 +142,11 @@ public class SurveyQuestionDB implements EntityDB<SurveyQuestion>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), surveyquestion.getId());
-			mapping.put(COLUMNS.SM_ID.getColumnName(), surveyquestion.getSmId());
+			mapping.put(COLUMNS.SM_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveyquestion.getSmId()));
 			mapping.put(COLUMNS.POSITION.getColumnName(), surveyquestion.getPosition());
-			mapping.put(COLUMNS.HREF.getColumnName(), surveyquestion.getHref());
-			mapping.put(COLUMNS.HEADING.getColumnName(), surveyquestion.getHeading());
-			mapping.put(COLUMNS.ANSWER_JSON.getColumnName(), surveyquestion.getAnswerJson());
+			mapping.put(COLUMNS.HREF.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveyquestion.getHref()));
+			mapping.put(COLUMNS.HEADING.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveyquestion.getHeading()));
+			mapping.put(COLUMNS.ANSWER_JSON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveyquestion.getAnswerJson()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), surveyquestion.getActiveFlag());
 			mapping.put(COLUMNS.SURVEY_ID.getColumnName(), surveyquestion.getSurveyId());
 			return mapping;

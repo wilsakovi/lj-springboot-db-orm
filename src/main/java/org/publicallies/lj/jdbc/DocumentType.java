@@ -5,7 +5,6 @@ import javax.validation.constraints.Size;
 import org.springframework.data.domain.Persistable;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import static com.nurkiewicz.jdbcrepository.JdbcRepository.pk;
 import org.publicallies.lj.jdbc.common.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;

@@ -6,7 +6,6 @@ import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
-import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 import org.publicallies.lj.jdbc.State;
 
@@ -19,7 +18,7 @@ public class StateDB implements EntityDB<State>{
 
 	private static String TABLE_NAME = "STATE";
 
-	private static String TABLE_ALIAS = "A_sta_968";
+	private static String TABLE_ALIAS = "A_sta_535";
 
 	public static String getTableName()
 	{
@@ -132,8 +131,8 @@ public class StateDB implements EntityDB<State>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), state.getId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), state.getOldId());
-			mapping.put(COLUMNS.CODE.getColumnName(), state.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), state.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(state.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(state.getName()));
 			return mapping;
 		}
 	}

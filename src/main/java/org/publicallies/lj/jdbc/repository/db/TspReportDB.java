@@ -19,7 +19,7 @@ public class TspReportDB implements EntityDB<TspReport>{
 
 	private static String TABLE_NAME = "TSP_REPORT";
 
-	private static String TABLE_ALIAS = "A_tr_185";
+	private static String TABLE_ALIAS = "A_tr_79";
 
 	public static String getTableName()
 	{
@@ -229,27 +229,27 @@ public class TspReportDB implements EntityDB<TspReport>{
 				mapping.put(COLUMNS.DUE_DATE.getColumnName(), new Timestamp (tspreport.getDueDate().getTime()));
 			if (tspreport.getReportDate() != null)
 				mapping.put(COLUMNS.REPORT_DATE.getColumnName(), new Timestamp (tspreport.getReportDate().getTime()));
-			mapping.put(COLUMNS.ACHIEVEMENT_DESC.getColumnName(), tspreport.getAchievementDesc());
-			mapping.put(COLUMNS.RESULT_DESC.getColumnName(), tspreport.getResultDesc());
-			mapping.put(COLUMNS.FIVE_CORE_DESC.getColumnName(), tspreport.getFiveCoreDesc());
+			mapping.put(COLUMNS.ACHIEVEMENT_DESC.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getAchievementDesc()));
+			mapping.put(COLUMNS.RESULT_DESC.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getResultDesc()));
+			mapping.put(COLUMNS.FIVE_CORE_DESC.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getFiveCoreDesc()));
 			mapping.put(COLUMNS.VOLUNTEER_HOURS.getColumnName(), tspreport.getVolunteerHours());
 			mapping.put(COLUMNS.IS_LOCKED.getColumnName(), tspreport.getIsLocked());
 			mapping.put(COLUMNS.LOCKED_BY_USER_ID.getColumnName(), tspreport.getLockedByUserId());
-			mapping.put(COLUMNS.LOCKED_BY_NAME.getColumnName(), tspreport.getLockedByName());
-			mapping.put(COLUMNS.STATUS_CODE.getColumnName(), tspreport.getStatusCode());
+			mapping.put(COLUMNS.LOCKED_BY_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getLockedByName()));
+			mapping.put(COLUMNS.STATUS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getStatusCode()));
 			if (tspreport.getSubmitDate() != null)
 				mapping.put(COLUMNS.SUBMIT_DATE.getColumnName(), new Timestamp (tspreport.getSubmitDate().getTime()));
 			mapping.put(COLUMNS.SUBMIT_BY_USER_ID.getColumnName(), tspreport.getSubmitByUserId());
 			if (tspreport.getApprovalDate() != null)
 				mapping.put(COLUMNS.APPROVAL_DATE.getColumnName(), new Timestamp (tspreport.getApprovalDate().getTime()));
-			mapping.put(COLUMNS.COMMENT.getColumnName(), tspreport.getComment());
+			mapping.put(COLUMNS.COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getComment()));
 			mapping.put(COLUMNS.START_FLAG.getColumnName(), tspreport.getStartFlag());
-			mapping.put(COLUMNS.ALLIES_COMMENT.getColumnName(), tspreport.getAlliesComment());
-			mapping.put(COLUMNS.SUPERVISOR_COMMENT.getColumnName(), tspreport.getSupervisorComment());
+			mapping.put(COLUMNS.ALLIES_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getAlliesComment()));
+			mapping.put(COLUMNS.SUPERVISOR_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getSupervisorComment()));
 			mapping.put(COLUMNS.FINAL_FLAG.getColumnName(), tspreport.getFinalFlag());
 			mapping.put(COLUMNS.FIRST_FLAG.getColumnName(), tspreport.getFirstFlag());
-			mapping.put(COLUMNS.ALLY_INITIAL.getColumnName(), tspreport.getAllyInitial());
-			mapping.put(COLUMNS.APPROVER_INITIAL.getColumnName(), tspreport.getApproverInitial());
+			mapping.put(COLUMNS.ALLY_INITIAL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getAllyInitial()));
+			mapping.put(COLUMNS.APPROVER_INITIAL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getApproverInitial()));
 			mapping.put(COLUMNS.APPROVER_USER_ID.getColumnName(), tspreport.getApproverUserId());
 			if (tspreport.getLockedTime() != null)
 				mapping.put(COLUMNS.LOCKED_TIME.getColumnName(), new Timestamp (tspreport.getLockedTime().getTime()));
@@ -257,14 +257,14 @@ public class TspReportDB implements EntityDB<TspReport>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (tspreport.getCreatedAt().getTime()));
 			if (tspreport.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (tspreport.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.HISTORY.getColumnName(), tspreport.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getHistory()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), tspreport.getActiveFlag());
-			mapping.put(COLUMNS.PROJECT_STATUS.getColumnName(), tspreport.getProjectStatus());
-			mapping.put(COLUMNS.STEP_TO_TRACK.getColumnName(), tspreport.getStepToTrack());
-			mapping.put(COLUMNS.ACHIEVING_STATUS.getColumnName(), tspreport.getAchievingStatus());
-			mapping.put(COLUMNS.LEADERSHIP_ACTION_STATUS.getColumnName(), tspreport.getLeadershipActionStatus());
-			mapping.put(COLUMNS.ACOUNTABILITY_STATUS.getColumnName(), tspreport.getAcountabilityStatus());
-			mapping.put(COLUMNS.TEAM_WORK_STATUS.getColumnName(), tspreport.getTeamWorkStatus());
+			mapping.put(COLUMNS.PROJECT_STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getProjectStatus()));
+			mapping.put(COLUMNS.STEP_TO_TRACK.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getStepToTrack()));
+			mapping.put(COLUMNS.ACHIEVING_STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getAchievingStatus()));
+			mapping.put(COLUMNS.LEADERSHIP_ACTION_STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getLeadershipActionStatus()));
+			mapping.put(COLUMNS.ACOUNTABILITY_STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getAcountabilityStatus()));
+			mapping.put(COLUMNS.TEAM_WORK_STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreport.getTeamWorkStatus()));
 			return mapping;
 		}
 	}

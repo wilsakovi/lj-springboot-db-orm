@@ -19,7 +19,7 @@ public class SurveyDB implements EntityDB<Survey>{
 
 	private static String TABLE_NAME = "SURVEY";
 
-	private static String TABLE_ALIAS = "A_sur_400";
+	private static String TABLE_ALIAS = "A_sur_939";
 
 	public static String getTableName()
 	{
@@ -182,22 +182,22 @@ public class SurveyDB implements EntityDB<Survey>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), survey.getId());
-			mapping.put(COLUMNS.SM_ID.getColumnName(), survey.getSmId());
-			mapping.put(COLUMNS.NAME.getColumnName(), survey.getName());
-			mapping.put(COLUMNS.HREF.getColumnName(), survey.getHref());
-			mapping.put(COLUMNS.NICKNAME.getColumnName(), survey.getNickname());
+			mapping.put(COLUMNS.SM_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getSmId()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getName()));
+			mapping.put(COLUMNS.HREF.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getHref()));
+			mapping.put(COLUMNS.NICKNAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getNickname()));
 			mapping.put(COLUMNS.RESPONSE_COUNT.getColumnName(), survey.getResponseCount());
 			mapping.put(COLUMNS.PAGE_COUNT.getColumnName(), survey.getPageCount());
 			mapping.put(COLUMNS.QUESTION_COUNT.getColumnName(), survey.getQuestionCount());
-			mapping.put(COLUMNS.ANALYZE_URL.getColumnName(), survey.getAnalyzeUrl());
-			mapping.put(COLUMNS.SUMMARY_URL.getColumnName(), survey.getSummaryUrl());
-			mapping.put(COLUMNS.COLLECT_URL.getColumnName(), survey.getCollectUrl());
-			mapping.put(COLUMNS.EDIT_URL.getColumnName(), survey.getEditUrl());
+			mapping.put(COLUMNS.ANALYZE_URL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getAnalyzeUrl()));
+			mapping.put(COLUMNS.SUMMARY_URL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getSummaryUrl()));
+			mapping.put(COLUMNS.COLLECT_URL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getCollectUrl()));
+			mapping.put(COLUMNS.EDIT_URL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getEditUrl()));
 			if (survey.getSmCreatedDate() != null)
 				mapping.put(COLUMNS.SM_CREATED_DATE.getColumnName(), new Timestamp (survey.getSmCreatedDate().getTime()));
 			if (survey.getSmModifiedDate() != null)
 				mapping.put(COLUMNS.SM_MODIFIED_DATE.getColumnName(), new Timestamp (survey.getSmModifiedDate().getTime()));
-			mapping.put(COLUMNS.CATEGORY.getColumnName(), survey.getCategory());
+			mapping.put(COLUMNS.CATEGORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getCategory()));
 			if (survey.getCollectorModificationDate() != null)
 				mapping.put(COLUMNS.COLLECTOR_MODIFICATION_DATE.getColumnName(), new Timestamp (survey.getCollectorModificationDate().getTime()));
 			if (survey.getCreatedAt() != null)
@@ -205,8 +205,8 @@ public class SurveyDB implements EntityDB<Survey>{
 			if (survey.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (survey.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), survey.getActiveFlag());
-			mapping.put(COLUMNS.PREVIEW_URL.getColumnName(), survey.getPreviewUrl());
-			mapping.put(COLUMNS.CUSTOM_VARIABLES.getColumnName(), survey.getCustomVariables());
+			mapping.put(COLUMNS.PREVIEW_URL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getPreviewUrl()));
+			mapping.put(COLUMNS.CUSTOM_VARIABLES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getCustomVariables()));
 			return mapping;
 		}
 	}

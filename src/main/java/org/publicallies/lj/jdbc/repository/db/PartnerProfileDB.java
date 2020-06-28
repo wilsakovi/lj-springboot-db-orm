@@ -19,7 +19,7 @@ public class PartnerProfileDB implements EntityDB<PartnerProfile>{
 
 	private static String TABLE_NAME = "PARTNER_PROFILE";
 
-	private static String TABLE_ALIAS = "A_pp_421";
+	private static String TABLE_ALIAS = "A_pp_685";
 
 	public static String getTableName()
 	{
@@ -239,9 +239,9 @@ public class PartnerProfileDB implements EntityDB<PartnerProfile>{
 			if (partnerprofile.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (partnerprofile.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.SITE_PROFILE_ID.getColumnName(), partnerprofile.getSiteProfileId());
-			mapping.put(COLUMNS.STRATEGIC_GOAL.getColumnName(), partnerprofile.getStrategicGoal());
-			mapping.put(COLUMNS.GOAL_ACCOMPLISHMENT.getColumnName(), partnerprofile.getGoalAccomplishment());
-			mapping.put(COLUMNS.BASELINE_MEASURE.getColumnName(), partnerprofile.getBaselineMeasure());
+			mapping.put(COLUMNS.STRATEGIC_GOAL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partnerprofile.getStrategicGoal()));
+			mapping.put(COLUMNS.GOAL_ACCOMPLISHMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partnerprofile.getGoalAccomplishment()));
+			mapping.put(COLUMNS.BASELINE_MEASURE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partnerprofile.getBaselineMeasure()));
 			mapping.put(COLUMNS.PRA_PDDE_PDDA.getColumnName(), partnerprofile.getPraPddePdda());
 			mapping.put(COLUMNS.PRA_PDDE_PDDB.getColumnName(), partnerprofile.getPraPddePddb());
 			mapping.put(COLUMNS.PRA_PDDE_OUTR.getColumnName(), partnerprofile.getPraPddeOutr());
@@ -258,7 +258,7 @@ public class PartnerProfileDB implements EntityDB<PartnerProfile>{
 			mapping.put(COLUMNS.PRA_OIR_OMOA.getColumnName(), partnerprofile.getPraOirOmoa());
 			mapping.put(COLUMNS.PRA_OIR_OMOB.getColumnName(), partnerprofile.getPraOirOmob());
 			mapping.put(COLUMNS.PRA_OIR_FR.getColumnName(), partnerprofile.getPraOirFr());
-			mapping.put(COLUMNS.PRA_STAFF.getColumnName(), partnerprofile.getPraStaff());
+			mapping.put(COLUMNS.PRA_STAFF.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partnerprofile.getPraStaff()));
 			if (partnerprofile.getPraSubmitDate() != null)
 				mapping.put(COLUMNS.PRA_SUBMIT_DATE.getColumnName(), new Timestamp (partnerprofile.getPraSubmitDate().getTime()));
 			mapping.put(COLUMNS.PRA_SUBMITTED.getColumnName(), partnerprofile.getPraSubmitted());

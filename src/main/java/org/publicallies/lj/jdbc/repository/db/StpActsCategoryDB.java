@@ -18,7 +18,7 @@ public class StpActsCategoryDB implements EntityDB<StpActsCategory>{
 
 	private static String TABLE_NAME = "STP_ACTS_CATEGORY";
 
-	private static String TABLE_ALIAS = "A_sac_859";
+	private static String TABLE_ALIAS = "A_sac_120";
 
 	public static String getTableName()
 	{
@@ -130,8 +130,8 @@ public class StpActsCategoryDB implements EntityDB<StpActsCategory>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpactscategory.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpactscategory.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpactscategory.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpactscategory.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpactscategory.getName()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stpactscategory.getActiveFlag());
 			return mapping;
 		}

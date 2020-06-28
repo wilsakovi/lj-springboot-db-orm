@@ -19,7 +19,7 @@ public class MsrPartnershipDB implements EntityDB<MsrPartnership>{
 
 	private static String TABLE_NAME = "MSR_PARTNERSHIP";
 
-	private static String TABLE_ALIAS = "A_mp_571";
+	private static String TABLE_ALIAS = "A_mp_760";
 
 	public static String getTableName()
 	{
@@ -150,10 +150,10 @@ public class MsrPartnershipDB implements EntityDB<MsrPartnership>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), msrpartnership.getId());
 			mapping.put(COLUMNS.MSR_ID.getColumnName(), msrpartnership.getMsrId());
-			mapping.put(COLUMNS.CONTACT_NAME.getColumnName(), msrpartnership.getContactName());
-			mapping.put(COLUMNS.ORGANIZATION.getColumnName(), msrpartnership.getOrganization());
-			mapping.put(COLUMNS.SUPPORT_DETAIL.getColumnName(), msrpartnership.getSupportDetail());
-			mapping.put(COLUMNS.FUTURE_ACTION.getColumnName(), msrpartnership.getFutureAction());
+			mapping.put(COLUMNS.CONTACT_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpartnership.getContactName()));
+			mapping.put(COLUMNS.ORGANIZATION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpartnership.getOrganization()));
+			mapping.put(COLUMNS.SUPPORT_DETAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpartnership.getSupportDetail()));
+			mapping.put(COLUMNS.FUTURE_ACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrpartnership.getFutureAction()));
 			if (msrpartnership.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (msrpartnership.getCreatedAt().getTime()));
 			if (msrpartnership.getUpdatedAt() != null)

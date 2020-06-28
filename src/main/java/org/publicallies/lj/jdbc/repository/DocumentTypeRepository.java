@@ -9,7 +9,6 @@ import java.util.HashMap;
 import com.nurkiewicz.jdbcrepository.JdbcRepository;
 import java.util.ArrayList;
 import java.util.List;
-import com.nurkiewicz.jdbcrepository.TableDescription;
 import java.util.Map;
 import org.publicallies.lj.jdbc.DocumentType;
 import org.springframework.jdbc.core.RowMapper;

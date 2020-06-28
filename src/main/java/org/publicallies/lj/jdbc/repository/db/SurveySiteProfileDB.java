@@ -19,7 +19,7 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 
 	private static String TABLE_NAME = "SURVEY_SITE_PROFILE";
 
-	private static String TABLE_ALIAS = "A_ssp_289";
+	private static String TABLE_ALIAS = "A_ssp_515";
 
 	public static String getTableName()
 	{
@@ -207,21 +207,21 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (surveysiteprofile.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.CREATED_BY_USER_ID.getColumnName(), surveysiteprofile.getCreatedByUserId());
 			mapping.put(COLUMNS.HARD_DUE_DATE_FLAG.getColumnName(), surveysiteprofile.getHardDueDateFlag());
-			mapping.put(COLUMNS.DUE_DATE_TRIGGER.getColumnName(), surveysiteprofile.getDueDateTrigger());
+			mapping.put(COLUMNS.DUE_DATE_TRIGGER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveysiteprofile.getDueDateTrigger()));
 			mapping.put(COLUMNS.DAYS_TO_DUE_DATE.getColumnName(), surveysiteprofile.getDaysToDueDate());
-			mapping.put(COLUMNS.TO_DUE_DATE_DIRECTION.getColumnName(), surveysiteprofile.getToDueDateDirection());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), surveysiteprofile.getHistory());
+			mapping.put(COLUMNS.TO_DUE_DATE_DIRECTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveysiteprofile.getToDueDateDirection()));
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveysiteprofile.getHistory()));
 			mapping.put(COLUMNS.ALL_ALLIES_FLAG.getColumnName(), surveysiteprofile.getAllAlliesFlag());
 			mapping.put(COLUMNS.HARD_START_DATE_FLAG.getColumnName(), surveysiteprofile.getHardStartDateFlag());
-			mapping.put(COLUMNS.START_DATE_TRIGGER.getColumnName(), surveysiteprofile.getStartDateTrigger());
+			mapping.put(COLUMNS.START_DATE_TRIGGER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveysiteprofile.getStartDateTrigger()));
 			mapping.put(COLUMNS.DAYS_TO_START_DATE.getColumnName(), surveysiteprofile.getDaysToStartDate());
-			mapping.put(COLUMNS.TO_START_DATE_DIRECTION.getColumnName(), surveysiteprofile.getToStartDateDirection());
+			mapping.put(COLUMNS.TO_START_DATE_DIRECTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveysiteprofile.getToStartDateDirection()));
 			if (surveysiteprofile.getStartDate() != null)
 				mapping.put(COLUMNS.START_DATE.getColumnName(), new Timestamp (surveysiteprofile.getStartDate().getTime()));
 			mapping.put(COLUMNS.DEPLOYED_FLAG.getColumnName(), surveysiteprofile.getDeployedFlag());
-			mapping.put(COLUMNS.APIDS.getColumnName(), surveysiteprofile.getApIds());
+			mapping.put(COLUMNS.APIDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveysiteprofile.getApIds()));
 			mapping.put(COLUMNS.ALLY_PROGRAM_STATUS_FLAG.getColumnName(), surveysiteprofile.getAllyProgramStatusFlag());
-			mapping.put(COLUMNS.GRADUATE_STATUS_IDS.getColumnName(), surveysiteprofile.getGraduateStatusIds());
+			mapping.put(COLUMNS.GRADUATE_STATUS_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(surveysiteprofile.getGraduateStatusIds()));
 			return mapping;
 		}
 	}

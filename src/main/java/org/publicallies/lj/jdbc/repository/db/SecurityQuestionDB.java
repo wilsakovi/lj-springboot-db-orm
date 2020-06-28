@@ -18,7 +18,7 @@ public class SecurityQuestionDB implements EntityDB<SecurityQuestion>{
 
 	private static String TABLE_NAME = "SECURITY_QUESTION";
 
-	private static String TABLE_ALIAS = "A_sq_447";
+	private static String TABLE_ALIAS = "A_sq_889";
 
 	public static String getTableName()
 	{
@@ -130,7 +130,7 @@ public class SecurityQuestionDB implements EntityDB<SecurityQuestion>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), securityquestion.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), securityquestion.getName());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(securityquestion.getName()));
 			mapping.put(COLUMNS.STATUS.getColumnName(), securityquestion.getStatus());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), securityquestion.getOldId());
 			return mapping;

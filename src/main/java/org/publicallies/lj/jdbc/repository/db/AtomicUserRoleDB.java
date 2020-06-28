@@ -19,7 +19,7 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 
 	private static String TABLE_NAME = "ATOMIC_USER_ROLE";
 
-	private static String TABLE_ALIAS = "A_aur_20";
+	private static String TABLE_ALIAS = "A_aur_0";
 
 	public static String getTableName()
 	{
@@ -149,8 +149,8 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), atomicuserrole.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), atomicuserrole.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), atomicuserrole.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicuserrole.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicuserrole.getName()));
 			mapping.put(COLUMNS.ROLE_TYPE_ID.getColumnName(), atomicuserrole.getRoleTypeId());
 			mapping.put(COLUMNS.CREATED_BY.getColumnName(), atomicuserrole.getCreatedBy());
 			if (atomicuserrole.getCreatedAt() != null)
@@ -158,7 +158,7 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), atomicuserrole.getActiveFlag());
 			mapping.put(COLUMNS.EDITABLE_FLAG.getColumnName(), atomicuserrole.getEditableFlag());
 			mapping.put(COLUMNS.REQUIRED_SITE_FLAG.getColumnName(), atomicuserrole.getRequiredSiteFlag());
-			mapping.put(COLUMNS.HOMEPAGE.getColumnName(), atomicuserrole.getHomePage());
+			mapping.put(COLUMNS.HOMEPAGE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicuserrole.getHomePage()));
 			return mapping;
 		}
 	}

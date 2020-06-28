@@ -19,7 +19,7 @@ public class MsrDB implements EntityDB<Msr>{
 
 	private static String TABLE_NAME = "MSR";
 
-	private static String TABLE_ALIAS = "A_msr_577";
+	private static String TABLE_ALIAS = "A_msr_209";
 
 	public static String getTableName()
 	{
@@ -254,18 +254,18 @@ public class MsrDB implements EntityDB<Msr>{
 			if (msr.getEndDate() != null)
 				mapping.put(COLUMNS.END_DATE.getColumnName(), new Timestamp (msr.getEndDate().getTime()));
 			mapping.put(COLUMNS.IS_APPROVED.getColumnName(), msr.getIsApproved());
-			mapping.put(COLUMNS.GENERATED_BY.getColumnName(), msr.getGeneratedBy());
-			mapping.put(COLUMNS.ALLY_SUBMIT_STATUS_CODE.getColumnName(), msr.getAllySubmitStatusCode());
-			mapping.put(COLUMNS.POS_APPROVAL_STATUS_CODE.getColumnName(), msr.getPosApprovalStatusCode());
-			mapping.put(COLUMNS.PM_APPROVAL_STATUS_CODE.getColumnName(), msr.getPmApprovalStatusCode());
+			mapping.put(COLUMNS.GENERATED_BY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getGeneratedBy()));
+			mapping.put(COLUMNS.ALLY_SUBMIT_STATUS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getAllySubmitStatusCode()));
+			mapping.put(COLUMNS.POS_APPROVAL_STATUS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPosApprovalStatusCode()));
+			mapping.put(COLUMNS.PM_APPROVAL_STATUS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPmApprovalStatusCode()));
 			if (msr.getPosApprovedDate() != null)
 				mapping.put(COLUMNS.POS_APPROVED_DATE.getColumnName(), new Timestamp (msr.getPosApprovedDate().getTime()));
 			if (msr.getPmApprovedDate() != null)
 				mapping.put(COLUMNS.PM_APPROVED_DATE.getColumnName(), new Timestamp (msr.getPmApprovedDate().getTime()));
-			mapping.put(COLUMNS.ALLY_INITIAL.getColumnName(), msr.getAllyInitial());
-			mapping.put(COLUMNS.POS_INITIAL.getColumnName(), msr.getPosInitial());
-			mapping.put(COLUMNS.PM_INITIAL.getColumnName(), msr.getPmInitial());
-			mapping.put(COLUMNS.NOTES.getColumnName(), msr.getNotes());
+			mapping.put(COLUMNS.ALLY_INITIAL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getAllyInitial()));
+			mapping.put(COLUMNS.POS_INITIAL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPosInitial()));
+			mapping.put(COLUMNS.PM_INITIAL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPmInitial()));
+			mapping.put(COLUMNS.NOTES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getNotes()));
 			if (msr.getAllySubmitDate() != null)
 				mapping.put(COLUMNS.ALLY_SUBMIT_DATE.getColumnName(), new Timestamp (msr.getAllySubmitDate().getTime()));
 			if (msr.getCreatedAt() != null)
@@ -277,26 +277,26 @@ public class MsrDB implements EntityDB<Msr>{
 			mapping.put(COLUMNS.HAS_POS_ASSESSMENT.getColumnName(), msr.getHasPosAssessment());
 			mapping.put(COLUMNS.JOB_ID.getColumnName(), msr.getJobId());
 			mapping.put(COLUMNS.REPORT_ORDER.getColumnName(), msr.getReportOrder());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), msr.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getHistory()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), msr.getOldId());
 			mapping.put(COLUMNS.APPROVED_PM_USERS_ID.getColumnName(), msr.getApprovedPmUsersId());
 			mapping.put(COLUMNS.APPROVED_POS_USERS_ID.getColumnName(), msr.getApprovedPosUsersId());
-			mapping.put(COLUMNS.PA_SATISFACTION.getColumnName(), msr.getPaSatisfaction());
-			mapping.put(COLUMNS.ORG_SATISFACTION.getColumnName(), msr.getOrgSatisfaction());
-			mapping.put(COLUMNS.FINAL_COMMENT.getColumnName(), msr.getFinalComment());
-			mapping.put(COLUMNS.POS_FINAL_COMMENT.getColumnName(), msr.getPosFinalComment());
-			mapping.put(COLUMNS.STAFF_FINAL_COMMENT.getColumnName(), msr.getStaffFinalComment());
-			mapping.put(COLUMNS.POS_MEMBER_SATISFACTION.getColumnName(), msr.getPosMemberSatisfaction());
-			mapping.put(COLUMNS.POS_PARTNERSHIP_COMMENT.getColumnName(), msr.getPosPartnershipComment());
-			mapping.put(COLUMNS.STAFF_PARTNERSHIP_COMMENT.getColumnName(), msr.getStaffPartnershipComment());
-			mapping.put(COLUMNS.POS_TRAINING_COMMENT.getColumnName(), msr.getPosTrainingComment());
-			mapping.put(COLUMNS.STAFF_TRAINING_COMMENT.getColumnName(), msr.getStaffTrainingComment());
+			mapping.put(COLUMNS.PA_SATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPaSatisfaction()));
+			mapping.put(COLUMNS.ORG_SATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getOrgSatisfaction()));
+			mapping.put(COLUMNS.FINAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getFinalComment()));
+			mapping.put(COLUMNS.POS_FINAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPosFinalComment()));
+			mapping.put(COLUMNS.STAFF_FINAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getStaffFinalComment()));
+			mapping.put(COLUMNS.POS_MEMBER_SATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPosMemberSatisfaction()));
+			mapping.put(COLUMNS.POS_PARTNERSHIP_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPosPartnershipComment()));
+			mapping.put(COLUMNS.STAFF_PARTNERSHIP_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getStaffPartnershipComment()));
+			mapping.put(COLUMNS.POS_TRAINING_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPosTrainingComment()));
+			mapping.put(COLUMNS.STAFF_TRAINING_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getStaffTrainingComment()));
 			mapping.put(COLUMNS.STAFF_PC_USER_ID.getColumnName(), msr.getStaffPcUserId());
 			mapping.put(COLUMNS.POS_PC_USER_ID.getColumnName(), msr.getPosPcUserId());
 			mapping.put(COLUMNS.STAFF_TRAINING_USER_ID.getColumnName(), msr.getStaffTrainingUserId());
 			mapping.put(COLUMNS.POS_TRAINING_USER_ID.getColumnName(), msr.getPosTrainingUserId());
-			mapping.put(COLUMNS.POS_APPROVAL_COMMENT.getColumnName(), msr.getPosApprovalComment());
-			mapping.put(COLUMNS.STAFF_APPROVAL_COMMENT.getColumnName(), msr.getStaffApprovalComment());
+			mapping.put(COLUMNS.POS_APPROVAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPosApprovalComment()));
+			mapping.put(COLUMNS.STAFF_APPROVAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getStaffApprovalComment()));
 			return mapping;
 		}
 	}

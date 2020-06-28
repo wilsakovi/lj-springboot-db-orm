@@ -18,7 +18,7 @@ public class CapacityBuildingActivitiesDB implements EntityDB<CapacityBuildingAc
 
 	private static String TABLE_NAME = "CAPACITY_BUILDING_ACTIVITIES";
 
-	private static String TABLE_ALIAS = "A_cba_26";
+	private static String TABLE_ALIAS = "A_cba_528";
 
 	public static String getTableName()
 	{
@@ -133,8 +133,8 @@ public class CapacityBuildingActivitiesDB implements EntityDB<CapacityBuildingAc
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), capacitybuildingactivities.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), capacitybuildingactivities.getName());
-			mapping.put(COLUMNS.OUTPUT_MEASURE.getColumnName(), capacitybuildingactivities.getOutputMeasure());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(capacitybuildingactivities.getName()));
+			mapping.put(COLUMNS.OUTPUT_MEASURE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(capacitybuildingactivities.getOutputMeasure()));
 			mapping.put(COLUMNS.ACTIVITY_AREA_ID.getColumnName(), capacitybuildingactivities.getActivityAreaId());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), capacitybuildingactivities.getActiveFlag());
 			return mapping;

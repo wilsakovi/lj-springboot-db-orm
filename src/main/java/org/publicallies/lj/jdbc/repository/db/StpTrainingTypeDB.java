@@ -18,7 +18,7 @@ public class StpTrainingTypeDB implements EntityDB<StpTrainingType>{
 
 	private static String TABLE_NAME = "STP_TRAINING_TYPE";
 
-	private static String TABLE_ALIAS = "A_stt_322";
+	private static String TABLE_ALIAS = "A_stt_750";
 
 	public static String getTableName()
 	{
@@ -130,8 +130,8 @@ public class StpTrainingTypeDB implements EntityDB<StpTrainingType>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stptrainingtype.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), stptrainingtype.getName());
-			mapping.put(COLUMNS.CODE.getColumnName(), stptrainingtype.getCode());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stptrainingtype.getName()));
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stptrainingtype.getCode()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stptrainingtype.getActiveFlag());
 			return mapping;
 		}

@@ -18,7 +18,7 @@ public class RefTableDB implements EntityDB<RefTable>{
 
 	private static String TABLE_NAME = "REF_TABLE";
 
-	private static String TABLE_ALIAS = "A_rt_510";
+	private static String TABLE_ALIAS = "A_rt_581";
 
 	public static String getTableName()
 	{
@@ -129,8 +129,8 @@ public class RefTableDB implements EntityDB<RefTable>{
 		public Map<String, Object> mapColumns(RefTable reftable)
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
-			mapping.put(COLUMNS.CODE.getColumnName(), reftable.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), reftable.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(reftable.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(reftable.getName()));
 			mapping.put(COLUMNS.STATUS.getColumnName(), reftable.getStatus());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), reftable.getOldId());
 			return mapping;

@@ -18,7 +18,7 @@ public class SlotTypeDB implements EntityDB<SlotType>{
 
 	private static String TABLE_NAME = "SLOT_TYPE";
 
-	private static String TABLE_ALIAS = "A_st_39";
+	private static String TABLE_ALIAS = "A_st_325";
 
 	public static String getTableName()
 	{
@@ -142,11 +142,11 @@ public class SlotTypeDB implements EntityDB<SlotType>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), slottype.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), slottype.getName());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(slottype.getName()));
 			mapping.put(COLUMNS.DEFAULT_NET_AWARD.getColumnName(), slottype.getDefaultNetAward());
 			mapping.put(COLUMNS.DEFAULT_GROSS_AWARD.getColumnName(), slottype.getDefaultGrossAward());
 			mapping.put(COLUMNS.MAX_HOURS.getColumnName(), slottype.getMaxHours());
-			mapping.put(COLUMNS.CODE.getColumnName(), slottype.getCode());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(slottype.getCode()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), slottype.getOldId());
 			mapping.put(COLUMNS.SF_FLAG.getColumnName(), slottype.getSfFlag());
 			return mapping;

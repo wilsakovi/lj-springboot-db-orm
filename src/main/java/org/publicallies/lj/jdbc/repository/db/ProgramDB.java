@@ -18,7 +18,7 @@ public class ProgramDB implements EntityDB<Program>{
 
 	private static String TABLE_NAME = "PROGRAM";
 
-	private static String TABLE_ALIAS = "A_pro_895";
+	private static String TABLE_ALIAS = "A_pro_411";
 
 	public static String getTableName()
 	{
@@ -148,9 +148,9 @@ public class ProgramDB implements EntityDB<Program>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), program.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), program.getName());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(program.getName()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), program.getActiveFlag());
-			mapping.put(COLUMNS.TL_CATEGORIES.getColumnName(), program.getTlCategories());
+			mapping.put(COLUMNS.TL_CATEGORIES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(program.getTlCategories()));
 			mapping.put(COLUMNS.SLOT_TYPE_ID.getColumnName(), program.getSlotTypeId());
 			mapping.put(COLUMNS.DEFAULT_NET_AWARD.getColumnName(), program.getDefaultNetAward());
 			mapping.put(COLUMNS.DEFAULT_GROSS_AWARD.getColumnName(), program.getDefaultGrossAward());

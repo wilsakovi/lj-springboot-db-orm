@@ -19,7 +19,7 @@ public class ActsCommitmentDB implements EntityDB<ActsCommitment>{
 
 	private static String TABLE_NAME = "ACTS_COMMITMENT";
 
-	private static String TABLE_ALIAS = "A_ac_401";
+	private static String TABLE_ALIAS = "A_ac_366";
 
 	public static String getTableName()
 	{
@@ -159,11 +159,11 @@ public class ActsCommitmentDB implements EntityDB<ActsCommitment>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), actscommitment.getId());
 			mapping.put(COLUMNS.OBJECTIVE_ID.getColumnName(), actscommitment.getObjectiveId());
-			mapping.put(COLUMNS.ACTION_DETAIL.getColumnName(), actscommitment.getActionDetail());
-			mapping.put(COLUMNS.PARTNER_ROLE.getColumnName(), actscommitment.getPartnerRole());
+			mapping.put(COLUMNS.ACTION_DETAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actscommitment.getActionDetail()));
+			mapping.put(COLUMNS.PARTNER_ROLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actscommitment.getPartnerRole()));
 			if (actscommitment.getEstCompletionDate() != null)
 				mapping.put(COLUMNS.EST_COMPLETION_DATE.getColumnName(), new Timestamp (actscommitment.getEstCompletionDate().getTime()));
-			mapping.put(COLUMNS.ADD_DETAIL.getColumnName(), actscommitment.getAddDetail());
+			mapping.put(COLUMNS.ADD_DETAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actscommitment.getAddDetail()));
 			mapping.put(COLUMNS.ACTIVE_STATUS.getColumnName(), actscommitment.getActiveStatus());
 			mapping.put(COLUMNS.STATUS_ID.getColumnName(), actscommitment.getStatusId());
 			if (actscommitment.getCreatedAt() != null)
@@ -173,7 +173,7 @@ public class ActsCommitmentDB implements EntityDB<ActsCommitment>{
 			if (actscommitment.getCompletionDate() != null)
 				mapping.put(COLUMNS.COMPLETION_DATE.getColumnName(), new Timestamp (actscommitment.getCompletionDate().getTime()));
 			mapping.put(COLUMNS.INIT_REPORT_ID.getColumnName(), actscommitment.getInitReportId());
-			mapping.put(COLUMNS.ACT_TYPE.getColumnName(), actscommitment.getActType());
+			mapping.put(COLUMNS.ACT_TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actscommitment.getActType()));
 			return mapping;
 		}
 	}

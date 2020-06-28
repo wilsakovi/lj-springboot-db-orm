@@ -18,7 +18,7 @@ public class StpDataTypeDB implements EntityDB<StpDataType>{
 
 	private static String TABLE_NAME = "STP_DATA_TYPE";
 
-	private static String TABLE_ALIAS = "A_sdt_243";
+	private static String TABLE_ALIAS = "A_sdt_754";
 
 	public static String getTableName()
 	{
@@ -130,9 +130,9 @@ public class StpDataTypeDB implements EntityDB<StpDataType>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpdatatype.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpdatatype.getName());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpdatatype.getName()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stpdatatype.getActiveFlag());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), stpdatatype.getDescription());
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpdatatype.getDescription()));
 			return mapping;
 		}
 	}

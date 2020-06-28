@@ -18,7 +18,7 @@ public class StpCommonPeriodDB implements EntityDB<StpCommonPeriod>{
 
 	private static String TABLE_NAME = "STP_COMMON_PERIOD";
 
-	private static String TABLE_ALIAS = "A_scp_134";
+	private static String TABLE_ALIAS = "A_scp_430";
 
 	public static String getTableName()
 	{
@@ -133,10 +133,10 @@ public class StpCommonPeriodDB implements EntityDB<StpCommonPeriod>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpcommonperiod.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpcommonperiod.getName());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpcommonperiod.getCode());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpcommonperiod.getName()));
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpcommonperiod.getCode()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), stpcommonperiod.getOldId());
-			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), stpcommonperiod.getSpecialFlag());
+			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpcommonperiod.getSpecialFlag()));
 			return mapping;
 		}
 	}

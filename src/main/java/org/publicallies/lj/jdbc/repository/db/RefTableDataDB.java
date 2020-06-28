@@ -18,7 +18,7 @@ public class RefTableDataDB implements EntityDB<RefTableData>{
 
 	private static String TABLE_NAME = "REF_TABLE_DATA";
 
-	private static String TABLE_ALIAS = "A_rtd_916";
+	private static String TABLE_ALIAS = "A_rtd_849";
 
 	public static String getTableName()
 	{
@@ -139,12 +139,12 @@ public class RefTableDataDB implements EntityDB<RefTableData>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), reftabledata.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), reftabledata.getName());
-			mapping.put(COLUMNS.CODE.getColumnName(), reftabledata.getCode());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(reftabledata.getName()));
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(reftabledata.getCode()));
 			mapping.put(COLUMNS.STATUS.getColumnName(), reftabledata.getStatus());
-			mapping.put(COLUMNS.REF_TABLE_CODE.getColumnName(), reftabledata.getRefTableCode());
+			mapping.put(COLUMNS.REF_TABLE_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(reftabledata.getRefTableCode()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), reftabledata.getOldId());
-			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), reftabledata.getSpecialFlag());
+			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(reftabledata.getSpecialFlag()));
 			return mapping;
 		}
 	}

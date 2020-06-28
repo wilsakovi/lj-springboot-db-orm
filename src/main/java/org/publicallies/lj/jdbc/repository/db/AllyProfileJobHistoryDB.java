@@ -19,7 +19,7 @@ public class AllyProfileJobHistoryDB implements EntityDB<AllyProfileJobHistory>{
 
 	private static String TABLE_NAME = "ALLY_PROFILE_JOB_HISTORY";
 
-	private static String TABLE_ALIAS = "A_apjh_449";
+	private static String TABLE_ALIAS = "A_apjh_366";
 
 	public static String getTableName()
 	{
@@ -143,7 +143,7 @@ public class AllyProfileJobHistoryDB implements EntityDB<AllyProfileJobHistory>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), allyprofilejobhistory.getId());
-			mapping.put(COLUMNS.COMMENTS.getColumnName(), allyprofilejobhistory.getComments());
+			mapping.put(COLUMNS.COMMENTS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofilejobhistory.getComments()));
 			mapping.put(COLUMNS.PARTNER_SUPERVISOR_ID.getColumnName(), allyprofilejobhistory.getPartnerSupervisorId());
 			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), allyprofilejobhistory.getAllyProfileId());
 			mapping.put(COLUMNS.JOB_ID.getColumnName(), allyprofilejobhistory.getJobId());

@@ -18,7 +18,7 @@ public class CncsDB implements EntityDB<Cncs>{
 
 	private static String TABLE_NAME = "CNCS";
 
-	private static String TABLE_ALIAS = "A_cnc_477";
+	private static String TABLE_ALIAS = "A_cnc_689";
 
 	public static String getTableName()
 	{
@@ -133,8 +133,8 @@ public class CncsDB implements EntityDB<Cncs>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), cncs.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), cncs.getName());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), cncs.getDescription());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(cncs.getName()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(cncs.getDescription()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), cncs.getActiveFlag());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), cncs.getOldId());
 			return mapping;

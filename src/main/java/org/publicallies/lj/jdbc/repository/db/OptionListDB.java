@@ -18,7 +18,7 @@ public class OptionListDB implements EntityDB<OptionList>{
 
 	private static String TABLE_NAME = "OPTION_LIST";
 
-	private static String TABLE_ALIAS = "A_ol_774";
+	private static String TABLE_ALIAS = "A_ol_547";
 
 	public static String getTableName()
 	{
@@ -130,7 +130,7 @@ public class OptionListDB implements EntityDB<OptionList>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), optionlist.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), optionlist.getName());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(optionlist.getName()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), optionlist.getActiveFlag());
 			mapping.put(COLUMNS.DATA_TYPE_ID.getColumnName(), optionlist.getDataTypeId());
 			return mapping;

@@ -19,7 +19,7 @@ public class JobEyAssessmentDB implements EntityDB<JobEyAssessment>{
 
 	private static String TABLE_NAME = "JOB_EY_ASSESSMENT";
 
-	private static String TABLE_ALIAS = "A_jea_942";
+	private static String TABLE_ALIAS = "A_jea_765";
 
 	public static String getTableName()
 	{
@@ -192,24 +192,24 @@ public class JobEyAssessmentDB implements EntityDB<JobEyAssessment>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), jobeyassessment.getId());
 			mapping.put(COLUMNS.JOB_ID.getColumnName(), jobeyassessment.getJobId());
-			mapping.put(COLUMNS.ALLY_STATISFACTION.getColumnName(), jobeyassessment.getAllyStatisfaction());
+			mapping.put(COLUMNS.ALLY_STATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getAllyStatisfaction()));
 			mapping.put(COLUMNS.ALLY_COMPLETE_ASSESS.getColumnName(), jobeyassessment.getAllyCompleteAssess());
-			mapping.put(COLUMNS.ALLY_STATISFACTION_COMMENT.getColumnName(), jobeyassessment.getAllyStatisfactionComment());
-			mapping.put(COLUMNS.PERSONAL_GROWTH.getColumnName(), jobeyassessment.getPersonalGrowth());
-			mapping.put(COLUMNS.PROFESSIONAL_GROWTH.getColumnName(), jobeyassessment.getProfessionalGrowth());
-			mapping.put(COLUMNS.DEVELOPMENT_GROWTH.getColumnName(), jobeyassessment.getDevelopmentGrowth());
-			mapping.put(COLUMNS.ASKING_FEEDBACK.getColumnName(), jobeyassessment.getAskingFeedback());
-			mapping.put(COLUMNS.ENGAGING_COMMUNITY.getColumnName(), jobeyassessment.getEngagingCommunity());
-			mapping.put(COLUMNS.PRACTICING_INCLUSION.getColumnName(), jobeyassessment.getPracticingInclusion());
-			mapping.put(COLUMNS.INITIATIVE.getColumnName(), jobeyassessment.getInitiative());
-			mapping.put(COLUMNS.PERSONAL_ACCOUNTABITITY.getColumnName(), jobeyassessment.getPersonalAccountabitity());
-			mapping.put(COLUMNS.PERSONAL_RESPONSABILITY.getColumnName(), jobeyassessment.getPersonalResponsability());
-			mapping.put(COLUMNS.TEAM_WORK.getColumnName(), jobeyassessment.getTeamWork());
+			mapping.put(COLUMNS.ALLY_STATISFACTION_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getAllyStatisfactionComment()));
+			mapping.put(COLUMNS.PERSONAL_GROWTH.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getPersonalGrowth()));
+			mapping.put(COLUMNS.PROFESSIONAL_GROWTH.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getProfessionalGrowth()));
+			mapping.put(COLUMNS.DEVELOPMENT_GROWTH.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getDevelopmentGrowth()));
+			mapping.put(COLUMNS.ASKING_FEEDBACK.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getAskingFeedback()));
+			mapping.put(COLUMNS.ENGAGING_COMMUNITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getEngagingCommunity()));
+			mapping.put(COLUMNS.PRACTICING_INCLUSION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getPracticingInclusion()));
+			mapping.put(COLUMNS.INITIATIVE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getInitiative()));
+			mapping.put(COLUMNS.PERSONAL_ACCOUNTABITITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getPersonalAccountabitity()));
+			mapping.put(COLUMNS.PERSONAL_RESPONSABILITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getPersonalResponsability()));
+			mapping.put(COLUMNS.TEAM_WORK.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getTeamWork()));
 			mapping.put(COLUMNS.ORG_INCREASED.getColumnName(), jobeyassessment.getOrgIncreased());
-			mapping.put(COLUMNS.ORG_INCREASED_BENEFIT.getColumnName(), jobeyassessment.getOrgIncreasedBenefit());
-			mapping.put(COLUMNS.ADDITIONAL_SUSTAINABLE.getColumnName(), jobeyassessment.getAdditionalSustainable());
-			mapping.put(COLUMNS.WORK_LEVERAGE.getColumnName(), jobeyassessment.getWorkLeverage());
-			mapping.put(COLUMNS.CAP_INCREASE_EXP_IDS.getColumnName(), jobeyassessment.getCapIncreaseExpIds());
+			mapping.put(COLUMNS.ORG_INCREASED_BENEFIT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getOrgIncreasedBenefit()));
+			mapping.put(COLUMNS.ADDITIONAL_SUSTAINABLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getAdditionalSustainable()));
+			mapping.put(COLUMNS.WORK_LEVERAGE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getWorkLeverage()));
+			mapping.put(COLUMNS.CAP_INCREASE_EXP_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getCapIncreaseExpIds()));
 			mapping.put(COLUMNS.MSR_ID.getColumnName(), jobeyassessment.getMsrId());
 			if (jobeyassessment.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (jobeyassessment.getCreatedAt().getTime()));

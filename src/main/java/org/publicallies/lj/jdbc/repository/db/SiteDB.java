@@ -19,7 +19,7 @@ public class SiteDB implements EntityDB<Site>{
 
 	private static String TABLE_NAME = "SITE";
 
-	private static String TABLE_ALIAS = "A_sit_631";
+	private static String TABLE_ALIAS = "A_sit_221";
 
 	public static String getTableName()
 	{
@@ -185,19 +185,19 @@ public class SiteDB implements EntityDB<Site>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), site.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), site.getName());
-			mapping.put(COLUMNS.CONTACT_LAST_NAME.getColumnName(), site.getContactLastName());
-			mapping.put(COLUMNS.CONTACT_FIRST_NAME.getColumnName(), site.getContactFirstName());
-			mapping.put(COLUMNS.CONTACT_TITLE.getColumnName(), site.getContactTitle());
-			mapping.put(COLUMNS.ADDRESS1.getColumnName(), site.getAddress1());
-			mapping.put(COLUMNS.ADDRESS2.getColumnName(), site.getAddress2());
-			mapping.put(COLUMNS.CITY.getColumnName(), site.getCity());
-			mapping.put(COLUMNS.EMAIL.getColumnName(), site.getEmail());
-			mapping.put(COLUMNS.ZIP.getColumnName(), site.getZip());
-			mapping.put(COLUMNS.PHONE_MAIN.getColumnName(), site.getPhoneMain());
-			mapping.put(COLUMNS.PHONE_OTHER.getColumnName(), site.getPhoneOther());
-			mapping.put(COLUMNS.FAX.getColumnName(), site.getFax());
-			mapping.put(COLUMNS.NOTES.getColumnName(), site.getNotes());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getName()));
+			mapping.put(COLUMNS.CONTACT_LAST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getContactLastName()));
+			mapping.put(COLUMNS.CONTACT_FIRST_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getContactFirstName()));
+			mapping.put(COLUMNS.CONTACT_TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getContactTitle()));
+			mapping.put(COLUMNS.ADDRESS1.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getAddress1()));
+			mapping.put(COLUMNS.ADDRESS2.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getAddress2()));
+			mapping.put(COLUMNS.CITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getCity()));
+			mapping.put(COLUMNS.EMAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getEmail()));
+			mapping.put(COLUMNS.ZIP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getZip()));
+			mapping.put(COLUMNS.PHONE_MAIN.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getPhoneMain()));
+			mapping.put(COLUMNS.PHONE_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getPhoneOther()));
+			mapping.put(COLUMNS.FAX.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getFax()));
+			mapping.put(COLUMNS.NOTES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getNotes()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), site.getActiveFlag());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), site.getOldId());
 			mapping.put(COLUMNS.K_SEGMENT_ID.getColumnName(), site.getKSegmentId());
@@ -207,7 +207,7 @@ public class SiteDB implements EntityDB<Site>{
 			if (site.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (site.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.STATE_ID.getColumnName(), site.getStateId());
-			mapping.put(COLUMNS.SF_ID.getColumnName(), site.getSfId());
+			mapping.put(COLUMNS.SF_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(site.getSfId()));
 			return mapping;
 		}
 	}

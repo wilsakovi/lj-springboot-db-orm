@@ -19,7 +19,7 @@ public class ActsObjectiveDB implements EntityDB<ActsObjective>{
 
 	private static String TABLE_NAME = "ACTS_OBJECTIVE";
 
-	private static String TABLE_ALIAS = "A_ao_559";
+	private static String TABLE_ALIAS = "A_ao_81";
 
 	public static String getTableName()
 	{
@@ -167,24 +167,24 @@ public class ActsObjectiveDB implements EntityDB<ActsObjective>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), actsobjective.getId());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), actsobjective.getDescription());
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsobjective.getDescription()));
 			if (actsobjective.getStartDate() != null)
 				mapping.put(COLUMNS.START_DATE.getColumnName(), new Timestamp (actsobjective.getStartDate().getTime()));
 			if (actsobjective.getEndDate() != null)
 				mapping.put(COLUMNS.END_DATE.getColumnName(), new Timestamp (actsobjective.getEndDate().getTime()));
 			mapping.put(COLUMNS.USERS_ID.getColumnName(), actsobjective.getUsersId());
-			mapping.put(COLUMNS.HISTORY.getColumnName(), actsobjective.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsobjective.getHistory()));
 			if (actsobjective.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (actsobjective.getCreatedAt().getTime()));
 			if (actsobjective.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (actsobjective.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.CATEGORY_IDS.getColumnName(), actsobjective.getCategoryIds());
+			mapping.put(COLUMNS.CATEGORY_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsobjective.getCategoryIds()));
 			mapping.put(COLUMNS.COMPLETED_FLAG.getColumnName(), actsobjective.getCompletedFlag());
-			mapping.put(COLUMNS.FINAL_COMMENT.getColumnName(), actsobjective.getFinalComment());
+			mapping.put(COLUMNS.FINAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsobjective.getFinalComment()));
 			mapping.put(COLUMNS.SUBMITTED_FLAG.getColumnName(), actsobjective.getSubmittedFlag());
 			mapping.put(COLUMNS.JOB_OBJECTIVE_ID.getColumnName(), actsobjective.getJobObjectiveId());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), actsobjective.getActiveFlag());
-			mapping.put(COLUMNS.OBJECTIVE_TYPE.getColumnName(), actsobjective.getObjectiveType());
+			mapping.put(COLUMNS.OBJECTIVE_TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(actsobjective.getObjectiveType()));
 			mapping.put(COLUMNS.JOB_ID.getColumnName(), actsobjective.getJobId());
 			return mapping;
 		}

@@ -18,7 +18,7 @@ public class StpEmployStatusDB implements EntityDB<StpEmployStatus>{
 
 	private static String TABLE_NAME = "STP_EMPLOY_STATUS";
 
-	private static String TABLE_ALIAS = "A_ses_678";
+	private static String TABLE_ALIAS = "A_ses_355";
 
 	public static String getTableName()
 	{
@@ -133,10 +133,10 @@ public class StpEmployStatusDB implements EntityDB<StpEmployStatus>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpemploystatus.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpemploystatus.getName());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpemploystatus.getCode());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpemploystatus.getName()));
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpemploystatus.getCode()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), stpemploystatus.getOldId());
-			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), stpemploystatus.getSpecialFlag());
+			mapping.put(COLUMNS.SPECIAL_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpemploystatus.getSpecialFlag()));
 			return mapping;
 		}
 	}

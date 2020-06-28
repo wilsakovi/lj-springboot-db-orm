@@ -18,7 +18,7 @@ public class AtomicAccessDB implements EntityDB<AtomicAccess>{
 
 	private static String TABLE_NAME = "ATOMIC_ACCESS";
 
-	private static String TABLE_ALIAS = "A_aa_762";
+	private static String TABLE_ALIAS = "A_aa_257";
 
 	public static String getTableName()
 	{
@@ -139,12 +139,12 @@ public class AtomicAccessDB implements EntityDB<AtomicAccess>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), atomicaccess.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), atomicaccess.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), atomicaccess.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicaccess.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicaccess.getName()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), atomicaccess.getActiveFlag());
-			mapping.put(COLUMNS.PATH.getColumnName(), atomicaccess.getPath());
+			mapping.put(COLUMNS.PATH.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicaccess.getPath()));
 			mapping.put(COLUMNS.TYPE.getColumnName(), atomicaccess.getType());
-			mapping.put(COLUMNS.DESCRTIPTION.getColumnName(), atomicaccess.getDescrtiption());
+			mapping.put(COLUMNS.DESCRTIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicaccess.getDescrtiption()));
 			return mapping;
 		}
 	}

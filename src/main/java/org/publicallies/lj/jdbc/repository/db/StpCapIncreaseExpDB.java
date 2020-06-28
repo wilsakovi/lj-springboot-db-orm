@@ -18,7 +18,7 @@ public class StpCapIncreaseExpDB implements EntityDB<StpCapIncreaseExp>{
 
 	private static String TABLE_NAME = "STP_CAP_INCREASE_EXP";
 
-	private static String TABLE_ALIAS = "A_scie_421";
+	private static String TABLE_ALIAS = "A_scie_455";
 
 	public static String getTableName()
 	{
@@ -130,8 +130,8 @@ public class StpCapIncreaseExpDB implements EntityDB<StpCapIncreaseExp>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), stpcapincreaseexp.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), stpcapincreaseexp.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), stpcapincreaseexp.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpcapincreaseexp.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpcapincreaseexp.getName()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stpcapincreaseexp.getActiveFlag());
 			return mapping;
 		}

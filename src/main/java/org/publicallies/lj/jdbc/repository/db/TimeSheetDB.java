@@ -19,7 +19,7 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 
 	private static String TABLE_NAME = "TIME_SHEET";
 
-	private static String TABLE_ALIAS = "A_ts_806";
+	private static String TABLE_ALIAS = "A_ts_684";
 
 	public static String getTableName()
 	{
@@ -190,7 +190,7 @@ public class TimeSheetDB implements EntityDB<TimeSheet>{
 			if (timesheet.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (timesheet.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.REFLECTION.getColumnName(), timesheet.getReflection());
-			mapping.put(COLUMNS.SHEET_DETAIL.getColumnName(), timesheet.getSheetDetail());
+			mapping.put(COLUMNS.SHEET_DETAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(timesheet.getSheetDetail()));
 			mapping.put(COLUMNS.WEEKDAY_ID.getColumnName(), timesheet.getWeekdayId());
 			mapping.put(COLUMNS.DATE_ROW_ORDER.getColumnName(), timesheet.getDateRowOrder());
 			return mapping;

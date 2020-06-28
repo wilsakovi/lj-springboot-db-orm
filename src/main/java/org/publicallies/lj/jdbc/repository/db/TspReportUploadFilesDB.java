@@ -19,7 +19,7 @@ public class TspReportUploadFilesDB implements EntityDB<TspReportUploadFiles>{
 
 	private static String TABLE_NAME = "TSP_REPORT_UPLOAD_FILES";
 
-	private static String TABLE_ALIAS = "A_truf_345";
+	private static String TABLE_ALIAS = "A_truf_455";
 
 	public static String getTableName()
 	{
@@ -152,18 +152,18 @@ public class TspReportUploadFilesDB implements EntityDB<TspReportUploadFiles>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), tspreportuploadfiles.getId());
-			mapping.put(COLUMNS.FILE_TITLE.getColumnName(), tspreportuploadfiles.getFileTitle());
-			mapping.put(COLUMNS.FILE_LOCATION.getColumnName(), tspreportuploadfiles.getFileLocation());
-			mapping.put(COLUMNS.FILE_DESCRIPTION.getColumnName(), tspreportuploadfiles.getFileDescription());
+			mapping.put(COLUMNS.FILE_TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreportuploadfiles.getFileTitle()));
+			mapping.put(COLUMNS.FILE_LOCATION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreportuploadfiles.getFileLocation()));
+			mapping.put(COLUMNS.FILE_DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreportuploadfiles.getFileDescription()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), tspreportuploadfiles.getActiveFlag());
 			mapping.put(COLUMNS.UPLOADED_BY_USER_ID.getColumnName(), tspreportuploadfiles.getUploadedByUserId());
-			mapping.put(COLUMNS.UPLOADED_BY_NAME.getColumnName(), tspreportuploadfiles.getUploadedByName());
+			mapping.put(COLUMNS.UPLOADED_BY_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreportuploadfiles.getUploadedByName()));
 			mapping.put(COLUMNS.TSP_REPORT_ID.getColumnName(), tspreportuploadfiles.getTspReportId());
 			if (tspreportuploadfiles.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (tspreportuploadfiles.getCreatedAt().getTime()));
 			if (tspreportuploadfiles.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (tspreportuploadfiles.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.HISTORY.getColumnName(), tspreportuploadfiles.getHistory());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tspreportuploadfiles.getHistory()));
 			return mapping;
 		}
 	}

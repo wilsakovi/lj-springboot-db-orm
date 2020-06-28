@@ -19,7 +19,7 @@ public class OutputMeasureDB implements EntityDB<OutputMeasure>{
 
 	private static String TABLE_NAME = "OUTPUT_MEASURE";
 
-	private static String TABLE_ALIAS = "A_om_682";
+	private static String TABLE_ALIAS = "A_om_655";
 
 	public static String getTableName()
 	{
@@ -170,11 +170,11 @@ public class OutputMeasureDB implements EntityDB<OutputMeasure>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), outputmeasure.getId());
-			mapping.put(COLUMNS.NAME.getColumnName(), outputmeasure.getName());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), outputmeasure.getDescription());
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(outputmeasure.getName()));
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(outputmeasure.getDescription()));
 			if (outputmeasure.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (outputmeasure.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.SHORT_DESCRIPTION.getColumnName(), outputmeasure.getShortDescription());
+			mapping.put(COLUMNS.SHORT_DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(outputmeasure.getShortDescription()));
 			mapping.put(COLUMNS.ACTIVITY_AREA_ID.getColumnName(), outputmeasure.getActivityAreaId());
 			mapping.put(COLUMNS.HAS_CNCS_REPORT.getColumnName(), outputmeasure.getHasCncsReport());
 			mapping.put(COLUMNS.HAS_POPULATION_REPORT.getColumnName(), outputmeasure.getHasPopulationReport());
@@ -183,8 +183,8 @@ public class OutputMeasureDB implements EntityDB<OutputMeasure>{
 			mapping.put(COLUMNS.HAS_BENEFICIARY.getColumnName(), outputmeasure.getHasBeneficiary());
 			mapping.put(COLUMNS.OUTPUT_MEASURE_MAIN_ID.getColumnName(), outputmeasure.getOutputMeasureMainId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), outputmeasure.getOldId());
-			mapping.put(COLUMNS.PROGRAM_YEAR_IDS.getColumnName(), outputmeasure.getProgramYearIds());
-			mapping.put(COLUMNS.CAPACITY_BUILDING_NAME.getColumnName(), outputmeasure.getCapacityBuildingName());
+			mapping.put(COLUMNS.PROGRAM_YEAR_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(outputmeasure.getProgramYearIds()));
+			mapping.put(COLUMNS.CAPACITY_BUILDING_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(outputmeasure.getCapacityBuildingName()));
 			mapping.put(COLUMNS.CAP_BUILDING_FLAG.getColumnName(), outputmeasure.getCapBuildingFlag());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), outputmeasure.getActiveFlag());
 			return mapping;

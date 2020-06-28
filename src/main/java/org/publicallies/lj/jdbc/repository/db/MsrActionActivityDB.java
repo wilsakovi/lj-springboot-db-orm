@@ -19,7 +19,7 @@ public class MsrActionActivityDB implements EntityDB<MsrActionActivity>{
 
 	private static String TABLE_NAME = "MSR_ACTION_ACTIVITY";
 
-	private static String TABLE_ALIAS = "A_maa_833";
+	private static String TABLE_ALIAS = "A_maa_400";
 
 	public static String getTableName()
 	{
@@ -158,8 +158,8 @@ public class MsrActionActivityDB implements EntityDB<MsrActionActivity>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), msractionactivity.getId());
-			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), msractionactivity.getDescription());
-			mapping.put(COLUMNS.COLLABORATORS.getColumnName(), msractionactivity.getCollaborators());
+			mapping.put(COLUMNS.DESCRIPTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msractionactivity.getDescription()));
+			mapping.put(COLUMNS.COLLABORATORS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msractionactivity.getCollaborators()));
 			if (msractionactivity.getCompletionDate() != null)
 				mapping.put(COLUMNS.COMPLETION_DATE.getColumnName(), new Timestamp (msractionactivity.getCompletionDate().getTime()));
 			if (msractionactivity.getCompletedAt() != null)
@@ -169,10 +169,10 @@ public class MsrActionActivityDB implements EntityDB<MsrActionActivity>{
 			if (msractionactivity.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (msractionactivity.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), msractionactivity.getActiveFlag());
-			mapping.put(COLUMNS.ADDITIONAL_DETAIL.getColumnName(), msractionactivity.getAdditionalDetail());
+			mapping.put(COLUMNS.ADDITIONAL_DETAIL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msractionactivity.getAdditionalDetail()));
 			mapping.put(COLUMNS.INITIAL_MSR_ID.getColumnName(), msractionactivity.getInitialMsrId());
 			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), msractionactivity.getAllyProfileId());
-			mapping.put(COLUMNS.ACTION_STATUS_CODE.getColumnName(), msractionactivity.getActionStatusCode());
+			mapping.put(COLUMNS.ACTION_STATUS_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msractionactivity.getActionStatusCode()));
 			mapping.put(COLUMNS.JOB_ID.getColumnName(), msractionactivity.getJobId());
 			return mapping;
 		}

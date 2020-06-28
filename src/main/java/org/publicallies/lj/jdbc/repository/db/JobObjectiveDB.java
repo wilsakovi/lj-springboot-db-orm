@@ -19,7 +19,7 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 
 	private static String TABLE_NAME = "JOB_OBJECTIVE";
 
-	private static String TABLE_ALIAS = "A_jo_91";
+	private static String TABLE_ALIAS = "A_jo_873";
 
 	public static String getTableName()
 	{
@@ -170,18 +170,18 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), jobobjective.getId());
-			mapping.put(COLUMNS.TITLE.getColumnName(), jobobjective.getTitle());
-			mapping.put(COLUMNS.ACTIVITIES.getColumnName(), jobobjective.getActivities());
-			mapping.put(COLUMNS.MEASURE_OUTCOMES.getColumnName(), jobobjective.getMeasureOutcomes());
-			mapping.put(COLUMNS.TARGET_GROUP.getColumnName(), jobobjective.getTargetGroup());
-			mapping.put(COLUMNS.OUTCOME_RESULTS.getColumnName(), jobobjective.getOutcomeResults());
+			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobobjective.getTitle()));
+			mapping.put(COLUMNS.ACTIVITIES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobobjective.getActivities()));
+			mapping.put(COLUMNS.MEASURE_OUTCOMES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobobjective.getMeasureOutcomes()));
+			mapping.put(COLUMNS.TARGET_GROUP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobobjective.getTargetGroup()));
+			mapping.put(COLUMNS.OUTCOME_RESULTS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobobjective.getOutcomeResults()));
 			if (jobobjective.getStartDate() != null)
 				mapping.put(COLUMNS.START_DATE.getColumnName(), new Timestamp (jobobjective.getStartDate().getTime()));
 			if (jobobjective.getEndDate() != null)
 				mapping.put(COLUMNS.END_DATE.getColumnName(), new Timestamp (jobobjective.getEndDate().getTime()));
-			mapping.put(COLUMNS.OBJECTIVE_ASSESSMENT.getColumnName(), jobobjective.getObjectiveAssessment());
+			mapping.put(COLUMNS.OBJECTIVE_ASSESSMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobobjective.getObjectiveAssessment()));
 			mapping.put(COLUMNS.JOB_ID.getColumnName(), jobobjective.getJobId());
-			mapping.put(COLUMNS.OBJECTIVE_ASSESSMENT_COMMENT.getColumnName(), jobobjective.getObjectiveAssessmentComment());
+			mapping.put(COLUMNS.OBJECTIVE_ASSESSMENT_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobobjective.getObjectiveAssessmentComment()));
 			if (jobobjective.getObjectiveAssessmentDate() != null)
 				mapping.put(COLUMNS.OBJECTIVE_ASSESSMENT_DATE.getColumnName(), new Timestamp (jobobjective.getObjectiveAssessmentDate().getTime()));
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), jobobjective.getOldId());

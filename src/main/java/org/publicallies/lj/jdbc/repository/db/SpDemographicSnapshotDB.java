@@ -19,7 +19,7 @@ public class SpDemographicSnapshotDB implements EntityDB<SpDemographicSnapshot>{
 
 	private static String TABLE_NAME = "SP_DEMOGRAPHIC_SNAPSHOT";
 
-	private static String TABLE_ALIAS = "A_sds_338";
+	private static String TABLE_ALIAS = "A_sds_472";
 
 	public static String getTableName()
 	{
@@ -182,19 +182,19 @@ public class SpDemographicSnapshotDB implements EntityDB<SpDemographicSnapshot>{
 			mapping.put(COLUMNS.PARTNER_SUPERVISOR_ID.getColumnName(), spdemographicsnapshot.getPartnerSupervisorId());
 			mapping.put(COLUMNS.TERM_ID.getColumnName(), spdemographicsnapshot.getTermId());
 			mapping.put(COLUMNS.GENDER_ID.getColumnName(), spdemographicsnapshot.getGenderId());
-			mapping.put(COLUMNS.GENDER_NAME.getColumnName(), spdemographicsnapshot.getGenderName());
-			mapping.put(COLUMNS.GENDER_OTHER.getColumnName(), spdemographicsnapshot.getGenderOther());
-			mapping.put(COLUMNS.RACE_IDS_JSON.getColumnName(), spdemographicsnapshot.getRaceIdsJson());
-			mapping.put(COLUMNS.RACE_NAMES_JSON.getColumnName(), spdemographicsnapshot.getRaceNamesJson());
-			mapping.put(COLUMNS.RACE_OTHER.getColumnName(), spdemographicsnapshot.getRaceOther());
+			mapping.put(COLUMNS.GENDER_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(spdemographicsnapshot.getGenderName()));
+			mapping.put(COLUMNS.GENDER_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(spdemographicsnapshot.getGenderOther()));
+			mapping.put(COLUMNS.RACE_IDS_JSON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(spdemographicsnapshot.getRaceIdsJson()));
+			mapping.put(COLUMNS.RACE_NAMES_JSON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(spdemographicsnapshot.getRaceNamesJson()));
+			mapping.put(COLUMNS.RACE_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(spdemographicsnapshot.getRaceOther()));
 			mapping.put(COLUMNS.HIGHER_EDUCATION_ID.getColumnName(), spdemographicsnapshot.getHigherEducationId());
-			mapping.put(COLUMNS.HIGHER_EDUCATION_NAME.getColumnName(), spdemographicsnapshot.getHigherEducationName());
+			mapping.put(COLUMNS.HIGHER_EDUCATION_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(spdemographicsnapshot.getHigherEducationName()));
 			mapping.put(COLUMNS.SEX_ORIENTATION_ID.getColumnName(), spdemographicsnapshot.getSexOrientationId());
-			mapping.put(COLUMNS.SEX_ORIENTATION_NAME.getColumnName(), spdemographicsnapshot.getSexOrientationName());
-			mapping.put(COLUMNS.SEX_ORIENTATION_OTHER.getColumnName(), spdemographicsnapshot.getSexOrientationOther());
+			mapping.put(COLUMNS.SEX_ORIENTATION_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(spdemographicsnapshot.getSexOrientationName()));
+			mapping.put(COLUMNS.SEX_ORIENTATION_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(spdemographicsnapshot.getSexOrientationOther()));
 			if (spdemographicsnapshot.getDob() != null)
 				mapping.put(COLUMNS.DOB.getColumnName(), new Timestamp (spdemographicsnapshot.getDob().getTime()));
-			mapping.put(COLUMNS.LGBTQ_FLAG.getColumnName(), spdemographicsnapshot.getLgbtqFlag());
+			mapping.put(COLUMNS.LGBTQ_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(spdemographicsnapshot.getLgbtqFlag()));
 			mapping.put(COLUMNS.P_POSITION_PERIOD.getColumnName(), spdemographicsnapshot.getPPositionPeriod());
 			mapping.put(COLUMNS.C_POSITION_PERIOD.getColumnName(), spdemographicsnapshot.getCPositionPeriod());
 			if (spdemographicsnapshot.getCreatedAt() != null)

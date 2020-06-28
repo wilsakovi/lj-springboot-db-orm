@@ -18,7 +18,7 @@ public class ReportStatusDB implements EntityDB<ReportStatus>{
 
 	private static String TABLE_NAME = "REPORT_STATUS";
 
-	private static String TABLE_ALIAS = "A_rs_983";
+	private static String TABLE_ALIAS = "A_rs_39";
 
 	public static String getTableName()
 	{
@@ -136,11 +136,11 @@ public class ReportStatusDB implements EntityDB<ReportStatus>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), reportstatus.getId());
-			mapping.put(COLUMNS.CODE.getColumnName(), reportstatus.getCode());
-			mapping.put(COLUMNS.NAME.getColumnName(), reportstatus.getName());
+			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(reportstatus.getCode()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(reportstatus.getName()));
 			mapping.put(COLUMNS.STATUS.getColumnName(), reportstatus.getStatus());
 			mapping.put(COLUMNS.RANK.getColumnName(), reportstatus.getRank());
-			mapping.put(COLUMNS.OLD_CODE.getColumnName(), reportstatus.getOldCode());
+			mapping.put(COLUMNS.OLD_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(reportstatus.getOldCode()));
 			return mapping;
 		}
 	}
