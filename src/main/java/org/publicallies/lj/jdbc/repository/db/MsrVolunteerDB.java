@@ -19,7 +19,7 @@ public class MsrVolunteerDB implements EntityDB<MsrVolunteer>{
 
 	private static String TABLE_NAME = "MSR_VOLUNTEER";
 
-	private static String TABLE_ALIAS = "A_mv_298";
+	private static String TABLE_ALIAS = "A_mv_679";
 
 	public static String getTableName()
 	{

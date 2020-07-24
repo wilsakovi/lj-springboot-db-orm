@@ -17,7 +17,11 @@ public class CommonUtils {
      */
     public static String cleanStringForSqlInsertion (String obj ) {
         if (obj != null) {
-           obj =  ((String) obj).replaceAll("\u0092", "'");
+           obj =  ((String) obj)
+                   .replaceAll("\u0091", "'")
+                   .replaceAll("\u0092", "'")
+                   .replaceAll("\u0093", "\"")
+                   .replaceAll("\u0094", "\"");
         }
         
         return obj;

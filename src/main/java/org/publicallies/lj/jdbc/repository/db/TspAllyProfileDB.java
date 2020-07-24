@@ -19,7 +19,7 @@ public class TspAllyProfileDB implements EntityDB<TspAllyProfile>{
 
 	private static String TABLE_NAME = "TSP_ALLY_PROFILE";
 
-	private static String TABLE_ALIAS = "A_tap_576";
+	private static String TABLE_ALIAS = "A_tap_458";
 
 	public static String getTableName()
 	{

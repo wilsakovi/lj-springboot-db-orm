@@ -19,7 +19,7 @@ public class ActivityAreaDB implements EntityDB<ActivityArea>{
 
 	private static String TABLE_NAME = "ACTIVITY_AREA";
 
-	private static String TABLE_ALIAS = "A_aa_949";
+	private static String TABLE_ALIAS = "A_aa_575";
 
 	public static String getTableName()
 	{

@@ -19,7 +19,7 @@ public class StaffDB implements EntityDB<Staff>{
 
 	private static String TABLE_NAME = "STAFF";
 
-	private static String TABLE_ALIAS = "A_sta_201";
+	private static String TABLE_ALIAS = "A_sta_969";
 
 	public static String getTableName()
 	{

@@ -19,7 +19,7 @@ public class JobDB implements EntityDB<Job>{
 
 	private static String TABLE_NAME = "JOB";
 
-	private static String TABLE_ALIAS = "A_job_249";
+	private static String TABLE_ALIAS = "A_job_447";
 
 	public static String getTableName()
 	{
@@ -79,6 +79,10 @@ public class JobDB implements EntityDB<Job>{
 		LAST_UPDATED_USERS_ID("last_updated_users_id", false, ""),
 		SF_ID("sf_id", false, ""),
 		SF_FAILED_FLAG("sf_failed_flag", false, ""),
+		SA_APPROVAL_STATUS("sa_approval_status", false, ""),
+		SA_APPROVAL_DATE("sa_approval_date", false, ""),
+		SA_APPROVAL_COMMENT("sa_approval_comment", false, ""),
+		CONTRACT_SENT_FLAG("contract_sent_flag", false, ""),
 		;
 
 		private String columnName;
@@ -216,6 +220,14 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setSfId(null);
 			obj.setSfFailedFlag(rs.getInt(COLUMNS.SF_FAILED_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
+			obj.setSaApprovalStatus(rs.getString(COLUMNS.SA_APPROVAL_STATUS.getColumnName()));
+			if (rs.wasNull()) obj.setSaApprovalStatus(null);
+			obj.setSaApprovalDate(rs.getTimestamp(COLUMNS.SA_APPROVAL_DATE.getColumnName()));
+			if (rs.wasNull()) obj.setSaApprovalDate(null);
+			obj.setSaApprovalComment(rs.getString(COLUMNS.SA_APPROVAL_COMMENT.getColumnName()));
+			if (rs.wasNull()) obj.setSaApprovalComment(null);
+			obj.setContractSentFlag(rs.getInt(COLUMNS.CONTRACT_SENT_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setContractSentFlag(null);
 			return obj;
 		}
 	}
@@ -268,6 +280,11 @@ public class JobDB implements EntityDB<Job>{
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), job.getLastUpdatedUsersId());
 			mapping.put(COLUMNS.SF_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getSfId()));
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), job.getSfFailedFlag());
+			mapping.put(COLUMNS.SA_APPROVAL_STATUS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getSaApprovalStatus()));
+			if (job.getSaApprovalDate() != null)
+				mapping.put(COLUMNS.SA_APPROVAL_DATE.getColumnName(), new Timestamp (job.getSaApprovalDate().getTime()));
+			mapping.put(COLUMNS.SA_APPROVAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getSaApprovalComment()));
+			mapping.put(COLUMNS.CONTRACT_SENT_FLAG.getColumnName(), job.getContractSentFlag());
 			return mapping;
 		}
 	}
@@ -392,6 +409,14 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setSfId(null);
 			obj.setSfFailedFlag(rs.getInt(COLUMNS.SF_FAILED_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
+			obj.setSaApprovalStatus(rs.getString(COLUMNS.SA_APPROVAL_STATUS.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSaApprovalStatus(null);
+			obj.setSaApprovalDate(rs.getTimestamp(COLUMNS.SA_APPROVAL_DATE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSaApprovalDate(null);
+			obj.setSaApprovalComment(rs.getString(COLUMNS.SA_APPROVAL_COMMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSaApprovalComment(null);
+			obj.setContractSentFlag(rs.getInt(COLUMNS.CONTRACT_SENT_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setContractSentFlag(null);
 			if (this.loadAllFKeys || this.loadAllyProfile)
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadCncs)

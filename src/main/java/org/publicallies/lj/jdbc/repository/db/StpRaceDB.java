@@ -18,7 +18,7 @@ public class StpRaceDB implements EntityDB<StpRace>{
 
 	private static String TABLE_NAME = "STP_RACE";
 
-	private static String TABLE_ALIAS = "A_sr_848";
+	private static String TABLE_ALIAS = "A_sr_809";
 
 	public static String getTableName()
 	{

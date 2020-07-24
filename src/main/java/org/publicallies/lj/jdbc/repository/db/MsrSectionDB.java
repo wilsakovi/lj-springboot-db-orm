@@ -18,7 +18,7 @@ public class MsrSectionDB implements EntityDB<MsrSection>{
 
 	private static String TABLE_NAME = "MSR_SECTION";
 
-	private static String TABLE_ALIAS = "A_ms_947";
+	private static String TABLE_ALIAS = "A_ms_385";
 
 	public static String getTableName()
 	{

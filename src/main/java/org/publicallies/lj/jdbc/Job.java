@@ -105,6 +105,16 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 
 	private Integer sfFailedFlag = 0;
 
+	@Size (max = 3)
+	private String saApprovalStatus = "NA";
+
+	private Date saApprovalDate;
+
+	@Size (max = 65535)
+	private String saApprovalComment;
+
+	private Integer contractSentFlag = 0;
+
 	private transient boolean persisted;
 
 	private AllyProfile allyProfile;
@@ -482,6 +492,46 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	public Integer getSfFailedFlag ()
 	{
 		return this.sfFailedFlag;
+	}
+
+	public void setSaApprovalStatus (String saApprovalStatus)
+	{
+		this.saApprovalStatus = saApprovalStatus;
+	}
+
+	public String getSaApprovalStatus ()
+	{
+		return this.saApprovalStatus;
+	}
+
+	public void setSaApprovalDate (Date saApprovalDate)
+	{
+		this.saApprovalDate = saApprovalDate;
+	}
+
+	public Date getSaApprovalDate ()
+	{
+		return this.saApprovalDate;
+	}
+
+	public void setSaApprovalComment (String saApprovalComment)
+	{
+		this.saApprovalComment = saApprovalComment;
+	}
+
+	public String getSaApprovalComment ()
+	{
+		return this.saApprovalComment;
+	}
+
+	public void setContractSentFlag (Integer contractSentFlag)
+	{
+		this.contractSentFlag = contractSentFlag;
+	}
+
+	public Integer getContractSentFlag ()
+	{
+		return this.contractSentFlag;
 	}
 
 	public void setPersisted (Boolean persisted)
