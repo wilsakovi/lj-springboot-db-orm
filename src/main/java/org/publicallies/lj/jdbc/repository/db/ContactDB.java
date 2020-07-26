@@ -19,7 +19,7 @@ public class ContactDB implements EntityDB<Contact>{
 
 	private static String TABLE_NAME = "CONTACT";
 
-	private static String TABLE_ALIAS = "A_con_681";
+	private static String TABLE_ALIAS = "A_con_294";
 
 	public static String getTableName()
 	{

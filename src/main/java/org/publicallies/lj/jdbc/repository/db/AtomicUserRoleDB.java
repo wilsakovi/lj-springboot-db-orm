@@ -19,7 +19,7 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 
 	private static String TABLE_NAME = "ATOMIC_USER_ROLE";
 
-	private static String TABLE_ALIAS = "A_aur_202";
+	private static String TABLE_ALIAS = "A_aur_685";
 
 	public static String getTableName()
 	{

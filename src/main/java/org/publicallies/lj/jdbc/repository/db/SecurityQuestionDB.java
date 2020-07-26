@@ -18,7 +18,7 @@ public class SecurityQuestionDB implements EntityDB<SecurityQuestion>{
 
 	private static String TABLE_NAME = "SECURITY_QUESTION";
 
-	private static String TABLE_ALIAS = "A_sq_936";
+	private static String TABLE_ALIAS = "A_sq_490";
 
 	public static String getTableName()
 	{

@@ -19,7 +19,7 @@ public class JobObjectiveOutputDB implements EntityDB<JobObjectiveOutput>{
 
 	private static String TABLE_NAME = "JOB_OBJECTIVE_OUTPUT";
 
-	private static String TABLE_ALIAS = "A_joo_121";
+	private static String TABLE_ALIAS = "A_joo_801";
 
 	public static String getTableName()
 	{

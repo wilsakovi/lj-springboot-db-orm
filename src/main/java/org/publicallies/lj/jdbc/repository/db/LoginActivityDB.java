@@ -19,7 +19,7 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 
 	private static String TABLE_NAME = "LOGIN_ACTIVITY";
 
-	private static String TABLE_ALIAS = "A_la_650";
+	private static String TABLE_ALIAS = "A_la_264";
 
 	public static String getTableName()
 	{

@@ -19,7 +19,7 @@ public class TspReportDB implements EntityDB<TspReport>{
 
 	private static String TABLE_NAME = "TSP_REPORT";
 
-	private static String TABLE_ALIAS = "A_tr_50";
+	private static String TABLE_ALIAS = "A_tr_985";
 
 	public static String getTableName()
 	{

@@ -3680,3 +3680,5 @@ CREATE TABLE `hst_job` (
 ALTER TABLE `job` 
 CHANGE COLUMN `sa_approval_status` `sa_approval_status` CHAR(3) NULL DEFAULT 'NA' ;
 
+ALTER table site_profile add COLUMN req_data json DEFAULT NULL;
+

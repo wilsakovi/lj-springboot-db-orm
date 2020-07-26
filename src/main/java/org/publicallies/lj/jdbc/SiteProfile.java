@@ -100,6 +100,8 @@ public class SiteProfile implements Persistable<Integer> , CommonIdCU<Integer>
 	@Size (max = 65535)
 	private String additionalInfo;
 
+	private String reqData;
+
 	private transient boolean persisted;
 
 	private PartnerOther fundingCommission;
@@ -467,6 +469,16 @@ public class SiteProfile implements Persistable<Integer> , CommonIdCU<Integer>
 	public String getAdditionalInfo ()
 	{
 		return this.additionalInfo;
+	}
+
+	public void setReqData (String reqData)
+	{
+		this.reqData = reqData;
+	}
+
+	public String getReqData ()
+	{
+		return this.reqData;
 	}
 
 	public void setPersisted (Boolean persisted)

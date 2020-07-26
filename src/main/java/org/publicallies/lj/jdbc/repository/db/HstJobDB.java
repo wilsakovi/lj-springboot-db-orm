@@ -19,7 +19,7 @@ public class HstJobDB implements EntityDB<HstJob>{
 
 	private static String TABLE_NAME = "HST_JOB";
 
-	private static String TABLE_ALIAS = "A_hj_430";
+	private static String TABLE_ALIAS = "A_hj_180";
 
 	public static String getTableName()
 	{
