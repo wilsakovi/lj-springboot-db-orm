@@ -21,7 +21,8 @@ public class CommonUtils {
                    .replaceAll("\u0091", "'")
                    .replaceAll("\u0092", "'")
                    .replaceAll("\u0093", "\"")
-                   .replaceAll("\u0094", "\"");
+                   .replaceAll("\u0094", "\"")
+                   .replaceAll("\u0097", "...");
         }
         
         return obj;
