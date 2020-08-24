@@ -48,49 +48,49 @@ public class Tsp implements Persistable<Integer> , CommonIdCUH<Integer>
 
 	private String history;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String desiredResult;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String challengeEvidence;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String communicationAsset;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String leadershipAction;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String teamMemberRole;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String teamAccountability;
 
 	private Integer successCompleted;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String communityOrgs;
 
 	private Integer communityOrgsCount;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String actualResult;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String actualLeadershipAction;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String actualTeamAccountability;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String communityContributed;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String teamLearning;
 
 	private Integer completed = 0;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String communityImpact;
 
 	private transient boolean persisted;

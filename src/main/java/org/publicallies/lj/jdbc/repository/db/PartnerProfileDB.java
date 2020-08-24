@@ -19,7 +19,7 @@ public class PartnerProfileDB implements EntityDB<PartnerProfile>{
 
 	private static String TABLE_NAME = "PARTNER_PROFILE";
 
-	private static String TABLE_ALIAS = "A_pp_786";
+	private static String TABLE_ALIAS = "A_pp_8";
 
 	public static String getTableName()
 	{

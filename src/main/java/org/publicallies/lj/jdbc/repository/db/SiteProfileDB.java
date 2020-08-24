@@ -19,7 +19,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 
 	private static String TABLE_NAME = "SITE_PROFILE";
 
-	private static String TABLE_ALIAS = "A_sp_154";
+	private static String TABLE_ALIAS = "A_sp_947";
 
 	public static String getTableName()
 	{
@@ -78,7 +78,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 		SLOT_TYPE_ID("slot_type_id", false, ""),
 		SRC_FUND_ID("src_fund_id", false, ""),
 		ADDITIONAL_INFO("additional_info", false, ""),
-		REQ_DATA("req_data", true, ""),
+		MSR_REQ_SECTIONS("msr_req_sections", true, ""),
 		;
 
 		private String columnName;
@@ -214,8 +214,8 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			if (rs.wasNull()) obj.setSrcFundId(null);
 			obj.setAdditionalInfo(rs.getString(COLUMNS.ADDITIONAL_INFO.getColumnName()));
 			if (rs.wasNull()) obj.setAdditionalInfo(null);
-			obj.setReqData(rs.getString(COLUMNS.REQ_DATA.getColumnName()));
-			if (rs.wasNull()) obj.setReqData(null);
+			obj.setMsrReqSections(rs.getString(COLUMNS.MSR_REQ_SECTIONS.getColumnName()));
+			if (rs.wasNull()) obj.setMsrReqSections(null);
 			return obj;
 		}
 	}
@@ -271,7 +271,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			mapping.put(COLUMNS.SLOT_TYPE_ID.getColumnName(), siteprofile.getSlotTypeId());
 			mapping.put(COLUMNS.SRC_FUND_ID.getColumnName(), siteprofile.getSrcFundId());
 			mapping.put(COLUMNS.ADDITIONAL_INFO.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getAdditionalInfo()));
-			mapping.put(COLUMNS.REQ_DATA.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getReqData()));
+			mapping.put(COLUMNS.MSR_REQ_SECTIONS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getMsrReqSections()));
 			return mapping;
 		}
 	}
@@ -394,8 +394,8 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			if (rs.wasNull()) obj.setSrcFundId(null);
 			obj.setAdditionalInfo(rs.getString(COLUMNS.ADDITIONAL_INFO.getColumnAliasName()));
 			if (rs.wasNull()) obj.setAdditionalInfo(null);
-			obj.setReqData(rs.getString(COLUMNS.REQ_DATA.getColumnAliasName()));
-			if (rs.wasNull()) obj.setReqData(null);
+			obj.setMsrReqSections(rs.getString(COLUMNS.MSR_REQ_SECTIONS.getColumnAliasName()));
+			if (rs.wasNull()) obj.setMsrReqSections(null);
 			if (this.loadAllFKeys || this.loadFundingCommission)
 				obj.setFundingCommission(PartnerOtherDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadOperationPartner)

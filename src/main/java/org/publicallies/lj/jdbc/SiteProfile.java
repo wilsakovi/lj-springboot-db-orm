@@ -100,7 +100,7 @@ public class SiteProfile implements Persistable<Integer> , CommonIdCU<Integer>
 	@Size (max = 65535)
 	private String additionalInfo;
 
-	private String reqData;
+	private String msrReqSections;
 
 	private transient boolean persisted;
 
@@ -471,14 +471,14 @@ public class SiteProfile implements Persistable<Integer> , CommonIdCU<Integer>
 		return this.additionalInfo;
 	}
 
-	public void setReqData (String reqData)
+	public void setMsrReqSections (String msrReqSections)
 	{
-		this.reqData = reqData;
+		this.msrReqSections = msrReqSections;
 	}
 
-	public String getReqData ()
+	public String getMsrReqSections ()
 	{
-		return this.reqData;
+		return this.msrReqSections;
 	}
 
 	public void setPersisted (Boolean persisted)

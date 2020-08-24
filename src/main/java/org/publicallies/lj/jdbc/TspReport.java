@@ -31,13 +31,13 @@ public class TspReport implements Persistable<Integer> , CommonIdCUH<Integer>
 
 	private Date reportDate;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String achievementDesc;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String resultDesc;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String fiveCoreDesc;
 
 	private Float volunteerHours;
@@ -63,10 +63,10 @@ public class TspReport implements Persistable<Integer> , CommonIdCUH<Integer>
 
 	private Integer startFlag = 0;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String alliesComment;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String supervisorComment;
 
 	private Integer finalFlag = 0;
@@ -94,19 +94,19 @@ public class TspReport implements Persistable<Integer> , CommonIdCUH<Integer>
 	@Size (max = 45)
 	private String projectStatus;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String stepToTrack;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String achievingStatus;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String leadershipActionStatus;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String acountabilityStatus;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String teamWorkStatus;
 
 	private transient boolean persisted;

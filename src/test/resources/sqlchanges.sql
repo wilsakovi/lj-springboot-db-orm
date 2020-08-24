@@ -3685,5 +3685,8 @@ ALTER table site_profile add COLUMN req_data json DEFAULT NULL;
 ========================================= 08/20/2020 ==============================================
 
 INSERT INTO env_properties(keyCode, keyValue) value('SM_UPDATE_DATE', yyyy-mm-dd here);
-update env_properties set keyCode = 'SM_RESPONSE_UPDATE_DATE' where keyCode='SM_LAST_UPDATE';
+update env_properties set keyCode = 'SM_RES_UPDATE_DATE' where keyCode='SM_LAST_UPDATE';
+
+ALTER TABLE `site_profile` 
+CHANGE COLUMN `req_data` `msr_req_sections` JSON NULL DEFAULT NULL ;
 
