@@ -19,7 +19,7 @@ public class JobEyAssessmentDB implements EntityDB<JobEyAssessment>{
 
 	private static String TABLE_NAME = "JOB_EY_ASSESSMENT";
 
-	private static String TABLE_ALIAS = "A_jea_761";
+	private static String TABLE_ALIAS = "A_jea_214";
 
 	public static String getTableName()
 	{

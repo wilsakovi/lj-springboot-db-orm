@@ -18,7 +18,7 @@ public class CapacityBuildingActivitiesDB implements EntityDB<CapacityBuildingAc
 
 	private static String TABLE_NAME = "CAPACITY_BUILDING_ACTIVITIES";
 
-	private static String TABLE_ALIAS = "A_cba_299";
+	private static String TABLE_ALIAS = "A_cba_308";
 
 	public static String getTableName()
 	{

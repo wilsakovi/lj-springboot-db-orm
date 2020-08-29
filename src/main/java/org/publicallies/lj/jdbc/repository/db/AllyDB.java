@@ -19,7 +19,7 @@ public class AllyDB implements EntityDB<Ally>{
 
 	private static String TABLE_NAME = "ALLY";
 
-	private static String TABLE_ALIAS = "A_all_691";
+	private static String TABLE_ALIAS = "A_all_512";
 
 	public static String getTableName()
 	{
