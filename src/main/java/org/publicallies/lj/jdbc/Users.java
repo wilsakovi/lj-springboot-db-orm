@@ -193,6 +193,9 @@ public class Users implements Persistable<Integer> , CommonIdCUHLu<Integer>
 
 	private Short defaultTermId;
 
+	@Size (max = 25)
+	private String defaultRoleType;
+
 	private transient boolean persisted;
 
 	private Term defaultTerm;
@@ -892,6 +895,16 @@ public class Users implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	public Short getDefaultTermId ()
 	{
 		return this.defaultTermId;
+	}
+
+	public void setDefaultRoleType (String defaultRoleType)
+	{
+		this.defaultRoleType = defaultRoleType;
+	}
+
+	public String getDefaultRoleType ()
+	{
+		return this.defaultRoleType;
 	}
 
 	public void setPersisted (Boolean persisted)

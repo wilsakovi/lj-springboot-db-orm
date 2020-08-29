@@ -19,7 +19,7 @@ public class UsersDB implements EntityDB<Users>{
 
 	private static String TABLE_NAME = "USERS";
 
-	private static String TABLE_ALIAS = "A_use_16";
+	private static String TABLE_ALIAS = "A_use_829";
 
 	public static String getTableName()
 	{
@@ -111,6 +111,7 @@ public class UsersDB implements EntityDB<Users>{
 		LAST_UPDATED_USERS_ID("last_updated_users_id", false, ""),
 		SF_FAILED_FLAG("sf_failed_flag", false, ""),
 		DEFAULT_TERM_ID("default_term_id", false, ""),
+		DEFAULT_ROLE_TYPE("default_role_type", false, ""),
 		;
 
 		private String columnName;
@@ -312,6 +313,8 @@ public class UsersDB implements EntityDB<Users>{
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
 			obj.setDefaultTermId(rs.getShort(COLUMNS.DEFAULT_TERM_ID.getColumnName()));
 			if (rs.wasNull()) obj.setDefaultTermId(null);
+			obj.setDefaultRoleType(rs.getString(COLUMNS.DEFAULT_ROLE_TYPE.getColumnName()));
+			if (rs.wasNull()) obj.setDefaultRoleType(null);
 			return obj;
 		}
 	}
@@ -396,6 +399,7 @@ public class UsersDB implements EntityDB<Users>{
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), users.getLastUpdatedUsersId());
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), users.getSfFailedFlag());
 			mapping.put(COLUMNS.DEFAULT_TERM_ID.getColumnName(), users.getDefaultTermId());
+			mapping.put(COLUMNS.DEFAULT_ROLE_TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getDefaultRoleType()));
 			return mapping;
 		}
 	}
@@ -596,6 +600,8 @@ public class UsersDB implements EntityDB<Users>{
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
 			obj.setDefaultTermId(rs.getShort(COLUMNS.DEFAULT_TERM_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setDefaultTermId(null);
+			obj.setDefaultRoleType(rs.getString(COLUMNS.DEFAULT_ROLE_TYPE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setDefaultRoleType(null);
 			if (this.loadAllFKeys || this.loadDefaultTerm)
 				obj.setDefaultTerm(TermDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadHigherEducation)
