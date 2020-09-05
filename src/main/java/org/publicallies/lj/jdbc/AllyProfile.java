@@ -38,7 +38,8 @@ public class AllyProfile implements Persistable<Integer> , CommonIdCUHLu<Integer
 
 	private Byte teamLeadFlag = new Byte("0");
 
-	private Byte posApprovesPisdFlag = new Byte("1");
+	@NotNull
+	private Integer bypassPosApproval = 0;
 
 	private Byte graduationStatusId;
 
@@ -228,14 +229,14 @@ public class AllyProfile implements Persistable<Integer> , CommonIdCUHLu<Integer
 		return this.teamLeadFlag;
 	}
 
-	public void setPosApprovesPisdFlag (Byte posApprovesPisdFlag)
+	public void setBypassPosApproval (Integer bypassPosApproval)
 	{
-		this.posApprovesPisdFlag = posApprovesPisdFlag;
+		this.bypassPosApproval = bypassPosApproval;
 	}
 
-	public Byte getPosApprovesPisdFlag ()
+	public Integer getBypassPosApproval ()
 	{
-		return this.posApprovesPisdFlag;
+		return this.bypassPosApproval;
 	}
 
 	public void setGraduationStatusId (Byte graduationStatusId)

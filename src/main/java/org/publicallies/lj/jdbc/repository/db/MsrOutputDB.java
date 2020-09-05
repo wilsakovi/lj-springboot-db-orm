@@ -19,7 +19,7 @@ public class MsrOutputDB implements EntityDB<MsrOutput>{
 
 	private static String TABLE_NAME = "MSR_OUTPUT";
 
-	private static String TABLE_ALIAS = "A_mo_98";
+	private static String TABLE_ALIAS = "A_mo_324";
 
 	public static String getTableName()
 	{

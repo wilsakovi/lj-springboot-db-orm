@@ -18,7 +18,7 @@ public class StateDB implements EntityDB<State>{
 
 	private static String TABLE_NAME = "STATE";
 
-	private static String TABLE_ALIAS = "A_sta_594";
+	private static String TABLE_ALIAS = "A_sta_890";
 
 	public static String getTableName()
 	{

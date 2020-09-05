@@ -19,7 +19,7 @@ public class SfFailureLogDB implements EntityDB<SfFailureLog>{
 
 	private static String TABLE_NAME = "SF_FAILURE_LOG";
 
-	private static String TABLE_ALIAS = "A_sfl_573";
+	private static String TABLE_ALIAS = "A_sfl_125";
 
 	public static String getTableName()
 	{

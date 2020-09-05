@@ -19,7 +19,7 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 
 	private static String TABLE_NAME = "ALLY_PROFILE";
 
-	private static String TABLE_ALIAS = "A_ap_19";
+	private static String TABLE_ALIAS = "A_ap_559";
 
 	public static String getTableName()
 	{
@@ -50,7 +50,7 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 		JOB_ID("job_id", false, ""),
 		TSP_ID("tsp_id", false, ""),
 		TEAM_LEAD_FLAG("team_lead_flag", false, ""),
-		POS_APPROVES_PISD_FLAG("pos_approves_pisd_flag", false, ""),
+		BYPASS_POS_APPROVAL("bypass_pos_approval", false, ""),
 		GRADUATION_STATUS_ID("graduation_status_id", false, ""),
 		TERMINATION_DISCHARGE_REASON("termination_discharge_reason", false, ""),
 		REPORT_EXCLUDED_FLAG("report_excluded_flag", false, ""),
@@ -177,8 +177,8 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			if (rs.wasNull()) obj.setTspId(null);
 			obj.setTeamLeadFlag(rs.getByte(COLUMNS.TEAM_LEAD_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setTeamLeadFlag(null);
-			obj.setPosApprovesPisdFlag(rs.getByte(COLUMNS.POS_APPROVES_PISD_FLAG.getColumnName()));
-			if (rs.wasNull()) obj.setPosApprovesPisdFlag(null);
+			obj.setBypassPosApproval(rs.getInt(COLUMNS.BYPASS_POS_APPROVAL.getColumnName()));
+			if (rs.wasNull()) obj.setBypassPosApproval(null);
 			obj.setGraduationStatusId(rs.getByte(COLUMNS.GRADUATION_STATUS_ID.getColumnName()));
 			if (rs.wasNull()) obj.setGraduationStatusId(null);
 			obj.setTerminationDischargeReason(rs.getString(COLUMNS.TERMINATION_DISCHARGE_REASON.getColumnName()));
@@ -290,7 +290,7 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			mapping.put(COLUMNS.JOB_ID.getColumnName(), allyprofile.getJobId());
 			mapping.put(COLUMNS.TSP_ID.getColumnName(), allyprofile.getTspId());
 			mapping.put(COLUMNS.TEAM_LEAD_FLAG.getColumnName(), allyprofile.getTeamLeadFlag());
-			mapping.put(COLUMNS.POS_APPROVES_PISD_FLAG.getColumnName(), allyprofile.getPosApprovesPisdFlag());
+			mapping.put(COLUMNS.BYPASS_POS_APPROVAL.getColumnName(), allyprofile.getBypassPosApproval());
 			mapping.put(COLUMNS.GRADUATION_STATUS_ID.getColumnName(), allyprofile.getGraduationStatusId());
 			mapping.put(COLUMNS.TERMINATION_DISCHARGE_REASON.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofile.getTerminationDischargeReason()));
 			mapping.put(COLUMNS.REPORT_EXCLUDED_FLAG.getColumnName(), allyprofile.getReportExcludedFlag());
@@ -409,8 +409,8 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			if (rs.wasNull()) obj.setTspId(null);
 			obj.setTeamLeadFlag(rs.getByte(COLUMNS.TEAM_LEAD_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTeamLeadFlag(null);
-			obj.setPosApprovesPisdFlag(rs.getByte(COLUMNS.POS_APPROVES_PISD_FLAG.getColumnAliasName()));
-			if (rs.wasNull()) obj.setPosApprovesPisdFlag(null);
+			obj.setBypassPosApproval(rs.getInt(COLUMNS.BYPASS_POS_APPROVAL.getColumnAliasName()));
+			if (rs.wasNull()) obj.setBypassPosApproval(null);
 			obj.setGraduationStatusId(rs.getByte(COLUMNS.GRADUATION_STATUS_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setGraduationStatusId(null);
 			obj.setTerminationDischargeReason(rs.getString(COLUMNS.TERMINATION_DISCHARGE_REASON.getColumnAliasName()));
