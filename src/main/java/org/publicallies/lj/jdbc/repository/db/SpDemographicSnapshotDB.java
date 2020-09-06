@@ -19,7 +19,7 @@ public class SpDemographicSnapshotDB implements EntityDB<SpDemographicSnapshot>{
 
 	private static String TABLE_NAME = "SP_DEMOGRAPHIC_SNAPSHOT";
 
-	private static String TABLE_ALIAS = "A_sds_554";
+	private static String TABLE_ALIAS = "A_sds_758";
 
 	public static String getTableName()
 	{

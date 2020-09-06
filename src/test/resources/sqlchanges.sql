@@ -64,3 +64,8 @@ ALTER TABLE `staff` ADD UNIQUE INDEX `users_id_UNIQUE` (`users_id` ASC) VISIBLE;
 
 ALTER TABLE `users` CHANGE COLUMN `default_role` `default_role_type` VARCHAR(25) NULL DEFAULT NULL ;
 
+==========================================09/01/20=============================================
+ALTER TABLE `ally_profile` 
+CHANGE COLUMN `pos_approves_pisd_flag` `bypass_pos_approval` INT(1) NOT NULL DEFAULT 0 ;
+
+update ally_profile set bypass_pos_approval = 0 where id > 0;

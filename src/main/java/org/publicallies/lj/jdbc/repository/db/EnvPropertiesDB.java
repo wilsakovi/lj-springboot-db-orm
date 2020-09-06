@@ -18,7 +18,7 @@ public class EnvPropertiesDB implements EntityDB<EnvProperties>{
 
 	private static String TABLE_NAME = "ENV_PROPERTIES";
 
-	private static String TABLE_ALIAS = "A_ep_732";
+	private static String TABLE_ALIAS = "A_ep_924";
 
 	public static String getTableName()
 	{

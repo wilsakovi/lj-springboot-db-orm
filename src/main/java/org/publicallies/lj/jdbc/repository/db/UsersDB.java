@@ -19,7 +19,7 @@ public class UsersDB implements EntityDB<Users>{
 
 	private static String TABLE_NAME = "USERS";
 
-	private static String TABLE_ALIAS = "A_use_829";
+	private static String TABLE_ALIAS = "A_use_934";
 
 	public static String getTableName()
 	{
