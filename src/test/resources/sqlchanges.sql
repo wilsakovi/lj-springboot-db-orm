@@ -97,3 +97,4 @@ CHANGE COLUMN `href` `href` TINYTEXT NULL DEFAULT NULL ;
 
 ALTER TABLE `survey_question` 
 CHANGE COLUMN `heading` `heading` TEXT NULL DEFAULT NULL ;
+
