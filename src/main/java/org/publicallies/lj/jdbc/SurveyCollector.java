@@ -24,30 +24,30 @@ public class SurveyCollector implements Persistable<Integer> , CommonIdCU<Intege
 	@Null (groups = { Default.class })
 	private Integer id;
 
-	@Size (max = 255)
+	@Size (max = 65535)
 	private String name;
 
 	@Size (max = 100)
 	private String status;
 
-	@Size (max = 255)
+	@Size (max = 65535)
 	private String redirectUrl;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String thanksMsg;
 
 	private Integer responseCount;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String closedMsg;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String url;
 
 	@NotNull (groups = { Default.class, Default.class })
 	private Integer surveyId;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String href;
 
 	private Date closeDate;

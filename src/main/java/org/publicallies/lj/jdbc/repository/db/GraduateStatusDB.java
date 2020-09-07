@@ -18,7 +18,7 @@ public class GraduateStatusDB implements EntityDB<GraduateStatus>{
 
 	private static String TABLE_NAME = "GRADUATE_STATUS";
 
-	private static String TABLE_ALIAS = "A_gs_667";
+	private static String TABLE_ALIAS = "A_gs_23";
 
 	public static String getTableName()
 	{

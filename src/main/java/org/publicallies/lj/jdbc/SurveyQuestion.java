@@ -32,7 +32,7 @@ public class SurveyQuestion implements Persistable<Integer>
 	@Size (max = 100)
 	private String href;
 
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	private String heading;
 
 	private String answerJson;
