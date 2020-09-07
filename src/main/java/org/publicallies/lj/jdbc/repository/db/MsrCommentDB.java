@@ -19,7 +19,7 @@ public class MsrCommentDB implements EntityDB<MsrComment>{
 
 	private static String TABLE_NAME = "MSR_COMMENT";
 
-	private static String TABLE_ALIAS = "A_mc_2";
+	private static String TABLE_ALIAS = "A_mc_38";
 
 	public static String getTableName()
 	{

@@ -18,7 +18,7 @@ public class CncsDB implements EntityDB<Cncs>{
 
 	private static String TABLE_NAME = "CNCS";
 
-	private static String TABLE_ALIAS = "A_cnc_860";
+	private static String TABLE_ALIAS = "A_cnc_16";
 
 	public static String getTableName()
 	{

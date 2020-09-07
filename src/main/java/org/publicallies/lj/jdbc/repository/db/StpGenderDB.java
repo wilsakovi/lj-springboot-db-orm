@@ -18,7 +18,7 @@ public class StpGenderDB implements EntityDB<StpGender>{
 
 	private static String TABLE_NAME = "STP_GENDER";
 
-	private static String TABLE_ALIAS = "A_sg_560";
+	private static String TABLE_ALIAS = "A_sg_86";
 
 	public static String getTableName()
 	{

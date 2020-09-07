@@ -69,3 +69,31 @@ ALTER TABLE `ally_profile`
 CHANGE COLUMN `pos_approves_pisd_flag` `bypass_pos_approval` INT(1) NOT NULL DEFAULT 0 ;
 
 update ally_profile set bypass_pos_approval = 0 where id > 0;
+
+======================================================= 09/06/20================================
+ALTER TABLE   survey     CONVERT TO CHARACTER SET utf8mb4     COLLATE utf8mb4_unicode_ci;
+ALTER TABLE   survey_collector     CONVERT TO CHARACTER SET utf8mb4     COLLATE utf8mb4_unicode_ci;
+ALTER TABLE   survey_question     CONVERT TO CHARACTER SET utf8mb4     COLLATE utf8mb4_unicode_ci;
+ALTER TABLE   survey_response     CONVERT TO CHARACTER SET utf8mb4     COLLATE utf8mb4_unicode_ci;
+
+ALTER TABLE `survey` 
+CHANGE COLUMN `name` `name` TINYTEXT NOT NULL ,
+CHANGE COLUMN `href` `href` TINYTEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `nickname` `nickname` TINYTEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `analyze_url` `analyze_url` TINYTEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `summary_url` `summary_url` TINYTEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `collect_url` `collect_url` TINYTEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `edit_url` `edit_url` TINYTEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `preview_url` `preview_url` TINYTEXT NULL DEFAULT NULL ;
+
+
+ALTER TABLE `survey_collector` 
+CHANGE COLUMN `name` `name` TINYTEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `redirect_url` `redirect_url` TINYTEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `thanks_msg` `thanks_msg` TEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `closed_msg` `closed_msg` TEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `url` `url` TINYTEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `href` `href` TINYTEXT NULL DEFAULT NULL ;
+
+ALTER TABLE `survey_question` 
+CHANGE COLUMN `heading` `heading` TEXT NULL DEFAULT NULL ;

@@ -19,7 +19,7 @@ public class SurveyGuestDB implements EntityDB<SurveyGuest>{
 
 	private static String TABLE_NAME = "SURVEY_GUEST";
 
-	private static String TABLE_ALIAS = "A_sg_102";
+	private static String TABLE_ALIAS = "A_sg_104";
 
 	public static String getTableName()
 	{

@@ -29,10 +29,10 @@ public class Survey implements Persistable<Integer> , CommonIdCU<Integer>
 	private String smId;
 
 	@NotEmpty
-	@Size (max = 65535)
+	@Size (max = 255)
 	private String name;
 
-	@Size (max = 65535)
+	@Size (max = 255)
 	private String href;
 
 	@Size (max = 255)
@@ -44,16 +44,16 @@ public class Survey implements Persistable<Integer> , CommonIdCU<Integer>
 
 	private Integer questionCount;
 
-	@Size (max = 65535)
+	@Size (max = 255)
 	private String analyzeUrl;
 
-	@Size (max = 65535)
+	@Size (max = 255)
 	private String summaryUrl;
 
-	@Size (max = 65535)
+	@Size (max = 255)
 	private String collectUrl;
 
-	@Size (max = 65535)
+	@Size (max = 255)
 	private String editUrl;
 
 	private Date smCreatedDate;
@@ -72,7 +72,7 @@ public class Survey implements Persistable<Integer> , CommonIdCU<Integer>
 	@NotNull
 	private Integer activeFlag = 1;
 
-	@Size (max = 65535)
+	@Size (max = 255)
 	private String previewUrl;
 
 	private String customVariables;
