@@ -49,7 +49,7 @@ public class Ally implements Persistable<Integer> , CommonIdCUHLu<Integer>
 
 	private Integer employmentStatusId;
 
-	@Size (max = 45)
+	@Size (max = 120)
 	private String employmentTitle;
 
 	@Size (max = 120)
