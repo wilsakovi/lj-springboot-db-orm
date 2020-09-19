@@ -99,4 +99,7 @@ ALTER TABLE `survey_question`
 CHANGE COLUMN `heading` `heading` TEXT NULL DEFAULT NULL ;
  ====================================================== 09/17/20==========================================
  ALTER TABLE `ally` CHANGE COLUMN `employment_title` `employment_title` VARCHAR(120) NULL DEFAULT NULL ;
+ 
+ =====================================09/18/20=========================================================
+ ALTER TABLE site_profile ADD COLUMN history JSON NULL DEFAULT NULL AFTER msr_req_sections ;
 

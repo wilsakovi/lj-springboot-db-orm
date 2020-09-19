@@ -15,7 +15,7 @@ import javax.validation.constraints.Null;
  *
  * @author Spring Data Jdbc Code Generator
  */
-public class SiteProfile implements Persistable<Integer> , CommonIdCU<Integer>
+public class SiteProfile implements Persistable<Integer> , CommonIdCUH<Integer>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -101,6 +101,8 @@ public class SiteProfile implements Persistable<Integer> , CommonIdCU<Integer>
 	private String additionalInfo;
 
 	private String msrReqSections;
+
+	private String history;
 
 	private transient boolean persisted;
 
@@ -479,6 +481,16 @@ public class SiteProfile implements Persistable<Integer> , CommonIdCU<Integer>
 	public String getMsrReqSections ()
 	{
 		return this.msrReqSections;
+	}
+
+	public void setHistory (String history)
+	{
+		this.history = history;
+	}
+
+	public String getHistory ()
+	{
+		return this.history;
 	}
 
 	public void setPersisted (Boolean persisted)
