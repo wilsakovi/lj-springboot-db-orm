@@ -79,6 +79,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 		SRC_FUND_ID("src_fund_id", false, ""),
 		ADDITIONAL_INFO("additional_info", false, ""),
 		MSR_REQ_SECTIONS("msr_req_sections", true, ""),
+		HISTORY("history", true, ""),
 		;
 
 		private String columnName;
@@ -216,6 +217,8 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			if (rs.wasNull()) obj.setAdditionalInfo(null);
 			obj.setMsrReqSections(rs.getString(COLUMNS.MSR_REQ_SECTIONS.getColumnName()));
 			if (rs.wasNull()) obj.setMsrReqSections(null);
+			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnName()));
+			if (rs.wasNull()) obj.setHistory(null);
 			return obj;
 		}
 	}
@@ -272,6 +275,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			mapping.put(COLUMNS.SRC_FUND_ID.getColumnName(), siteprofile.getSrcFundId());
 			mapping.put(COLUMNS.ADDITIONAL_INFO.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getAdditionalInfo()));
 			mapping.put(COLUMNS.MSR_REQ_SECTIONS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getMsrReqSections()));
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getHistory()));
 			return mapping;
 		}
 	}
@@ -396,6 +400,8 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			if (rs.wasNull()) obj.setAdditionalInfo(null);
 			obj.setMsrReqSections(rs.getString(COLUMNS.MSR_REQ_SECTIONS.getColumnAliasName()));
 			if (rs.wasNull()) obj.setMsrReqSections(null);
+			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnAliasName()));
+			if (rs.wasNull()) obj.setHistory(null);
 			if (this.loadAllFKeys || this.loadFundingCommission)
 				obj.setFundingCommission(PartnerOtherDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadOperationPartner)
