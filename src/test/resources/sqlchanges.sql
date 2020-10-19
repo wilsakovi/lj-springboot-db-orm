@@ -102,4 +102,7 @@ CHANGE COLUMN `heading` `heading` TEXT NULL DEFAULT NULL ;
  
  =====================================09/18/20=========================================================
  ALTER TABLE site_profile ADD COLUMN history JSON NULL DEFAULT NULL AFTER msr_req_sections ;
+ 
+ ====================================== 10/17/20===================================================
+ ALTER TABLE users ADD COLUMN pronoun VARCHAR(25) NULL DEFAULT NULL AFTER default_role_type;
 

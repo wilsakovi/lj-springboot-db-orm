@@ -196,6 +196,9 @@ public class Users implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	@Size (max = 25)
 	private String defaultRoleType;
 
+	@Size (max = 25)
+	private String pronoun;
+
 	private transient boolean persisted;
 
 	private Term defaultTerm;
@@ -905,6 +908,16 @@ public class Users implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	public String getDefaultRoleType ()
 	{
 		return this.defaultRoleType;
+	}
+
+	public void setPronoun (String pronoun)
+	{
+		this.pronoun = pronoun;
+	}
+
+	public String getPronoun ()
+	{
+		return this.pronoun;
 	}
 
 	public void setPersisted (Boolean persisted)

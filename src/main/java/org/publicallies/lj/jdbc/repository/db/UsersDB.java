@@ -112,6 +112,7 @@ public class UsersDB implements EntityDB<Users>{
 		SF_FAILED_FLAG("sf_failed_flag", false, ""),
 		DEFAULT_TERM_ID("default_term_id", false, ""),
 		DEFAULT_ROLE_TYPE("default_role_type", false, ""),
+		PRONOUN("pronoun", false, ""),
 		;
 
 		private String columnName;
@@ -315,6 +316,8 @@ public class UsersDB implements EntityDB<Users>{
 			if (rs.wasNull()) obj.setDefaultTermId(null);
 			obj.setDefaultRoleType(rs.getString(COLUMNS.DEFAULT_ROLE_TYPE.getColumnName()));
 			if (rs.wasNull()) obj.setDefaultRoleType(null);
+			obj.setPronoun(rs.getString(COLUMNS.PRONOUN.getColumnName()));
+			if (rs.wasNull()) obj.setPronoun(null);
 			return obj;
 		}
 	}
@@ -400,6 +403,7 @@ public class UsersDB implements EntityDB<Users>{
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), users.getSfFailedFlag());
 			mapping.put(COLUMNS.DEFAULT_TERM_ID.getColumnName(), users.getDefaultTermId());
 			mapping.put(COLUMNS.DEFAULT_ROLE_TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getDefaultRoleType()));
+			mapping.put(COLUMNS.PRONOUN.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPronoun()));
 			return mapping;
 		}
 	}
@@ -602,6 +606,8 @@ public class UsersDB implements EntityDB<Users>{
 			if (rs.wasNull()) obj.setDefaultTermId(null);
 			obj.setDefaultRoleType(rs.getString(COLUMNS.DEFAULT_ROLE_TYPE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setDefaultRoleType(null);
+			obj.setPronoun(rs.getString(COLUMNS.PRONOUN.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPronoun(null);
 			if (this.loadAllFKeys || this.loadDefaultTerm)
 				obj.setDefaultTerm(TermDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadHigherEducation)
