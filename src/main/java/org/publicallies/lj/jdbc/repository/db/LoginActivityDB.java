@@ -52,6 +52,10 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 		CREATED_AT("created_at", false, ""),
 		UPDATED_AT("updated_at", false, ""),
 		USERS_ID("users_id", false, ""),
+		EXTRA-CODE-FIELD1("extra-code-field1", false, ""),
+		EXTRA-CODE-FIELD2("extra-code-field2", false, ""),
+		EXTRA-CODE-FIELD3("extra-code-field3", false, ""),
+		EXTRA-CODE-FIELD4("extra-code-field4", false, ""),
 		;
 
 		private String columnName;
@@ -135,6 +139,14 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 			if (rs.wasNull()) obj.setUpdatedAt(null);
 			obj.setUsersId(rs.getInt(COLUMNS.USERS_ID.getColumnName()));
 			if (rs.wasNull()) obj.setUsersId(null);
+			obj.setExtra-code-field1(rs.getString(COLUMNS.EXTRA-CODE-FIELD1.getColumnName()));
+			if (rs.wasNull()) obj.setExtra-code-field1(null);
+			obj.setExtra-code-field2(rs.getString(COLUMNS.EXTRA-CODE-FIELD2.getColumnName()));
+			if (rs.wasNull()) obj.setExtra-code-field2(null);
+			obj.setExtra-code-field3(rs.getString(COLUMNS.EXTRA-CODE-FIELD3.getColumnName()));
+			if (rs.wasNull()) obj.setExtra-code-field3(null);
+			obj.setExtra-code-field4(rs.getString(COLUMNS.EXTRA-CODE-FIELD4.getColumnName()));
+			if (rs.wasNull()) obj.setExtra-code-field4(null);
 			return obj;
 		}
 	}
@@ -156,6 +168,10 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 			if (loginactivity.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (loginactivity.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.USERS_ID.getColumnName(), loginactivity.getUsersId());
+			mapping.put(COLUMNS.EXTRA-CODE-FIELD1.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getExtra-code-field1()));
+			mapping.put(COLUMNS.EXTRA-CODE-FIELD2.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getExtra-code-field2()));
+			mapping.put(COLUMNS.EXTRA-CODE-FIELD3.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getExtra-code-field3()));
+			mapping.put(COLUMNS.EXTRA-CODE-FIELD4.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getExtra-code-field4()));
 			return mapping;
 		}
 	}
@@ -184,6 +200,14 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 			if (rs.wasNull()) obj.setUpdatedAt(null);
 			obj.setUsersId(rs.getInt(COLUMNS.USERS_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUsersId(null);
+			obj.setExtra-code-field1(rs.getString(COLUMNS.EXTRA-CODE-FIELD1.getColumnAliasName()));
+			if (rs.wasNull()) obj.setExtra-code-field1(null);
+			obj.setExtra-code-field2(rs.getString(COLUMNS.EXTRA-CODE-FIELD2.getColumnAliasName()));
+			if (rs.wasNull()) obj.setExtra-code-field2(null);
+			obj.setExtra-code-field3(rs.getString(COLUMNS.EXTRA-CODE-FIELD3.getColumnAliasName()));
+			if (rs.wasNull()) obj.setExtra-code-field3(null);
+			obj.setExtra-code-field4(rs.getString(COLUMNS.EXTRA-CODE-FIELD4.getColumnAliasName()));
+			if (rs.wasNull()) obj.setExtra-code-field4(null);
 			return obj;
 		}
 	}

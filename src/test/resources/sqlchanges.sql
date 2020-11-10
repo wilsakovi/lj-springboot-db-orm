@@ -105,4 +105,12 @@ CHANGE COLUMN `heading` `heading` TEXT NULL DEFAULT NULL ;
  
  ====================================== 10/17/20===================================================
  ALTER TABLE users ADD COLUMN pronoun VARCHAR(25) NULL DEFAULT NULL AFTER default_role_type;
+ 
+ ===================================== 11/09/20======================================================
+ ALTER TABLE `login_activity` 
+ADD COLUMN `extra-code-field1` VARCHAR(50) NULL AFTER `users_id`,
+ADD COLUMN `extra-code-field2` VARCHAR(50) NULL AFTER `extra-code-field1`,
+ADD COLUMN `extra-code-field3` VARCHAR(50) NULL AFTER `extra-code-field2`,
+ADD COLUMN `extra-code-field4` VARCHAR(50) NULL AFTER `extra-code-field3`;
+
 
