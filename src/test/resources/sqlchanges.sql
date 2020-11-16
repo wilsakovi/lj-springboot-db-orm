@@ -113,4 +113,39 @@ ADD COLUMN `extra-code-field2` VARCHAR(50) NULL AFTER `extra-code-field1`,
 ADD COLUMN `extra-code-field3` VARCHAR(50) NULL AFTER `extra-code-field2`,
 ADD COLUMN `extra-code-field4` VARCHAR(50) NULL AFTER `extra-code-field3`;
 
+ALTER TABLE `login_activity` 
+CHANGE COLUMN `extra-code-field1` `extra_code_field1` VARCHAR(50) NULL DEFAULT NULL ,
+CHANGE COLUMN `extra-code-field2` `extra_code_field2` VARCHAR(50) NULL DEFAULT NULL ,
+CHANGE COLUMN `extra-code-field3` `extra_code_field3` VARCHAR(50) NULL DEFAULT NULL ,
+CHANGE COLUMN `extra-code-field4` `extra_code_field4` VARCHAR(50) NULL DEFAULT NULL ;
+
+
+
+CREATE TABLE `tagging` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `tag_name` VARCHAR(80) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `tag_name_UNIQUE` (`tag_name` ASC) VISIBLE);
+  
+  ALTER TABLE `job` ADD COLUMN `taggings` JSON NULL AFTER `contract_sent_flag`;
+  ALTER TABLE `partner` ADD COLUMN `taggings` JSON NULL;
+  
+  CREATE TABLE `staff_history` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `staff_id` INT NOT NULL,
+  `servicing_sites` JSON NULL,
+  `staff_type` JSON NULL,
+  `effective_date` DATE NOT NULL,
+  `end_date` DATE NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
+    CONSTRAINT `fk_staff_hst` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  PRIMARY KEY (`id`))
+COMMENT = 'History of staff information. This will track the history only when assigned roles or sites changed';
+
+ALTER TABLE `staff_history` 
+COMMENT = 'Past history of staff information. This will track the history only when assigned roles or sites changed. That is the current state of the staff will not be stored.' , RENAME TO  `staff_past_history` ;
+
+
+
 

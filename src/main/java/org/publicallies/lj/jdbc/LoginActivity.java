@@ -44,16 +44,16 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 	private Integer usersId;
 
 	@Size (max = 50)
-	private String extra-code-field1;
+	private String extraCodeField1;
 
 	@Size (max = 50)
-	private String extra-code-field2;
+	private String extraCodeField2;
 
 	@Size (max = 50)
-	private String extra-code-field3;
+	private String extraCodeField3;
 
 	@Size (max = 50)
-	private String extra-code-field4;
+	private String extraCodeField4;
 
 	private transient boolean persisted;
 
@@ -158,44 +158,44 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 		return this.usersId;
 	}
 
-	public void setExtra-code-field1 (String extra-code-field1)
+	public void setExtraCodeField1 (String extraCodeField1)
 	{
-		this.extra-code-field1 = extra-code-field1;
+		this.extraCodeField1 = extraCodeField1;
 	}
 
-	public String getExtra-code-field1 ()
+	public String getExtraCodeField1 ()
 	{
-		return this.extra-code-field1;
+		return this.extraCodeField1;
 	}
 
-	public void setExtra-code-field2 (String extra-code-field2)
+	public void setExtraCodeField2 (String extraCodeField2)
 	{
-		this.extra-code-field2 = extra-code-field2;
+		this.extraCodeField2 = extraCodeField2;
 	}
 
-	public String getExtra-code-field2 ()
+	public String getExtraCodeField2 ()
 	{
-		return this.extra-code-field2;
+		return this.extraCodeField2;
 	}
 
-	public void setExtra-code-field3 (String extra-code-field3)
+	public void setExtraCodeField3 (String extraCodeField3)
 	{
-		this.extra-code-field3 = extra-code-field3;
+		this.extraCodeField3 = extraCodeField3;
 	}
 
-	public String getExtra-code-field3 ()
+	public String getExtraCodeField3 ()
 	{
-		return this.extra-code-field3;
+		return this.extraCodeField3;
 	}
 
-	public void setExtra-code-field4 (String extra-code-field4)
+	public void setExtraCodeField4 (String extraCodeField4)
 	{
-		this.extra-code-field4 = extra-code-field4;
+		this.extraCodeField4 = extraCodeField4;
 	}
 
-	public String getExtra-code-field4 ()
+	public String getExtraCodeField4 ()
 	{
-		return this.extra-code-field4;
+		return this.extraCodeField4;
 	}
 
 	public void setPersisted (Boolean persisted)

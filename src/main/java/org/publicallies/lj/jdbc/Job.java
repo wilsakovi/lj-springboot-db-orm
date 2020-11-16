@@ -115,6 +115,8 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 
 	private Integer contractSentFlag = 0;
 
+	private String taggings;
+
 	private transient boolean persisted;
 
 	private AllyProfile allyProfile;
@@ -532,6 +534,16 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	public Integer getContractSentFlag ()
 	{
 		return this.contractSentFlag;
+	}
+
+	public void setTaggings (String taggings)
+	{
+		this.taggings = taggings;
+	}
+
+	public String getTaggings ()
+	{
+		return this.taggings;
 	}
 
 	public void setPersisted (Boolean persisted)

@@ -18,7 +18,7 @@ public class StpSocialAssistDB implements EntityDB<StpSocialAssist>{
 
 	private static String TABLE_NAME = "STP_SOCIAL_ASSIST";
 
-	private static String TABLE_ALIAS = "A_ssa_95";
+	private static String TABLE_ALIAS = "A_ssa_96";
 
 	public static String getTableName()
 	{
