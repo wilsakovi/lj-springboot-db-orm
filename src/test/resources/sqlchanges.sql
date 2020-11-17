@@ -146,6 +146,9 @@ COMMENT = 'History of staff information. This will track the history only when a
 ALTER TABLE `staff_history` 
 COMMENT = 'Past history of staff information. This will track the history only when assigned roles or sites changed. That is the current state of the staff will not be stored.' , RENAME TO  `staff_past_history` ;
 
+ALTER TABLE `login_activity` 
+CHANGE COLUMN `extra_code_field4` `activity_code` CHAR(3) NULL DEFAULT NULL AFTER `id`,
+CHANGE COLUMN `users_id` `users_id` INT NULL DEFAULT NULL AFTER `activity_code`;
 
 
 

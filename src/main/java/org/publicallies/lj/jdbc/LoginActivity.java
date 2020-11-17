@@ -24,6 +24,11 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 	@Null (groups = { Default.class })
 	private Integer id;
 
+	@Size (max = 3)
+	private String activityCode;
+
+	private Integer usersId;
+
 	@Size (max = 100)
 	private String username;
 
@@ -41,8 +46,6 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 
 	private Date updatedAt = new Date();
 
-	private Integer usersId;
-
 	@Size (max = 50)
 	private String extraCodeField1;
 
@@ -51,9 +54,6 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 
 	@Size (max = 50)
 	private String extraCodeField3;
-
-	@Size (max = 50)
-	private String extraCodeField4;
 
 	private transient boolean persisted;
 
@@ -76,6 +76,26 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 	public void setId(Integer id)
 	{
 		this.id = id;
+	}
+
+	public void setActivityCode (String activityCode)
+	{
+		this.activityCode = activityCode;
+	}
+
+	public String getActivityCode ()
+	{
+		return this.activityCode;
+	}
+
+	public void setUsersId (Integer usersId)
+	{
+		this.usersId = usersId;
+	}
+
+	public Integer getUsersId ()
+	{
+		return this.usersId;
 	}
 
 	public void setUsername (String username)
@@ -148,16 +168,6 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 		return this.updatedAt;
 	}
 
-	public void setUsersId (Integer usersId)
-	{
-		this.usersId = usersId;
-	}
-
-	public Integer getUsersId ()
-	{
-		return this.usersId;
-	}
-
 	public void setExtraCodeField1 (String extraCodeField1)
 	{
 		this.extraCodeField1 = extraCodeField1;
@@ -186,16 +196,6 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 	public String getExtraCodeField3 ()
 	{
 		return this.extraCodeField3;
-	}
-
-	public void setExtraCodeField4 (String extraCodeField4)
-	{
-		this.extraCodeField4 = extraCodeField4;
-	}
-
-	public String getExtraCodeField4 ()
-	{
-		return this.extraCodeField4;
 	}
 
 	public void setPersisted (Boolean persisted)
