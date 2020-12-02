@@ -34,6 +34,7 @@ public class StaffPastHistory implements Persistable<Integer> , CommonIdCU<Integ
 	@NotNull
 	private Date effectiveDate;
 
+	@NotNull
 	private Date endDate;
 
 	private Date createdAt = new Date();

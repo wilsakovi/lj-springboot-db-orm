@@ -18,7 +18,7 @@ public class TaggingDB implements EntityDB<Tagging>{
 
 	private static String TABLE_NAME = "TAGGING";
 
-	private static String TABLE_ALIAS = "A_tag_110";
+	private static String TABLE_ALIAS = "A_tag_111";
 
 	public static String getTableName()
 	{
@@ -44,6 +44,7 @@ public class TaggingDB implements EntityDB<Tagging>{
 	{
 		ID("id", false, ""),
 		TAG_NAME("tag_name", false, ""),
+		JOB_IDS("job_ids", true, ""),
 		;
 
 		private String columnName;
@@ -113,6 +114,8 @@ public class TaggingDB implements EntityDB<Tagging>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setTagName(rs.getString(COLUMNS.TAG_NAME.getColumnName()));
 			if (rs.wasNull()) obj.setTagName(null);
+			obj.setJobIds(rs.getString(COLUMNS.JOB_IDS.getColumnName()));
+			if (rs.wasNull()) obj.setJobIds(null);
 			return obj;
 		}
 	}
@@ -125,6 +128,7 @@ public class TaggingDB implements EntityDB<Tagging>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), tagging.getId());
 			mapping.put(COLUMNS.TAG_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tagging.getTagName()));
+			mapping.put(COLUMNS.JOB_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tagging.getJobIds()));
 			return mapping;
 		}
 	}
@@ -139,6 +143,8 @@ public class TaggingDB implements EntityDB<Tagging>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setTagName(rs.getString(COLUMNS.TAG_NAME.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTagName(null);
+			obj.setJobIds(rs.getString(COLUMNS.JOB_IDS.getColumnAliasName()));
+			if (rs.wasNull()) obj.setJobIds(null);
 			return obj;
 		}
 	}

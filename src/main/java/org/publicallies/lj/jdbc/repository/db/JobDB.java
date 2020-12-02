@@ -83,7 +83,6 @@ public class JobDB implements EntityDB<Job>{
 		SA_APPROVAL_DATE("sa_approval_date", false, ""),
 		SA_APPROVAL_COMMENT("sa_approval_comment", false, ""),
 		CONTRACT_SENT_FLAG("contract_sent_flag", false, ""),
-		TAGGINGS("taggings", true, ""),
 		;
 
 		private String columnName;
@@ -229,8 +228,6 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setSaApprovalComment(null);
 			obj.setContractSentFlag(rs.getInt(COLUMNS.CONTRACT_SENT_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setContractSentFlag(null);
-			obj.setTaggings(rs.getString(COLUMNS.TAGGINGS.getColumnName()));
-			if (rs.wasNull()) obj.setTaggings(null);
 			return obj;
 		}
 	}
@@ -288,7 +285,6 @@ public class JobDB implements EntityDB<Job>{
 				mapping.put(COLUMNS.SA_APPROVAL_DATE.getColumnName(), new Timestamp (job.getSaApprovalDate().getTime()));
 			mapping.put(COLUMNS.SA_APPROVAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getSaApprovalComment()));
 			mapping.put(COLUMNS.CONTRACT_SENT_FLAG.getColumnName(), job.getContractSentFlag());
-			mapping.put(COLUMNS.TAGGINGS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getTaggings()));
 			return mapping;
 		}
 	}
@@ -421,8 +417,6 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setSaApprovalComment(null);
 			obj.setContractSentFlag(rs.getInt(COLUMNS.CONTRACT_SENT_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setContractSentFlag(null);
-			obj.setTaggings(rs.getString(COLUMNS.TAGGINGS.getColumnAliasName()));
-			if (rs.wasNull()) obj.setTaggings(null);
 			if (this.loadAllFKeys || this.loadAllyProfile)
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadCncs)

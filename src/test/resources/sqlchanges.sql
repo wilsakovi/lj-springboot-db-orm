@@ -151,4 +151,54 @@ CHANGE COLUMN `extra_code_field4` `activity_code` CHAR(3) NULL DEFAULT NULL AFTE
 CHANGE COLUMN `users_id` `users_id` INT NULL DEFAULT NULL AFTER `activity_code`;
 
 
+CREATE TABLE `stat_report_usage` (
+  `id` INT NOT NULL,
+  `report_code` VARCHAR(30) NULL,
+  `site_id` SMALLINT NULL,
+  `role_code` CHAR(5) NULL,
+  `view_mode` VARCHAR(30) NULL,
+  `generate_location` VARCHAR(30) NULL,
+  `total` INT NULL,
+  PRIMARY KEY (`id`));
+
+  ALTER TABLE `job` DROP COLUMN `taggings`;
+  
+  ALTER TABLE `tagging` 
+ADD COLUMN `job_ids` JSON NULL AFTER `tag_name`;
+
+ALTER TABLE `stat_report_usage` 
+ADD CONSTRAINT `stat_rep_us_ste`
+  FOREIGN KEY (`site_id`)
+  REFERENCES `site` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+  
+ALTER TABLE stat_report_usage
+ADD CONSTRAINT stat_rep_us_pk UNIQUE(`report_code`, `site_id`, `role_code`, `view_mode`, `generate_location`);
+
+ALTER TABLE `stat_report_usage` CHANGE COLUMN `total` `total` INT NOT NULL ;
+ALTER TABLE `stat_report_usage` 
+CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ;
+
+
+ALTER TABLE `stat_report_usage` 
+ADD COLUMN `stat_year` INT(4) NULL AFTER `id`,
+DROP INDEX `stat_rep_us_pk` ,
+ADD UNIQUE INDEX `stat_rep_us_pk` (`report_code` ASC, `site_id` ASC, `role_code` ASC, `view_mode` ASC, `generate_location` ASC, `stat_year` ASC) VISIBLE;
+;
+
+
+ALTER TABLE `stat_report_usage` 
+CHANGE COLUMN `stat_year` `stat_year` INT NOT NULL ,
+CHANGE COLUMN `report_code` `report_code` VARCHAR(30) NOT NULL ,
+CHANGE COLUMN `role_code` `role_code` CHAR(5) NOT NULL ,
+CHANGE COLUMN `view_mode` `view_mode` VARCHAR(30) NOT NULL ,
+CHANGE COLUMN `generate_location` `generate_location` VARCHAR(30) NOT NULL ;
+
+
+
+ALTER TABLE `staff_past_history` 
+CHANGE COLUMN `effective_date` `effective_date` DATETIME NOT NULL ,
+CHANGE COLUMN `end_date` `end_date` DATETIME NOT NULL ;
 

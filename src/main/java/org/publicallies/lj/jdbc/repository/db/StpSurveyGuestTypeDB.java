@@ -18,7 +18,7 @@ public class StpSurveyGuestTypeDB implements EntityDB<StpSurveyGuestType>{
 
 	private static String TABLE_NAME = "STP_SURVEY_GUEST_TYPE";
 
-	private static String TABLE_ALIAS = "A_ssgt_98";
+	private static String TABLE_ALIAS = "A_ssgt_99";
 
 	public static String getTableName()
 	{

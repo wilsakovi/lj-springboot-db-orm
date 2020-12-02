@@ -26,6 +26,8 @@ public class Tagging implements Persistable<Integer>
 	@Size (max = 80)
 	private String tagName;
 
+	private String jobIds;
+
 	private transient boolean persisted;
 
 
@@ -57,6 +59,16 @@ public class Tagging implements Persistable<Integer>
 	public String getTagName ()
 	{
 		return this.tagName;
+	}
+
+	public void setJobIds (String jobIds)
+	{
+		this.jobIds = jobIds;
+	}
+
+	public String getJobIds ()
+	{
+		return this.jobIds;
 	}
 
 	public void setPersisted (Boolean persisted)
