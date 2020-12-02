@@ -24,6 +24,11 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 	@Null (groups = { Default.class })
 	private Integer id;
 
+	@Size (max = 3)
+	private String activityCode;
+
+	private Integer usersId;
+
 	@Size (max = 100)
 	private String username;
 
@@ -41,7 +46,14 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 
 	private Date updatedAt = new Date();
 
-	private Integer usersId;
+	@Size (max = 50)
+	private String extraCodeField1;
+
+	@Size (max = 50)
+	private String extraCodeField2;
+
+	@Size (max = 50)
+	private String extraCodeField3;
 
 	private transient boolean persisted;
 
@@ -64,6 +76,26 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 	public void setId(Integer id)
 	{
 		this.id = id;
+	}
+
+	public void setActivityCode (String activityCode)
+	{
+		this.activityCode = activityCode;
+	}
+
+	public String getActivityCode ()
+	{
+		return this.activityCode;
+	}
+
+	public void setUsersId (Integer usersId)
+	{
+		this.usersId = usersId;
+	}
+
+	public Integer getUsersId ()
+	{
+		return this.usersId;
 	}
 
 	public void setUsername (String username)
@@ -136,14 +168,34 @@ public class LoginActivity implements Persistable<Integer> , CommonIdCU<Integer>
 		return this.updatedAt;
 	}
 
-	public void setUsersId (Integer usersId)
+	public void setExtraCodeField1 (String extraCodeField1)
 	{
-		this.usersId = usersId;
+		this.extraCodeField1 = extraCodeField1;
 	}
 
-	public Integer getUsersId ()
+	public String getExtraCodeField1 ()
 	{
-		return this.usersId;
+		return this.extraCodeField1;
+	}
+
+	public void setExtraCodeField2 (String extraCodeField2)
+	{
+		this.extraCodeField2 = extraCodeField2;
+	}
+
+	public String getExtraCodeField2 ()
+	{
+		return this.extraCodeField2;
+	}
+
+	public void setExtraCodeField3 (String extraCodeField3)
+	{
+		this.extraCodeField3 = extraCodeField3;
+	}
+
+	public String getExtraCodeField3 ()
+	{
+		return this.extraCodeField3;
 	}
 
 	public void setPersisted (Boolean persisted)

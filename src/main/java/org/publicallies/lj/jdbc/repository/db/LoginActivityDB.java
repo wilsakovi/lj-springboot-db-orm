@@ -44,6 +44,8 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 	public enum COLUMNS
 	{
 		ID("id", false, ""),
+		ACTIVITY_CODE("activity_code", false, ""),
+		USERS_ID("users_id", false, ""),
 		USERNAME("username", false, ""),
 		ACTIVITY_TYPE("activity_type", false, ""),
 		ACTIVITY("activity", false, ""),
@@ -51,7 +53,9 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 		STATUS("status", false, ""),
 		CREATED_AT("created_at", false, ""),
 		UPDATED_AT("updated_at", false, ""),
-		USERS_ID("users_id", false, ""),
+		EXTRA_CODE_FIELD1("extra_code_field1", false, ""),
+		EXTRA_CODE_FIELD2("extra_code_field2", false, ""),
+		EXTRA_CODE_FIELD3("extra_code_field3", false, ""),
 		;
 
 		private String columnName;
@@ -119,6 +123,10 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 			LoginActivity obj = new LoginActivity();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnName()));
 			if (rs.wasNull()) obj.setId(null);
+			obj.setActivityCode(rs.getString(COLUMNS.ACTIVITY_CODE.getColumnName()));
+			if (rs.wasNull()) obj.setActivityCode(null);
+			obj.setUsersId(rs.getInt(COLUMNS.USERS_ID.getColumnName()));
+			if (rs.wasNull()) obj.setUsersId(null);
 			obj.setUsername(rs.getString(COLUMNS.USERNAME.getColumnName()));
 			if (rs.wasNull()) obj.setUsername(null);
 			obj.setActivityType(rs.getString(COLUMNS.ACTIVITY_TYPE.getColumnName()));
@@ -133,8 +141,12 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			obj.setUsersId(rs.getInt(COLUMNS.USERS_ID.getColumnName()));
-			if (rs.wasNull()) obj.setUsersId(null);
+			obj.setExtraCodeField1(rs.getString(COLUMNS.EXTRA_CODE_FIELD1.getColumnName()));
+			if (rs.wasNull()) obj.setExtraCodeField1(null);
+			obj.setExtraCodeField2(rs.getString(COLUMNS.EXTRA_CODE_FIELD2.getColumnName()));
+			if (rs.wasNull()) obj.setExtraCodeField2(null);
+			obj.setExtraCodeField3(rs.getString(COLUMNS.EXTRA_CODE_FIELD3.getColumnName()));
+			if (rs.wasNull()) obj.setExtraCodeField3(null);
 			return obj;
 		}
 	}
@@ -146,6 +158,8 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), loginactivity.getId());
+			mapping.put(COLUMNS.ACTIVITY_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getActivityCode()));
+			mapping.put(COLUMNS.USERS_ID.getColumnName(), loginactivity.getUsersId());
 			mapping.put(COLUMNS.USERNAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getUsername()));
 			mapping.put(COLUMNS.ACTIVITY_TYPE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getActivityType()));
 			mapping.put(COLUMNS.ACTIVITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getActivity()));
@@ -155,7 +169,9 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (loginactivity.getCreatedAt().getTime()));
 			if (loginactivity.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (loginactivity.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.USERS_ID.getColumnName(), loginactivity.getUsersId());
+			mapping.put(COLUMNS.EXTRA_CODE_FIELD1.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getExtraCodeField1()));
+			mapping.put(COLUMNS.EXTRA_CODE_FIELD2.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getExtraCodeField2()));
+			mapping.put(COLUMNS.EXTRA_CODE_FIELD3.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(loginactivity.getExtraCodeField3()));
 			return mapping;
 		}
 	}
@@ -168,6 +184,10 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 			LoginActivity obj = new LoginActivity();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setId(null);
+			obj.setActivityCode(rs.getString(COLUMNS.ACTIVITY_CODE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setActivityCode(null);
+			obj.setUsersId(rs.getInt(COLUMNS.USERS_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setUsersId(null);
 			obj.setUsername(rs.getString(COLUMNS.USERNAME.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUsername(null);
 			obj.setActivityType(rs.getString(COLUMNS.ACTIVITY_TYPE.getColumnAliasName()));
@@ -182,8 +202,12 @@ public class LoginActivityDB implements EntityDB<LoginActivity>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			obj.setUsersId(rs.getInt(COLUMNS.USERS_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setUsersId(null);
+			obj.setExtraCodeField1(rs.getString(COLUMNS.EXTRA_CODE_FIELD1.getColumnAliasName()));
+			if (rs.wasNull()) obj.setExtraCodeField1(null);
+			obj.setExtraCodeField2(rs.getString(COLUMNS.EXTRA_CODE_FIELD2.getColumnAliasName()));
+			if (rs.wasNull()) obj.setExtraCodeField2(null);
+			obj.setExtraCodeField3(rs.getString(COLUMNS.EXTRA_CODE_FIELD3.getColumnAliasName()));
+			if (rs.wasNull()) obj.setExtraCodeField3(null);
 			return obj;
 		}
 	}

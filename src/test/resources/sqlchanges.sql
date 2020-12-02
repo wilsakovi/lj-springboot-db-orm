@@ -105,4 +105,100 @@ CHANGE COLUMN `heading` `heading` TEXT NULL DEFAULT NULL ;
  
  ====================================== 10/17/20===================================================
  ALTER TABLE users ADD COLUMN pronoun VARCHAR(25) NULL DEFAULT NULL AFTER default_role_type;
+ 
+ ===================================== 11/09/20======================================================
+ ALTER TABLE `login_activity` 
+ADD COLUMN `extra-code-field1` VARCHAR(50) NULL AFTER `users_id`,
+ADD COLUMN `extra-code-field2` VARCHAR(50) NULL AFTER `extra-code-field1`,
+ADD COLUMN `extra-code-field3` VARCHAR(50) NULL AFTER `extra-code-field2`,
+ADD COLUMN `extra-code-field4` VARCHAR(50) NULL AFTER `extra-code-field3`;
+
+ALTER TABLE `login_activity` 
+CHANGE COLUMN `extra-code-field1` `extra_code_field1` VARCHAR(50) NULL DEFAULT NULL ,
+CHANGE COLUMN `extra-code-field2` `extra_code_field2` VARCHAR(50) NULL DEFAULT NULL ,
+CHANGE COLUMN `extra-code-field3` `extra_code_field3` VARCHAR(50) NULL DEFAULT NULL ,
+CHANGE COLUMN `extra-code-field4` `extra_code_field4` VARCHAR(50) NULL DEFAULT NULL ;
+
+
+
+CREATE TABLE `tagging` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `tag_name` VARCHAR(80) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `tag_name_UNIQUE` (`tag_name` ASC) VISIBLE);
+  
+  ALTER TABLE `job` ADD COLUMN `taggings` JSON NULL AFTER `contract_sent_flag`;
+  ALTER TABLE `partner` ADD COLUMN `taggings` JSON NULL;
+  
+  CREATE TABLE `staff_history` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `staff_id` INT NOT NULL,
+  `servicing_sites` JSON NULL,
+  `staff_type` JSON NULL,
+  `effective_date` DATE NOT NULL,
+  `end_date` DATE NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
+    CONSTRAINT `fk_staff_hst` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  PRIMARY KEY (`id`))
+COMMENT = 'History of staff information. This will track the history only when assigned roles or sites changed';
+
+ALTER TABLE `staff_history` 
+COMMENT = 'Past history of staff information. This will track the history only when assigned roles or sites changed. That is the current state of the staff will not be stored.' , RENAME TO  `staff_past_history` ;
+
+ALTER TABLE `login_activity` 
+CHANGE COLUMN `extra_code_field4` `activity_code` CHAR(3) NULL DEFAULT NULL AFTER `id`,
+CHANGE COLUMN `users_id` `users_id` INT NULL DEFAULT NULL AFTER `activity_code`;
+
+
+CREATE TABLE `stat_report_usage` (
+  `id` INT NOT NULL,
+  `report_code` VARCHAR(30) NULL,
+  `site_id` SMALLINT NULL,
+  `role_code` CHAR(5) NULL,
+  `view_mode` VARCHAR(30) NULL,
+  `generate_location` VARCHAR(30) NULL,
+  `total` INT NULL,
+  PRIMARY KEY (`id`));
+
+  ALTER TABLE `job` DROP COLUMN `taggings`;
+  
+  ALTER TABLE `tagging` 
+ADD COLUMN `job_ids` JSON NULL AFTER `tag_name`;
+
+ALTER TABLE `stat_report_usage` 
+ADD CONSTRAINT `stat_rep_us_ste`
+  FOREIGN KEY (`site_id`)
+  REFERENCES `site` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+  
+ALTER TABLE stat_report_usage
+ADD CONSTRAINT stat_rep_us_pk UNIQUE(`report_code`, `site_id`, `role_code`, `view_mode`, `generate_location`);
+
+ALTER TABLE `stat_report_usage` CHANGE COLUMN `total` `total` INT NOT NULL ;
+ALTER TABLE `stat_report_usage` 
+CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT ;
+
+
+ALTER TABLE `stat_report_usage` 
+ADD COLUMN `stat_year` INT(4) NULL AFTER `id`,
+DROP INDEX `stat_rep_us_pk` ,
+ADD UNIQUE INDEX `stat_rep_us_pk` (`report_code` ASC, `site_id` ASC, `role_code` ASC, `view_mode` ASC, `generate_location` ASC, `stat_year` ASC) VISIBLE;
+;
+
+
+ALTER TABLE `stat_report_usage` 
+CHANGE COLUMN `stat_year` `stat_year` INT NOT NULL ,
+CHANGE COLUMN `report_code` `report_code` VARCHAR(30) NOT NULL ,
+CHANGE COLUMN `role_code` `role_code` CHAR(5) NOT NULL ,
+CHANGE COLUMN `view_mode` `view_mode` VARCHAR(30) NOT NULL ,
+CHANGE COLUMN `generate_location` `generate_location` VARCHAR(30) NOT NULL ;
+
+
+
+ALTER TABLE `staff_past_history` 
+CHANGE COLUMN `effective_date` `effective_date` DATETIME NOT NULL ,
+CHANGE COLUMN `end_date` `end_date` DATETIME NOT NULL ;
 

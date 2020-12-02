@@ -18,7 +18,7 @@ public class StpMaritalStatusDB implements EntityDB<StpMaritalStatus>{
 
 	private static String TABLE_NAME = "STP_MARITAL_STATUS";
 
-	private static String TABLE_ALIAS = "A_sms_89";
+	private static String TABLE_ALIAS = "A_sms_91";
 
 	public static String getTableName()
 	{

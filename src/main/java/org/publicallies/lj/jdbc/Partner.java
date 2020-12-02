@@ -145,6 +145,8 @@ public class Partner implements Persistable<Integer> , CommonIdCUHLu<Integer>
 
 	private Integer sfFailedFlag = 0;
 
+	private String taggings;
+
 	private transient boolean persisted;
 
 	private RefTableData annualBudgetRange;
@@ -636,6 +638,16 @@ public class Partner implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	public Integer getSfFailedFlag ()
 	{
 		return this.sfFailedFlag;
+	}
+
+	public void setTaggings (String taggings)
+	{
+		this.taggings = taggings;
+	}
+
+	public String getTaggings ()
+	{
+		return this.taggings;
 	}
 
 	public void setPersisted (Boolean persisted)
