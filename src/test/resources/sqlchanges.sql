@@ -202,3 +202,10 @@ ALTER TABLE `staff_past_history`
 CHANGE COLUMN `effective_date` `effective_date` DATETIME NOT NULL ,
 CHANGE COLUMN `end_date` `end_date` DATETIME NOT NULL ;
 
+===================================================12/05/2020===================================================================
+ALTER TABLE `survey` 
+ADD COLUMN `schedulable` INT(1) NOT NULL DEFAULT 1 AFTER `custom_variables`;
+
+ALTER TABLE `survey` 
+ADD COLUMN `history` JSON NULL AFTER `schedulable`;
+
