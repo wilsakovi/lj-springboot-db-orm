@@ -15,7 +15,7 @@ import javax.validation.constraints.Null;
  *
  * @author Spring Data Jdbc Code Generator
  */
-public class Survey implements Persistable<Integer> , CommonIdCU<Integer>
+public class Survey implements Persistable<Integer> , CommonIdCUH<Integer>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -76,6 +76,11 @@ public class Survey implements Persistable<Integer> , CommonIdCU<Integer>
 	private String previewUrl;
 
 	private String customVariables;
+
+	@NotNull
+	private Integer schedulable = 1;
+
+	private String history;
 
 	private transient boolean persisted;
 
@@ -298,6 +303,26 @@ public class Survey implements Persistable<Integer> , CommonIdCU<Integer>
 	public String getCustomVariables ()
 	{
 		return this.customVariables;
+	}
+
+	public void setSchedulable (Integer schedulable)
+	{
+		this.schedulable = schedulable;
+	}
+
+	public Integer getSchedulable ()
+	{
+		return this.schedulable;
+	}
+
+	public void setHistory (String history)
+	{
+		this.history = history;
+	}
+
+	public String getHistory ()
+	{
+		return this.history;
 	}
 
 	public void setPersisted (Boolean persisted)

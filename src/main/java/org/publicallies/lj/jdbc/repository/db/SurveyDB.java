@@ -64,6 +64,8 @@ public class SurveyDB implements EntityDB<Survey>{
 		ACTIVE_FLAG("active_flag", false, ""),
 		PREVIEW_URL("preview_url", false, ""),
 		CUSTOM_VARIABLES("custom_variables", true, ""),
+		SCHEDULABLE("schedulable", false, ""),
+		HISTORY("history", true, ""),
 		;
 
 		private String columnName;
@@ -171,6 +173,10 @@ public class SurveyDB implements EntityDB<Survey>{
 			if (rs.wasNull()) obj.setPreviewUrl(null);
 			obj.setCustomVariables(rs.getString(COLUMNS.CUSTOM_VARIABLES.getColumnName()));
 			if (rs.wasNull()) obj.setCustomVariables(null);
+			obj.setSchedulable(rs.getInt(COLUMNS.SCHEDULABLE.getColumnName()));
+			if (rs.wasNull()) obj.setSchedulable(null);
+			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnName()));
+			if (rs.wasNull()) obj.setHistory(null);
 			return obj;
 		}
 	}
@@ -207,6 +213,8 @@ public class SurveyDB implements EntityDB<Survey>{
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), survey.getActiveFlag());
 			mapping.put(COLUMNS.PREVIEW_URL.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getPreviewUrl()));
 			mapping.put(COLUMNS.CUSTOM_VARIABLES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getCustomVariables()));
+			mapping.put(COLUMNS.SCHEDULABLE.getColumnName(), survey.getSchedulable());
+			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getHistory()));
 			return mapping;
 		}
 	}
@@ -259,6 +267,10 @@ public class SurveyDB implements EntityDB<Survey>{
 			if (rs.wasNull()) obj.setPreviewUrl(null);
 			obj.setCustomVariables(rs.getString(COLUMNS.CUSTOM_VARIABLES.getColumnAliasName()));
 			if (rs.wasNull()) obj.setCustomVariables(null);
+			obj.setSchedulable(rs.getInt(COLUMNS.SCHEDULABLE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSchedulable(null);
+			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnAliasName()));
+			if (rs.wasNull()) obj.setHistory(null);
 			return obj;
 		}
 	}
