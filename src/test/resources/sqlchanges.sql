@@ -209,3 +209,15 @@ ADD COLUMN `schedulable` INT(1) NOT NULL DEFAULT 1 AFTER `custom_variables`;
 ALTER TABLE `survey` 
 ADD COLUMN `history` JSON NULL AFTER `schedulable`;
 
+===============================================12/12/2020====================================================
+ALTER TABLE `survey` 
+ADD COLUMN `email_invitation_subject` VARCHAR(200) NULL AFTER `history`,
+ADD COLUMN `email_reminder_subject` VARCHAR(200) NULL AFTER `email_invitation_subject`,
+ADD COLUMN `email_invitation_body` TEXT NULL AFTER `email_reminder_subject`,
+ADD COLUMN `email_reminder_body` TEXT NULL AFTER `email_invitation_body`;
+
+ALTER TABLE `survey` 
+CHANGE COLUMN `email_invitation_body` `email_invitation_purpose` TEXT NULL DEFAULT NULL ,
+CHANGE COLUMN `email_reminder_body` `email_reminder_purpose` TEXT NULL DEFAULT NULL ;
+
+

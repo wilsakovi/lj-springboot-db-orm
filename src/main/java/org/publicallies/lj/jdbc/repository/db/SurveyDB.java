@@ -66,6 +66,10 @@ public class SurveyDB implements EntityDB<Survey>{
 		CUSTOM_VARIABLES("custom_variables", true, ""),
 		SCHEDULABLE("schedulable", false, ""),
 		HISTORY("history", true, ""),
+		EMAIL_INVITATION_SUBJECT("email_invitation_subject", false, ""),
+		EMAIL_REMINDER_SUBJECT("email_reminder_subject", false, ""),
+		EMAIL_INVITATION_PURPOSE("email_invitation_purpose", false, ""),
+		EMAIL_REMINDER_PURPOSE("email_reminder_purpose", false, ""),
 		;
 
 		private String columnName;
@@ -177,6 +181,14 @@ public class SurveyDB implements EntityDB<Survey>{
 			if (rs.wasNull()) obj.setSchedulable(null);
 			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnName()));
 			if (rs.wasNull()) obj.setHistory(null);
+			obj.setEmailInvitationSubject(rs.getString(COLUMNS.EMAIL_INVITATION_SUBJECT.getColumnName()));
+			if (rs.wasNull()) obj.setEmailInvitationSubject(null);
+			obj.setEmailReminderSubject(rs.getString(COLUMNS.EMAIL_REMINDER_SUBJECT.getColumnName()));
+			if (rs.wasNull()) obj.setEmailReminderSubject(null);
+			obj.setEmailInvitationPurpose(rs.getString(COLUMNS.EMAIL_INVITATION_PURPOSE.getColumnName()));
+			if (rs.wasNull()) obj.setEmailInvitationPurpose(null);
+			obj.setEmailReminderPurpose(rs.getString(COLUMNS.EMAIL_REMINDER_PURPOSE.getColumnName()));
+			if (rs.wasNull()) obj.setEmailReminderPurpose(null);
 			return obj;
 		}
 	}
@@ -215,6 +227,10 @@ public class SurveyDB implements EntityDB<Survey>{
 			mapping.put(COLUMNS.CUSTOM_VARIABLES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getCustomVariables()));
 			mapping.put(COLUMNS.SCHEDULABLE.getColumnName(), survey.getSchedulable());
 			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getHistory()));
+			mapping.put(COLUMNS.EMAIL_INVITATION_SUBJECT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getEmailInvitationSubject()));
+			mapping.put(COLUMNS.EMAIL_REMINDER_SUBJECT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getEmailReminderSubject()));
+			mapping.put(COLUMNS.EMAIL_INVITATION_PURPOSE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getEmailInvitationPurpose()));
+			mapping.put(COLUMNS.EMAIL_REMINDER_PURPOSE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(survey.getEmailReminderPurpose()));
 			return mapping;
 		}
 	}
@@ -271,6 +287,14 @@ public class SurveyDB implements EntityDB<Survey>{
 			if (rs.wasNull()) obj.setSchedulable(null);
 			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnAliasName()));
 			if (rs.wasNull()) obj.setHistory(null);
+			obj.setEmailInvitationSubject(rs.getString(COLUMNS.EMAIL_INVITATION_SUBJECT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setEmailInvitationSubject(null);
+			obj.setEmailReminderSubject(rs.getString(COLUMNS.EMAIL_REMINDER_SUBJECT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setEmailReminderSubject(null);
+			obj.setEmailInvitationPurpose(rs.getString(COLUMNS.EMAIL_INVITATION_PURPOSE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setEmailInvitationPurpose(null);
+			obj.setEmailReminderPurpose(rs.getString(COLUMNS.EMAIL_REMINDER_PURPOSE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setEmailReminderPurpose(null);
 			return obj;
 		}
 	}
