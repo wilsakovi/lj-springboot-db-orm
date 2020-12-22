@@ -82,6 +82,18 @@ public class Survey implements Persistable<Integer> , CommonIdCUH<Integer>
 
 	private String history;
 
+	@Size (max = 200)
+	private String emailInvitationSubject;
+
+	@Size (max = 200)
+	private String emailReminderSubject;
+
+	@Size (max = 65535)
+	private String emailInvitationPurpose;
+
+	@Size (max = 65535)
+	private String emailReminderPurpose;
+
 	private transient boolean persisted;
 
 
@@ -323,6 +335,46 @@ public class Survey implements Persistable<Integer> , CommonIdCUH<Integer>
 	public String getHistory ()
 	{
 		return this.history;
+	}
+
+	public void setEmailInvitationSubject (String emailInvitationSubject)
+	{
+		this.emailInvitationSubject = emailInvitationSubject;
+	}
+
+	public String getEmailInvitationSubject ()
+	{
+		return this.emailInvitationSubject;
+	}
+
+	public void setEmailReminderSubject (String emailReminderSubject)
+	{
+		this.emailReminderSubject = emailReminderSubject;
+	}
+
+	public String getEmailReminderSubject ()
+	{
+		return this.emailReminderSubject;
+	}
+
+	public void setEmailInvitationPurpose (String emailInvitationPurpose)
+	{
+		this.emailInvitationPurpose = emailInvitationPurpose;
+	}
+
+	public String getEmailInvitationPurpose ()
+	{
+		return this.emailInvitationPurpose;
+	}
+
+	public void setEmailReminderPurpose (String emailReminderPurpose)
+	{
+		this.emailReminderPurpose = emailReminderPurpose;
+	}
+
+	public String getEmailReminderPurpose ()
+	{
+		return this.emailReminderPurpose;
 	}
 
 	public void setPersisted (Boolean persisted)
