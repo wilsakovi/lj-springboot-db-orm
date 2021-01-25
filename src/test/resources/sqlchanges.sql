@@ -220,4 +220,6 @@ ALTER TABLE `survey`
 CHANGE COLUMN `email_invitation_body` `email_invitation_purpose` TEXT NULL DEFAULT NULL ,
 CHANGE COLUMN `email_reminder_body` `email_reminder_purpose` TEXT NULL DEFAULT NULL ;
 
+============================================01/24/2021===================================================
+UPDATE `stp_common_period` SET `name` = 'Less than 1 month' WHERE name = 'Less then 1 month';
 
