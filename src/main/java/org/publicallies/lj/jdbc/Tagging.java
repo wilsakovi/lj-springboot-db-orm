@@ -23,10 +23,9 @@ public class Tagging implements Persistable<Integer>
 	@Null (groups = { Default.class })
 	private Integer id;
 
+	@NotEmpty
 	@Size (max = 80)
-	private String tagName;
-
-	private String jobIds;
+	private String name;
 
 	private transient boolean persisted;
 
@@ -51,24 +50,14 @@ public class Tagging implements Persistable<Integer>
 		this.id = id;
 	}
 
-	public void setTagName (String tagName)
+	public void setName (String name)
 	{
-		this.tagName = tagName;
+		this.name = name;
 	}
 
-	public String getTagName ()
+	public String getName ()
 	{
-		return this.tagName;
-	}
-
-	public void setJobIds (String jobIds)
-	{
-		this.jobIds = jobIds;
-	}
-
-	public String getJobIds ()
-	{
-		return this.jobIds;
+		return this.name;
 	}
 
 	public void setPersisted (Boolean persisted)

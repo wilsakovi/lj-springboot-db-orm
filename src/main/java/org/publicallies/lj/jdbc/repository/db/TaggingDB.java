@@ -43,8 +43,7 @@ public class TaggingDB implements EntityDB<Tagging>{
 	public enum COLUMNS
 	{
 		ID("id", false, ""),
-		TAG_NAME("tag_name", false, ""),
-		JOB_IDS("job_ids", true, ""),
+		NAME("name", false, ""),
 		;
 
 		private String columnName;
@@ -112,10 +111,8 @@ public class TaggingDB implements EntityDB<Tagging>{
 			Tagging obj = new Tagging();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnName()));
 			if (rs.wasNull()) obj.setId(null);
-			obj.setTagName(rs.getString(COLUMNS.TAG_NAME.getColumnName()));
-			if (rs.wasNull()) obj.setTagName(null);
-			obj.setJobIds(rs.getString(COLUMNS.JOB_IDS.getColumnName()));
-			if (rs.wasNull()) obj.setJobIds(null);
+			obj.setName(rs.getString(COLUMNS.NAME.getColumnName()));
+			if (rs.wasNull()) obj.setName(null);
 			return obj;
 		}
 	}
@@ -127,8 +124,7 @@ public class TaggingDB implements EntityDB<Tagging>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), tagging.getId());
-			mapping.put(COLUMNS.TAG_NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tagging.getTagName()));
-			mapping.put(COLUMNS.JOB_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tagging.getJobIds()));
+			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tagging.getName()));
 			return mapping;
 		}
 	}
@@ -141,10 +137,8 @@ public class TaggingDB implements EntityDB<Tagging>{
 			Tagging obj = new Tagging();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setId(null);
-			obj.setTagName(rs.getString(COLUMNS.TAG_NAME.getColumnAliasName()));
-			if (rs.wasNull()) obj.setTagName(null);
-			obj.setJobIds(rs.getString(COLUMNS.JOB_IDS.getColumnAliasName()));
-			if (rs.wasNull()) obj.setJobIds(null);
+			obj.setName(rs.getString(COLUMNS.NAME.getColumnAliasName()));
+			if (rs.wasNull()) obj.setName(null);
 			return obj;
 		}
 	}
