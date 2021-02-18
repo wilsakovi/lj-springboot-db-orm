@@ -223,3 +223,29 @@ CHANGE COLUMN `email_reminder_body` `email_reminder_purpose` TEXT NULL DEFAULT N
 ============================================01/24/2021===================================================
 UPDATE `stp_common_period` SET `name` = 'Less than 1 month' WHERE name = 'Less then 1 month';
 
+============================================ 2/14/2021===================================================
+ALTER TABLE `job` ADD COLUMN `tag_ids` JSON NULL AFTER `contract_sent_flag`;
+
+ALTER TABLE `tagging` DROP COLUMN `job_ids`;
+
+ALTER TABLE `tagging` CHANGE COLUMN `tag_name` `name` VARCHAR(80) NOT NULL ;
+
+
+CREATE TABLE `survey_term` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `survey_id` INT NOT NULL,
+  `term_id` SMALLINT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `survey_term_term_idx` (`term_id` ASC) VISIBLE,
+   INDEX `survey_term_survey_idx` (`survey_id` ASC) VISIBLE,
+  UNIQUE INDEX `survey_term_uq1` (`survey_id` ASC, `term_id` ASC) VISIBLE,
+  CONSTRAINT `survey_term_term`
+    FOREIGN KEY (`term_id`)
+    REFERENCES `term` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `survey_term_survey`
+    FOREIGN KEY (survey_id)
+    REFERENCES `survey` (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
