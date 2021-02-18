@@ -18,7 +18,7 @@ public class TaggingDB implements EntityDB<Tagging>{
 
 	private static String TABLE_NAME = "TAGGING";
 
-	private static String TABLE_ALIAS = "A_tag_111";
+	private static String TABLE_ALIAS = "A_tag_112";
 
 	public static String getTableName()
 	{

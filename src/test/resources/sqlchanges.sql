@@ -230,3 +230,22 @@ ALTER TABLE `tagging` DROP COLUMN `job_ids`;
 
 ALTER TABLE `tagging` CHANGE COLUMN `tag_name` `name` VARCHAR(80) NOT NULL ;
 
+
+CREATE TABLE `survey_term` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `survey_id` INT NOT NULL,
+  `term_id` SMALLINT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `survey_term_term_idx` (`term_id` ASC) VISIBLE,
+   INDEX `survey_term_survey_idx` (`survey_id` ASC) VISIBLE,
+  UNIQUE INDEX `survey_term_uq1` (`survey_id` ASC, `term_id` ASC) VISIBLE,
+  CONSTRAINT `survey_term_term`
+    FOREIGN KEY (`term_id`)
+    REFERENCES `term` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `survey_term_survey`
+    FOREIGN KEY (survey_id)
+    REFERENCES `survey` (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
