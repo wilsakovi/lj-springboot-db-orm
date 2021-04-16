@@ -120,6 +120,12 @@ public class TspRepository extends JdbcRepository<Tsp, Integer>
 		return this.jdbcOperations.query (sql, new Object[] { staffId }, TspDB.ROW_MAPPER);
 	}
 
+	public List<Tsp> getTspsByTermId (Long termId)
+	{
+		String sql = "select * from " + TspDB.getTableName() + " where " + TspDB.COLUMNS.TERM_ID.getColumnName() + " = ? ";
+		return this.jdbcOperations.query (sql, new Object[] { termId }, TspDB.ROW_MAPPER);
+	}
+
 
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 

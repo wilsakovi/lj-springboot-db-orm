@@ -249,3 +249,67 @@ CREATE TABLE `survey_term` (
     REFERENCES `survey` (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+    =============================================3/13/2021=========================================================
+    CREATE TABLE `tsp_site_profile` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `tsp_id` INT NOT NULL,
+  `site_profile_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `tsp_sp_tsp_uq` (`tsp_id` ASC, `site_profile_id` ASC) INVISIBLE,
+ CONSTRAINT `tsp_sp_tsp`
+    FOREIGN KEY (`tsp_id`)
+    REFERENCES `tsp` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+ CONSTRAINT `tsp_sp_sp`
+    FOREIGN KEY (`site_profile_id`)
+    REFERENCES `site_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+ALTER TABLE `tsp` 
+ADD COLUMN `program_year_id` SMALLINT NULL AFTER `title`;
+
+ALTER TABLE `tsp` add 
+ CONSTRAINT `fk_tsp_py`
+    FOREIGN KEY (`program_year_id`)
+    REFERENCES `program_year` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION;
+    
+insert into tsp_site_profile (tsp_id, site_profile_id) select id, site_profile_id from tsp where site_profile_id is not null;
+
+update tsp t, site_profile sp
+set t.program_year_id = sp.program_year_id 
+where sp.id = t.site_profile_id
+and t.site_profile_id is not null;
+
+
+ALTER TABLE `tsp` 
+ADD COLUMN `term_id` SMALLINT NULL AFTER `id`,
+ADD INDEX `fk_tsp_term_idx` (`term_id` ASC) VISIBLE;
+;
+ALTER TABLE `tsp` 
+ADD CONSTRAINT `fk_tsp_term`
+  FOREIGN KEY (`term_id`)
+  REFERENCES `term` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+  
+  ALTER TABLE `tsp` 
+DROP FOREIGN KEY `fk_tsp_py`;
+ALTER TABLE `tsp` 
+DROP COLUMN `program_year_id`,
+DROP INDEX `fk_tsp_py` ;
+;
+
+update tsp t, site_profile sp, program_year py
+set t.term_id = py.term_id
+where sp.id = t.site_profile_id
+and py.id = sp.program_year_id
+and t.site_profile_id is not null;
+
+ALTER TABLE `tsp` 
+ADD COLUMN `program_year_id` SMALLINT NULL AFTER `community_impact`;

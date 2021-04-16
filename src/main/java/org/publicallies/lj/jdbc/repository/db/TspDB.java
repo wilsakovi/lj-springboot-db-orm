@@ -44,6 +44,7 @@ public class TspDB implements EntityDB<Tsp>{
 	public enum COLUMNS
 	{
 		ID("id", false, ""),
+		TERM_ID("term_id", false, ""),
 		TITLE("title", false, ""),
 		SITE_PROFILE_ID("site_profile_id", false, ""),
 		STAFF_ID("staff_id", false, ""),
@@ -70,6 +71,7 @@ public class TspDB implements EntityDB<Tsp>{
 		TEAM_LEARNING("team_learning", false, ""),
 		COMPLETED("completed", false, ""),
 		COMMUNITY_IMPACT("community_impact", false, ""),
+		PROGRAM_YEAR_ID("program_year_id", false, ""),
 		;
 
 		private String columnName;
@@ -137,6 +139,8 @@ public class TspDB implements EntityDB<Tsp>{
 			Tsp obj = new Tsp();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnName()));
 			if (rs.wasNull()) obj.setId(null);
+			obj.setTermId(rs.getShort(COLUMNS.TERM_ID.getColumnName()));
+			if (rs.wasNull()) obj.setTermId(null);
 			obj.setTitle(rs.getString(COLUMNS.TITLE.getColumnName()));
 			if (rs.wasNull()) obj.setTitle(null);
 			obj.setSiteProfileId(rs.getInt(COLUMNS.SITE_PROFILE_ID.getColumnName()));
@@ -189,6 +193,8 @@ public class TspDB implements EntityDB<Tsp>{
 			if (rs.wasNull()) obj.setCompleted(null);
 			obj.setCommunityImpact(rs.getString(COLUMNS.COMMUNITY_IMPACT.getColumnName()));
 			if (rs.wasNull()) obj.setCommunityImpact(null);
+			obj.setProgramYearId(rs.getShort(COLUMNS.PROGRAM_YEAR_ID.getColumnName()));
+			if (rs.wasNull()) obj.setProgramYearId(null);
 			return obj;
 		}
 	}
@@ -200,6 +206,7 @@ public class TspDB implements EntityDB<Tsp>{
 		{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), tsp.getId());
+			mapping.put(COLUMNS.TERM_ID.getColumnName(), tsp.getTermId());
 			mapping.put(COLUMNS.TITLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getTitle()));
 			mapping.put(COLUMNS.SITE_PROFILE_ID.getColumnName(), tsp.getSiteProfileId());
 			mapping.put(COLUMNS.STAFF_ID.getColumnName(), tsp.getStaffId());
@@ -228,6 +235,7 @@ public class TspDB implements EntityDB<Tsp>{
 			mapping.put(COLUMNS.TEAM_LEARNING.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getTeamLearning()));
 			mapping.put(COLUMNS.COMPLETED.getColumnName(), tsp.getCompleted());
 			mapping.put(COLUMNS.COMMUNITY_IMPACT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(tsp.getCommunityImpact()));
+			mapping.put(COLUMNS.PROGRAM_YEAR_ID.getColumnName(), tsp.getProgramYearId());
 			return mapping;
 		}
 	}
@@ -259,11 +267,19 @@ public class TspDB implements EntityDB<Tsp>{
 			this.loadStaff = loadStaff;
 		}
 
+		private boolean loadTerm = false;
+		public void setLoadTerm (boolean loadTerm)
+		{
+			this.loadTerm = loadTerm;
+		}
+
 		public Tsp mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			Tsp obj = new Tsp();
 			obj.setId(rs.getInt(COLUMNS.ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setId(null);
+			obj.setTermId(rs.getShort(COLUMNS.TERM_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setTermId(null);
 			obj.setTitle(rs.getString(COLUMNS.TITLE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTitle(null);
 			obj.setSiteProfileId(rs.getInt(COLUMNS.SITE_PROFILE_ID.getColumnAliasName()));
@@ -316,12 +332,16 @@ public class TspDB implements EntityDB<Tsp>{
 			if (rs.wasNull()) obj.setCompleted(null);
 			obj.setCommunityImpact(rs.getString(COLUMNS.COMMUNITY_IMPACT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setCommunityImpact(null);
+			obj.setProgramYearId(rs.getShort(COLUMNS.PROGRAM_YEAR_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setProgramYearId(null);
 			if (this.loadAllFKeys || this.loadCncs)
 				obj.setCncs(CncsDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadSiteProfile)
 				obj.setSiteProfile(SiteProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadStaff)
 				obj.setStaff(StaffDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
+			if (this.loadAllFKeys || this.loadTerm)
+				obj.setTerm(TermDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
