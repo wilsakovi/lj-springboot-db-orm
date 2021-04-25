@@ -24,6 +24,8 @@ public class Tsp implements Persistable<Integer> , CommonIdCUH<Integer>
 	@Null (groups = { Default.class })
 	private Integer id;
 
+	private Short termId;
+
 	@NotEmpty
 	@Size (max = 150)
 	private String title;
@@ -93,11 +95,14 @@ public class Tsp implements Persistable<Integer> , CommonIdCUH<Integer>
 	@Size (max = 16777215)
 	private String communityImpact;
 
+	private Short programYearId;
+
 	private transient boolean persisted;
 
 	private Cncs cncs;
 	private SiteProfile siteProfile;
 	private Staff staff;
+	private Term term;
 
 	public Tsp ()
 	{
@@ -117,6 +122,16 @@ public class Tsp implements Persistable<Integer> , CommonIdCUH<Integer>
 	public void setId(Integer id)
 	{
 		this.id = id;
+	}
+
+	public void setTermId (Short termId)
+	{
+		this.termId = termId;
+	}
+
+	public Short getTermId ()
+	{
+		return this.termId;
 	}
 
 	public void setTitle (String title)
@@ -379,6 +394,16 @@ public class Tsp implements Persistable<Integer> , CommonIdCUH<Integer>
 		return this.communityImpact;
 	}
 
+	public void setProgramYearId (Short programYearId)
+	{
+		this.programYearId = programYearId;
+	}
+
+	public Short getProgramYearId ()
+	{
+		return this.programYearId;
+	}
+
 	public void setPersisted (Boolean persisted)
 	{
 		this.persisted = persisted;
@@ -417,6 +442,16 @@ public class Tsp implements Persistable<Integer> , CommonIdCUH<Integer>
 	public Staff getStaff ()
 	{
 		return this.staff;
+	}
+
+	public void setTerm (Term term)
+	{
+		this.term = term;
+	}
+
+	public Term getTerm ()
+	{
+		return this.term;
 	}
 
 	@Override
