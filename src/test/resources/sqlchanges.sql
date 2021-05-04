@@ -313,3 +313,39 @@ and t.site_profile_id is not null;
 
 ALTER TABLE `tsp` 
 ADD COLUMN `program_year_id` SMALLINT NULL AFTER `community_impact`;
+
+======================================== 05/02/21==========================================================================
+CREATE TABLE `stp_pa_issue_area` (
+  `id` INT(2) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(75) NOT NULL,
+  `description` VARCHAR(200) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE);
+  
+ALTER TABLE `stp_pa_issue_area` 
+ADD COLUMN `code` CHAR(2) NULL AFTER `description`,
+CHANGE COLUMN `description` `description` VARCHAR(250) NULL DEFAULT NULL ,
+ADD UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE;
+
+ALTER TABLE `stp_pa_issue_area` 
+CHANGE COLUMN `description` `description` TEXT NULL DEFAULT NULL ;
+  
+INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Full participation in the economy', 'Support community members towards full participation in the economy, increase access to career opportunities and living wages and more secure livelihood');
+INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Health Equity', 'Eradication of health disparities, unequal access to healthcare  & public health threats (including environmental health)');
+INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Education Equity', 'Eradication of achievement gaps, access to quality education');
+INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Equal application of justice', 'Supporting reforms within the criminal justice system; ensuring fair and equal application of the law, and promoting fundamental freedoms for everyone');
+INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Truth telling and healing', 'Leveraging relationships, insight, familiarity, proximity to tell stories about community from the perspective of the community; serve as resources of trusted information for communities that can counteract disinformation that creates confusion & apathy');
+INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Other', 'Other');
+
+UPDATE `stp_pa_issue_area` SET `code` = 'OT' WHERE (`id` = '6');
+
+ALTER TABLE `job`
+     ADD CONSTRAINT `fk_pa_issue_area`
+      FOREIGN KEY (`pa_issue_area_id`)
+       REFERENCES `stp_pa_issue_area` (`id`)
+     ON DELETE NO ACTION
+       ON UPDATE NO ACTION;
+
+
+       ALTER TABLE `term` 
+CHANGE COLUMN `term_rank` `term_rank` INT(4) NULL DEFAULT NULL ;

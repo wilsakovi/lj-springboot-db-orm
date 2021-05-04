@@ -31,7 +31,7 @@ public class Term implements Persistable<Short> , CommonIdCU<Short>
 	@Size (max = 10)
 	private String pdgName;
 
-	private Short termRank;
+	private Integer termRank;
 
 	private Date startDate;
 
@@ -92,12 +92,12 @@ public class Term implements Persistable<Short> , CommonIdCU<Short>
 		return this.pdgName;
 	}
 
-	public void setTermRank (Short termRank)
+	public void setTermRank (Integer termRank)
 	{
 		this.termRank = termRank;
 	}
 
-	public Short getTermRank ()
+	public Integer getTermRank ()
 	{
 		return this.termRank;
 	}

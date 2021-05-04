@@ -117,10 +117,13 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 
 	private String tagIds;
 
+	private Integer paIssueAreaId;
+
 	private transient boolean persisted;
 
 	private AllyProfile allyProfile;
 	private Cncs cncs;
+	private StpPaIssueArea paIssueArea;
 	private PartnerProfile partnerProfile;
 	private PartnerSupervisor partnerSupervisor;
 	private ProgramYear programYear;
@@ -546,6 +549,16 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 		return this.tagIds;
 	}
 
+	public void setPaIssueAreaId (Integer paIssueAreaId)
+	{
+		this.paIssueAreaId = paIssueAreaId;
+	}
+
+	public Integer getPaIssueAreaId ()
+	{
+		return this.paIssueAreaId;
+	}
+
 	public void setPersisted (Boolean persisted)
 	{
 		this.persisted = persisted;
@@ -574,6 +587,16 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	public Cncs getCncs ()
 	{
 		return this.cncs;
+	}
+
+	public void setPaIssueArea (StpPaIssueArea paIssueArea)
+	{
+		this.paIssueArea = paIssueArea;
+	}
+
+	public StpPaIssueArea getPaIssueArea ()
+	{
+		return this.paIssueArea;
 	}
 
 	public void setPartnerProfile (PartnerProfile partnerProfile)
