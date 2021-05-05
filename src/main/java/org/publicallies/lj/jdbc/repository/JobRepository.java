@@ -114,6 +114,12 @@ public class JobRepository extends JdbcRepository<Job, Integer>
 		return this.jdbcOperations.query (sql, new Object[] { cncsId }, JobDB.ROW_MAPPER);
 	}
 
+	public List<Job> getJobsByPaIssueAreaId (Long paIssueAreaId)
+	{
+		String sql = "select * from " + JobDB.getTableName() + " where " + JobDB.COLUMNS.PA_ISSUE_AREA_ID.getColumnName() + " = ? ";
+		return this.jdbcOperations.query (sql, new Object[] { paIssueAreaId }, JobDB.ROW_MAPPER);
+	}
+
 	public List<Job> getJobsByPartnerProfileId (Long partnerProfileId)
 	{
 		String sql = "select * from " + JobDB.getTableName() + " where " + JobDB.COLUMNS.PARTNER_PROFILE_ID.getColumnName() + " = ? ";

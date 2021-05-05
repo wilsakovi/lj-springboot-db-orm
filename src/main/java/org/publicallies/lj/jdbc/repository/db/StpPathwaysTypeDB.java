@@ -18,7 +18,7 @@ public class StpPathwaysTypeDB implements EntityDB<StpPathwaysType>{
 
 	private static String TABLE_NAME = "STP_PATHWAYS_TYPE";
 
-	private static String TABLE_ALIAS = "A_spt_93";
+	private static String TABLE_ALIAS = "A_spt_94";
 
 	public static String getTableName()
 	{

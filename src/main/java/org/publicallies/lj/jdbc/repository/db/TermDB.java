@@ -19,7 +19,7 @@ public class TermDB implements EntityDB<Term>{
 
 	private static String TABLE_NAME = "TERM";
 
-	private static String TABLE_ALIAS = "A_ter_113";
+	private static String TABLE_ALIAS = "A_ter_114";
 
 	public static String getTableName()
 	{
@@ -125,7 +125,7 @@ public class TermDB implements EntityDB<Term>{
 			if (rs.wasNull()) obj.setName(null);
 			obj.setPdgName(rs.getString(COLUMNS.PDG_NAME.getColumnName()));
 			if (rs.wasNull()) obj.setPdgName(null);
-			obj.setTermRank(rs.getShort(COLUMNS.TERM_RANK.getColumnName()));
+			obj.setTermRank(rs.getInt(COLUMNS.TERM_RANK.getColumnName()));
 			if (rs.wasNull()) obj.setTermRank(null);
 			obj.setStartDate(rs.getTimestamp(COLUMNS.START_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setStartDate(null);
@@ -182,7 +182,7 @@ public class TermDB implements EntityDB<Term>{
 			if (rs.wasNull()) obj.setName(null);
 			obj.setPdgName(rs.getString(COLUMNS.PDG_NAME.getColumnAliasName()));
 			if (rs.wasNull()) obj.setPdgName(null);
-			obj.setTermRank(rs.getShort(COLUMNS.TERM_RANK.getColumnAliasName()));
+			obj.setTermRank(rs.getInt(COLUMNS.TERM_RANK.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTermRank(null);
 			obj.setStartDate(rs.getTimestamp(COLUMNS.START_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setStartDate(null);

@@ -18,7 +18,7 @@ public class StpSourceFundDB implements EntityDB<StpSourceFund>{
 
 	private static String TABLE_NAME = "STP_SOURCE_FUND";
 
-	private static String TABLE_ALIAS = "A_ssf_98";
+	private static String TABLE_ALIAS = "A_ssf_99";
 
 	public static String getTableName()
 	{

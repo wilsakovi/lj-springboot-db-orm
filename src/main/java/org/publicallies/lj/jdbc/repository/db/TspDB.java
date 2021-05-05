@@ -19,7 +19,7 @@ public class TspDB implements EntityDB<Tsp>{
 
 	private static String TABLE_NAME = "TSP";
 
-	private static String TABLE_ALIAS = "A_tsp_115";
+	private static String TABLE_ALIAS = "A_tsp_116";
 
 	public static String getTableName()
 	{
