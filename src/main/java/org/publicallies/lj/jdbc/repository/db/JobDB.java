@@ -84,7 +84,7 @@ public class JobDB implements EntityDB<Job>{
 		SA_APPROVAL_COMMENT("sa_approval_comment", false, ""),
 		CONTRACT_SENT_FLAG("contract_sent_flag", false, ""),
 		TAG_IDS("tag_ids", true, ""),
-		PA_ISSUE_AREA_ID("pa_issue_area_id", false, ""),
+		PA_ISSUE_AREA_IDS("pa_issue_area_ids", true, ""),
 		;
 
 		private String columnName;
@@ -232,8 +232,8 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setContractSentFlag(null);
 			obj.setTagIds(rs.getString(COLUMNS.TAG_IDS.getColumnName()));
 			if (rs.wasNull()) obj.setTagIds(null);
-			obj.setPaIssueAreaId(rs.getInt(COLUMNS.PA_ISSUE_AREA_ID.getColumnName()));
-			if (rs.wasNull()) obj.setPaIssueAreaId(null);
+			obj.setPaIssueAreaIds(rs.getString(COLUMNS.PA_ISSUE_AREA_IDS.getColumnName()));
+			if (rs.wasNull()) obj.setPaIssueAreaIds(null);
 			return obj;
 		}
 	}
@@ -292,7 +292,7 @@ public class JobDB implements EntityDB<Job>{
 			mapping.put(COLUMNS.SA_APPROVAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getSaApprovalComment()));
 			mapping.put(COLUMNS.CONTRACT_SENT_FLAG.getColumnName(), job.getContractSentFlag());
 			mapping.put(COLUMNS.TAG_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getTagIds()));
-			mapping.put(COLUMNS.PA_ISSUE_AREA_ID.getColumnName(), job.getPaIssueAreaId());
+			mapping.put(COLUMNS.PA_ISSUE_AREA_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getPaIssueAreaIds()));
 			return mapping;
 		}
 	}
@@ -316,12 +316,6 @@ public class JobDB implements EntityDB<Job>{
 		public void setLoadCncs (boolean loadCncs)
 		{
 			this.loadCncs = loadCncs;
-		}
-
-		private boolean loadPaIssueArea = false;
-		public void setLoadPaIssueArea (boolean loadPaIssueArea)
-		{
-			this.loadPaIssueArea = loadPaIssueArea;
 		}
 
 		private boolean loadPartnerProfile = false;
@@ -433,14 +427,12 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setContractSentFlag(null);
 			obj.setTagIds(rs.getString(COLUMNS.TAG_IDS.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTagIds(null);
-			obj.setPaIssueAreaId(rs.getInt(COLUMNS.PA_ISSUE_AREA_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setPaIssueAreaId(null);
+			obj.setPaIssueAreaIds(rs.getString(COLUMNS.PA_ISSUE_AREA_IDS.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPaIssueAreaIds(null);
 			if (this.loadAllFKeys || this.loadAllyProfile)
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadCncs)
 				obj.setCncs(CncsDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadPaIssueArea)
-				obj.setPaIssueArea(StpPaIssueAreaDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadPartnerProfile)
 				obj.setPartnerProfile(PartnerProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadPartnerSupervisor)
