@@ -338,6 +338,7 @@ INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Truth telling a
 INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Other', 'Other');
 
 UPDATE `stp_pa_issue_area` SET `code` = 'OT' WHERE (`id` = '6');
+alter table job add column pa_issue_area_id int(2) default null;
 
 ALTER TABLE `job`
      ADD CONSTRAINT `fk_pa_issue_area`
@@ -349,3 +350,15 @@ ALTER TABLE `job`
 
        ALTER TABLE `term` 
 CHANGE COLUMN `term_rank` `term_rank` INT(4) NULL DEFAULT NULL ;
+
+ALTER TABLE `job` 
+DROP FOREIGN KEY `fk_pa_issue_area`;
+
+ALTER TABLE `job` 
+DROP INDEX `fk_pa_issue_area_idx` ;
+
+ALTER TABLE `job` 
+DROP COLUMN `pa_issue_area_id`,
+ADD COLUMN `pa_issue_area_ids` JSON NULL AFTER `tag_ids`;
+
+update stp_pa_issue_area set description = concat(description, '.') where description is not null and description !='';
