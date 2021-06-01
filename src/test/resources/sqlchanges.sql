@@ -362,3 +362,8 @@ DROP COLUMN `pa_issue_area_id`,
 ADD COLUMN `pa_issue_area_ids` JSON NULL AFTER `tag_ids`;
 
 update stp_pa_issue_area set description = concat(description, '.') where description is not null and description !='';
+
+============================ 05/30/21===========================================================================
+ALTER TABLE `users` 
+ADD UNIQUE INDEX `uq-user-email` (`email` ASC) VISIBLE;
+
