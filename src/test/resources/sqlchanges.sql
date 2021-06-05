@@ -335,7 +335,7 @@ INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Health Equity',
 INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Education Equity', 'Eradication of achievement gaps, access to quality education');
 INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Equal application of justice', 'Supporting reforms within the criminal justice system; ensuring fair and equal application of the law, and promoting fundamental freedoms for everyone');
 INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Truth telling and healing', 'Leveraging relationships, insight, familiarity, proximity to tell stories about community from the perspective of the community; serve as resources of trusted information for communities that can counteract disinformation that creates confusion & apathy');
-INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Other', 'Other');
+INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Other', '');
 
 UPDATE `stp_pa_issue_area` SET `code` = 'OT' WHERE (`id` = '6');
 alter table job add column pa_issue_area_id int(2) default null;
@@ -366,4 +366,6 @@ update stp_pa_issue_area set description = concat(description, '.') where descri
 ============================ 05/30/21===========================================================================
 ALTER TABLE `users` 
 ADD UNIQUE INDEX `uq-user-email` (`email` ASC) VISIBLE;
+==================================== 183==================================================================================
+INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Full participation in democracy', 'Supporting awareness of civic duties and opportunities to engage in local efforts to improve communities.');
 
