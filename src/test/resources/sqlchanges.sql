@@ -363,6 +363,9 @@ ADD COLUMN `pa_issue_area_ids` JSON NULL AFTER `tag_ids`;
 
 update stp_pa_issue_area set description = concat(description, '.') where description is not null and description !='';
 
-==================================== 183==================================================================================
+==================================== Issue 183==================================================================================
 INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Full participation in democracy', 'Supporting awareness of civic duties and opportunities to engage in local efforts to improve communities.');
 
+=================================== Issue 184 ================================================================================
+DROP TABLE `msr_comment`;
+DROP TABLE `msr_section`;
