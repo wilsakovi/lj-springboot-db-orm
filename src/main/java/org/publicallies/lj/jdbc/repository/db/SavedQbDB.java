@@ -19,7 +19,7 @@ public class SavedQbDB implements EntityDB<SavedQb>{
 
 	private static String TABLE_NAME = "SAVED_QB";
 
-	private static String TABLE_ALIAS = "A_sq_67";
+	private static String TABLE_ALIAS = "A_sq_65";
 
 	public static String getTableName()
 	{

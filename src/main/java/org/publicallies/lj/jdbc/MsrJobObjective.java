@@ -49,6 +49,12 @@ public class MsrJobObjective implements Persistable<Integer> , CommonIdCUH<Integ
 
 	private Integer msrId;
 
+	@Size (max = 65535)
+	private String recentActivityAtPo;
+
+	@Size (max = 65535)
+	private String plannedActivity;
+
 	private String history;
 
 	@Size (max = 65535)
@@ -64,6 +70,20 @@ public class MsrJobObjective implements Persistable<Integer> , CommonIdCUH<Integ
 	private Date posCommentDate;
 
 	private Date staffCommentDate;
+
+	@Size (max = 65535)
+	private String posCommitComment;
+
+	@Size (max = 65535)
+	private String staffCommitComment;
+
+	private Integer posCommitUserId;
+
+	private Integer staffCommitUserId;
+
+	private Date posCommitDate;
+
+	private Date staffCommitDate;
 
 	private transient boolean persisted;
 
@@ -191,6 +211,26 @@ public class MsrJobObjective implements Persistable<Integer> , CommonIdCUH<Integ
 		return this.msrId;
 	}
 
+	public void setRecentActivityAtPo (String recentActivityAtPo)
+	{
+		this.recentActivityAtPo = recentActivityAtPo;
+	}
+
+	public String getRecentActivityAtPo ()
+	{
+		return this.recentActivityAtPo;
+	}
+
+	public void setPlannedActivity (String plannedActivity)
+	{
+		this.plannedActivity = plannedActivity;
+	}
+
+	public String getPlannedActivity ()
+	{
+		return this.plannedActivity;
+	}
+
 	public void setHistory (String history)
 	{
 		this.history = history;
@@ -259,6 +299,66 @@ public class MsrJobObjective implements Persistable<Integer> , CommonIdCUH<Integ
 	public Date getStaffCommentDate ()
 	{
 		return this.staffCommentDate;
+	}
+
+	public void setPosCommitComment (String posCommitComment)
+	{
+		this.posCommitComment = posCommitComment;
+	}
+
+	public String getPosCommitComment ()
+	{
+		return this.posCommitComment;
+	}
+
+	public void setStaffCommitComment (String staffCommitComment)
+	{
+		this.staffCommitComment = staffCommitComment;
+	}
+
+	public String getStaffCommitComment ()
+	{
+		return this.staffCommitComment;
+	}
+
+	public void setPosCommitUserId (Integer posCommitUserId)
+	{
+		this.posCommitUserId = posCommitUserId;
+	}
+
+	public Integer getPosCommitUserId ()
+	{
+		return this.posCommitUserId;
+	}
+
+	public void setStaffCommitUserId (Integer staffCommitUserId)
+	{
+		this.staffCommitUserId = staffCommitUserId;
+	}
+
+	public Integer getStaffCommitUserId ()
+	{
+		return this.staffCommitUserId;
+	}
+
+	public void setPosCommitDate (Date posCommitDate)
+	{
+		this.posCommitDate = posCommitDate;
+	}
+
+	public Date getPosCommitDate ()
+	{
+		return this.posCommitDate;
+	}
+
+	public void setStaffCommitDate (Date staffCommitDate)
+	{
+		this.staffCommitDate = staffCommitDate;
+	}
+
+	public Date getStaffCommitDate ()
+	{
+		return this.staffCommitDate;
 	}
 
 	public void setPersisted (Boolean persisted)

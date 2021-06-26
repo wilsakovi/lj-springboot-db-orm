@@ -18,7 +18,7 @@ public class StatReportUsageDB implements EntityDB<StatReportUsage>{
 
 	private static String TABLE_NAME = "STAT_REPORT_USAGE";
 
-	private static String TABLE_ALIAS = "A_sru_76";
+	private static String TABLE_ALIAS = "A_sru_74";
 
 	public static String getTableName()
 	{

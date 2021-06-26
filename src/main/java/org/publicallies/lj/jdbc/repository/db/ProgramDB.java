@@ -18,7 +18,7 @@ public class ProgramDB implements EntityDB<Program>{
 
 	private static String TABLE_NAME = "PROGRAM";
 
-	private static String TABLE_ALIAS = "A_pro_60";
+	private static String TABLE_ALIAS = "A_pro_58";
 
 	public static String getTableName()
 	{

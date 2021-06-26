@@ -18,7 +18,7 @@ public class StpEmployStatusDB implements EntityDB<StpEmployStatus>{
 
 	private static String TABLE_NAME = "STP_EMPLOY_STATUS";
 
-	private static String TABLE_ALIAS = "A_ses_86";
+	private static String TABLE_ALIAS = "A_ses_83";
 
 	public static String getTableName()
 	{

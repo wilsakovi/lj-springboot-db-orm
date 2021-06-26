@@ -369,3 +369,18 @@ INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Full participat
 =================================== Issue 184 ================================================================================
 DROP TABLE `msr_comment`;
 DROP TABLE `msr_section`;
+
+ALTER TABLE `msr_job_objective` 
+ADD COLUMN `recent_activity_at_po` TEXT NULL AFTER `msr_id`,
+ADD COLUMN `planned_activity` TEXT NULL AFTER `recent_activity_at_po`;
+
+DROP TABLE `stp_action_status`;
+
+ALTER TABLE `msr_job_objective` 
+ADD COLUMN `pos_commit_comment` TEXT NULL DEFAULT NULL AFTER `staff_comment_date`,
+ADD COLUMN `staff_commit_comment` TEXT NULL DEFAULT NULL AFTER `pos_commit_comment`,
+ADD COLUMN `pos_commit_user_id` INT NULL DEFAULT NULL AFTER `staff_commit_comment`,
+ADD COLUMN `staff_commit_user_id` INT NULL DEFAULT NULL AFTER `pos_commit_user_id`,
+ADD COLUMN `pos_commit_date` DATE NULL DEFAULT NULL AFTER `staff_commit_user_id`,
+ADD COLUMN `staff_commit_date` DATE NULL DEFAULT NULL AFTER `pos_commit_date`;
+
