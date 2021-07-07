@@ -18,7 +18,7 @@ public class SurveyTermDB implements EntityDB<SurveyTerm>{
 
 	private static String TABLE_NAME = "SURVEY_TERM";
 
-	private static String TABLE_ALIAS = "A_st_112";
+	private static String TABLE_ALIAS = "A_st_109";
 
 	public static String getTableName()
 	{

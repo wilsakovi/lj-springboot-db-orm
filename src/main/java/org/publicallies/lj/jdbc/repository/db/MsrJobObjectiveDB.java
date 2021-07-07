@@ -19,7 +19,7 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 
 	private static String TABLE_NAME = "MSR_JOB_OBJECTIVE";
 
-	private static String TABLE_ALIAS = "A_mjo_39";
+	private static String TABLE_ALIAS = "A_mjo_38";
 
 	public static String getTableName()
 	{
@@ -54,6 +54,8 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 		LEARNING_COMMENT("learning_comment", false, ""),
 		ACTS_REPORT_ID("acts_report_id", false, ""),
 		MSR_ID("msr_id", false, ""),
+		RECENT_ACTIVITY_AT_PO("recent_activity_at_po", false, ""),
+		PLANNED_ACTIVITY("planned_activity", false, ""),
 		HISTORY("history", true, ""),
 		POS_COMMENT("pos_comment", false, ""),
 		STAFF_COMMENT("staff_comment", false, ""),
@@ -61,6 +63,12 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 		STAFF_USER_ID("staff_user_id", false, ""),
 		POS_COMMENT_DATE("pos_comment_date", false, ""),
 		STAFF_COMMENT_DATE("staff_comment_date", false, ""),
+		POS_COMMIT_COMMENT("pos_commit_comment", false, ""),
+		STAFF_COMMIT_COMMENT("staff_commit_comment", false, ""),
+		POS_COMMIT_USER_ID("pos_commit_user_id", false, ""),
+		STAFF_COMMIT_USER_ID("staff_commit_user_id", false, ""),
+		POS_COMMIT_DATE("pos_commit_date", false, ""),
+		STAFF_COMMIT_DATE("staff_commit_date", false, ""),
 		;
 
 		private String columnName;
@@ -148,6 +156,10 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 			if (rs.wasNull()) obj.setActsReportId(null);
 			obj.setMsrId(rs.getInt(COLUMNS.MSR_ID.getColumnName()));
 			if (rs.wasNull()) obj.setMsrId(null);
+			obj.setRecentActivityAtPo(rs.getString(COLUMNS.RECENT_ACTIVITY_AT_PO.getColumnName()));
+			if (rs.wasNull()) obj.setRecentActivityAtPo(null);
+			obj.setPlannedActivity(rs.getString(COLUMNS.PLANNED_ACTIVITY.getColumnName()));
+			if (rs.wasNull()) obj.setPlannedActivity(null);
 			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnName()));
 			if (rs.wasNull()) obj.setHistory(null);
 			obj.setPosComment(rs.getString(COLUMNS.POS_COMMENT.getColumnName()));
@@ -162,6 +174,18 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 			if (rs.wasNull()) obj.setPosCommentDate(null);
 			obj.setStaffCommentDate(rs.getTimestamp(COLUMNS.STAFF_COMMENT_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setStaffCommentDate(null);
+			obj.setPosCommitComment(rs.getString(COLUMNS.POS_COMMIT_COMMENT.getColumnName()));
+			if (rs.wasNull()) obj.setPosCommitComment(null);
+			obj.setStaffCommitComment(rs.getString(COLUMNS.STAFF_COMMIT_COMMENT.getColumnName()));
+			if (rs.wasNull()) obj.setStaffCommitComment(null);
+			obj.setPosCommitUserId(rs.getInt(COLUMNS.POS_COMMIT_USER_ID.getColumnName()));
+			if (rs.wasNull()) obj.setPosCommitUserId(null);
+			obj.setStaffCommitUserId(rs.getInt(COLUMNS.STAFF_COMMIT_USER_ID.getColumnName()));
+			if (rs.wasNull()) obj.setStaffCommitUserId(null);
+			obj.setPosCommitDate(rs.getTimestamp(COLUMNS.POS_COMMIT_DATE.getColumnName()));
+			if (rs.wasNull()) obj.setPosCommitDate(null);
+			obj.setStaffCommitDate(rs.getTimestamp(COLUMNS.STAFF_COMMIT_DATE.getColumnName()));
+			if (rs.wasNull()) obj.setStaffCommitDate(null);
 			return obj;
 		}
 	}
@@ -185,6 +209,8 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 			mapping.put(COLUMNS.LEARNING_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getLearningComment()));
 			mapping.put(COLUMNS.ACTS_REPORT_ID.getColumnName(), msrjobobjective.getActsReportId());
 			mapping.put(COLUMNS.MSR_ID.getColumnName(), msrjobobjective.getMsrId());
+			mapping.put(COLUMNS.RECENT_ACTIVITY_AT_PO.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getRecentActivityAtPo()));
+			mapping.put(COLUMNS.PLANNED_ACTIVITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getPlannedActivity()));
 			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getHistory()));
 			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getPosComment()));
 			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getStaffComment()));
@@ -194,6 +220,14 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 				mapping.put(COLUMNS.POS_COMMENT_DATE.getColumnName(), new Timestamp (msrjobobjective.getPosCommentDate().getTime()));
 			if (msrjobobjective.getStaffCommentDate() != null)
 				mapping.put(COLUMNS.STAFF_COMMENT_DATE.getColumnName(), new Timestamp (msrjobobjective.getStaffCommentDate().getTime()));
+			mapping.put(COLUMNS.POS_COMMIT_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getPosCommitComment()));
+			mapping.put(COLUMNS.STAFF_COMMIT_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msrjobobjective.getStaffCommitComment()));
+			mapping.put(COLUMNS.POS_COMMIT_USER_ID.getColumnName(), msrjobobjective.getPosCommitUserId());
+			mapping.put(COLUMNS.STAFF_COMMIT_USER_ID.getColumnName(), msrjobobjective.getStaffCommitUserId());
+			if (msrjobobjective.getPosCommitDate() != null)
+				mapping.put(COLUMNS.POS_COMMIT_DATE.getColumnName(), new Timestamp (msrjobobjective.getPosCommitDate().getTime()));
+			if (msrjobobjective.getStaffCommitDate() != null)
+				mapping.put(COLUMNS.STAFF_COMMIT_DATE.getColumnName(), new Timestamp (msrjobobjective.getStaffCommitDate().getTime()));
 			return mapping;
 		}
 	}
@@ -250,6 +284,10 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 			if (rs.wasNull()) obj.setActsReportId(null);
 			obj.setMsrId(rs.getInt(COLUMNS.MSR_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setMsrId(null);
+			obj.setRecentActivityAtPo(rs.getString(COLUMNS.RECENT_ACTIVITY_AT_PO.getColumnAliasName()));
+			if (rs.wasNull()) obj.setRecentActivityAtPo(null);
+			obj.setPlannedActivity(rs.getString(COLUMNS.PLANNED_ACTIVITY.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPlannedActivity(null);
 			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnAliasName()));
 			if (rs.wasNull()) obj.setHistory(null);
 			obj.setPosComment(rs.getString(COLUMNS.POS_COMMENT.getColumnAliasName()));
@@ -264,6 +302,18 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 			if (rs.wasNull()) obj.setPosCommentDate(null);
 			obj.setStaffCommentDate(rs.getTimestamp(COLUMNS.STAFF_COMMENT_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setStaffCommentDate(null);
+			obj.setPosCommitComment(rs.getString(COLUMNS.POS_COMMIT_COMMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPosCommitComment(null);
+			obj.setStaffCommitComment(rs.getString(COLUMNS.STAFF_COMMIT_COMMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setStaffCommitComment(null);
+			obj.setPosCommitUserId(rs.getInt(COLUMNS.POS_COMMIT_USER_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPosCommitUserId(null);
+			obj.setStaffCommitUserId(rs.getInt(COLUMNS.STAFF_COMMIT_USER_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setStaffCommitUserId(null);
+			obj.setPosCommitDate(rs.getTimestamp(COLUMNS.POS_COMMIT_DATE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPosCommitDate(null);
+			obj.setStaffCommitDate(rs.getTimestamp(COLUMNS.STAFF_COMMIT_DATE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setStaffCommitDate(null);
 			if (this.loadAllFKeys || this.loadActsReport)
 				obj.setActsReport(ActsReportDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadJobObjective)

@@ -363,9 +363,29 @@ ADD COLUMN `pa_issue_area_ids` JSON NULL AFTER `tag_ids`;
 
 update stp_pa_issue_area set description = concat(description, '.') where description is not null and description !='';
 
-============================ 05/30/21===========================================================================
+
+==================================== Issue 183==================================================================================
+
 ALTER TABLE `users` 
 ADD UNIQUE INDEX `uq-user-email` (`email` ASC) VISIBLE;
-==================================== 183==================================================================================
+
 INSERT INTO `stp_pa_issue_area` (`name`, `description`) VALUES ('Full participation in democracy', 'Supporting awareness of civic duties and opportunities to engage in local efforts to improve communities.');
+
+=================================== Issue 184 ================================================================================
+DROP TABLE `msr_comment`;
+DROP TABLE `msr_section`;
+
+ALTER TABLE `msr_job_objective` 
+ADD COLUMN `recent_activity_at_po` TEXT NULL AFTER `msr_id`,
+ADD COLUMN `planned_activity` TEXT NULL AFTER `recent_activity_at_po`;
+
+DROP TABLE `stp_action_status`;
+
+ALTER TABLE `msr_job_objective` 
+ADD COLUMN `pos_commit_comment` TEXT NULL DEFAULT NULL AFTER `staff_comment_date`,
+ADD COLUMN `staff_commit_comment` TEXT NULL DEFAULT NULL AFTER `pos_commit_comment`,
+ADD COLUMN `pos_commit_user_id` INT NULL DEFAULT NULL AFTER `staff_commit_comment`,
+ADD COLUMN `staff_commit_user_id` INT NULL DEFAULT NULL AFTER `pos_commit_user_id`,
+ADD COLUMN `pos_commit_date` DATE NULL DEFAULT NULL AFTER `staff_commit_user_id`,
+ADD COLUMN `staff_commit_date` DATE NULL DEFAULT NULL AFTER `pos_commit_date`;
 
