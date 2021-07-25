@@ -65,6 +65,7 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 		EY_ASSESS_FLAG("ey_assess_flag", false, ""),
 		TSP_FLAG("tsp_flag", false, ""),
 		CAP_BUILD_ASSESS_FLAG("cap_build_assess_flag", false, ""),
+		RETRO_CAP_BUILD_FLAG("retro_cap_build_flag", false, ""),
 		;
 
 		private String columnName;
@@ -174,6 +175,8 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 			if (rs.wasNull()) obj.setTspFlag(null);
 			obj.setCapBuildAssessFlag(rs.getInt(COLUMNS.CAP_BUILD_ASSESS_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setCapBuildAssessFlag(null);
+			obj.setRetroCapBuildFlag(rs.getInt(COLUMNS.RETRO_CAP_BUILD_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setRetroCapBuildFlag(null);
 			return obj;
 		}
 	}
@@ -210,6 +213,7 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 			mapping.put(COLUMNS.EY_ASSESS_FLAG.getColumnName(), programyear.getEyAssessFlag());
 			mapping.put(COLUMNS.TSP_FLAG.getColumnName(), programyear.getTspFlag());
 			mapping.put(COLUMNS.CAP_BUILD_ASSESS_FLAG.getColumnName(), programyear.getCapBuildAssessFlag());
+			mapping.put(COLUMNS.RETRO_CAP_BUILD_FLAG.getColumnName(), programyear.getRetroCapBuildFlag());
 			return mapping;
 		}
 	}
@@ -282,6 +286,8 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 			if (rs.wasNull()) obj.setTspFlag(null);
 			obj.setCapBuildAssessFlag(rs.getInt(COLUMNS.CAP_BUILD_ASSESS_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setCapBuildAssessFlag(null);
+			obj.setRetroCapBuildFlag(rs.getInt(COLUMNS.RETRO_CAP_BUILD_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setRetroCapBuildFlag(null);
 			if (this.loadAllFKeys || this.loadProgram)
 				obj.setProgram(ProgramDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadTerm)
