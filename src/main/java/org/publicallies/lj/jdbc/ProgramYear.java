@@ -74,7 +74,9 @@ public class ProgramYear implements Persistable<Short> , CommonIdCU<Short>
 	private Integer tspFlag = 1;
 
 	@NotNull
-	private Integer capBuildAssessFlag = 1;
+	private Integer capBuildAssessFlag = 0;
+
+	private Integer retroCapBuildFlag = 1;
 
 	private transient boolean persisted;
 
@@ -309,6 +311,16 @@ public class ProgramYear implements Persistable<Short> , CommonIdCU<Short>
 	public Integer getCapBuildAssessFlag ()
 	{
 		return this.capBuildAssessFlag;
+	}
+
+	public void setRetroCapBuildFlag (Integer retroCapBuildFlag)
+	{
+		this.retroCapBuildFlag = retroCapBuildFlag;
+	}
+
+	public Integer getRetroCapBuildFlag ()
+	{
+		return this.retroCapBuildFlag;
 	}
 
 	public void setPersisted (Boolean persisted)

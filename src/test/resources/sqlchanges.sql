@@ -389,3 +389,15 @@ ADD COLUMN `staff_commit_user_id` INT NULL DEFAULT NULL AFTER `pos_commit_user_i
 ADD COLUMN `pos_commit_date` DATE NULL DEFAULT NULL AFTER `staff_commit_user_id`,
 ADD COLUMN `staff_commit_date` DATE NULL DEFAULT NULL AFTER `pos_commit_date`;
 
+============================== Issues 193 194 195 ===================================================================
+ALTER TABLE `program_year` 
+ADD COLUMN `com_pre_post_cap_build_flag` INT NULL DEFAULT 0 AFTER `cap_build_assess_flag`,
+CHANGE COLUMN `cap_build_assess_flag` `cap_build_assess_flag` INT NOT NULL DEFAULT 0 ;
+
+ALTER TABLE `program_year` 
+CHANGE COLUMN `com_pre_post_cap_build_flag` `comb_pre_post_cap_build_flag` INT NULL DEFAULT 1 ;
+
+INSERT INTO `atomic_user_role` (`code`, `name`, `role_type_id`, `active_flag`, `editable_flag`, `required_site_flag`) VALUES ('HD', 'National Help Desk', '92', b'1', b'0', b'0');
+
+ALTER TABLE `program_year` CHANGE COLUMN `comb_pre_post_cap_build_flag` `retro_cap_build_flag` INT NULL DEFAULT 1 ;
+
