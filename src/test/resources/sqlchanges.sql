@@ -401,3 +401,9 @@ INSERT INTO `atomic_user_role` (`code`, `name`, `role_type_id`, `active_flag`, `
 
 ALTER TABLE `program_year` CHANGE COLUMN `comb_pre_post_cap_build_flag` `retro_cap_build_flag` INT NULL DEFAULT 1 ;
 
+===================== Issue 115 =====================================================================
+
+DROP TABLE `tagging`;
+
+ALTER TABLE `job` DROP COLUMN `tag_ids`;
+
