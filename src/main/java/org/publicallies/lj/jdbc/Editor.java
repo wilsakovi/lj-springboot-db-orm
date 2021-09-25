@@ -14,7 +14,7 @@ import javax.validation.constraints.Null;
  *
  * @author Spring Data Jdbc Code Generator
  */
-public class OptionList implements Persistable<Integer>
+public class Editor implements Persistable<Integer>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -24,18 +24,19 @@ public class OptionList implements Persistable<Integer>
 	private Integer id;
 
 	@NotEmpty
-	@Size (max = 150)
-	private String name;
+	@Size (max = 2)
+	private String code;
 
-	private Integer activeFlag = 1;
+	@Size (max = 80)
+	private String description;
 
-	private Integer dataTypeId;
+	@Size (max = 65535)
+	private String content;
 
 	private transient boolean persisted;
 
-	private StpDataType dataType;
 
-	public OptionList ()
+	public Editor ()
 	{
 
 	}
@@ -55,34 +56,34 @@ public class OptionList implements Persistable<Integer>
 		this.id = id;
 	}
 
-	public void setName (String name)
+	public void setCode (String code)
 	{
-		this.name = name;
+		this.code = code;
 	}
 
-	public String getName ()
+	public String getCode ()
 	{
-		return this.name;
+		return this.code;
 	}
 
-	public void setActiveFlag (Integer activeFlag)
+	public void setDescription (String description)
 	{
-		this.activeFlag = activeFlag;
+		this.description = description;
 	}
 
-	public Integer getActiveFlag ()
+	public String getDescription ()
 	{
-		return this.activeFlag;
+		return this.description;
 	}
 
-	public void setDataTypeId (Integer dataTypeId)
+	public void setContent (String content)
 	{
-		this.dataTypeId = dataTypeId;
+		this.content = content;
 	}
 
-	public Integer getDataTypeId ()
+	public String getContent ()
 	{
-		return this.dataTypeId;
+		return this.content;
 	}
 
 	public void setPersisted (Boolean persisted)
@@ -93,16 +94,6 @@ public class OptionList implements Persistable<Integer>
 	public Boolean getPersisted ()
 	{
 		return this.persisted;
-	}
-
-	public void setDataType (StpDataType dataType)
-	{
-		this.dataType = dataType;
-	}
-
-	public StpDataType getDataType ()
-	{
-		return this.dataType;
 	}
 
 	@Override

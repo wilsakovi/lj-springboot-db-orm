@@ -18,7 +18,7 @@ public class StpDataTypeDB implements EntityDB<StpDataType>{
 
 	private static String TABLE_NAME = "STP_DATA_TYPE";
 
-	private static String TABLE_ALIAS = "A_sdt_81";
+	private static String TABLE_ALIAS = "A_sdt_78";
 
 	public static String getTableName()
 	{

@@ -18,7 +18,7 @@ public class TspSiteProfileDB implements EntityDB<TspSiteProfile>{
 
 	private static String TABLE_NAME = "TSP_SITE_PROFILE";
 
-	private static String TABLE_ALIAS = "A_tsp_117";
+	private static String TABLE_ALIAS = "A_tsp_114";
 
 	public static String getTableName()
 	{

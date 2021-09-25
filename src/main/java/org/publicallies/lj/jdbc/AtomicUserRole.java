@@ -30,6 +30,10 @@ public class AtomicUserRole implements Persistable<Byte>
 
 	@NotEmpty
 	@Size (max = 45)
+	private String extendedCode;
+
+	@NotEmpty
+	@Size (max = 45)
 	private String name;
 
 	@NotNull (groups = { Default.class, Default.class })
@@ -82,6 +86,16 @@ public class AtomicUserRole implements Persistable<Byte>
 	public String getCode ()
 	{
 		return this.code;
+	}
+
+	public void setExtendedCode (String extendedCode)
+	{
+		this.extendedCode = extendedCode;
+	}
+
+	public String getExtendedCode ()
+	{
+		return this.extendedCode;
 	}
 
 	public void setName (String name)

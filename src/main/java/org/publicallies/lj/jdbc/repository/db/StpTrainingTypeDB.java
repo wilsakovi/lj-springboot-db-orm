@@ -18,7 +18,7 @@ public class StpTrainingTypeDB implements EntityDB<StpTrainingType>{
 
 	private static String TABLE_NAME = "STP_TRAINING_TYPE";
 
-	private static String TABLE_ALIAS = "A_stt_100";
+	private static String TABLE_ALIAS = "A_stt_97";
 
 	public static String getTableName()
 	{
