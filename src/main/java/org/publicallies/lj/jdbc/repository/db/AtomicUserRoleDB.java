@@ -45,6 +45,7 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 	{
 		ID("id", false, ""),
 		CODE("code", false, ""),
+		EXTENDED_CODE("extended_code", false, ""),
 		NAME("name", false, ""),
 		ROLE_TYPE_ID("role_type_id", false, ""),
 		CREATED_BY("created_by", false, ""),
@@ -122,6 +123,8 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setCode(rs.getString(COLUMNS.CODE.getColumnName()));
 			if (rs.wasNull()) obj.setCode(null);
+			obj.setExtendedCode(rs.getString(COLUMNS.EXTENDED_CODE.getColumnName()));
+			if (rs.wasNull()) obj.setExtendedCode(null);
 			obj.setName(rs.getString(COLUMNS.NAME.getColumnName()));
 			if (rs.wasNull()) obj.setName(null);
 			obj.setRoleTypeId(rs.getInt(COLUMNS.ROLE_TYPE_ID.getColumnName()));
@@ -150,6 +153,7 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), atomicuserrole.getId());
 			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicuserrole.getCode()));
+			mapping.put(COLUMNS.EXTENDED_CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicuserrole.getExtendedCode()));
 			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicuserrole.getName()));
 			mapping.put(COLUMNS.ROLE_TYPE_ID.getColumnName(), atomicuserrole.getRoleTypeId());
 			mapping.put(COLUMNS.CREATED_BY.getColumnName(), atomicuserrole.getCreatedBy());
@@ -185,6 +189,8 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setCode(rs.getString(COLUMNS.CODE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setCode(null);
+			obj.setExtendedCode(rs.getString(COLUMNS.EXTENDED_CODE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setExtendedCode(null);
 			obj.setName(rs.getString(COLUMNS.NAME.getColumnAliasName()));
 			if (rs.wasNull()) obj.setName(null);
 			obj.setRoleTypeId(rs.getInt(COLUMNS.ROLE_TYPE_ID.getColumnAliasName()));

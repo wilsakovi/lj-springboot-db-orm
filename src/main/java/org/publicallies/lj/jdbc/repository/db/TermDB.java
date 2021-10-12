@@ -19,7 +19,7 @@ public class TermDB implements EntityDB<Term>{
 
 	private static String TABLE_NAME = "TERM";
 
-	private static String TABLE_ALIAS = "A_ter_110";
+	private static String TABLE_ALIAS = "A_ter_107";
 
 	public static String getTableName()
 	{

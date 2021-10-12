@@ -18,7 +18,7 @@ public class PartnerOtherTypeDB implements EntityDB<PartnerOtherType>{
 
 	private static String TABLE_NAME = "PARTNER_OTHER_TYPE";
 
-	private static String TABLE_ALIAS = "A_pot_53";
+	private static String TABLE_ALIAS = "A_pot_50";
 
 	public static String getTableName()
 	{

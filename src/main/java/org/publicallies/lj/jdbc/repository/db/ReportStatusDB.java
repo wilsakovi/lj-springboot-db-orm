@@ -18,7 +18,7 @@ public class ReportStatusDB implements EntityDB<ReportStatus>{
 
 	private static String TABLE_NAME = "REPORT_STATUS";
 
-	private static String TABLE_ALIAS = "A_rs_62";
+	private static String TABLE_ALIAS = "A_rs_59";
 
 	public static String getTableName()
 	{

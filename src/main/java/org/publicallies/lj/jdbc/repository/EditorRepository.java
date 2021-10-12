@@ -3,14 +3,14 @@ package org.publicallies.lj.jdbc.repository;
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.slf4j.Logger;
+import org.publicallies.lj.jdbc.repository.db.EditorDB;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import com.nurkiewicz.jdbcrepository.JdbcRepository;
 import java.util.ArrayList;
-import org.publicallies.lj.jdbc.PaForm;
 import java.util.List;
-import org.publicallies.lj.jdbc.repository.db.PaFormDB;
+import org.publicallies.lj.jdbc.Editor;
 import java.util.Map;
 import org.springframework.jdbc.core.RowMapper;
 import java.util.Optional;
@@ -22,10 +22,10 @@ import org.springframework.stereotype.Repository;
  * @author Spring Data Jdbc Code Generator
  */
 @Repository
-public class PaFormRepository extends JdbcRepository<PaForm, Integer>
+public class EditorRepository extends JdbcRepository<Editor, Integer>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (PaFormRepository.class);
+	final static Logger logger = LoggerFactory.getLogger (EditorRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;
@@ -35,18 +35,18 @@ public class PaFormRepository extends JdbcRepository<PaForm, Integer>
 		return this.jdbcOperations;
 	}
 
-	public PaFormRepository()
+	public EditorRepository()
 	{
-		super (PaFormDB.ROW_MAPPER, PaFormDB.ROW_UNMAPPER, PaFormDB.getTableName ());
+		super (EditorDB.ROW_MAPPER, EditorDB.ROW_UNMAPPER, EditorDB.getTableName ());
 	}
 
-	public PaFormRepository(RowMapper<PaForm> rowMapper, RowUnmapper<PaForm> rowUnmapper, String idColumn)
+	public EditorRepository(RowMapper<Editor> rowMapper, RowUnmapper<Editor> rowUnmapper, String idColumn)
 	{
-		super (PaFormDB.ROW_MAPPER, PaFormDB.ROW_UNMAPPER, PaFormDB.getTableName (), idColumn);
+		super (EditorDB.ROW_MAPPER, EditorDB.ROW_UNMAPPER, EditorDB.getTableName (), idColumn);
 	}
 
 	@Override
-	protected PaForm postCreate(PaForm entity, Number generatedId)
+	protected Editor postCreate(Editor entity, Number generatedId)
 	{
 		entity.setId(generatedId.intValue());
 		entity.setPersisted(true);
@@ -54,49 +54,49 @@ public class PaFormRepository extends JdbcRepository<PaForm, Integer>
 	}
 
 
-	public List<PaForm> getByFieldName(PaFormDB.COLUMNS column, Object val)
+	public List<Editor> getByFieldName(EditorDB.COLUMNS column, Object val)
 	{
-		String sql = "select * from " + PaFormDB.getTableName() + " where " + column.getColumnName() +  " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { val  }, PaFormDB.ROW_MAPPER);
+		String sql = "select * from " + EditorDB.getTableName() + " where " + column.getColumnName() +  " = ? ";
+		return this.jdbcOperations.query (sql, new Object[] { val  }, EditorDB.ROW_MAPPER);
 	}
 
 
-	public List<PaForm> getByFieldNames(Map<PaFormDB.COLUMNS, Object> params) throws Exception
+	public List<Editor> getByFieldNames(Map<EditorDB.COLUMNS, Object> params) throws Exception
 	{
 		List<Object> args =  new ArrayList<>();
 		if (params != null && params.size() > 0 ) {
 			StringBuilder sb = new StringBuilder("SELECT * ");
-			sb.append(" FROM " +PaFormDB.getTableName());
+			sb.append(" FROM " +EditorDB.getTableName());
 			sb.append(" WHERE ");
 			String prefix = "";
-			for (Map.Entry<PaFormDB.COLUMNS, Object> entry: params.entrySet()) {
+			for (Map.Entry<EditorDB.COLUMNS, Object> entry: params.entrySet()) {
 				sb.append(prefix + " " + entry.getKey().getColumnName() + " = ? " );
 				prefix = "AND ";
 				args.add(entry.getValue());
 			}
-			return this.jdbcOperations.query (sb.toString(), args.toArray(new Object[args.size()]), PaFormDB.ROW_MAPPER);
+			return this.jdbcOperations.query (sb.toString(), args.toArray(new Object[args.size()]), EditorDB.ROW_MAPPER);
 		} else {
 			throw new Exception ("getByFieldName has invalid arguments");
 		}	}
 
 
-	public List<PaForm> getByFieldNames(List<PaFormDB.COLUMNS> columns, List<Object> values) throws Exception
+	public List<Editor> getByFieldNames(List<EditorDB.COLUMNS> columns, List<Object> values) throws Exception
 	{
 		if (columns == null || values == null || columns.size() == 0 || columns.size() != values.size()) {
 			throw new Exception("Invalid arguments");
 		}
-		Map<PaFormDB.COLUMNS, Object> map = new HashMap<>();
+		Map<EditorDB.COLUMNS, Object> map = new HashMap<>();
 		for (int i = 0; i < columns.size(); i++) {
 			map.put(columns.get(i), values.get(i));
 		}
 		return  getByFieldNames(map);	}
 
 
-	public Optional<PaForm> getOneByFieldNameNotNull(PaFormDB.COLUMNS column, Object val)
+	public Optional<Editor> getOneByFieldNameNotNull(EditorDB.COLUMNS column, Object val)
 	{
 		 if (val == null) { return Optional.empty(); } 
-		String sql = "select * from " + PaFormDB.getTableName() + " where " + column.getColumnName() +  " = ? ";
-		List<PaForm> list =  this.jdbcOperations.query (sql, new Object[] { val  }, PaFormDB.ROW_MAPPER);
+		String sql = "select * from " + EditorDB.getTableName() + " where " + column.getColumnName() +  " = ? ";
+		List<Editor> list =  this.jdbcOperations.query (sql, new Object[] { val  }, EditorDB.ROW_MAPPER);
 		 if (list != null && list.size() == 1) { return Optional.of(list.get(0)); } 
 		 return Optional.empty(); 
 	}

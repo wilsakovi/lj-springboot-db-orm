@@ -407,3 +407,43 @@ DROP TABLE `tagging`;
 
 ALTER TABLE `job` DROP COLUMN `tag_ids`;
 
+====================== Issue 186 ======================================================================
+DROP TABLE `option_list_option`;
+DROP TABLE `form_field`;
+DROP TABLE `option_list`;
+DROP TABLE `pa_form`;
+ALTER TABLE `atomic_user_role` ADD COLUMN `help_page` TEXT NULL AFTER `homePage`;
+
+CREATE TABLE `editor` (
+  `id` INT(2) NOT NULL AUTO_INCREMENT,
+  `code` CHAR(2) NOT NULL,
+  `description` VARCHAR(80) NULL,
+  `content` TEXT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `code_UNIQUE` (`code` ASC) VISIBLE);
+  
+  INSERT INTO `editor` (`code`, `description`) VALUES ('HP', 'Help content');
+  
+  ALTER TABLE `atomic_user_role` ADD COLUMN `extended_code` VARCHAR(45) NULL AFTER `help_page`;
+  
+UPDATE `atomic_user_role` SET `extended_code` = 'ALLY' WHERE (`code` = 'AL');
+UPDATE `atomic_user_role` SET `extended_code` = 'SUPER' WHERE (`code` = 'sp');
+UPDATE `atomic_user_role` SET `extended_code` = 'PM' WHERE (`code` = 'PM');
+UPDATE `atomic_user_role` SET `extended_code` = 'SD' WHERE (`code` = 'SD');
+UPDATE `atomic_user_role` SET `extended_code` = 'NA' WHERE (`code` = 'NA');
+UPDATE `atomic_user_role` SET `extended_code` = 'SR' WHERE (`code` = 'SR');
+UPDATE `atomic_user_role` SET `extended_code` = 'SA' WHERE (`code` = 'SA');
+UPDATE `atomic_user_role` SET `extended_code` = 'REPORTS' WHERE (`code` = 'RR');
+UPDATE `atomic_user_role` SET `extended_code` = 'ALUMNI' WHERE (`code` = 'LM');
+UPDATE `atomic_user_role` SET `extended_code` = 'TSP' WHERE (`code` = 'TP');
+UPDATE `atomic_user_role` SET `extended_code` = 'HELPDESK' WHERE (`code` = 'HD');
+
+ALTER TABLE `atomic_user_role` 
+DROP COLUMN `help_page`,
+CHANGE COLUMN `extended_code` `extended_code` VARCHAR(45) NOT NULL AFTER `code`,
+ADD UNIQUE INDEX `extended_code_UNIQUE` (`extended_code` ASC) VISIBLE;
+
+
+
+
+

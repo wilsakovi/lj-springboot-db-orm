@@ -18,7 +18,7 @@ public class StpActionStepCategoryDB implements EntityDB<StpActionStepCategory>{
 
 	private static String TABLE_NAME = "STP_ACTION_STEP_CATEGORY";
 
-	private static String TABLE_ALIAS = "A_sasc_76";
+	private static String TABLE_ALIAS = "A_sasc_73";
 
 	public static String getTableName()
 	{
