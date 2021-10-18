@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.publicallies</groupId>
 	<artifactId>leadership-journal-db-orm</artifactId>
-	<version>1.0.4</version>
+	<version>2.0.0</version>
 	<name>leadership-journal db orm</name>
 
 	<properties>
-		<java.version>13</java.version>
-		<spring.jdbc.repository.version>0.4.1</spring.jdbc.repository.version>
-		<spring.security.version>4.2.3.RELEASE</spring.security.version>
-		<spring.version>4.3.10.RELEASE</spring.version>
+		<java.version>17</java.version>
+		<spring.jdbc.repository.version>1.0.0</spring.jdbc.repository.version>
+		<spring.security.version>5.5.2</spring.security.version>
+		<spring.version>5.3.10</spring.version>
 	</properties>
 
 	<dependencies>
@@ -94,11 +94,10 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>${java.version}</release>
+                </configuration>
 			</plugin>
 
 			      <plugin>
