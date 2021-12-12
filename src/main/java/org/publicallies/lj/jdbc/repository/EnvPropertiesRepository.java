@@ -2,8 +2,7 @@ package org.publicallies.lj.jdbc.repository;
 
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.publicallies.lj.jdbc.repository.db.EnvPropertiesDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
@@ -25,7 +24,7 @@ import org.springframework.stereotype.Repository;
 public class EnvPropertiesRepository extends JdbcRepository<EnvProperties, Integer>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (EnvPropertiesRepository.class);
+	final static Logger logger = Logger.getLogger (EnvPropertiesRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

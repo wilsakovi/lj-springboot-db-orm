@@ -2,9 +2,8 @@ package org.publicallies.lj.jdbc.repository;
 
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
 import org.publicallies.lj.jdbc.repository.db.ProgramYearDB;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import org.publicallies.lj.jdbc.ProgramYear;
@@ -25,7 +24,7 @@ import org.springframework.stereotype.Repository;
 public class ProgramYearRepository extends JdbcRepository<ProgramYear, Short>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (ProgramYearRepository.class);
+	final static Logger logger = Logger.getLogger (ProgramYearRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

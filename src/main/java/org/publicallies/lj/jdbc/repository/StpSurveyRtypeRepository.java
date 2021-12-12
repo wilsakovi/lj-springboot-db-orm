@@ -2,8 +2,7 @@ package org.publicallies.lj.jdbc.repository;
 
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.publicallies.lj.jdbc.repository.db.StpSurveyRtypeDB;
 import java.util.HashMap;
@@ -25,7 +24,7 @@ import org.publicallies.lj.jdbc.StpSurveyRtype;
 public class StpSurveyRtypeRepository extends JdbcRepository<StpSurveyRtype, Integer>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (StpSurveyRtypeRepository.class);
+	final static Logger logger = Logger.getLogger (StpSurveyRtypeRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

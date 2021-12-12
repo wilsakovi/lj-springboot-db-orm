@@ -2,9 +2,8 @@ package org.publicallies.lj.jdbc.repository;
 
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
 import org.publicallies.lj.jdbc.repository.db.ActsObjectiveDB;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import org.publicallies.lj.jdbc.ActsObjective;
@@ -25,7 +24,7 @@ import org.springframework.stereotype.Repository;
 public class ActsObjectiveRepository extends JdbcRepository<ActsObjective, Integer>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (ActsObjectiveRepository.class);
+	final static Logger logger = Logger.getLogger (ActsObjectiveRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

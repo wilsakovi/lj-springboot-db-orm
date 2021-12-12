@@ -2,8 +2,7 @@ package org.publicallies.lj.jdbc.repository;
 
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.publicallies.lj.jdbc.repository.db.RefTableDataDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
@@ -25,7 +24,7 @@ import org.publicallies.lj.jdbc.RefTableData;
 public class RefTableDataRepository extends JdbcRepository<RefTableData, Integer>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (RefTableDataRepository.class);
+	final static Logger logger = Logger.getLogger (RefTableDataRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

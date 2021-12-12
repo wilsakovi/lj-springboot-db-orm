@@ -2,9 +2,8 @@ package org.publicallies.lj.jdbc.repository;
 
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
+import org.jboss.logging.Logger;
 import org.publicallies.lj.jdbc.GraduateStatus;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import com.nurkiewicz.jdbcrepository.JdbcRepository;
@@ -25,7 +24,7 @@ import org.springframework.stereotype.Repository;
 public class GraduateStatusRepository extends JdbcRepository<GraduateStatus, Byte>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (GraduateStatusRepository.class);
+	final static Logger logger = Logger.getLogger (GraduateStatusRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;
