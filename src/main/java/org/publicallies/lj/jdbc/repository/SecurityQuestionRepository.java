@@ -2,8 +2,7 @@ package org.publicallies.lj.jdbc.repository;
 
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.publicallies.lj.jdbc.repository.db.SecurityQuestionDB;
 import java.util.HashMap;
@@ -25,7 +24,7 @@ import org.springframework.stereotype.Repository;
 public class SecurityQuestionRepository extends JdbcRepository<SecurityQuestion, Short>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (SecurityQuestionRepository.class);
+	final static Logger logger = Logger.getLogger (SecurityQuestionRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

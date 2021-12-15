@@ -3,8 +3,7 @@ package org.publicallies.lj.jdbc.repository;
 import org.publicallies.lj.jdbc.StpSocialAssist;
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import com.nurkiewicz.jdbcrepository.JdbcRepository;
@@ -25,7 +24,7 @@ import org.publicallies.lj.jdbc.repository.db.StpSocialAssistDB;
 public class StpSocialAssistRepository extends JdbcRepository<StpSocialAssist, Integer>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (StpSocialAssistRepository.class);
+	final static Logger logger = Logger.getLogger (StpSocialAssistRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

@@ -3,8 +3,7 @@ package org.publicallies.lj.jdbc.repository;
 import org.publicallies.lj.jdbc.AtomicUserRole;
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import org.publicallies.lj.jdbc.repository.db.AtomicUserRoleDB;
@@ -25,7 +24,7 @@ import org.springframework.stereotype.Repository;
 public class AtomicUserRoleRepository extends JdbcRepository<AtomicUserRole, Byte>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (AtomicUserRoleRepository.class);
+	final static Logger logger = Logger.getLogger (AtomicUserRoleRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

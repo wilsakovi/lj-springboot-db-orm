@@ -3,8 +3,7 @@ package org.publicallies.lj.jdbc.repository;
 import org.publicallies.lj.jdbc.TimeSheet;
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import com.nurkiewicz.jdbcrepository.JdbcRepository;
@@ -25,7 +24,7 @@ import org.publicallies.lj.jdbc.repository.db.TimeSheetDB;
 public class TimeSheetRepository extends JdbcRepository<TimeSheet, Integer>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (TimeSheetRepository.class);
+	final static Logger logger = Logger.getLogger (TimeSheetRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

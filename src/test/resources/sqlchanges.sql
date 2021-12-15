@@ -443,7 +443,50 @@ DROP COLUMN `help_page`,
 CHANGE COLUMN `extended_code` `extended_code` VARCHAR(45) NOT NULL AFTER `code`,
 ADD UNIQUE INDEX `extended_code_UNIQUE` (`extended_code` ASC) VISIBLE;
 
+================================== 120 ========================================
+CREATE TABLE `schdeuled_report` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `report_data` JSON NOT NULL,
+  `schedule_data` DATE NOT NULL,
+  `run` INT(1) NULL,
+  `file_id` VARCHAR(100) NULL,
+  `run_date` DATE NULL,
+  `email_sent` INT(1) NULL,
+  `downloaded` INT(1) NULL,
+  `created_users_id` INT NOT NULL,
+  `created_date` DATETIME NOT NULL,
+  `qb` INT(1) NOT NULL COMMENT 'Is it query builder report?',
+  PRIMARY KEY (`id`),
+        FOREIGN KEY (`created_users_id`)
+       REFERENCES `users` (`id`)
+     ON DELETE NO ACTION
+       ON UPDATE NO ACTION);
+       
+       ALTER TABLE `schdeuled_report` 
+RENAME TO  `scheduled_report` ;
 
+ALTER TABLE `scheduled_report` 
+CHANGE COLUMN `schedule_data` `schedule_date` DATE NOT NULL ;
 
+ALTER TABLE `scheduled_report` 
+ADD COLUMN `description` VARCHAR(180) NULL AFTER `qb`,
+ADD COLUMN `shared_roled` JSON NULL AFTER `description`;
 
+ALTER TABLE `scheduled_report` 
+CHANGE COLUMN `shared_roled` `shared_roles` JSON NULL DEFAULT NULL ;
 
+INSERT INTO `env_properties` (`keycode`, `keyValue`) VALUES ('EXPORT_DIR', THE PATH HERE);
+
+ALTER TABLE `scheduled_report` 
+ADD COLUMN `failed_flag` INT(1) NULL DEFAULT 0 AFTER `shared_roles`,
+ADD COLUMN `national_role_selected` INT(1) NOT NULL AFTER `failed_flag`,
+ADD COLUMN `servicing_sites` JSON NULL AFTER `national_role_selected`;
+
+ALTER TABLE `scheduled_report` 
+DROP COLUMN `servicing_sites`,
+DROP COLUMN `national_role_selected`,
+CHANGE COLUMN `file_id` `file_name` VARCHAR(100) NULL DEFAULT NULL ,
+CHANGE COLUMN `failed_flag` `failed` INT NULL DEFAULT '0' ;
+
+ALTER TABLE `scheduled_report` 
+ADD COLUMN `report_codes` JSON NULL AFTER `failed`;

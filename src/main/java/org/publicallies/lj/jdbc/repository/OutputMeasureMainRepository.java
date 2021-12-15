@@ -2,8 +2,7 @@ package org.publicallies.lj.jdbc.repository;
 
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import com.nurkiewicz.jdbcrepository.JdbcRepository;
@@ -25,7 +24,7 @@ import org.publicallies.lj.jdbc.repository.db.OutputMeasureMainDB;
 public class OutputMeasureMainRepository extends JdbcRepository<OutputMeasureMain, Short>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (OutputMeasureMainRepository.class);
+	final static Logger logger = Logger.getLogger (OutputMeasureMainRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

@@ -2,8 +2,7 @@ package org.publicallies.lj.jdbc.repository;
 
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
 import org.publicallies.lj.jdbc.StpCapIncreaseExp;
@@ -25,7 +24,7 @@ import org.springframework.stereotype.Repository;
 public class StpCapIncreaseExpRepository extends JdbcRepository<StpCapIncreaseExp, Integer>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (StpCapIncreaseExpRepository.class);
+	final static Logger logger = Logger.getLogger (StpCapIncreaseExpRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;

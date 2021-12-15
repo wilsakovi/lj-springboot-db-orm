@@ -2,8 +2,7 @@ package org.publicallies.lj.jdbc.repository;
 
 import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.springframework.jdbc.core.JdbcOperations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.publicallies.lj.jdbc.SiteProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashMap;
@@ -25,7 +24,7 @@ import org.publicallies.lj.jdbc.repository.db.SiteProfileDB;
 public class SiteProfileRepository extends JdbcRepository<SiteProfile, Integer>
 {
 
-	final static Logger logger = LoggerFactory.getLogger (SiteProfileRepository.class);
+	final static Logger logger = Logger.getLogger (SiteProfileRepository.class);
 
 	@Autowired
 	private JdbcOperations jdbcOperations;
