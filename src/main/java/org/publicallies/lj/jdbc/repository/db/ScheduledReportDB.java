@@ -58,6 +58,7 @@ public class ScheduledReportDB implements EntityDB<ScheduledReport>{
 		SHARED_ROLES("shared_roles", true, ""),
 		FAILED("failed", false, ""),
 		REPORT_CODES("report_codes", true, ""),
+		DELETED("deleted", false, ""),
 		;
 
 		private String columnName;
@@ -153,6 +154,8 @@ public class ScheduledReportDB implements EntityDB<ScheduledReport>{
 			if (rs.wasNull()) obj.setFailed(null);
 			obj.setReportCodes(rs.getString(COLUMNS.REPORT_CODES.getColumnName()));
 			if (rs.wasNull()) obj.setReportCodes(null);
+			obj.setDeleted(rs.getInt(COLUMNS.DELETED.getColumnName()));
+			if (rs.wasNull()) obj.setDeleted(null);
 			return obj;
 		}
 	}
@@ -181,6 +184,7 @@ public class ScheduledReportDB implements EntityDB<ScheduledReport>{
 			mapping.put(COLUMNS.SHARED_ROLES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(scheduledreport.getSharedRoles()));
 			mapping.put(COLUMNS.FAILED.getColumnName(), scheduledreport.getFailed());
 			mapping.put(COLUMNS.REPORT_CODES.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(scheduledreport.getReportCodes()));
+			mapping.put(COLUMNS.DELETED.getColumnName(), scheduledreport.getDeleted());
 			return mapping;
 		}
 	}
@@ -233,6 +237,8 @@ public class ScheduledReportDB implements EntityDB<ScheduledReport>{
 			if (rs.wasNull()) obj.setFailed(null);
 			obj.setReportCodes(rs.getString(COLUMNS.REPORT_CODES.getColumnAliasName()));
 			if (rs.wasNull()) obj.setReportCodes(null);
+			obj.setDeleted(rs.getInt(COLUMNS.DELETED.getColumnAliasName()));
+			if (rs.wasNull()) obj.setDeleted(null);
 			if (this.loadAllFKeys || this.loadCreatedUsers)
 				obj.setCreatedUsers(UsersDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
