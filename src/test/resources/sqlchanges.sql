@@ -490,3 +490,6 @@ CHANGE COLUMN `failed_flag` `failed` INT NULL DEFAULT '0' ;
 
 ALTER TABLE `scheduled_report` 
 ADD COLUMN `report_codes` JSON NULL AFTER `failed`;
+
+ALTER TABLE `scheduled_report` 
+ADD COLUMN `deleted` INT(1) NOT NULL DEFAULT 0;

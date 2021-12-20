@@ -59,6 +59,9 @@ public class ScheduledReport implements Persistable<Integer>
 
 	private String reportCodes;
 
+	@NotNull
+	private Integer deleted = 0;
+
 	private transient boolean persisted;
 
 	private Users createdUsers;
@@ -221,6 +224,16 @@ public class ScheduledReport implements Persistable<Integer>
 	public String getReportCodes ()
 	{
 		return this.reportCodes;
+	}
+
+	public void setDeleted (Integer deleted)
+	{
+		this.deleted = deleted;
+	}
+
+	public Integer getDeleted ()
+	{
+		return this.deleted;
 	}
 
 	public void setPersisted (Boolean persisted)
