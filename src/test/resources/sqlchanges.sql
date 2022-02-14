@@ -493,3 +493,12 @@ ADD COLUMN `report_codes` JSON NULL AFTER `failed`;
 
 ALTER TABLE `scheduled_report` 
 ADD COLUMN `deleted` INT(1) NOT NULL DEFAULT 0;
+
+============================== 232======================================================
+ALTER TABLE `partner` 
+DROP COLUMN `taggings`,
+ADD COLUMN `duplicate_level` INT(1) NULL DEFAULT 0 COMMENT '1 for duplicate hard stop. 2 for duplicate cleared. 0 for no duplicate';
+=====================================235==========================================================
+ALTER TABLE `msr`  ADD COLUMN `reminder_date_ally` DATE NULL;
+ALTER TABLE `pay_period`  ADD COLUMN `reminder_date_ally` DATE NULL;
+

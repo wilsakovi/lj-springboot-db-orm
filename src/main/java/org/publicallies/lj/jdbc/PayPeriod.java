@@ -140,6 +140,8 @@ public class PayPeriod implements Persistable<Integer> , CommonIdCUH<Integer>
 	@Size (max = 45)
 	private String pmApprovedFromIp;
 
+	private Date reminderDateAlly;
+
 	private transient boolean persisted;
 
 	private AllyProfile allyProfile;
@@ -633,6 +635,16 @@ public class PayPeriod implements Persistable<Integer> , CommonIdCUH<Integer>
 	public String getPmApprovedFromIp ()
 	{
 		return this.pmApprovedFromIp;
+	}
+
+	public void setReminderDateAlly (Date reminderDateAlly)
+	{
+		this.reminderDateAlly = reminderDateAlly;
+	}
+
+	public Date getReminderDateAlly ()
+	{
+		return this.reminderDateAlly;
 	}
 
 	public void setPersisted (Boolean persisted)
