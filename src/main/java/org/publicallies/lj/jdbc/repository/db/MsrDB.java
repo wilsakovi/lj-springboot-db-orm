@@ -86,6 +86,7 @@ public class MsrDB implements EntityDB<Msr>{
 		POS_TRAINING_USER_ID("pos_training_user_id", false, ""),
 		POS_APPROVAL_COMMENT("pos_approval_comment", false, ""),
 		STAFF_APPROVAL_COMMENT("staff_approval_comment", false, ""),
+		REMINDER_DATE_ALLY("reminder_date_ally", false, ""),
 		;
 
 		private String columnName;
@@ -237,6 +238,8 @@ public class MsrDB implements EntityDB<Msr>{
 			if (rs.wasNull()) obj.setPosApprovalComment(null);
 			obj.setStaffApprovalComment(rs.getString(COLUMNS.STAFF_APPROVAL_COMMENT.getColumnName()));
 			if (rs.wasNull()) obj.setStaffApprovalComment(null);
+			obj.setReminderDateAlly(rs.getTimestamp(COLUMNS.REMINDER_DATE_ALLY.getColumnName()));
+			if (rs.wasNull()) obj.setReminderDateAlly(null);
 			return obj;
 		}
 	}
@@ -297,6 +300,8 @@ public class MsrDB implements EntityDB<Msr>{
 			mapping.put(COLUMNS.POS_TRAINING_USER_ID.getColumnName(), msr.getPosTrainingUserId());
 			mapping.put(COLUMNS.POS_APPROVAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPosApprovalComment()));
 			mapping.put(COLUMNS.STAFF_APPROVAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getStaffApprovalComment()));
+			if (msr.getReminderDateAlly() != null)
+				mapping.put(COLUMNS.REMINDER_DATE_ALLY.getColumnName(), new Timestamp (msr.getReminderDateAlly().getTime()));
 			return mapping;
 		}
 	}
@@ -411,6 +416,8 @@ public class MsrDB implements EntityDB<Msr>{
 			if (rs.wasNull()) obj.setPosApprovalComment(null);
 			obj.setStaffApprovalComment(rs.getString(COLUMNS.STAFF_APPROVAL_COMMENT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setStaffApprovalComment(null);
+			obj.setReminderDateAlly(rs.getTimestamp(COLUMNS.REMINDER_DATE_ALLY.getColumnAliasName()));
+			if (rs.wasNull()) obj.setReminderDateAlly(null);
 			if (this.loadAllFKeys || this.loadAllyProfile)
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadJob)

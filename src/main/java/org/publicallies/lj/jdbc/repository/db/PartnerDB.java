@@ -90,7 +90,7 @@ public class PartnerDB implements EntityDB<Partner>{
 		LAST_UPDATED_USERS_ID("last_updated_users_id", false, ""),
 		HISTORY("history", true, ""),
 		SF_FAILED_FLAG("sf_failed_flag", false, ""),
-		TAGGINGS("taggings", true, ""),
+		DUPLICATE_LEVEL("duplicate_level", false, ""),
 		;
 
 		private String columnName;
@@ -250,8 +250,8 @@ public class PartnerDB implements EntityDB<Partner>{
 			if (rs.wasNull()) obj.setHistory(null);
 			obj.setSfFailedFlag(rs.getInt(COLUMNS.SF_FAILED_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
-			obj.setTaggings(rs.getString(COLUMNS.TAGGINGS.getColumnName()));
-			if (rs.wasNull()) obj.setTaggings(null);
+			obj.setDuplicateLevel(rs.getInt(COLUMNS.DUPLICATE_LEVEL.getColumnName()));
+			if (rs.wasNull()) obj.setDuplicateLevel(null);
 			return obj;
 		}
 	}
@@ -311,7 +311,7 @@ public class PartnerDB implements EntityDB<Partner>{
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), partner.getLastUpdatedUsersId());
 			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partner.getHistory()));
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), partner.getSfFailedFlag());
-			mapping.put(COLUMNS.TAGGINGS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partner.getTaggings()));
+			mapping.put(COLUMNS.DUPLICATE_LEVEL.getColumnName(), partner.getDuplicateLevel());
 			return mapping;
 		}
 	}
@@ -482,8 +482,8 @@ public class PartnerDB implements EntityDB<Partner>{
 			if (rs.wasNull()) obj.setHistory(null);
 			obj.setSfFailedFlag(rs.getInt(COLUMNS.SF_FAILED_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
-			obj.setTaggings(rs.getString(COLUMNS.TAGGINGS.getColumnAliasName()));
-			if (rs.wasNull()) obj.setTaggings(null);
+			obj.setDuplicateLevel(rs.getInt(COLUMNS.DUPLICATE_LEVEL.getColumnAliasName()));
+			if (rs.wasNull()) obj.setDuplicateLevel(null);
 			if (this.loadAllFKeys || this.loadAnnualBudgetRange)
 				obj.setAnnualBudgetRange(RefTableDataDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadContactExec)

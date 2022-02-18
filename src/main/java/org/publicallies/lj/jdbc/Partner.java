@@ -145,7 +145,7 @@ public class Partner implements Persistable<Integer> , CommonIdCUHLu<Integer>
 
 	private Integer sfFailedFlag = 0;
 
-	private String taggings;
+	private Integer duplicateLevel = 0;
 
 	private transient boolean persisted;
 
@@ -640,14 +640,14 @@ public class Partner implements Persistable<Integer> , CommonIdCUHLu<Integer>
 		return this.sfFailedFlag;
 	}
 
-	public void setTaggings (String taggings)
+	public void setDuplicateLevel (Integer duplicateLevel)
 	{
-		this.taggings = taggings;
+		this.duplicateLevel = duplicateLevel;
 	}
 
-	public String getTaggings ()
+	public Integer getDuplicateLevel ()
 	{
-		return this.taggings;
+		return this.duplicateLevel;
 	}
 
 	public void setPersisted (Boolean persisted)

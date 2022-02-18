@@ -91,6 +91,7 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 		ALLY_SUBMITTED_FROM_IP("ally_submitted_from_ip", false, ""),
 		POS_APPROVED_FROM_IP("pos_approved_from_ip", false, ""),
 		PM_APPROVED_FROM_IP("pm_approved_from_ip", false, ""),
+		REMINDER_DATE_ALLY("reminder_date_ally", false, ""),
 		;
 
 		private String columnName;
@@ -252,6 +253,8 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			if (rs.wasNull()) obj.setPosApprovedFromIp(null);
 			obj.setPmApprovedFromIp(rs.getString(COLUMNS.PM_APPROVED_FROM_IP.getColumnName()));
 			if (rs.wasNull()) obj.setPmApprovedFromIp(null);
+			obj.setReminderDateAlly(rs.getTimestamp(COLUMNS.REMINDER_DATE_ALLY.getColumnName()));
+			if (rs.wasNull()) obj.setReminderDateAlly(null);
 			return obj;
 		}
 	}
@@ -317,6 +320,8 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			mapping.put(COLUMNS.ALLY_SUBMITTED_FROM_IP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getAllySubmittedFromIp()));
 			mapping.put(COLUMNS.POS_APPROVED_FROM_IP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getPosApprovedFromIp()));
 			mapping.put(COLUMNS.PM_APPROVED_FROM_IP.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(payperiod.getPmApprovedFromIp()));
+			if (payperiod.getReminderDateAlly() != null)
+				mapping.put(COLUMNS.REMINDER_DATE_ALLY.getColumnName(), new Timestamp (payperiod.getReminderDateAlly().getTime()));
 			return mapping;
 		}
 	}
@@ -441,6 +446,8 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			if (rs.wasNull()) obj.setPosApprovedFromIp(null);
 			obj.setPmApprovedFromIp(rs.getString(COLUMNS.PM_APPROVED_FROM_IP.getColumnAliasName()));
 			if (rs.wasNull()) obj.setPmApprovedFromIp(null);
+			obj.setReminderDateAlly(rs.getTimestamp(COLUMNS.REMINDER_DATE_ALLY.getColumnAliasName()));
+			if (rs.wasNull()) obj.setReminderDateAlly(null);
 			if (this.loadAllFKeys || this.loadAllyProfile)
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadJob)
