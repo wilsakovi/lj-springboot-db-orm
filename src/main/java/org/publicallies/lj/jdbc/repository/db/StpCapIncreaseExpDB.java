@@ -18,7 +18,7 @@ public class StpCapIncreaseExpDB implements EntityDB<StpCapIncreaseExp>{
 
 	private static String TABLE_NAME = "STP_CAP_INCREASE_EXP";
 
-	private static String TABLE_ALIAS = "A_scie_77";
+	private static String TABLE_ALIAS = "A_scie_78";
 
 	public static String getTableName()
 	{
@@ -45,6 +45,7 @@ public class StpCapIncreaseExpDB implements EntityDB<StpCapIncreaseExp>{
 		ID("id", false, ""),
 		CODE("code", false, ""),
 		NAME("name", false, ""),
+		OLD_CAP_FLAG("old_cap_flag", false, ""),
 		ACTIVE_FLAG("active_flag", false, ""),
 		;
 
@@ -117,6 +118,8 @@ public class StpCapIncreaseExpDB implements EntityDB<StpCapIncreaseExp>{
 			if (rs.wasNull()) obj.setCode(null);
 			obj.setName(rs.getString(COLUMNS.NAME.getColumnName()));
 			if (rs.wasNull()) obj.setName(null);
+			obj.setOldCapFlag(rs.getInt(COLUMNS.OLD_CAP_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setOldCapFlag(null);
 			obj.setActiveFlag(rs.getInt(COLUMNS.ACTIVE_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
 			return obj;
@@ -132,6 +135,7 @@ public class StpCapIncreaseExpDB implements EntityDB<StpCapIncreaseExp>{
 			mapping.put(COLUMNS.ID.getColumnName(), stpcapincreaseexp.getId());
 			mapping.put(COLUMNS.CODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpcapincreaseexp.getCode()));
 			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(stpcapincreaseexp.getName()));
+			mapping.put(COLUMNS.OLD_CAP_FLAG.getColumnName(), stpcapincreaseexp.getOldCapFlag());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), stpcapincreaseexp.getActiveFlag());
 			return mapping;
 		}
@@ -149,6 +153,8 @@ public class StpCapIncreaseExpDB implements EntityDB<StpCapIncreaseExp>{
 			if (rs.wasNull()) obj.setCode(null);
 			obj.setName(rs.getString(COLUMNS.NAME.getColumnAliasName()));
 			if (rs.wasNull()) obj.setName(null);
+			obj.setOldCapFlag(rs.getInt(COLUMNS.OLD_CAP_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setOldCapFlag(null);
 			obj.setActiveFlag(rs.getInt(COLUMNS.ACTIVE_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
 			return obj;

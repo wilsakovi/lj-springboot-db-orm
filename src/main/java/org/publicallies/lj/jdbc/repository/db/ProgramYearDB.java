@@ -19,7 +19,7 @@ public class ProgramYearDB implements EntityDB<ProgramYear>{
 
 	private static String TABLE_NAME = "PROGRAM_YEAR";
 
-	private static String TABLE_ALIAS = "A_py_56";
+	private static String TABLE_ALIAS = "A_py_57";
 
 	public static String getTableName()
 	{

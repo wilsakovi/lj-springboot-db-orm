@@ -29,6 +29,9 @@ public class StpCapIncreaseExp implements Persistable<Integer>
 	@Size (max = 150)
 	private String name;
 
+	@NotNull
+	private Integer oldCapFlag = 0;
+
 	private Integer activeFlag = 1;
 
 	private transient boolean persisted;
@@ -72,6 +75,16 @@ public class StpCapIncreaseExp implements Persistable<Integer>
 	public String getName ()
 	{
 		return this.name;
+	}
+
+	public void setOldCapFlag (Integer oldCapFlag)
+	{
+		this.oldCapFlag = oldCapFlag;
+	}
+
+	public Integer getOldCapFlag ()
+	{
+		return this.oldCapFlag;
 	}
 
 	public void setActiveFlag (Integer activeFlag)

@@ -18,7 +18,7 @@ public class StpPaIssueAreaDB implements EntityDB<StpPaIssueArea>{
 
 	private static String TABLE_NAME = "STP_PA_ISSUE_AREA";
 
-	private static String TABLE_ALIAS = "A_spia_87";
+	private static String TABLE_ALIAS = "A_spia_88";
 
 	public static String getTableName()
 	{

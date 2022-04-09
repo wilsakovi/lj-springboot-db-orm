@@ -63,10 +63,13 @@ public class JobEyAssessmentDB implements EntityDB<JobEyAssessment>{
 		ADDITIONAL_SUSTAINABLE("additional_sustainable", false, ""),
 		WORK_LEVERAGE("work_leverage", false, ""),
 		CAP_INCREASE_EXP_IDS("cap_increase_exp_ids", true, ""),
+		CAP_INCREASE_EXP_OTHER("cap_increase_exp_other", false, ""),
 		MSR_ID("msr_id", false, ""),
 		CREATED_AT("created_at", false, ""),
 		UPDATED_AT("updated_at", false, ""),
 		SUBMITTED_USER_ID("submitted_user_id", false, ""),
+		SERVICE_IMPACT("service_impact", false, ""),
+		ADDITIONAL_COMMENT("additional_comment", false, ""),
 		;
 
 		private String columnName;
@@ -172,6 +175,8 @@ public class JobEyAssessmentDB implements EntityDB<JobEyAssessment>{
 			if (rs.wasNull()) obj.setWorkLeverage(null);
 			obj.setCapIncreaseExpIds(rs.getString(COLUMNS.CAP_INCREASE_EXP_IDS.getColumnName()));
 			if (rs.wasNull()) obj.setCapIncreaseExpIds(null);
+			obj.setCapIncreaseExpOther(rs.getString(COLUMNS.CAP_INCREASE_EXP_OTHER.getColumnName()));
+			if (rs.wasNull()) obj.setCapIncreaseExpOther(null);
 			obj.setMsrId(rs.getInt(COLUMNS.MSR_ID.getColumnName()));
 			if (rs.wasNull()) obj.setMsrId(null);
 			obj.setCreatedAt(rs.getTimestamp(COLUMNS.CREATED_AT.getColumnName()));
@@ -180,6 +185,10 @@ public class JobEyAssessmentDB implements EntityDB<JobEyAssessment>{
 			if (rs.wasNull()) obj.setUpdatedAt(null);
 			obj.setSubmittedUserId(rs.getInt(COLUMNS.SUBMITTED_USER_ID.getColumnName()));
 			if (rs.wasNull()) obj.setSubmittedUserId(null);
+			obj.setServiceImpact(rs.getInt(COLUMNS.SERVICE_IMPACT.getColumnName()));
+			if (rs.wasNull()) obj.setServiceImpact(null);
+			obj.setAdditionalComment(rs.getString(COLUMNS.ADDITIONAL_COMMENT.getColumnName()));
+			if (rs.wasNull()) obj.setAdditionalComment(null);
 			return obj;
 		}
 	}
@@ -210,12 +219,15 @@ public class JobEyAssessmentDB implements EntityDB<JobEyAssessment>{
 			mapping.put(COLUMNS.ADDITIONAL_SUSTAINABLE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getAdditionalSustainable()));
 			mapping.put(COLUMNS.WORK_LEVERAGE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getWorkLeverage()));
 			mapping.put(COLUMNS.CAP_INCREASE_EXP_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getCapIncreaseExpIds()));
+			mapping.put(COLUMNS.CAP_INCREASE_EXP_OTHER.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getCapIncreaseExpOther()));
 			mapping.put(COLUMNS.MSR_ID.getColumnName(), jobeyassessment.getMsrId());
 			if (jobeyassessment.getCreatedAt() != null)
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (jobeyassessment.getCreatedAt().getTime()));
 			if (jobeyassessment.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (jobeyassessment.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.SUBMITTED_USER_ID.getColumnName(), jobeyassessment.getSubmittedUserId());
+			mapping.put(COLUMNS.SERVICE_IMPACT.getColumnName(), jobeyassessment.getServiceImpact());
+			mapping.put(COLUMNS.ADDITIONAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(jobeyassessment.getAdditionalComment()));
 			return mapping;
 		}
 	}
@@ -284,6 +296,8 @@ public class JobEyAssessmentDB implements EntityDB<JobEyAssessment>{
 			if (rs.wasNull()) obj.setWorkLeverage(null);
 			obj.setCapIncreaseExpIds(rs.getString(COLUMNS.CAP_INCREASE_EXP_IDS.getColumnAliasName()));
 			if (rs.wasNull()) obj.setCapIncreaseExpIds(null);
+			obj.setCapIncreaseExpOther(rs.getString(COLUMNS.CAP_INCREASE_EXP_OTHER.getColumnAliasName()));
+			if (rs.wasNull()) obj.setCapIncreaseExpOther(null);
 			obj.setMsrId(rs.getInt(COLUMNS.MSR_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setMsrId(null);
 			obj.setCreatedAt(rs.getTimestamp(COLUMNS.CREATED_AT.getColumnAliasName()));
@@ -292,6 +306,10 @@ public class JobEyAssessmentDB implements EntityDB<JobEyAssessment>{
 			if (rs.wasNull()) obj.setUpdatedAt(null);
 			obj.setSubmittedUserId(rs.getInt(COLUMNS.SUBMITTED_USER_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSubmittedUserId(null);
+			obj.setServiceImpact(rs.getInt(COLUMNS.SERVICE_IMPACT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setServiceImpact(null);
+			obj.setAdditionalComment(rs.getString(COLUMNS.ADDITIONAL_COMMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setAdditionalComment(null);
 			if (this.loadAllFKeys || this.loadJob)
 				obj.setJob(JobDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadMsr)
