@@ -19,7 +19,7 @@ public class SupervisorTermDB implements EntityDB<SupervisorTerm>{
 
 	private static String TABLE_NAME = "SUPERVISOR_TERM";
 
-	private static String TABLE_ALIAS = "A_st_99";
+	private static String TABLE_ALIAS = "A_st_100";
 
 	public static String getTableName()
 	{

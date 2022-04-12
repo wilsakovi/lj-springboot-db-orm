@@ -19,7 +19,7 @@ public class ScheduledReportDB implements EntityDB<ScheduledReport>{
 
 	private static String TABLE_NAME = "SCHEDULED_REPORT";
 
-	private static String TABLE_ALIAS = "A_sr_63";
+	private static String TABLE_ALIAS = "A_sr_64";
 
 	public static String getTableName()
 	{

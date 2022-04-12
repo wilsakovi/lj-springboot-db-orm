@@ -502,3 +502,53 @@ ADD COLUMN `duplicate_level` INT(1) NULL DEFAULT 0 COMMENT '1 for duplicate hard
 ALTER TABLE `msr`  ADD COLUMN `reminder_date_ally` DATE NULL;
 ALTER TABLE `pay_period`  ADD COLUMN `reminder_date_ally` DATE NULL;
 
+=================================185===================================================================================
+CREATE TABLE `partner_site` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `partner_id` INT NOT NULL,
+  `site_id` SMALLINT NOT NULL,
+  `active_flag` INT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `ps_partner_fk`
+    FOREIGN KEY (`partner_id`)
+    REFERENCES `partner` (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+   CONSTRAINT `ps_site_fk`
+    FOREIGN KEY (`site_id`)
+    REFERENCES `site` (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    UNIQUE INDEX `partner_site_uq` (`partner_id` ASC, `site_id` ASC) VISIBLE
+    );
+    
+    insert into partner_site (partner_id, site_id, active_flag) select id, site_id, 1 from partner;
+    
+    ALTER TABLE `partner_site` 
+ADD COLUMN `created_at` DATETIME NULL AFTER `active_flag`,
+ADD COLUMN `updated_at` DATETIME NULL AFTER `created_at`;
+
+
+ALTER TABLE `stp_cap_increase_exp` 
+ADD COLUMN `old_cap_flag` INT NOT NULL DEFAULT 0 AFTER `name`;
+
+UPDATE `stp_cap_increase_exp` SET `old_cap_flag` = '1' WHERE (`id` = '1');
+UPDATE `stp_cap_increase_exp` SET `old_cap_flag` = '1' WHERE (`id` = '2');
+UPDATE `stp_cap_increase_exp` SET `old_cap_flag` = '1' WHERE (`id` = '3');
+UPDATE `stp_cap_increase_exp` SET `old_cap_flag` = '1' WHERE (`id` = '4');
+INSERT INTO `stp_cap_increase_exp` (`code`, `name`, `old_cap_flag`, `active_flag`) VALUES ('PS', 'More people served', '0', '1');
+INSERT INTO `stp_cap_increase_exp` (`code`, `name`, `old_cap_flag`, `active_flag`) VALUES ('SO', 'Better services offered', '0', '1');
+INSERT INTO `stp_cap_increase_exp` (`code`, `name`, `old_cap_flag`, `active_flag`) VALUES ('IS', 'Improved system or process', '0', '1');
+INSERT INTO `stp_cap_increase_exp` (`code`, `name`, `old_cap_flag`, `active_flag`) VALUES ('NP', 'New project or program developed', '0', '1');
+INSERT INTO `stp_cap_increase_exp` (`code`, `name`, `old_cap_flag`, `active_flag`) VALUES ('OT', 'Other (explain)', '0', '1');
+INSERT INTO `stp_cap_increase_exp` (`code`, `name`, `old_cap_flag`, `active_flag`) VALUES ('NI', 'No impact', '0', '1');
+
+
+ALTER TABLE `job_ey_assessment` 
+ADD COLUMN `service_impact` INT(1) NULL AFTER `submitted_user_id`,
+ADD COLUMN `additional_comment` TEXT NULL AFTER `service_impact`;
+
+ALTER TABLE `job_ey_assessment` 
+ADD COLUMN `cap_increase_exp_other` VARCHAR(100) NULL AFTER `cap_increase_exp_ids`;
+
+

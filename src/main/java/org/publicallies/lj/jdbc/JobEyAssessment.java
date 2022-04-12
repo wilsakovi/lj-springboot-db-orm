@@ -78,6 +78,9 @@ public class JobEyAssessment implements Persistable<Integer> , CommonIdCU<Intege
 
 	private String capIncreaseExpIds;
 
+	@Size (max = 100)
+	private String capIncreaseExpOther;
+
 	private Integer msrId;
 
 	private Date createdAt = new Date();
@@ -85,6 +88,11 @@ public class JobEyAssessment implements Persistable<Integer> , CommonIdCU<Intege
 	private Date updatedAt = new Date();
 
 	private Integer submittedUserId;
+
+	private Integer serviceImpact;
+
+	@Size (max = 65535)
+	private String additionalComment;
 
 	private transient boolean persisted;
 
@@ -301,6 +309,16 @@ public class JobEyAssessment implements Persistable<Integer> , CommonIdCU<Intege
 		return this.capIncreaseExpIds;
 	}
 
+	public void setCapIncreaseExpOther (String capIncreaseExpOther)
+	{
+		this.capIncreaseExpOther = capIncreaseExpOther;
+	}
+
+	public String getCapIncreaseExpOther ()
+	{
+		return this.capIncreaseExpOther;
+	}
+
 	public void setMsrId (Integer msrId)
 	{
 		this.msrId = msrId;
@@ -339,6 +357,26 @@ public class JobEyAssessment implements Persistable<Integer> , CommonIdCU<Intege
 	public Integer getSubmittedUserId ()
 	{
 		return this.submittedUserId;
+	}
+
+	public void setServiceImpact (Integer serviceImpact)
+	{
+		this.serviceImpact = serviceImpact;
+	}
+
+	public Integer getServiceImpact ()
+	{
+		return this.serviceImpact;
+	}
+
+	public void setAdditionalComment (String additionalComment)
+	{
+		this.additionalComment = additionalComment;
+	}
+
+	public String getAdditionalComment ()
+	{
+		return this.additionalComment;
 	}
 
 	public void setPersisted (Boolean persisted)
