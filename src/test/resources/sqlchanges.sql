@@ -551,4 +551,11 @@ ADD COLUMN `additional_comment` TEXT NULL AFTER `service_impact`;
 ALTER TABLE `job_ey_assessment` 
 ADD COLUMN `cap_increase_exp_other` VARCHAR(100) NULL AFTER `cap_increase_exp_ids`;
 
+==================================== 273================================================================================
+ALTER TABLE `job` ADD COLUMN `egrant_location` INT NULL;
+
+ALTER TABLE `job` ADD COLUMN `egrant_location_confirmed` INT  NULL;
+
+
+
 
