@@ -84,6 +84,8 @@ public class JobDB implements EntityDB<Job>{
 		SA_APPROVAL_COMMENT("sa_approval_comment", false, ""),
 		CONTRACT_SENT_FLAG("contract_sent_flag", false, ""),
 		PA_ISSUE_AREA_IDS("pa_issue_area_ids", true, ""),
+		EGRANT_LOCATION("egrant_location", false, ""),
+		EGRANT_LOCATION_CONFIRMED("egrant_location_confirmed", false, ""),
 		;
 
 		private String columnName;
@@ -231,6 +233,10 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setContractSentFlag(null);
 			obj.setPaIssueAreaIds(rs.getString(COLUMNS.PA_ISSUE_AREA_IDS.getColumnName()));
 			if (rs.wasNull()) obj.setPaIssueAreaIds(null);
+			obj.setEgrantLocation(rs.getInt(COLUMNS.EGRANT_LOCATION.getColumnName()));
+			if (rs.wasNull()) obj.setEgrantLocation(null);
+			obj.setEgrantLocationConfirmed(rs.getInt(COLUMNS.EGRANT_LOCATION_CONFIRMED.getColumnName()));
+			if (rs.wasNull()) obj.setEgrantLocationConfirmed(null);
 			return obj;
 		}
 	}
@@ -289,6 +295,8 @@ public class JobDB implements EntityDB<Job>{
 			mapping.put(COLUMNS.SA_APPROVAL_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getSaApprovalComment()));
 			mapping.put(COLUMNS.CONTRACT_SENT_FLAG.getColumnName(), job.getContractSentFlag());
 			mapping.put(COLUMNS.PA_ISSUE_AREA_IDS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getPaIssueAreaIds()));
+			mapping.put(COLUMNS.EGRANT_LOCATION.getColumnName(), job.getEgrantLocation());
+			mapping.put(COLUMNS.EGRANT_LOCATION_CONFIRMED.getColumnName(), job.getEgrantLocationConfirmed());
 			return mapping;
 		}
 	}
@@ -423,6 +431,10 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setContractSentFlag(null);
 			obj.setPaIssueAreaIds(rs.getString(COLUMNS.PA_ISSUE_AREA_IDS.getColumnAliasName()));
 			if (rs.wasNull()) obj.setPaIssueAreaIds(null);
+			obj.setEgrantLocation(rs.getInt(COLUMNS.EGRANT_LOCATION.getColumnAliasName()));
+			if (rs.wasNull()) obj.setEgrantLocation(null);
+			obj.setEgrantLocationConfirmed(rs.getInt(COLUMNS.EGRANT_LOCATION_CONFIRMED.getColumnAliasName()));
+			if (rs.wasNull()) obj.setEgrantLocationConfirmed(null);
 			if (this.loadAllFKeys || this.loadAllyProfile)
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadCncs)
