@@ -556,6 +556,9 @@ ALTER TABLE `job` ADD COLUMN `egrant_location` INT NULL;
 
 ALTER TABLE `job` ADD COLUMN `egrant_location_confirmed` INT  NULL;
 
+======================= 274====================================================================================
+ALTER TABLE `program` CHANGE COLUMN `name` `name` VARCHAR(80) NOT NULL ;
+
 
 
 
