@@ -19,7 +19,7 @@ public class LoginPermissionDB implements EntityDB<LoginPermission>{
 
 	private static String TABLE_NAME = "LOGIN_PERMISSION";
 
-	private static String TABLE_ALIAS = "A_lp_34";
+	private static String TABLE_ALIAS = "A_lp_35";
 
 	public static String getTableName()
 	{

@@ -559,6 +559,44 @@ ALTER TABLE `job` ADD COLUMN `egrant_location_confirmed` INT  NULL;
 ======================= 274====================================================================================
 ALTER TABLE `program` CHANGE COLUMN `name` `name` VARCHAR(80) NOT NULL ;
 
+===============================280========================================================================
+CREATE TABLE `ally_profile_stats` (
+  id  INT NOT NULL AUTO_INCREMENT,
+  `ally_profile_id` INT NOT NULL,
+  `pps_grand_total` DECIMAL(8,2) NULL,
+  `pps_total_placement` DECIMAL(8,2) NULL,
+  `pps_total_fundraising` DECIMAL(8,2) NULL,
+  `pps_total_tsp` DECIMAL(8,2) NULL,
+  `pps_total_service` DECIMAL(8,2) NULL,
+  `pps_total_training` DECIMAL(8,2) NULL,
+  `ratioHoursCompleted` DECIMAL(8,2) NULL,
+  UNIQUE INDEX `ap_ap_stat_uq` (`ally_profile_id` ASC) VISIBLE,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_ap_ap_stat`
+    FOREIGN KEY (`ally_profile_id`)
+    REFERENCES `ally_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+ALTER TABLE `ally_profile_stats` 
+ADD COLUMN `pathways_code` VARCHAR(2) NULL AFTER `ratioHoursCompleted`;    
 
+
+ALTER TABLE `ally_profile_stats` 
+ADD COLUMN `total_ally_submitted` DECIMAL(8,2) NULL AFTER `ratioHoursCompleted`;
+
+
+insert into ally_profile_stats(ally_profile_id, pps_grand_total, pps_total_placement, pps_total_fundraising,
+pps_total_tsp, pps_total_service, pps_total_training, ratioHoursCompleted, pathways_code)
+select ap_id, pps_grand_total, pps_total_placement, pps_total_fundraising,
+pps_total_tsp, pps_total_service, pps_total_training, ratioHoursCompleted, pathways_code
+from vw_ally_profile;
+
+update ally_profile_stats aps, (
+              SELECT ally_profile_id, SUM(grand_total) as total
+                FROM pay_period
+                WHERE  ally_submit_STATUS_code = 'SB' group by ally_profile_id) sq
+                set aps.total_ally_submitted = sq.total
+                where aps.ally_profile_id = sq.ally_profile_id;
 
 

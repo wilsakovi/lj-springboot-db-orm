@@ -19,7 +19,7 @@ public class MsrJobObjectiveDB implements EntityDB<MsrJobObjective>{
 
 	private static String TABLE_NAME = "MSR_JOB_OBJECTIVE";
 
-	private static String TABLE_ALIAS = "A_mjo_38";
+	private static String TABLE_ALIAS = "A_mjo_39";
 
 	public static String getTableName()
 	{

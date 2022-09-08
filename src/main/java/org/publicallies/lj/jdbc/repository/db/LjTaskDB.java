@@ -19,7 +19,7 @@ public class LjTaskDB implements EntityDB<LjTask>{
 
 	private static String TABLE_NAME = "LJ_TASK";
 
-	private static String TABLE_ALIAS = "A_lt_31";
+	private static String TABLE_ALIAS = "A_lt_32";
 
 	public static String getTableName()
 	{
