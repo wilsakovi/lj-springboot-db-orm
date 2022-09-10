@@ -19,7 +19,7 @@ public class PartnerSupervisorDB implements EntityDB<PartnerSupervisor>{
 
 	private static String TABLE_NAME = "PARTNER_SUPERVISOR";
 
-	private static String TABLE_ALIAS = "A_ps_53";
+	private static String TABLE_ALIAS = "A_ps_54";
 
 	public static String getTableName()
 	{

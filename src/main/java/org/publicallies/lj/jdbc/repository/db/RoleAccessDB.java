@@ -19,7 +19,7 @@ public class RoleAccessDB implements EntityDB<RoleAccess>{
 
 	private static String TABLE_NAME = "ROLE_ACCESS";
 
-	private static String TABLE_ALIAS = "A_ra_61";
+	private static String TABLE_ALIAS = "A_ra_62";
 
 	public static String getTableName()
 	{

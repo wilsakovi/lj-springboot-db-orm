@@ -19,7 +19,7 @@ public class StaffPastHistoryDB implements EntityDB<StaffPastHistory>{
 
 	private static String TABLE_NAME = "STAFF_PAST_HISTORY";
 
-	private static String TABLE_ALIAS = "A_sph_72";
+	private static String TABLE_ALIAS = "A_sph_73";
 
 	public static String getTableName()
 	{

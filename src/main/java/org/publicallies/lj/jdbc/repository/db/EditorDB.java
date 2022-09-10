@@ -18,7 +18,7 @@ public class EditorDB implements EntityDB<Editor>{
 
 	private static String TABLE_NAME = "EDITOR";
 
-	private static String TABLE_ALIAS = "A_edi_21";
+	private static String TABLE_ALIAS = "A_edi_22";
 
 	public static String getTableName()
 	{

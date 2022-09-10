@@ -18,7 +18,7 @@ public class MsrOutputHasPeopleDB implements EntityDB<MsrOutputHasPeople>{
 
 	private static String TABLE_NAME = "MSR_OUTPUT_HAS_PEOPLE";
 
-	private static String TABLE_ALIAS = "A_mohp_40";
+	private static String TABLE_ALIAS = "A_mohp_41";
 
 	public static String getTableName()
 	{
