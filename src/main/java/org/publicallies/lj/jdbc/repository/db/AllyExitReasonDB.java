@@ -45,6 +45,7 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 		ID("id", false, ""),
 		NAME("name", false, ""),
 		CPC_EXIT_ONLY_FLAG("cpc_exit_only_flag", false, ""),
+		ACTIVE_FLAG("active_flag", false, ""),
 		;
 
 		private String columnName;
@@ -116,6 +117,8 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 			if (rs.wasNull()) obj.setName(null);
 			obj.setCpcExitOnlyFlag(rs.getInt(COLUMNS.CPC_EXIT_ONLY_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setCpcExitOnlyFlag(null);
+			obj.setActiveFlag(rs.getInt(COLUMNS.ACTIVE_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setActiveFlag(null);
 			return obj;
 		}
 	}
@@ -129,6 +132,7 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 			mapping.put(COLUMNS.ID.getColumnName(), allyexitreason.getId());
 			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyexitreason.getName()));
 			mapping.put(COLUMNS.CPC_EXIT_ONLY_FLAG.getColumnName(), allyexitreason.getCpcExitOnlyFlag());
+			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), allyexitreason.getActiveFlag());
 			return mapping;
 		}
 	}
@@ -145,6 +149,8 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 			if (rs.wasNull()) obj.setName(null);
 			obj.setCpcExitOnlyFlag(rs.getInt(COLUMNS.CPC_EXIT_ONLY_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setCpcExitOnlyFlag(null);
+			obj.setActiveFlag(rs.getInt(COLUMNS.ACTIVE_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setActiveFlag(null);
 			return obj;
 		}
 	}

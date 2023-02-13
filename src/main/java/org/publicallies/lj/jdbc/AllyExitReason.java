@@ -29,6 +29,9 @@ public class AllyExitReason implements Persistable<Integer>
 	@NotNull
 	private Integer cpcExitOnlyFlag = 0;
 
+	@NotNull
+	private Integer activeFlag = 1;
+
 	private transient boolean persisted;
 
 
@@ -70,6 +73,16 @@ public class AllyExitReason implements Persistable<Integer>
 	public Integer getCpcExitOnlyFlag ()
 	{
 		return this.cpcExitOnlyFlag;
+	}
+
+	public void setActiveFlag (Integer activeFlag)
+	{
+		this.activeFlag = activeFlag;
+	}
+
+	public Integer getActiveFlag ()
+	{
+		return this.activeFlag;
 	}
 
 	public void setPersisted (Boolean persisted)
