@@ -598,5 +598,13 @@ update ally_profile_stats aps, (
                 WHERE  ally_submit_STATUS_code = 'SB' group by ally_profile_id) sq
                 set aps.total_ally_submitted = sq.total
                 where aps.ally_profile_id = sq.ally_profile_id;
+                
+=========================================adhoc==========================================
 
+mysql> insert into env_properties(keyCode, keyValue) values('DROPBOX_DIR', value here);
 
+=====================314 =================================================
+
+ALTER TABLE `ally_exit_reason` ADD COLUMN `active_flag` INT NOT NULL DEFAULT 1 AFTER `cpc_exit_only_flag`;
+
+UPDATE `ally_exit_reason` SET `active_flag` = '0' WHERE (`name` = 'COVID-19 / Coronavirus');
