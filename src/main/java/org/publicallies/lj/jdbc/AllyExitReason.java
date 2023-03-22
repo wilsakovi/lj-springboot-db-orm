@@ -32,8 +32,14 @@ public class AllyExitReason implements Persistable<Integer>
 	@NotNull
 	private Integer activeFlag = 1;
 
+	private Short lowerTermId;
+
+	private Short upperTermId;
+
 	private transient boolean persisted;
 
+	private Term lowerTerm;
+	private Term upperTerm;
 
 	public AllyExitReason ()
 	{
@@ -85,6 +91,26 @@ public class AllyExitReason implements Persistable<Integer>
 		return this.activeFlag;
 	}
 
+	public void setLowerTermId (Short lowerTermId)
+	{
+		this.lowerTermId = lowerTermId;
+	}
+
+	public Short getLowerTermId ()
+	{
+		return this.lowerTermId;
+	}
+
+	public void setUpperTermId (Short upperTermId)
+	{
+		this.upperTermId = upperTermId;
+	}
+
+	public Short getUpperTermId ()
+	{
+		return this.upperTermId;
+	}
+
 	public void setPersisted (Boolean persisted)
 	{
 		this.persisted = persisted;
@@ -93,6 +119,26 @@ public class AllyExitReason implements Persistable<Integer>
 	public Boolean getPersisted ()
 	{
 		return this.persisted;
+	}
+
+	public void setLowerTerm (Term lowerTerm)
+	{
+		this.lowerTerm = lowerTerm;
+	}
+
+	public Term getLowerTerm ()
+	{
+		return this.lowerTerm;
+	}
+
+	public void setUpperTerm (Term upperTerm)
+	{
+		this.upperTerm = upperTerm;
+	}
+
+	public Term getUpperTerm ()
+	{
+		return this.upperTerm;
 	}
 
 	@Override

@@ -46,6 +46,8 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 		NAME("name", false, ""),
 		CPC_EXIT_ONLY_FLAG("cpc_exit_only_flag", false, ""),
 		ACTIVE_FLAG("active_flag", false, ""),
+		LOWER_TERM_ID("lower_term_id", false, ""),
+		UPPER_TERM_ID("upper_term_id", false, ""),
 		;
 
 		private String columnName;
@@ -119,6 +121,10 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 			if (rs.wasNull()) obj.setCpcExitOnlyFlag(null);
 			obj.setActiveFlag(rs.getInt(COLUMNS.ACTIVE_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
+			obj.setLowerTermId(rs.getShort(COLUMNS.LOWER_TERM_ID.getColumnName()));
+			if (rs.wasNull()) obj.setLowerTermId(null);
+			obj.setUpperTermId(rs.getShort(COLUMNS.UPPER_TERM_ID.getColumnName()));
+			if (rs.wasNull()) obj.setUpperTermId(null);
 			return obj;
 		}
 	}
@@ -133,6 +139,8 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 			mapping.put(COLUMNS.NAME.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyexitreason.getName()));
 			mapping.put(COLUMNS.CPC_EXIT_ONLY_FLAG.getColumnName(), allyexitreason.getCpcExitOnlyFlag());
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), allyexitreason.getActiveFlag());
+			mapping.put(COLUMNS.LOWER_TERM_ID.getColumnName(), allyexitreason.getLowerTermId());
+			mapping.put(COLUMNS.UPPER_TERM_ID.getColumnName(), allyexitreason.getUpperTermId());
 			return mapping;
 		}
 	}
@@ -140,6 +148,24 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 	public static final RowMapper<AllyExitReason> ALIAS_ROW_MAPPER = new AllyExitReasonAliasRowMapper ();
 	public static final class  AllyExitReasonAliasRowMapper implements RowMapper<AllyExitReason>
 	{
+		private boolean loadAllFKeys = false;
+		public void setLoadAllFKeys (boolean loadAllFKeys)
+		{
+			this.loadAllFKeys = loadAllFKeys;
+		}
+
+		private boolean loadLowerTerm = false;
+		public void setLoadLowerTerm (boolean loadLowerTerm)
+		{
+			this.loadLowerTerm = loadLowerTerm;
+		}
+
+		private boolean loadUpperTerm = false;
+		public void setLoadUpperTerm (boolean loadUpperTerm)
+		{
+			this.loadUpperTerm = loadUpperTerm;
+		}
+
 		public AllyExitReason mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			AllyExitReason obj = new AllyExitReason();
@@ -151,6 +177,14 @@ public class AllyExitReasonDB implements EntityDB<AllyExitReason>{
 			if (rs.wasNull()) obj.setCpcExitOnlyFlag(null);
 			obj.setActiveFlag(rs.getInt(COLUMNS.ACTIVE_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
+			obj.setLowerTermId(rs.getShort(COLUMNS.LOWER_TERM_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setLowerTermId(null);
+			obj.setUpperTermId(rs.getShort(COLUMNS.UPPER_TERM_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setUpperTermId(null);
+			if (this.loadAllFKeys || this.loadLowerTerm)
+				obj.setLowerTerm(TermDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
+			if (this.loadAllFKeys || this.loadUpperTerm)
+				obj.setUpperTerm(TermDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}

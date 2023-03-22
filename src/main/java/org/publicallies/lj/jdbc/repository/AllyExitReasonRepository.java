@@ -101,6 +101,18 @@ public class AllyExitReasonRepository extends JdbcRepository<AllyExitReason, Int
 	}
 
 
+	public List<AllyExitReason> getAllyExitReasonsByLowerTermId (Long lowerTermId)
+	{
+		String sql = "select * from " + AllyExitReasonDB.getTableName() + " where " + AllyExitReasonDB.COLUMNS.LOWER_TERM_ID.getColumnName() + " = ? ";
+		return this.jdbcOperations.query (sql, new Object[] { lowerTermId }, AllyExitReasonDB.ROW_MAPPER);
+	}
+
+	public List<AllyExitReason> getAllyExitReasonsByUpperTermId (Long upperTermId)
+	{
+		String sql = "select * from " + AllyExitReasonDB.getTableName() + " where " + AllyExitReasonDB.COLUMNS.UPPER_TERM_ID.getColumnName() + " = ? ";
+		return this.jdbcOperations.query (sql, new Object[] { upperTermId }, AllyExitReasonDB.ROW_MAPPER);
+	}
+
 
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
