@@ -608,3 +608,26 @@ mysql> insert into env_properties(keyCode, keyValue) values('DROPBOX_DIR', value
 ALTER TABLE `ally_exit_reason` ADD COLUMN `active_flag` INT NOT NULL DEFAULT 1 AFTER `cpc_exit_only_flag`;
 
 UPDATE `ally_exit_reason` SET `active_flag` = '0' WHERE (`name` = 'COVID-19 / Coronavirus');
+
+========================314 - cont ====================================================
+UPDATE `ally_exit_reason` SET `active_flag` = '1' WHERE (`name` = 'COVID-19 / Coronavirus');
+
+ALTER TABLE `ally_exit_reason` 
+ADD COLUMN `lower_term_id` SMALLINT NULL,
+ADD COLUMN `upper_term_id` SMALLINT NULL AFTER `lower_term_id`,
+ADD INDEX `fk_ap_er_term_1_idx` (`lower_term_id` ASC) VISIBLE,
+ADD INDEX `fk_ap_er_term_2_idx` (`upper_term_id` ASC) VISIBLE;
+;
+ALTER TABLE `ally_exit_reason` 
+ADD CONSTRAINT `fk_ap_er_term_1`
+  FOREIGN KEY (`lower_term_id`)
+  REFERENCES `term` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_ap_er_term_2`
+  FOREIGN KEY (`upper_term_id`)
+  REFERENCES `term` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+  UPDATE `ally_exit_reason` SET `upper_term_id` = (select id from term where name = '2021-2022') WHERE (`name` = 'COVID-19 / Coronavirus');
