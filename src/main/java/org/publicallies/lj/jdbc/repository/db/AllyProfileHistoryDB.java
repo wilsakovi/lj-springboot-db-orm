@@ -54,6 +54,15 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 		HISTORY("history", true, ""),
 		STATUS_END_DATE("status_end_date", false, ""),
 		UPDATED_BY_USER_ID("updated_by_user_id", false, ""),
+		SATISFACTORY_EFFORT_FLAG("satisfactory_effort_flag", false, ""),
+		SATISFACTORY_EFFORT_COMMENT("satisfactory_effort_comment", false, ""),
+		MET_CRITERIA_FLAG("met_criteria_flag", false, ""),
+		MET_CRITERIA_COMMENT("met_criteria_comment", false, ""),
+		SUSPENDED_EGRANT_FLAG("suspended_egrant_flag", false, ""),
+		SF_ALLOW_EXIT_FLAG("sf_allow_exit_flag", false, ""),
+		SF_ALLOW_GRADUATE_FLAG("sf_allow_graduate_flag", false, ""),
+		NO_SATISF_EY_GRADUATE_COMMENT("no_satisf_ey_graduate_comment", false, ""),
+		LATEST_FLAG("latest_flag", false, ""),
 		;
 
 		private String columnName;
@@ -141,6 +150,24 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			if (rs.wasNull()) obj.setStatusEndDate(null);
 			obj.setUpdatedByUserId(rs.getInt(COLUMNS.UPDATED_BY_USER_ID.getColumnName()));
 			if (rs.wasNull()) obj.setUpdatedByUserId(null);
+			obj.setSatisfactoryEffortFlag(rs.getInt(COLUMNS.SATISFACTORY_EFFORT_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setSatisfactoryEffortFlag(null);
+			obj.setSatisfactoryEffortComment(rs.getString(COLUMNS.SATISFACTORY_EFFORT_COMMENT.getColumnName()));
+			if (rs.wasNull()) obj.setSatisfactoryEffortComment(null);
+			obj.setMetCriteriaFlag(rs.getInt(COLUMNS.MET_CRITERIA_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setMetCriteriaFlag(null);
+			obj.setMetCriteriaComment(rs.getString(COLUMNS.MET_CRITERIA_COMMENT.getColumnName()));
+			if (rs.wasNull()) obj.setMetCriteriaComment(null);
+			obj.setSuspendedEgrantFlag(rs.getInt(COLUMNS.SUSPENDED_EGRANT_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setSuspendedEgrantFlag(null);
+			obj.setSfAllowExitFlag(rs.getInt(COLUMNS.SF_ALLOW_EXIT_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setSfAllowExitFlag(null);
+			obj.setSfAllowGraduateFlag(rs.getInt(COLUMNS.SF_ALLOW_GRADUATE_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setSfAllowGraduateFlag(null);
+			obj.setNoSatisfEyGraduateComment(rs.getString(COLUMNS.NO_SATISF_EY_GRADUATE_COMMENT.getColumnName()));
+			if (rs.wasNull()) obj.setNoSatisfEyGraduateComment(null);
+			obj.setLatestFlag(rs.getInt(COLUMNS.LATEST_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setLatestFlag(null);
 			return obj;
 		}
 	}
@@ -166,6 +193,15 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			if (allyprofilehistory.getStatusEndDate() != null)
 				mapping.put(COLUMNS.STATUS_END_DATE.getColumnName(), new Timestamp (allyprofilehistory.getStatusEndDate().getTime()));
 			mapping.put(COLUMNS.UPDATED_BY_USER_ID.getColumnName(), allyprofilehistory.getUpdatedByUserId());
+			mapping.put(COLUMNS.SATISFACTORY_EFFORT_FLAG.getColumnName(), allyprofilehistory.getSatisfactoryEffortFlag());
+			mapping.put(COLUMNS.SATISFACTORY_EFFORT_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofilehistory.getSatisfactoryEffortComment()));
+			mapping.put(COLUMNS.MET_CRITERIA_FLAG.getColumnName(), allyprofilehistory.getMetCriteriaFlag());
+			mapping.put(COLUMNS.MET_CRITERIA_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofilehistory.getMetCriteriaComment()));
+			mapping.put(COLUMNS.SUSPENDED_EGRANT_FLAG.getColumnName(), allyprofilehistory.getSuspendedEgrantFlag());
+			mapping.put(COLUMNS.SF_ALLOW_EXIT_FLAG.getColumnName(), allyprofilehistory.getSfAllowExitFlag());
+			mapping.put(COLUMNS.SF_ALLOW_GRADUATE_FLAG.getColumnName(), allyprofilehistory.getSfAllowGraduateFlag());
+			mapping.put(COLUMNS.NO_SATISF_EY_GRADUATE_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofilehistory.getNoSatisfEyGraduateComment()));
+			mapping.put(COLUMNS.LATEST_FLAG.getColumnName(), allyprofilehistory.getLatestFlag());
 			return mapping;
 		}
 	}
@@ -222,6 +258,24 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			if (rs.wasNull()) obj.setStatusEndDate(null);
 			obj.setUpdatedByUserId(rs.getInt(COLUMNS.UPDATED_BY_USER_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUpdatedByUserId(null);
+			obj.setSatisfactoryEffortFlag(rs.getInt(COLUMNS.SATISFACTORY_EFFORT_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSatisfactoryEffortFlag(null);
+			obj.setSatisfactoryEffortComment(rs.getString(COLUMNS.SATISFACTORY_EFFORT_COMMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSatisfactoryEffortComment(null);
+			obj.setMetCriteriaFlag(rs.getInt(COLUMNS.MET_CRITERIA_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setMetCriteriaFlag(null);
+			obj.setMetCriteriaComment(rs.getString(COLUMNS.MET_CRITERIA_COMMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setMetCriteriaComment(null);
+			obj.setSuspendedEgrantFlag(rs.getInt(COLUMNS.SUSPENDED_EGRANT_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSuspendedEgrantFlag(null);
+			obj.setSfAllowExitFlag(rs.getInt(COLUMNS.SF_ALLOW_EXIT_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSfAllowExitFlag(null);
+			obj.setSfAllowGraduateFlag(rs.getInt(COLUMNS.SF_ALLOW_GRADUATE_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSfAllowGraduateFlag(null);
+			obj.setNoSatisfEyGraduateComment(rs.getString(COLUMNS.NO_SATISF_EY_GRADUATE_COMMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setNoSatisfEyGraduateComment(null);
+			obj.setLatestFlag(rs.getInt(COLUMNS.LATEST_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setLatestFlag(null);
 			if (this.loadAllFKeys || this.loadAllyExitReason)
 				obj.setAllyExitReason(AllyExitReasonDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadAllyProfile)

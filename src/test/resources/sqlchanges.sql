@@ -631,3 +631,17 @@ ADD CONSTRAINT `fk_ap_er_term_2`
   ON UPDATE NO ACTION;
   
   UPDATE `ally_exit_reason` SET `upper_term_id` = (select id from term where name = '2021-2022') WHERE (`name` = 'COVID-19 / Coronavirus');
+  =============================================333=================================================================
+  
+  ALTER TABLE `ally_profile_history` 
+ADD COLUMN `satisfactory_effort_flag` INT(1) NOT NULL DEFAULT 2 AFTER `updated_by_user_id`,
+ADD COLUMN `satisfactory_effort_comment` TEXT NULL AFTER `satisfactory_effort_flag`,
+ADD COLUMN `met_criteria_flag` INT(1) NOT NULL DEFAULT 2 AFTER `satisfactory_effort_comment`,
+ADD COLUMN `met_criteria_comment` TEXT NULL AFTER `met_criteria_flag`,
+ADD COLUMN `suspended_egrant_flag` INT(1) NOT NULL DEFAULT 2 AFTER `met_criteria_comment`,
+ADD COLUMN `sf_allow_exit_flag` INT(1) NOT NULL DEFAULT 2 AFTER `suspended_egrant_flag`,
+ADD COLUMN `sf_allow_graduate_flag` INT(1) NOT NULL DEFAULT 2 AFTER `sf_allow_exit_flag`,
+ADD COLUMN `no_satisf_ey_graduate_comment` TEXT NULL AFTER `sf_allow_graduate_flag`,
+ADD COLUMN `latest_flag` INT(1) NOT NULL DEFAULT 1 AFTER `no_satisf_ey_graduate_comment`;
+
+
