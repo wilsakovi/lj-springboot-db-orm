@@ -48,6 +48,33 @@ public class AllyProfileHistory implements Persistable<Integer> , CommonIdCUH<In
 
 	private Integer updatedByUserId;
 
+	@NotNull
+	private Integer satisfactoryEffortFlag = 2;
+
+	@Size (max = 65535)
+	private String satisfactoryEffortComment;
+
+	@NotNull
+	private Integer metCriteriaFlag = 2;
+
+	@Size (max = 65535)
+	private String metCriteriaComment;
+
+	@NotNull
+	private Integer suspendedEgrantFlag = 2;
+
+	@NotNull
+	private Integer sfAllowExitFlag = 2;
+
+	@NotNull
+	private Integer sfAllowGraduateFlag = 2;
+
+	@Size (max = 65535)
+	private String noSatisfEyGraduateComment;
+
+	@NotNull
+	private Integer latestFlag = 1;
+
 	private transient boolean persisted;
 
 	private AllyExitReason allyExitReason;
@@ -172,6 +199,96 @@ public class AllyProfileHistory implements Persistable<Integer> , CommonIdCUH<In
 	public Integer getUpdatedByUserId ()
 	{
 		return this.updatedByUserId;
+	}
+
+	public void setSatisfactoryEffortFlag (Integer satisfactoryEffortFlag)
+	{
+		this.satisfactoryEffortFlag = satisfactoryEffortFlag;
+	}
+
+	public Integer getSatisfactoryEffortFlag ()
+	{
+		return this.satisfactoryEffortFlag;
+	}
+
+	public void setSatisfactoryEffortComment (String satisfactoryEffortComment)
+	{
+		this.satisfactoryEffortComment = satisfactoryEffortComment;
+	}
+
+	public String getSatisfactoryEffortComment ()
+	{
+		return this.satisfactoryEffortComment;
+	}
+
+	public void setMetCriteriaFlag (Integer metCriteriaFlag)
+	{
+		this.metCriteriaFlag = metCriteriaFlag;
+	}
+
+	public Integer getMetCriteriaFlag ()
+	{
+		return this.metCriteriaFlag;
+	}
+
+	public void setMetCriteriaComment (String metCriteriaComment)
+	{
+		this.metCriteriaComment = metCriteriaComment;
+	}
+
+	public String getMetCriteriaComment ()
+	{
+		return this.metCriteriaComment;
+	}
+
+	public void setSuspendedEgrantFlag (Integer suspendedEgrantFlag)
+	{
+		this.suspendedEgrantFlag = suspendedEgrantFlag;
+	}
+
+	public Integer getSuspendedEgrantFlag ()
+	{
+		return this.suspendedEgrantFlag;
+	}
+
+	public void setSfAllowExitFlag (Integer sfAllowExitFlag)
+	{
+		this.sfAllowExitFlag = sfAllowExitFlag;
+	}
+
+	public Integer getSfAllowExitFlag ()
+	{
+		return this.sfAllowExitFlag;
+	}
+
+	public void setSfAllowGraduateFlag (Integer sfAllowGraduateFlag)
+	{
+		this.sfAllowGraduateFlag = sfAllowGraduateFlag;
+	}
+
+	public Integer getSfAllowGraduateFlag ()
+	{
+		return this.sfAllowGraduateFlag;
+	}
+
+	public void setNoSatisfEyGraduateComment (String noSatisfEyGraduateComment)
+	{
+		this.noSatisfEyGraduateComment = noSatisfEyGraduateComment;
+	}
+
+	public String getNoSatisfEyGraduateComment ()
+	{
+		return this.noSatisfEyGraduateComment;
+	}
+
+	public void setLatestFlag (Integer latestFlag)
+	{
+		this.latestFlag = latestFlag;
+	}
+
+	public Integer getLatestFlag ()
+	{
+		return this.latestFlag;
 	}
 
 	public void setPersisted (Boolean persisted)
