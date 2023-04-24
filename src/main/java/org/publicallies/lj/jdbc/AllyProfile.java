@@ -141,6 +141,16 @@ public class AllyProfile implements Persistable<Integer> , CommonIdCUHLu<Integer
 
 	private Integer sfFailedFlag = 0;
 
+	@NotNull
+	private Integer tempPendingSfCase = 0;
+
+	@NotNull
+	private Integer pendingSfCase = 2;
+
+	private Date sfCaseDate;
+
+	private Date sfCaseCloseDate;
+
 	private transient boolean persisted;
 
 	private AllyExitReason allyExitReason;
@@ -707,6 +717,46 @@ public class AllyProfile implements Persistable<Integer> , CommonIdCUHLu<Integer
 	public Integer getSfFailedFlag ()
 	{
 		return this.sfFailedFlag;
+	}
+
+	public void setTempPendingSfCase (Integer tempPendingSfCase)
+	{
+		this.tempPendingSfCase = tempPendingSfCase;
+	}
+
+	public Integer getTempPendingSfCase ()
+	{
+		return this.tempPendingSfCase;
+	}
+
+	public void setPendingSfCase (Integer pendingSfCase)
+	{
+		this.pendingSfCase = pendingSfCase;
+	}
+
+	public Integer getPendingSfCase ()
+	{
+		return this.pendingSfCase;
+	}
+
+	public void setSfCaseDate (Date sfCaseDate)
+	{
+		this.sfCaseDate = sfCaseDate;
+	}
+
+	public Date getSfCaseDate ()
+	{
+		return this.sfCaseDate;
+	}
+
+	public void setSfCaseCloseDate (Date sfCaseCloseDate)
+	{
+		this.sfCaseCloseDate = sfCaseCloseDate;
+	}
+
+	public Date getSfCaseCloseDate ()
+	{
+		return this.sfCaseCloseDate;
 	}
 
 	public void setPersisted (Boolean persisted)
