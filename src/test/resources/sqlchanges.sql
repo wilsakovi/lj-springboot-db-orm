@@ -649,3 +649,7 @@ ADD COLUMN `temp_pending_sf_case` INT(1) NOT NULL DEFAULT 0,
 ADD COLUMN `pending_sf_case` INT(1) NOT NULL default 2 ,
 ADD COLUMN `sf_case_date` DATETIME NULL ,
 ADD COLUMN `sf_case_close_date` DATETIME NULL ;
+
+ALTER TABLE `ally_profile_history` 
+DROP COLUMN `sf_allow_graduate_flag`,
+DROP COLUMN `sf_allow_exit_flag`;

@@ -63,12 +63,6 @@ public class AllyProfileHistory implements Persistable<Integer> , CommonIdCUH<In
 	@NotNull
 	private Integer suspendedEgrantFlag = 2;
 
-	@NotNull
-	private Integer sfAllowExitFlag = 2;
-
-	@NotNull
-	private Integer sfAllowGraduateFlag = 2;
-
 	@Size (max = 65535)
 	private String noSatisfEyGraduateComment;
 
@@ -249,26 +243,6 @@ public class AllyProfileHistory implements Persistable<Integer> , CommonIdCUH<In
 	public Integer getSuspendedEgrantFlag ()
 	{
 		return this.suspendedEgrantFlag;
-	}
-
-	public void setSfAllowExitFlag (Integer sfAllowExitFlag)
-	{
-		this.sfAllowExitFlag = sfAllowExitFlag;
-	}
-
-	public Integer getSfAllowExitFlag ()
-	{
-		return this.sfAllowExitFlag;
-	}
-
-	public void setSfAllowGraduateFlag (Integer sfAllowGraduateFlag)
-	{
-		this.sfAllowGraduateFlag = sfAllowGraduateFlag;
-	}
-
-	public Integer getSfAllowGraduateFlag ()
-	{
-		return this.sfAllowGraduateFlag;
 	}
 
 	public void setNoSatisfEyGraduateComment (String noSatisfEyGraduateComment)
