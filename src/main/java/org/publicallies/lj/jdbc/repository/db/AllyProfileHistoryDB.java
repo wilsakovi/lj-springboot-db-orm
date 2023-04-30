@@ -59,8 +59,6 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 		MET_CRITERIA_FLAG("met_criteria_flag", false, ""),
 		MET_CRITERIA_COMMENT("met_criteria_comment", false, ""),
 		SUSPENDED_EGRANT_FLAG("suspended_egrant_flag", false, ""),
-		SF_ALLOW_EXIT_FLAG("sf_allow_exit_flag", false, ""),
-		SF_ALLOW_GRADUATE_FLAG("sf_allow_graduate_flag", false, ""),
 		NO_SATISF_EY_GRADUATE_COMMENT("no_satisf_ey_graduate_comment", false, ""),
 		LATEST_FLAG("latest_flag", false, ""),
 		;
@@ -160,10 +158,6 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			if (rs.wasNull()) obj.setMetCriteriaComment(null);
 			obj.setSuspendedEgrantFlag(rs.getInt(COLUMNS.SUSPENDED_EGRANT_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setSuspendedEgrantFlag(null);
-			obj.setSfAllowExitFlag(rs.getInt(COLUMNS.SF_ALLOW_EXIT_FLAG.getColumnName()));
-			if (rs.wasNull()) obj.setSfAllowExitFlag(null);
-			obj.setSfAllowGraduateFlag(rs.getInt(COLUMNS.SF_ALLOW_GRADUATE_FLAG.getColumnName()));
-			if (rs.wasNull()) obj.setSfAllowGraduateFlag(null);
 			obj.setNoSatisfEyGraduateComment(rs.getString(COLUMNS.NO_SATISF_EY_GRADUATE_COMMENT.getColumnName()));
 			if (rs.wasNull()) obj.setNoSatisfEyGraduateComment(null);
 			obj.setLatestFlag(rs.getInt(COLUMNS.LATEST_FLAG.getColumnName()));
@@ -198,8 +192,6 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			mapping.put(COLUMNS.MET_CRITERIA_FLAG.getColumnName(), allyprofilehistory.getMetCriteriaFlag());
 			mapping.put(COLUMNS.MET_CRITERIA_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofilehistory.getMetCriteriaComment()));
 			mapping.put(COLUMNS.SUSPENDED_EGRANT_FLAG.getColumnName(), allyprofilehistory.getSuspendedEgrantFlag());
-			mapping.put(COLUMNS.SF_ALLOW_EXIT_FLAG.getColumnName(), allyprofilehistory.getSfAllowExitFlag());
-			mapping.put(COLUMNS.SF_ALLOW_GRADUATE_FLAG.getColumnName(), allyprofilehistory.getSfAllowGraduateFlag());
 			mapping.put(COLUMNS.NO_SATISF_EY_GRADUATE_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofilehistory.getNoSatisfEyGraduateComment()));
 			mapping.put(COLUMNS.LATEST_FLAG.getColumnName(), allyprofilehistory.getLatestFlag());
 			return mapping;
@@ -268,10 +260,6 @@ public class AllyProfileHistoryDB implements EntityDB<AllyProfileHistory>{
 			if (rs.wasNull()) obj.setMetCriteriaComment(null);
 			obj.setSuspendedEgrantFlag(rs.getInt(COLUMNS.SUSPENDED_EGRANT_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSuspendedEgrantFlag(null);
-			obj.setSfAllowExitFlag(rs.getInt(COLUMNS.SF_ALLOW_EXIT_FLAG.getColumnAliasName()));
-			if (rs.wasNull()) obj.setSfAllowExitFlag(null);
-			obj.setSfAllowGraduateFlag(rs.getInt(COLUMNS.SF_ALLOW_GRADUATE_FLAG.getColumnAliasName()));
-			if (rs.wasNull()) obj.setSfAllowGraduateFlag(null);
 			obj.setNoSatisfEyGraduateComment(rs.getString(COLUMNS.NO_SATISF_EY_GRADUATE_COMMENT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setNoSatisfEyGraduateComment(null);
 			obj.setLatestFlag(rs.getInt(COLUMNS.LATEST_FLAG.getColumnAliasName()));
