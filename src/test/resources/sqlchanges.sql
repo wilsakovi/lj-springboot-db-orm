@@ -644,4 +644,8 @@ ADD COLUMN `sf_allow_graduate_flag` INT(1) NOT NULL DEFAULT 2 AFTER `sf_allow_ex
 ADD COLUMN `no_satisf_ey_graduate_comment` TEXT NULL AFTER `sf_allow_graduate_flag`,
 ADD COLUMN `latest_flag` INT(1) NOT NULL DEFAULT 1 AFTER `no_satisf_ey_graduate_comment`;
 
-
+ALTER TABLE `ally_profile` 
+ADD COLUMN `temp_pending_sf_case` INT(1) NOT NULL DEFAULT 0,
+ADD COLUMN `pending_sf_case` INT(1) NOT NULL default 2 ,
+ADD COLUMN `sf_case_date` DATETIME NULL ,
+ADD COLUMN `sf_case_close_date` DATETIME NULL ;
