@@ -142,14 +142,20 @@ public class AllyProfile implements Persistable<Integer> , CommonIdCUHLu<Integer
 	private Integer sfFailedFlag = 0;
 
 	@NotNull
-	private Integer tempPendingSfCase = 0;
+	private Integer sfCaseTempPendingFlag = 0;
 
 	@NotNull
-	private Integer pendingSfCase = 2;
+	private Integer sfCasePendingFlag = 2;
 
 	private Date sfCaseDate;
 
 	private Date sfCaseCloseDate;
+
+	private Byte sfCaseGraduationId;
+
+	private Date sfCaseAllyStartDate;
+
+	private Date sfCaseStatusEffectiveDate;
 
 	private transient boolean persisted;
 
@@ -719,24 +725,24 @@ public class AllyProfile implements Persistable<Integer> , CommonIdCUHLu<Integer
 		return this.sfFailedFlag;
 	}
 
-	public void setTempPendingSfCase (Integer tempPendingSfCase)
+	public void setSfCaseTempPendingFlag (Integer sfCaseTempPendingFlag)
 	{
-		this.tempPendingSfCase = tempPendingSfCase;
+		this.sfCaseTempPendingFlag = sfCaseTempPendingFlag;
 	}
 
-	public Integer getTempPendingSfCase ()
+	public Integer getSfCaseTempPendingFlag ()
 	{
-		return this.tempPendingSfCase;
+		return this.sfCaseTempPendingFlag;
 	}
 
-	public void setPendingSfCase (Integer pendingSfCase)
+	public void setSfCasePendingFlag (Integer sfCasePendingFlag)
 	{
-		this.pendingSfCase = pendingSfCase;
+		this.sfCasePendingFlag = sfCasePendingFlag;
 	}
 
-	public Integer getPendingSfCase ()
+	public Integer getSfCasePendingFlag ()
 	{
-		return this.pendingSfCase;
+		return this.sfCasePendingFlag;
 	}
 
 	public void setSfCaseDate (Date sfCaseDate)
@@ -757,6 +763,36 @@ public class AllyProfile implements Persistable<Integer> , CommonIdCUHLu<Integer
 	public Date getSfCaseCloseDate ()
 	{
 		return this.sfCaseCloseDate;
+	}
+
+	public void setSfCaseGraduationId (Byte sfCaseGraduationId)
+	{
+		this.sfCaseGraduationId = sfCaseGraduationId;
+	}
+
+	public Byte getSfCaseGraduationId ()
+	{
+		return this.sfCaseGraduationId;
+	}
+
+	public void setSfCaseAllyStartDate (Date sfCaseAllyStartDate)
+	{
+		this.sfCaseAllyStartDate = sfCaseAllyStartDate;
+	}
+
+	public Date getSfCaseAllyStartDate ()
+	{
+		return this.sfCaseAllyStartDate;
+	}
+
+	public void setSfCaseStatusEffectiveDate (Date sfCaseStatusEffectiveDate)
+	{
+		this.sfCaseStatusEffectiveDate = sfCaseStatusEffectiveDate;
+	}
+
+	public Date getSfCaseStatusEffectiveDate ()
+	{
+		return this.sfCaseStatusEffectiveDate;
 	}
 
 	public void setPersisted (Boolean persisted)

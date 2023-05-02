@@ -98,10 +98,13 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 		ASSIGNED_SURVEY_SITE("assigned_survey_site", true, ""),
 		LAST_UPDATED_USERS_ID("last_updated_users_id", false, ""),
 		SF_FAILED_FLAG("sf_failed_flag", false, ""),
-		TEMP_PENDING_SF_CASE("temp_pending_sf_case", false, ""),
-		PENDING_SF_CASE("pending_sf_case", false, ""),
+		SF_CASE_TEMP_PENDING_FLAG("sf_case_temp_pending_flag", false, ""),
+		SF_CASE_PENDING_FLAG("sf_case_pending_flag", false, ""),
 		SF_CASE_DATE("sf_case_date", false, ""),
 		SF_CASE_CLOSE_DATE("sf_case_close_date", false, ""),
+		SF_CASE_GRADUATION_ID("sf_case_graduation_id", false, ""),
+		SF_CASE_ALLY_START_DATE("sf_case_ally_start_date", false, ""),
+		SF_CASE_STATUS_EFFECTIVE_DATE("sf_case_status_effective_date", false, ""),
 		;
 
 		private String columnName;
@@ -277,14 +280,20 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			if (rs.wasNull()) obj.setLastUpdatedUsersId(null);
 			obj.setSfFailedFlag(rs.getInt(COLUMNS.SF_FAILED_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
-			obj.setTempPendingSfCase(rs.getInt(COLUMNS.TEMP_PENDING_SF_CASE.getColumnName()));
-			if (rs.wasNull()) obj.setTempPendingSfCase(null);
-			obj.setPendingSfCase(rs.getInt(COLUMNS.PENDING_SF_CASE.getColumnName()));
-			if (rs.wasNull()) obj.setPendingSfCase(null);
+			obj.setSfCaseTempPendingFlag(rs.getInt(COLUMNS.SF_CASE_TEMP_PENDING_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setSfCaseTempPendingFlag(null);
+			obj.setSfCasePendingFlag(rs.getInt(COLUMNS.SF_CASE_PENDING_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setSfCasePendingFlag(null);
 			obj.setSfCaseDate(rs.getTimestamp(COLUMNS.SF_CASE_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setSfCaseDate(null);
 			obj.setSfCaseCloseDate(rs.getTimestamp(COLUMNS.SF_CASE_CLOSE_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setSfCaseCloseDate(null);
+			obj.setSfCaseGraduationId(rs.getByte(COLUMNS.SF_CASE_GRADUATION_ID.getColumnName()));
+			if (rs.wasNull()) obj.setSfCaseGraduationId(null);
+			obj.setSfCaseAllyStartDate(rs.getTimestamp(COLUMNS.SF_CASE_ALLY_START_DATE.getColumnName()));
+			if (rs.wasNull()) obj.setSfCaseAllyStartDate(null);
+			obj.setSfCaseStatusEffectiveDate(rs.getTimestamp(COLUMNS.SF_CASE_STATUS_EFFECTIVE_DATE.getColumnName()));
+			if (rs.wasNull()) obj.setSfCaseStatusEffectiveDate(null);
 			return obj;
 		}
 	}
@@ -361,12 +370,17 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			mapping.put(COLUMNS.ASSIGNED_SURVEY_SITE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(allyprofile.getAssignedSurveySite()));
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), allyprofile.getLastUpdatedUsersId());
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), allyprofile.getSfFailedFlag());
-			mapping.put(COLUMNS.TEMP_PENDING_SF_CASE.getColumnName(), allyprofile.getTempPendingSfCase());
-			mapping.put(COLUMNS.PENDING_SF_CASE.getColumnName(), allyprofile.getPendingSfCase());
+			mapping.put(COLUMNS.SF_CASE_TEMP_PENDING_FLAG.getColumnName(), allyprofile.getSfCaseTempPendingFlag());
+			mapping.put(COLUMNS.SF_CASE_PENDING_FLAG.getColumnName(), allyprofile.getSfCasePendingFlag());
 			if (allyprofile.getSfCaseDate() != null)
 				mapping.put(COLUMNS.SF_CASE_DATE.getColumnName(), new Timestamp (allyprofile.getSfCaseDate().getTime()));
 			if (allyprofile.getSfCaseCloseDate() != null)
 				mapping.put(COLUMNS.SF_CASE_CLOSE_DATE.getColumnName(), new Timestamp (allyprofile.getSfCaseCloseDate().getTime()));
+			mapping.put(COLUMNS.SF_CASE_GRADUATION_ID.getColumnName(), allyprofile.getSfCaseGraduationId());
+			if (allyprofile.getSfCaseAllyStartDate() != null)
+				mapping.put(COLUMNS.SF_CASE_ALLY_START_DATE.getColumnName(), new Timestamp (allyprofile.getSfCaseAllyStartDate().getTime()));
+			if (allyprofile.getSfCaseStatusEffectiveDate() != null)
+				mapping.put(COLUMNS.SF_CASE_STATUS_EFFECTIVE_DATE.getColumnName(), new Timestamp (allyprofile.getSfCaseStatusEffectiveDate().getTime()));
 			return mapping;
 		}
 	}
@@ -523,14 +537,20 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			if (rs.wasNull()) obj.setLastUpdatedUsersId(null);
 			obj.setSfFailedFlag(rs.getInt(COLUMNS.SF_FAILED_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
-			obj.setTempPendingSfCase(rs.getInt(COLUMNS.TEMP_PENDING_SF_CASE.getColumnAliasName()));
-			if (rs.wasNull()) obj.setTempPendingSfCase(null);
-			obj.setPendingSfCase(rs.getInt(COLUMNS.PENDING_SF_CASE.getColumnAliasName()));
-			if (rs.wasNull()) obj.setPendingSfCase(null);
+			obj.setSfCaseTempPendingFlag(rs.getInt(COLUMNS.SF_CASE_TEMP_PENDING_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSfCaseTempPendingFlag(null);
+			obj.setSfCasePendingFlag(rs.getInt(COLUMNS.SF_CASE_PENDING_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSfCasePendingFlag(null);
 			obj.setSfCaseDate(rs.getTimestamp(COLUMNS.SF_CASE_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSfCaseDate(null);
 			obj.setSfCaseCloseDate(rs.getTimestamp(COLUMNS.SF_CASE_CLOSE_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSfCaseCloseDate(null);
+			obj.setSfCaseGraduationId(rs.getByte(COLUMNS.SF_CASE_GRADUATION_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSfCaseGraduationId(null);
+			obj.setSfCaseAllyStartDate(rs.getTimestamp(COLUMNS.SF_CASE_ALLY_START_DATE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSfCaseAllyStartDate(null);
+			obj.setSfCaseStatusEffectiveDate(rs.getTimestamp(COLUMNS.SF_CASE_STATUS_EFFECTIVE_DATE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSfCaseStatusEffectiveDate(null);
 			if (this.loadAllFKeys || this.loadAllyExitReason)
 				obj.setAllyExitReason(AllyExitReasonDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadAlly)
