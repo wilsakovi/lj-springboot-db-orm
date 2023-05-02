@@ -653,3 +653,11 @@ ADD COLUMN `sf_case_close_date` DATETIME NULL ;
 ALTER TABLE `ally_profile_history` 
 DROP COLUMN `sf_allow_graduate_flag`,
 DROP COLUMN `sf_allow_exit_flag`;
+
+ALTER TABLE `ally_profile` 
+ADD COLUMN `sf_case_graduation_id` TINYINT NULL ,
+ADD COLUMN `sf_case_ally_start_date` DATE NULL,
+ADD COLUMN `sf_case_status_effective_date` DATE NULL,
+CHANGE COLUMN `temp_pending_sf_case` `sf_case_temp_pending_flag` INT NOT NULL DEFAULT '0' ,
+CHANGE COLUMN `pending_sf_case` `sf_case_pending_flag` INT NOT NULL DEFAULT '2' ;
+
