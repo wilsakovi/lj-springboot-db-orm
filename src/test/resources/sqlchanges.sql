@@ -661,3 +661,20 @@ ADD COLUMN `sf_case_status_effective_date` DATE NULL,
 CHANGE COLUMN `temp_pending_sf_case` `sf_case_temp_pending_flag` INT NOT NULL DEFAULT '0' ,
 CHANGE COLUMN `pending_sf_case` `sf_case_pending_flag` INT NOT NULL DEFAULT '2' ;
 
+ALTER TABLE `ally_profile_history` 
+CHANGE COLUMN `latest_flag` `latest_flag` INT NOT NULL DEFAULT 0 ;
+
+update ally_profile_history set latest_flag = 0;
+
+SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
+
+update ally_profile_history aph
+join (
+  select id, max(graduate_status_date) grd, ally_profile_id
+  from ally_profile_history
+  group by ally_profile_id
+) sq
+set aph.latest_flag = 1 
+where aph.id = sq.id;
+
+
