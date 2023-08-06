@@ -677,4 +677,7 @@ join (
 set aph.latest_flag = 1 
 where aph.id = sq.id;
 
+=============== 353 =====================================
+ALTER TABLE `msr` 
+ADD COLUMN `pos_pa_satisfaction` VARCHAR(15) NULL AFTER `reminder_date_ally`;
 
