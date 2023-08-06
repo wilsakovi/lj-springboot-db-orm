@@ -132,6 +132,9 @@ public class Msr implements Persistable<Integer> , CommonIdCUH<Integer>
 
 	private Date reminderDateAlly;
 
+	@Size (max = 15)
+	private String posPaSatisfaction;
+
 	private transient boolean persisted;
 
 	private AllyProfile allyProfile;
@@ -585,6 +588,16 @@ public class Msr implements Persistable<Integer> , CommonIdCUH<Integer>
 	public Date getReminderDateAlly ()
 	{
 		return this.reminderDateAlly;
+	}
+
+	public void setPosPaSatisfaction (String posPaSatisfaction)
+	{
+		this.posPaSatisfaction = posPaSatisfaction;
+	}
+
+	public String getPosPaSatisfaction ()
+	{
+		return this.posPaSatisfaction;
 	}
 
 	public void setPersisted (Boolean persisted)
