@@ -88,6 +88,7 @@ public class MsrDB implements EntityDB<Msr>{
 		STAFF_APPROVAL_COMMENT("staff_approval_comment", false, ""),
 		REMINDER_DATE_ALLY("reminder_date_ally", false, ""),
 		POS_PA_SATISFACTION("pos_pa_satisfaction", false, ""),
+		PM_MEMBER_SATISFACTION("pm_member_satisfaction", false, ""),
 		;
 
 		private String columnName;
@@ -243,6 +244,8 @@ public class MsrDB implements EntityDB<Msr>{
 			if (rs.wasNull()) obj.setReminderDateAlly(null);
 			obj.setPosPaSatisfaction(rs.getString(COLUMNS.POS_PA_SATISFACTION.getColumnName()));
 			if (rs.wasNull()) obj.setPosPaSatisfaction(null);
+			obj.setPmMemberSatisfaction(rs.getString(COLUMNS.PM_MEMBER_SATISFACTION.getColumnName()));
+			if (rs.wasNull()) obj.setPmMemberSatisfaction(null);
 			return obj;
 		}
 	}
@@ -306,6 +309,7 @@ public class MsrDB implements EntityDB<Msr>{
 			if (msr.getReminderDateAlly() != null)
 				mapping.put(COLUMNS.REMINDER_DATE_ALLY.getColumnName(), new Timestamp (msr.getReminderDateAlly().getTime()));
 			mapping.put(COLUMNS.POS_PA_SATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPosPaSatisfaction()));
+			mapping.put(COLUMNS.PM_MEMBER_SATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPmMemberSatisfaction()));
 			return mapping;
 		}
 	}
@@ -424,6 +428,8 @@ public class MsrDB implements EntityDB<Msr>{
 			if (rs.wasNull()) obj.setReminderDateAlly(null);
 			obj.setPosPaSatisfaction(rs.getString(COLUMNS.POS_PA_SATISFACTION.getColumnAliasName()));
 			if (rs.wasNull()) obj.setPosPaSatisfaction(null);
+			obj.setPmMemberSatisfaction(rs.getString(COLUMNS.PM_MEMBER_SATISFACTION.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPmMemberSatisfaction(null);
 			if (this.loadAllFKeys || this.loadAllyProfile)
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadJob)

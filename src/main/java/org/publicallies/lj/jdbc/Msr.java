@@ -135,6 +135,9 @@ public class Msr implements Persistable<Integer> , CommonIdCUH<Integer>
 	@Size (max = 15)
 	private String posPaSatisfaction;
 
+	@Size (max = 15)
+	private String pmMemberSatisfaction;
+
 	private transient boolean persisted;
 
 	private AllyProfile allyProfile;
@@ -598,6 +601,16 @@ public class Msr implements Persistable<Integer> , CommonIdCUH<Integer>
 	public String getPosPaSatisfaction ()
 	{
 		return this.posPaSatisfaction;
+	}
+
+	public void setPmMemberSatisfaction (String pmMemberSatisfaction)
+	{
+		this.pmMemberSatisfaction = pmMemberSatisfaction;
+	}
+
+	public String getPmMemberSatisfaction ()
+	{
+		return this.pmMemberSatisfaction;
 	}
 
 	public void setPersisted (Boolean persisted)
