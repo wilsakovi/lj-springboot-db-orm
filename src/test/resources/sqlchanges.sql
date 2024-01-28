@@ -683,5 +683,5 @@ ADD COLUMN `pos_pa_satisfaction` VARCHAR(15) NULL AFTER `reminder_date_ally`;
 
 ========================= issue-373=====================================
 ALTER TABLE `msr` 
-ADD COLUMN `pm_pa_satisfaction` VARCHAR(15) NULL ;
+ADD COLUMN `pm_member_satisfaction` VARCHAR(15) NULL ;
 
