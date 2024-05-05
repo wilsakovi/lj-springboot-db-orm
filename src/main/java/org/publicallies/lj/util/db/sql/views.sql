@@ -73,6 +73,8 @@ select * from ally_profile where report_excluded_flag != 1;
  sum(total_fundraising) pps_total_fundraising,
  sum(total_tsp) pps_total_tsp,
  sum(total_service) pps_total_service,
+ sum(late_days) pps_late_days,
+ sum(absent_days) pps_absent_days,
  sum(total_training) pps_total_training
  from pay_period
  where pm_approval_status_code ='AP'
@@ -104,8 +106,9 @@ ap.refilled_ally_profile_id,
  IFNULL(pps.pps_total_tsp, 0) pps_total_tsp,
  IFNULL(pps.pps_total_service, 0) pps_total_service,
  IFNULL(pps.pps_total_training, 0) pps_total_training,
-IFNULL(pps_grand_total, 0)/ st.max_hours as ratioHoursCompleted
-
+ IFNULL(pps_grand_total, 0)/ st.max_hours as ratioHoursCompleted,
+ IFNULL(pps.pps_total_late_days, 0) pps_total_late_days,
+ IFNULL(pps.pps_total_absent_days, 0) pps_total_absent_days
 from report_ally_profile ap
 join graduate_status gs on (gs.id = ap.graduation_status_id)
 join ally a on (a.id = ap.ally_id)
@@ -122,7 +125,9 @@ left join
  sum(pps_total_fundraising) pps_total_fundraising,
  sum(pps_total_tsp) pps_total_tsp,
  sum(pps_total_service) pps_total_service,
- sum(pps_total_training) pps_total_training
+ sum(pps_total_training) pps_total_training,
+ sum(pps_late_days) pps_total_late_days,
+ sum(pps_absent_days) pps_total_absent_days
  from vw_time_log_summary
  group by ally_profile_id
  ) pps
@@ -394,6 +399,8 @@ FORMAT(pps_total_tsp, 2) as ap_pps_total_tsp,
 FORMAT(pps_total_service, 2) as ap_pps_total_service,
 FORMAT(pps_total_training, 2) as ap_pps_total_training,
 concat(FORMAT(100*ratioHoursCompleted, 2), '%') as ap_ratioHoursCompleted,
+FORMAT(pps_total_late_days, 0) as ap_pps_total_late_days,
+FORMAT(pps_total_absent_days, 0) as ap_pps_total_absent_days,
 p.ein as p_ein,
 p.mission as p_mission,
 sms.name as a_mariatl_status,
