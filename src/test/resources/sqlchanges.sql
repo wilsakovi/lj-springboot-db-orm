@@ -685,3 +685,28 @@ ADD COLUMN `pos_pa_satisfaction` VARCHAR(15) NULL AFTER `reminder_date_ally`;
 ALTER TABLE `msr` 
 ADD COLUMN `pm_member_satisfaction` VARCHAR(15) NULL ;
 
+==================================================================
+
+CREATE TABLE `ap_midterm_evaluation` (
+  `id` INT NOT NULL auto_increment,
+  `ally_profile_id` INT NOT NULL,
+  `ally_satisfaction` VARCHAR(15) NULL,
+  `pos_satisfaction` VARCHAR(15) NULL,
+  `staff_satisfaction` VARCHAR(15) NULL,
+  `ally_assessment_date` DATETIME NULL,
+  `pos_assessment` DATETIME NULL,
+  `staff_assessment_date` DATETIME NULL,
+  `assess_pos_users_id` INT NULL,
+  `assess_staff_id` INT NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  
+  UNIQUE INDEX `ally_profile_id_UNIQUE` (`ally_profile_id` ASC) VISIBLE);
+  
+  alter table ap_midterm_evaluation rename column assess_staff_id to assess_staff_users_id;
+  
+  ALTER TABLE ap_midterm_evaluation add constraint fk_ap_midterm_ap FOREIGN KEY (`ally_profile_id`) REFERENCES ally_profile(`id`);
+  ALTER TABLE ap_midterm_evaluation ADD constraint fk_ap_midterm_posu FOREIGN KEY (`assess_pos_users_id`) REFERENCES users(`id`);
+    ALTER TABLE ap_midterm_evaluation ADD constraint fk_ap_midterm_stu FOREIGN KEY (`assess_staff_users_id`) REFERENCES users(`id`);
+
