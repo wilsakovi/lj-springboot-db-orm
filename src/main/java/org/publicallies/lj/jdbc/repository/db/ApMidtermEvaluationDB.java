@@ -55,6 +55,7 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 		ASSESS_STAFF_USERS_ID("assess_staff_users_id", false, ""),
 		CREATED_AT("created_at", false, ""),
 		UPDATED_AT("updated_at", false, ""),
+		ATTACHED_MSR_ID("attached_msr_id", false, ""),
 		;
 
 		private String columnName;
@@ -144,6 +145,8 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
+			obj.setAttachedMsrId(rs.getInt(COLUMNS.ATTACHED_MSR_ID.getColumnName()));
+			if (rs.wasNull()) obj.setAttachedMsrId(null);
 			return obj;
 		}
 	}
@@ -171,6 +174,7 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (apmidtermevaluation.getCreatedAt().getTime()));
 			if (apmidtermevaluation.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (apmidtermevaluation.getUpdatedAt().getTime()));
+			mapping.put(COLUMNS.ATTACHED_MSR_ID.getColumnName(), apmidtermevaluation.getAttachedMsrId());
 			return mapping;
 		}
 	}
@@ -202,6 +206,12 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			this.loadAssessStaffUsers = loadAssessStaffUsers;
 		}
 
+		private boolean loadAttachedMsr = false;
+		public void setLoadAttachedMsr (boolean loadAttachedMsr)
+		{
+			this.loadAttachedMsr = loadAttachedMsr;
+		}
+
 		public ApMidtermEvaluation mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			ApMidtermEvaluation obj = new ApMidtermEvaluation();
@@ -229,12 +239,16 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
+			obj.setAttachedMsrId(rs.getInt(COLUMNS.ATTACHED_MSR_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setAttachedMsrId(null);
 			if (this.loadAllFKeys || this.loadAllyProfile)
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadAssessPosUsers)
 				obj.setAssessPosUsers(UsersDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadAssessStaffUsers)
 				obj.setAssessStaffUsers(UsersDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
+			if (this.loadAllFKeys || this.loadAttachedMsr)
+				obj.setAttachedMsr(MsrDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}

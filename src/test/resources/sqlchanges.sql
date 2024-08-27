@@ -710,3 +710,13 @@ CREATE TABLE `ap_midterm_evaluation` (
   ALTER TABLE ap_midterm_evaluation ADD constraint fk_ap_midterm_posu FOREIGN KEY (`assess_pos_users_id`) REFERENCES users(`id`);
     ALTER TABLE ap_midterm_evaluation ADD constraint fk_ap_midterm_stu FOREIGN KEY (`assess_staff_users_id`) REFERENCES users(`id`);
 
+ALTER TABLE `ap_midterm_evaluation` 
+ADD COLUMN `attached_msr_id` INT NOT NULL AFTER `updated_at`,
+ADD UNIQUE INDEX `attached_msr_id_UNIQUE` (`attached_msr_id` ASC) VISIBLE;
+;
+ALTER TABLE `ap_midterm_evaluation` 
+ADD CONSTRAINT `fk_ap_midterm_msr`
+  FOREIGN KEY (attached_msr_id)
+  REFERENCES `msr` (id)
+  ON DELETE cascade
+  ON UPDATE NO ACTION;

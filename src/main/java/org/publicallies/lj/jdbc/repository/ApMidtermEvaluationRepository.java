@@ -119,6 +119,12 @@ public class ApMidtermEvaluationRepository extends JdbcRepository<ApMidtermEvalu
 		return this.jdbcOperations.query (sql, new Object[] { assessStaffUsersId }, ApMidtermEvaluationDB.ROW_MAPPER);
 	}
 
+	public List<ApMidtermEvaluation> getApMidtermEvaluationsByAttachedMsrId (Long attachedMsrId)
+	{
+		String sql = "select * from " + ApMidtermEvaluationDB.getTableName() + " where " + ApMidtermEvaluationDB.COLUMNS.ATTACHED_MSR_ID.getColumnName() + " = ? ";
+		return this.jdbcOperations.query (sql, new Object[] { attachedMsrId }, ApMidtermEvaluationDB.ROW_MAPPER);
+	}
+
 
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 

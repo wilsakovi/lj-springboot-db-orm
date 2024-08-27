@@ -50,11 +50,15 @@ public class ApMidtermEvaluation implements Persistable<Integer> , CommonIdCU<In
 
 	private Date updatedAt = new Date();
 
+	@NotNull (groups = { Default.class, Default.class })
+	private Integer attachedMsrId;
+
 	private transient boolean persisted;
 
 	private AllyProfile allyProfile;
 	private Users assessPosUsers;
 	private Users assessStaffUsers;
+	private Msr attachedMsr;
 
 	public ApMidtermEvaluation ()
 	{
@@ -186,6 +190,16 @@ public class ApMidtermEvaluation implements Persistable<Integer> , CommonIdCU<In
 		return this.updatedAt;
 	}
 
+	public void setAttachedMsrId (Integer attachedMsrId)
+	{
+		this.attachedMsrId = attachedMsrId;
+	}
+
+	public Integer getAttachedMsrId ()
+	{
+		return this.attachedMsrId;
+	}
+
 	public void setPersisted (Boolean persisted)
 	{
 		this.persisted = persisted;
@@ -224,6 +238,16 @@ public class ApMidtermEvaluation implements Persistable<Integer> , CommonIdCU<In
 	public Users getAssessStaffUsers ()
 	{
 		return this.assessStaffUsers;
+	}
+
+	public void setAttachedMsr (Msr attachedMsr)
+	{
+		this.attachedMsr = attachedMsr;
+	}
+
+	public Msr getAttachedMsr ()
+	{
+		return this.attachedMsr;
 	}
 
 	@Override
