@@ -27,14 +27,23 @@ public class ApMidtermEvaluation implements Persistable<Integer> , CommonIdCU<In
 	@NotNull (groups = { Default.class, Default.class })
 	private Integer allyProfileId;
 
-	@Size (max = 15)
-	private String allySatisfaction;
+	@NotNull (groups = { Default.class, Default.class })
+	private Integer attachedMsrId;
 
-	@Size (max = 15)
-	private String posSatisfaction;
+	private Integer allyAchievingRequirement = 3;
 
-	@Size (max = 15)
-	private String staffSatisfaction;
+	private Integer posAchievingRequirement = 3;
+
+	private Integer staffAchievingRequirement;
+
+	@Size (max = 65535)
+	private String allyComment;
+
+	@Size (max = 65535)
+	private String posComment;
+
+	@Size (max = 65535)
+	private String staffComment;
 
 	private Date allyAssessmentDate;
 
@@ -49,9 +58,6 @@ public class ApMidtermEvaluation implements Persistable<Integer> , CommonIdCU<In
 	private Date createdAt = new Date();
 
 	private Date updatedAt = new Date();
-
-	@NotNull (groups = { Default.class, Default.class })
-	private Integer attachedMsrId;
 
 	private transient boolean persisted;
 
@@ -90,34 +96,74 @@ public class ApMidtermEvaluation implements Persistable<Integer> , CommonIdCU<In
 		return this.allyProfileId;
 	}
 
-	public void setAllySatisfaction (String allySatisfaction)
+	public void setAttachedMsrId (Integer attachedMsrId)
 	{
-		this.allySatisfaction = allySatisfaction;
+		this.attachedMsrId = attachedMsrId;
 	}
 
-	public String getAllySatisfaction ()
+	public Integer getAttachedMsrId ()
 	{
-		return this.allySatisfaction;
+		return this.attachedMsrId;
 	}
 
-	public void setPosSatisfaction (String posSatisfaction)
+	public void setAllyAchievingRequirement (Integer allyAchievingRequirement)
 	{
-		this.posSatisfaction = posSatisfaction;
+		this.allyAchievingRequirement = allyAchievingRequirement;
 	}
 
-	public String getPosSatisfaction ()
+	public Integer getAllyAchievingRequirement ()
 	{
-		return this.posSatisfaction;
+		return this.allyAchievingRequirement;
 	}
 
-	public void setStaffSatisfaction (String staffSatisfaction)
+	public void setPosAchievingRequirement (Integer posAchievingRequirement)
 	{
-		this.staffSatisfaction = staffSatisfaction;
+		this.posAchievingRequirement = posAchievingRequirement;
 	}
 
-	public String getStaffSatisfaction ()
+	public Integer getPosAchievingRequirement ()
 	{
-		return this.staffSatisfaction;
+		return this.posAchievingRequirement;
+	}
+
+	public void setStaffAchievingRequirement (Integer staffAchievingRequirement)
+	{
+		this.staffAchievingRequirement = staffAchievingRequirement;
+	}
+
+	public Integer getStaffAchievingRequirement ()
+	{
+		return this.staffAchievingRequirement;
+	}
+
+	public void setAllyComment (String allyComment)
+	{
+		this.allyComment = allyComment;
+	}
+
+	public String getAllyComment ()
+	{
+		return this.allyComment;
+	}
+
+	public void setPosComment (String posComment)
+	{
+		this.posComment = posComment;
+	}
+
+	public String getPosComment ()
+	{
+		return this.posComment;
+	}
+
+	public void setStaffComment (String staffComment)
+	{
+		this.staffComment = staffComment;
+	}
+
+	public String getStaffComment ()
+	{
+		return this.staffComment;
 	}
 
 	public void setAllyAssessmentDate (Date allyAssessmentDate)
@@ -188,16 +234,6 @@ public class ApMidtermEvaluation implements Persistable<Integer> , CommonIdCU<In
 	public Date getUpdatedAt ()
 	{
 		return this.updatedAt;
-	}
-
-	public void setAttachedMsrId (Integer attachedMsrId)
-	{
-		this.attachedMsrId = attachedMsrId;
-	}
-
-	public Integer getAttachedMsrId ()
-	{
-		return this.attachedMsrId;
 	}
 
 	public void setPersisted (Boolean persisted)

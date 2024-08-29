@@ -18,7 +18,7 @@ public class AtomicAccessDB implements EntityDB<AtomicAccess>{
 
 	private static String TABLE_NAME = "ATOMIC_ACCESS";
 
-	private static String TABLE_ALIAS = "A_aa_13";
+	private static String TABLE_ALIAS = "A_aa_14";
 
 	public static String getTableName()
 	{

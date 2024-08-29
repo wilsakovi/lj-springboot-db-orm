@@ -45,9 +45,13 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 	{
 		ID("id", false, ""),
 		ALLY_PROFILE_ID("ally_profile_id", false, ""),
-		ALLY_SATISFACTION("ally_satisfaction", false, ""),
-		POS_SATISFACTION("pos_satisfaction", false, ""),
-		STAFF_SATISFACTION("staff_satisfaction", false, ""),
+		ATTACHED_MSR_ID("attached_msr_id", false, ""),
+		ALLY_ACHIEVING_REQUIREMENT("ally_achieving_requirement", false, ""),
+		POS_ACHIEVING_REQUIREMENT("pos_achieving_requirement", false, ""),
+		STAFF_ACHIEVING_REQUIREMENT("staff_achieving_requirement", false, ""),
+		ALLY_COMMENT("ally_comment", false, ""),
+		POS_COMMENT("pos_comment", false, ""),
+		STAFF_COMMENT("staff_comment", false, ""),
 		ALLY_ASSESSMENT_DATE("ally_assessment_date", false, ""),
 		POS_ASSESSMENT("pos_assessment", false, ""),
 		STAFF_ASSESSMENT_DATE("staff_assessment_date", false, ""),
@@ -55,7 +59,6 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 		ASSESS_STAFF_USERS_ID("assess_staff_users_id", false, ""),
 		CREATED_AT("created_at", false, ""),
 		UPDATED_AT("updated_at", false, ""),
-		ATTACHED_MSR_ID("attached_msr_id", false, ""),
 		;
 
 		private String columnName;
@@ -125,12 +128,20 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setAllyProfileId(rs.getInt(COLUMNS.ALLY_PROFILE_ID.getColumnName()));
 			if (rs.wasNull()) obj.setAllyProfileId(null);
-			obj.setAllySatisfaction(rs.getString(COLUMNS.ALLY_SATISFACTION.getColumnName()));
-			if (rs.wasNull()) obj.setAllySatisfaction(null);
-			obj.setPosSatisfaction(rs.getString(COLUMNS.POS_SATISFACTION.getColumnName()));
-			if (rs.wasNull()) obj.setPosSatisfaction(null);
-			obj.setStaffSatisfaction(rs.getString(COLUMNS.STAFF_SATISFACTION.getColumnName()));
-			if (rs.wasNull()) obj.setStaffSatisfaction(null);
+			obj.setAttachedMsrId(rs.getInt(COLUMNS.ATTACHED_MSR_ID.getColumnName()));
+			if (rs.wasNull()) obj.setAttachedMsrId(null);
+			obj.setAllyAchievingRequirement(rs.getInt(COLUMNS.ALLY_ACHIEVING_REQUIREMENT.getColumnName()));
+			if (rs.wasNull()) obj.setAllyAchievingRequirement(null);
+			obj.setPosAchievingRequirement(rs.getInt(COLUMNS.POS_ACHIEVING_REQUIREMENT.getColumnName()));
+			if (rs.wasNull()) obj.setPosAchievingRequirement(null);
+			obj.setStaffAchievingRequirement(rs.getInt(COLUMNS.STAFF_ACHIEVING_REQUIREMENT.getColumnName()));
+			if (rs.wasNull()) obj.setStaffAchievingRequirement(null);
+			obj.setAllyComment(rs.getString(COLUMNS.ALLY_COMMENT.getColumnName()));
+			if (rs.wasNull()) obj.setAllyComment(null);
+			obj.setPosComment(rs.getString(COLUMNS.POS_COMMENT.getColumnName()));
+			if (rs.wasNull()) obj.setPosComment(null);
+			obj.setStaffComment(rs.getString(COLUMNS.STAFF_COMMENT.getColumnName()));
+			if (rs.wasNull()) obj.setStaffComment(null);
 			obj.setAllyAssessmentDate(rs.getTimestamp(COLUMNS.ALLY_ASSESSMENT_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setAllyAssessmentDate(null);
 			obj.setPosAssessment(rs.getTimestamp(COLUMNS.POS_ASSESSMENT.getColumnName()));
@@ -145,8 +156,6 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			obj.setAttachedMsrId(rs.getInt(COLUMNS.ATTACHED_MSR_ID.getColumnName()));
-			if (rs.wasNull()) obj.setAttachedMsrId(null);
 			return obj;
 		}
 	}
@@ -159,9 +168,13 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), apmidtermevaluation.getId());
 			mapping.put(COLUMNS.ALLY_PROFILE_ID.getColumnName(), apmidtermevaluation.getAllyProfileId());
-			mapping.put(COLUMNS.ALLY_SATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(apmidtermevaluation.getAllySatisfaction()));
-			mapping.put(COLUMNS.POS_SATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(apmidtermevaluation.getPosSatisfaction()));
-			mapping.put(COLUMNS.STAFF_SATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(apmidtermevaluation.getStaffSatisfaction()));
+			mapping.put(COLUMNS.ATTACHED_MSR_ID.getColumnName(), apmidtermevaluation.getAttachedMsrId());
+			mapping.put(COLUMNS.ALLY_ACHIEVING_REQUIREMENT.getColumnName(), apmidtermevaluation.getAllyAchievingRequirement());
+			mapping.put(COLUMNS.POS_ACHIEVING_REQUIREMENT.getColumnName(), apmidtermevaluation.getPosAchievingRequirement());
+			mapping.put(COLUMNS.STAFF_ACHIEVING_REQUIREMENT.getColumnName(), apmidtermevaluation.getStaffAchievingRequirement());
+			mapping.put(COLUMNS.ALLY_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(apmidtermevaluation.getAllyComment()));
+			mapping.put(COLUMNS.POS_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(apmidtermevaluation.getPosComment()));
+			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(apmidtermevaluation.getStaffComment()));
 			if (apmidtermevaluation.getAllyAssessmentDate() != null)
 				mapping.put(COLUMNS.ALLY_ASSESSMENT_DATE.getColumnName(), new Timestamp (apmidtermevaluation.getAllyAssessmentDate().getTime()));
 			if (apmidtermevaluation.getPosAssessment() != null)
@@ -174,7 +187,6 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (apmidtermevaluation.getCreatedAt().getTime()));
 			if (apmidtermevaluation.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (apmidtermevaluation.getUpdatedAt().getTime()));
-			mapping.put(COLUMNS.ATTACHED_MSR_ID.getColumnName(), apmidtermevaluation.getAttachedMsrId());
 			return mapping;
 		}
 	}
@@ -219,12 +231,20 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setAllyProfileId(rs.getInt(COLUMNS.ALLY_PROFILE_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setAllyProfileId(null);
-			obj.setAllySatisfaction(rs.getString(COLUMNS.ALLY_SATISFACTION.getColumnAliasName()));
-			if (rs.wasNull()) obj.setAllySatisfaction(null);
-			obj.setPosSatisfaction(rs.getString(COLUMNS.POS_SATISFACTION.getColumnAliasName()));
-			if (rs.wasNull()) obj.setPosSatisfaction(null);
-			obj.setStaffSatisfaction(rs.getString(COLUMNS.STAFF_SATISFACTION.getColumnAliasName()));
-			if (rs.wasNull()) obj.setStaffSatisfaction(null);
+			obj.setAttachedMsrId(rs.getInt(COLUMNS.ATTACHED_MSR_ID.getColumnAliasName()));
+			if (rs.wasNull()) obj.setAttachedMsrId(null);
+			obj.setAllyAchievingRequirement(rs.getInt(COLUMNS.ALLY_ACHIEVING_REQUIREMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setAllyAchievingRequirement(null);
+			obj.setPosAchievingRequirement(rs.getInt(COLUMNS.POS_ACHIEVING_REQUIREMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPosAchievingRequirement(null);
+			obj.setStaffAchievingRequirement(rs.getInt(COLUMNS.STAFF_ACHIEVING_REQUIREMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setStaffAchievingRequirement(null);
+			obj.setAllyComment(rs.getString(COLUMNS.ALLY_COMMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setAllyComment(null);
+			obj.setPosComment(rs.getString(COLUMNS.POS_COMMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPosComment(null);
+			obj.setStaffComment(rs.getString(COLUMNS.STAFF_COMMENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setStaffComment(null);
 			obj.setAllyAssessmentDate(rs.getTimestamp(COLUMNS.ALLY_ASSESSMENT_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setAllyAssessmentDate(null);
 			obj.setPosAssessment(rs.getTimestamp(COLUMNS.POS_ASSESSMENT.getColumnAliasName()));
@@ -239,8 +259,6 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			obj.setAttachedMsrId(rs.getInt(COLUMNS.ATTACHED_MSR_ID.getColumnAliasName()));
-			if (rs.wasNull()) obj.setAttachedMsrId(null);
 			if (this.loadAllFKeys || this.loadAllyProfile)
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadAssessPosUsers)

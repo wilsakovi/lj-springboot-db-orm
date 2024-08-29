@@ -18,7 +18,7 @@ public class StpSexOrientationDB implements EntityDB<StpSexOrientation>{
 
 	private static String TABLE_NAME = "STP_SEX_ORIENTATION";
 
-	private static String TABLE_ALIAS = "A_sso_94";
+	private static String TABLE_ALIAS = "A_sso_95";
 
 	public static String getTableName()
 	{

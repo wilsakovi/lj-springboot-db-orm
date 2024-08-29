@@ -24,7 +24,7 @@ public class Program implements Persistable<Short>
 	private Short id;
 
 	@NotEmpty
-	@Size (max = 45)
+	@Size (max = 80)
 	private String name;
 
 	@NotNull

@@ -19,7 +19,7 @@ public class SurveyGuestAllyProfileDB implements EntityDB<SurveyGuestAllyProfile
 
 	private static String TABLE_NAME = "SURVEY_GUEST_ALLY_PROFILE";
 
-	private static String TABLE_ALIAS = "A_sgap_105";
+	private static String TABLE_ALIAS = "A_sgap_106";
 
 	public static String getTableName()
 	{

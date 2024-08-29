@@ -118,11 +118,9 @@ public class Job implements Persistable<Integer> , CommonIdCUHLu<Integer>
 
 	private String paIssueAreaIds;
 
-	@NotNull
-	private Integer egrantLocation = 2;
+	private Integer egrantLocation;
 
-	@NotNull
-	private Integer egrantLocationConfirmed = 2;
+	private Integer egrantLocationConfirmed;
 
 	private transient boolean persisted;
 

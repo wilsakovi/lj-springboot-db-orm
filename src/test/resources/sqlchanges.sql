@@ -720,3 +720,12 @@ ADD CONSTRAINT `fk_ap_midterm_msr`
   REFERENCES `msr` (id)
   ON DELETE cascade
   ON UPDATE NO ACTION;
+  
+  ALTER TABLE `ap_midterm_evaluation` 
+CHANGE COLUMN `attached_msr_id` `attached_msr_id` INT NOT NULL AFTER `ally_profile_id`,
+CHANGE COLUMN `ally_satisfaction` `ally_achieving_requirement` INT NULL DEFAULT 3 ,
+CHANGE COLUMN `pos_satisfaction` `pos_achieving_requirement` INT NULL DEFAULT 3 ,
+CHANGE COLUMN `staff_satisfaction` `staff_achieving_requirement` INT NULL DEFAULT NULL ,
+ADD COLUMN `ally_comment` TEXT NULL AFTER `staff_achieving_requirement`,
+ADD COLUMN `pos_comment` TEXT NULL AFTER `ally_comment`,
+ADD COLUMN `staff_comment` TEXT NULL AFTER `pos_comment`;

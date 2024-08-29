@@ -18,7 +18,7 @@ public class StpTimesheetEltDB implements EntityDB<StpTimesheetElt>{
 
 	private static String TABLE_NAME = "STP_TIMESHEET_ELT";
 
-	private static String TABLE_ALIAS = "A_ste_99";
+	private static String TABLE_ALIAS = "A_ste_100";
 
 	public static String getTableName()
 	{

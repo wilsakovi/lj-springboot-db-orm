@@ -67,7 +67,7 @@ public class AllyProfileHistory implements Persistable<Integer> , CommonIdCUH<In
 	private String noSatisfEyGraduateComment;
 
 	@NotNull
-	private Integer latestFlag = 1;
+	private Integer latestFlag = 0;
 
 	private transient boolean persisted;
 
