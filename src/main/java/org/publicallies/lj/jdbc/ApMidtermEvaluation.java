@@ -34,7 +34,7 @@ public class ApMidtermEvaluation implements Persistable<Integer> , CommonIdCU<In
 
 	private Integer posAchievingRequirement = 3;
 
-	private Integer staffAchievingRequirement;
+	private Integer staffAchievingRequirement = 3;
 
 	@Size (max = 65535)
 	private String allyComment;
@@ -47,7 +47,7 @@ public class ApMidtermEvaluation implements Persistable<Integer> , CommonIdCU<In
 
 	private Date allyAssessmentDate;
 
-	private Date posAssessment;
+	private Date posAssessmentDate;
 
 	private Date staffAssessmentDate;
 
@@ -176,14 +176,14 @@ public class ApMidtermEvaluation implements Persistable<Integer> , CommonIdCU<In
 		return this.allyAssessmentDate;
 	}
 
-	public void setPosAssessment (Date posAssessment)
+	public void setPosAssessmentDate (Date posAssessmentDate)
 	{
-		this.posAssessment = posAssessment;
+		this.posAssessmentDate = posAssessmentDate;
 	}
 
-	public Date getPosAssessment ()
+	public Date getPosAssessmentDate ()
 	{
-		return this.posAssessment;
+		return this.posAssessmentDate;
 	}
 
 	public void setStaffAssessmentDate (Date staffAssessmentDate)

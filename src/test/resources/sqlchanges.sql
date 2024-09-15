@@ -729,3 +729,10 @@ CHANGE COLUMN `staff_satisfaction` `staff_achieving_requirement` INT NULL DEFAUL
 ADD COLUMN `ally_comment` TEXT NULL AFTER `staff_achieving_requirement`,
 ADD COLUMN `pos_comment` TEXT NULL AFTER `ally_comment`,
 ADD COLUMN `staff_comment` TEXT NULL AFTER `pos_comment`;
+
+ALTER TABLE `ap_midterm_evaluation` 
+CHANGE COLUMN `staff_achieving_requirement` `staff_achieving_requirement` INT NULL DEFAULT 3 ;
+
+ALTER TABLE `ap_midterm_evaluation` 
+CHANGE COLUMN `pos_assessment` `pos_assessment_date` DATETIME NULL DEFAULT NULL ;
+

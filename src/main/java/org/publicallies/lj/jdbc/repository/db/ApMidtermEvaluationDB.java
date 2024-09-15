@@ -53,7 +53,7 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 		POS_COMMENT("pos_comment", false, ""),
 		STAFF_COMMENT("staff_comment", false, ""),
 		ALLY_ASSESSMENT_DATE("ally_assessment_date", false, ""),
-		POS_ASSESSMENT("pos_assessment", false, ""),
+		POS_ASSESSMENT_DATE("pos_assessment_date", false, ""),
 		STAFF_ASSESSMENT_DATE("staff_assessment_date", false, ""),
 		ASSESS_POS_USERS_ID("assess_pos_users_id", false, ""),
 		ASSESS_STAFF_USERS_ID("assess_staff_users_id", false, ""),
@@ -144,8 +144,8 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			if (rs.wasNull()) obj.setStaffComment(null);
 			obj.setAllyAssessmentDate(rs.getTimestamp(COLUMNS.ALLY_ASSESSMENT_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setAllyAssessmentDate(null);
-			obj.setPosAssessment(rs.getTimestamp(COLUMNS.POS_ASSESSMENT.getColumnName()));
-			if (rs.wasNull()) obj.setPosAssessment(null);
+			obj.setPosAssessmentDate(rs.getTimestamp(COLUMNS.POS_ASSESSMENT_DATE.getColumnName()));
+			if (rs.wasNull()) obj.setPosAssessmentDate(null);
 			obj.setStaffAssessmentDate(rs.getTimestamp(COLUMNS.STAFF_ASSESSMENT_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setStaffAssessmentDate(null);
 			obj.setAssessPosUsersId(rs.getInt(COLUMNS.ASSESS_POS_USERS_ID.getColumnName()));
@@ -177,8 +177,8 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			mapping.put(COLUMNS.STAFF_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(apmidtermevaluation.getStaffComment()));
 			if (apmidtermevaluation.getAllyAssessmentDate() != null)
 				mapping.put(COLUMNS.ALLY_ASSESSMENT_DATE.getColumnName(), new Timestamp (apmidtermevaluation.getAllyAssessmentDate().getTime()));
-			if (apmidtermevaluation.getPosAssessment() != null)
-				mapping.put(COLUMNS.POS_ASSESSMENT.getColumnName(), new Timestamp (apmidtermevaluation.getPosAssessment().getTime()));
+			if (apmidtermevaluation.getPosAssessmentDate() != null)
+				mapping.put(COLUMNS.POS_ASSESSMENT_DATE.getColumnName(), new Timestamp (apmidtermevaluation.getPosAssessmentDate().getTime()));
 			if (apmidtermevaluation.getStaffAssessmentDate() != null)
 				mapping.put(COLUMNS.STAFF_ASSESSMENT_DATE.getColumnName(), new Timestamp (apmidtermevaluation.getStaffAssessmentDate().getTime()));
 			mapping.put(COLUMNS.ASSESS_POS_USERS_ID.getColumnName(), apmidtermevaluation.getAssessPosUsersId());
@@ -247,8 +247,8 @@ public class ApMidtermEvaluationDB implements EntityDB<ApMidtermEvaluation>{
 			if (rs.wasNull()) obj.setStaffComment(null);
 			obj.setAllyAssessmentDate(rs.getTimestamp(COLUMNS.ALLY_ASSESSMENT_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setAllyAssessmentDate(null);
-			obj.setPosAssessment(rs.getTimestamp(COLUMNS.POS_ASSESSMENT.getColumnAliasName()));
-			if (rs.wasNull()) obj.setPosAssessment(null);
+			obj.setPosAssessmentDate(rs.getTimestamp(COLUMNS.POS_ASSESSMENT_DATE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPosAssessmentDate(null);
 			obj.setStaffAssessmentDate(rs.getTimestamp(COLUMNS.STAFF_ASSESSMENT_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setStaffAssessmentDate(null);
 			obj.setAssessPosUsersId(rs.getInt(COLUMNS.ASSESS_POS_USERS_ID.getColumnAliasName()));
