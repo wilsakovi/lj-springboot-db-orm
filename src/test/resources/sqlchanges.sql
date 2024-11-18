@@ -736,3 +736,9 @@ CHANGE COLUMN `staff_achieving_requirement` `staff_achieving_requirement` INT NU
 ALTER TABLE `ap_midterm_evaluation` 
 CHANGE COLUMN `pos_assessment` `pos_assessment_date` DATETIME NULL DEFAULT NULL ;
 
+============================================
+
+ALTER TABLE `ally` 
+ADD COLUMN `lived_served_city` INT NULL DEFAULT 3 AFTER `last_updated_users_id`,
+ADD COLUMN `grown_served_city` INT NULL DEFAULT 3 AFTER `lived_served_city`,
+ADD COLUMN `participate_po_program` INT NULL DEFAULT 3 AFTER `grown_served_city`;
