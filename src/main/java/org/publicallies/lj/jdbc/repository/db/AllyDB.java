@@ -83,6 +83,9 @@ public class AllyDB implements EntityDB<Ally>{
 		HISTORY("history", true, ""),
 		SF_FAILED_FLAG("sf_failed_flag", false, ""),
 		LAST_UPDATED_USERS_ID("last_updated_users_id", false, ""),
+		LIVED_SERVED_CITY("lived_served_city", false, ""),
+		GROWN_SERVED_CITY("grown_served_city", false, ""),
+		PARTICIPATE_PO_PROGRAM("participate_po_program", false, ""),
 		;
 
 		private String columnName;
@@ -228,6 +231,12 @@ public class AllyDB implements EntityDB<Ally>{
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
 			obj.setLastUpdatedUsersId(rs.getInt(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName()));
 			if (rs.wasNull()) obj.setLastUpdatedUsersId(null);
+			obj.setLivedServedCity(rs.getInt(COLUMNS.LIVED_SERVED_CITY.getColumnName()));
+			if (rs.wasNull()) obj.setLivedServedCity(null);
+			obj.setGrownServedCity(rs.getInt(COLUMNS.GROWN_SERVED_CITY.getColumnName()));
+			if (rs.wasNull()) obj.setGrownServedCity(null);
+			obj.setParticipatePoProgram(rs.getInt(COLUMNS.PARTICIPATE_PO_PROGRAM.getColumnName()));
+			if (rs.wasNull()) obj.setParticipatePoProgram(null);
 			return obj;
 		}
 	}
@@ -281,6 +290,9 @@ public class AllyDB implements EntityDB<Ally>{
 			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ally.getHistory()));
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), ally.getSfFailedFlag());
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), ally.getLastUpdatedUsersId());
+			mapping.put(COLUMNS.LIVED_SERVED_CITY.getColumnName(), ally.getLivedServedCity());
+			mapping.put(COLUMNS.GROWN_SERVED_CITY.getColumnName(), ally.getGrownServedCity());
+			mapping.put(COLUMNS.PARTICIPATE_PO_PROGRAM.getColumnName(), ally.getParticipatePoProgram());
 			return mapping;
 		}
 	}
@@ -431,6 +443,12 @@ public class AllyDB implements EntityDB<Ally>{
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
 			obj.setLastUpdatedUsersId(rs.getInt(COLUMNS.LAST_UPDATED_USERS_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setLastUpdatedUsersId(null);
+			obj.setLivedServedCity(rs.getInt(COLUMNS.LIVED_SERVED_CITY.getColumnAliasName()));
+			if (rs.wasNull()) obj.setLivedServedCity(null);
+			obj.setGrownServedCity(rs.getInt(COLUMNS.GROWN_SERVED_CITY.getColumnAliasName()));
+			if (rs.wasNull()) obj.setGrownServedCity(null);
+			obj.setParticipatePoProgram(rs.getInt(COLUMNS.PARTICIPATE_PO_PROGRAM.getColumnAliasName()));
+			if (rs.wasNull()) obj.setParticipatePoProgram(null);
 			if (this.loadAllFKeys || this.loadAllyStatus1)
 				obj.setAllyStatus1(RefTableDataDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			if (this.loadAllFKeys || this.loadEmploymentPeriod2)

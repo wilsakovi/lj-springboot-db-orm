@@ -106,6 +106,12 @@ public class Ally implements Persistable<Integer> , CommonIdCUHLu<Integer>
 
 	private Integer lastUpdatedUsersId;
 
+	private Integer livedServedCity = 3;
+
+	private Integer grownServedCity = 3;
+
+	private Integer participatePoProgram = 3;
+
 	private transient boolean persisted;
 
 	private RefTableData allyStatus1;
@@ -526,6 +532,36 @@ public class Ally implements Persistable<Integer> , CommonIdCUHLu<Integer>
 	public Integer getLastUpdatedUsersId ()
 	{
 		return this.lastUpdatedUsersId;
+	}
+
+	public void setLivedServedCity (Integer livedServedCity)
+	{
+		this.livedServedCity = livedServedCity;
+	}
+
+	public Integer getLivedServedCity ()
+	{
+		return this.livedServedCity;
+	}
+
+	public void setGrownServedCity (Integer grownServedCity)
+	{
+		this.grownServedCity = grownServedCity;
+	}
+
+	public Integer getGrownServedCity ()
+	{
+		return this.grownServedCity;
+	}
+
+	public void setParticipatePoProgram (Integer participatePoProgram)
+	{
+		this.participatePoProgram = participatePoProgram;
+	}
+
+	public Integer getParticipatePoProgram ()
+	{
+		return this.participatePoProgram;
 	}
 
 	public void setPersisted (Boolean persisted)
