@@ -151,6 +151,15 @@ public class DemographicSnapshot implements Persistable<Integer> , CommonIdCU<In
 
 	private Date updatedAt = new Date();
 
+	@Size (max = 15)
+	private String livedServedCityFlag;
+
+	@Size (max = 15)
+	private String grownServedCityFlag;
+
+	@Size (max = 15)
+	private String participatePoProgramFlag;
+
 	private transient boolean persisted;
 
 	private AllyProfile allyProfile;
@@ -653,6 +662,36 @@ public class DemographicSnapshot implements Persistable<Integer> , CommonIdCU<In
 	public Date getUpdatedAt ()
 	{
 		return this.updatedAt;
+	}
+
+	public void setLivedServedCityFlag (String livedServedCityFlag)
+	{
+		this.livedServedCityFlag = livedServedCityFlag;
+	}
+
+	public String getLivedServedCityFlag ()
+	{
+		return this.livedServedCityFlag;
+	}
+
+	public void setGrownServedCityFlag (String grownServedCityFlag)
+	{
+		this.grownServedCityFlag = grownServedCityFlag;
+	}
+
+	public String getGrownServedCityFlag ()
+	{
+		return this.grownServedCityFlag;
+	}
+
+	public void setParticipatePoProgramFlag (String participatePoProgramFlag)
+	{
+		this.participatePoProgramFlag = participatePoProgramFlag;
+	}
+
+	public String getParticipatePoProgramFlag ()
+	{
+		return this.participatePoProgramFlag;
 	}
 
 	public void setPersisted (Boolean persisted)

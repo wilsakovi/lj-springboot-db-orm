@@ -92,6 +92,9 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 		CHILD_COUNT("child_count", false, ""),
 		CREATED_AT("created_at", false, ""),
 		UPDATED_AT("updated_at", false, ""),
+		LIVED_SERVED_CITY_FLAG("lived_served_city_flag", false, ""),
+		GROWN_SERVED_CITY_FLAG("grown_served_city_flag", false, ""),
+		PARTICIPATE_PO_PROGRAM_FLAG("participate_po_program_flag", false, ""),
 		;
 
 		private String columnName;
@@ -255,6 +258,12 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
+			obj.setLivedServedCityFlag(rs.getString(COLUMNS.LIVED_SERVED_CITY_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setLivedServedCityFlag(null);
+			obj.setGrownServedCityFlag(rs.getString(COLUMNS.GROWN_SERVED_CITY_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setGrownServedCityFlag(null);
+			obj.setParticipatePoProgramFlag(rs.getString(COLUMNS.PARTICIPATE_PO_PROGRAM_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setParticipatePoProgramFlag(null);
 			return obj;
 		}
 	}
@@ -317,6 +326,9 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 				mapping.put(COLUMNS.CREATED_AT.getColumnName(), new Timestamp (demographicsnapshot.getCreatedAt().getTime()));
 			if (demographicsnapshot.getUpdatedAt() != null)
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (demographicsnapshot.getUpdatedAt().getTime()));
+			mapping.put(COLUMNS.LIVED_SERVED_CITY_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getLivedServedCityFlag()));
+			mapping.put(COLUMNS.GROWN_SERVED_CITY_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getGrownServedCityFlag()));
+			mapping.put(COLUMNS.PARTICIPATE_PO_PROGRAM_FLAG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(demographicsnapshot.getParticipatePoProgramFlag()));
 			return mapping;
 		}
 	}
@@ -437,6 +449,12 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
+			obj.setLivedServedCityFlag(rs.getString(COLUMNS.LIVED_SERVED_CITY_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setLivedServedCityFlag(null);
+			obj.setGrownServedCityFlag(rs.getString(COLUMNS.GROWN_SERVED_CITY_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setGrownServedCityFlag(null);
+			obj.setParticipatePoProgramFlag(rs.getString(COLUMNS.PARTICIPATE_PO_PROGRAM_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setParticipatePoProgramFlag(null);
 			if (this.loadAllFKeys || this.loadAllyProfile)
 				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;

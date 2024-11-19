@@ -742,3 +742,8 @@ ALTER TABLE `ally`
 ADD COLUMN `lived_served_city` INT NULL DEFAULT 3 AFTER `last_updated_users_id`,
 ADD COLUMN `grown_served_city` INT NULL DEFAULT 3 AFTER `lived_served_city`,
 ADD COLUMN `participate_po_program` INT NULL DEFAULT 3 AFTER `grown_served_city`;
+
+ALTER TABLE `demographic_snapshot` 
+ADD COLUMN `lived_served_city_flag` varchar(15) NULL,
+ADD COLUMN `grown_served_city_flag` varchar(15) ,
+ADD COLUMN `participate_po_program_flag` varchar(15) NULL;
