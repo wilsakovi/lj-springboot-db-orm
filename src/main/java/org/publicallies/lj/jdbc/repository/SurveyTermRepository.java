@@ -1,18 +1,8 @@
 package org.publicallies.lj.jdbc.repository;
 
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
-import org.springframework.jdbc.core.JdbcOperations;
-import org.jboss.logging.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import java.util.HashMap;
-import com.nurkiewicz.jdbcrepository.JdbcRepository;
-import java.util.ArrayList;
-import org.publicallies.lj.jdbc.repository.db.SurveyTermDB;
+import org.publicallies.lj.jdbc.model.SurveyTerm;
 import java.util.List;
-import org.publicallies.lj.jdbc.SurveyTerm;
-import java.util.Map;
-import org.springframework.jdbc.core.RowMapper;
-import java.util.Optional;
+import org.publicallies.lj.jdbc.common.LjJdbcRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -21,102 +11,8 @@ import org.springframework.stereotype.Repository;
  * @author Spring Data Jdbc Code Generator
  */
 @Repository
-public class SurveyTermRepository extends JdbcRepository<SurveyTerm, Integer>
+public interface SurveyTermRepository extends LjJdbcRepository<SurveyTerm, Integer>
 {
-
-	final static Logger logger = Logger.getLogger (SurveyTermRepository.class);
-
-	@Autowired
-	private JdbcOperations jdbcOperations;
-
-	protected JdbcOperations getJdbcOperations()
-	{
-		return this.jdbcOperations;
-	}
-
-	public SurveyTermRepository()
-	{
-		super (SurveyTermDB.ROW_MAPPER, SurveyTermDB.ROW_UNMAPPER, SurveyTermDB.getTableName ());
-	}
-
-	public SurveyTermRepository(RowMapper<SurveyTerm> rowMapper, RowUnmapper<SurveyTerm> rowUnmapper, String idColumn)
-	{
-		super (SurveyTermDB.ROW_MAPPER, SurveyTermDB.ROW_UNMAPPER, SurveyTermDB.getTableName (), idColumn);
-	}
-
-	@Override
-	protected SurveyTerm postCreate(SurveyTerm entity, Number generatedId)
-	{
-		entity.setId(generatedId.intValue());
-		entity.setPersisted(true);
-		return entity;
-	}
-
-
-	public List<SurveyTerm> getByFieldName(SurveyTermDB.COLUMNS column, Object val)
-	{
-		String sql = "select * from " + SurveyTermDB.getTableName() + " where " + column.getColumnName() +  " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { val  }, SurveyTermDB.ROW_MAPPER);
-	}
-
-
-	public List<SurveyTerm> getByFieldNames(Map<SurveyTermDB.COLUMNS, Object> params) throws Exception
-	{
-		List<Object> args =  new ArrayList<>();
-		if (params != null && params.size() > 0 ) {
-			StringBuilder sb = new StringBuilder("SELECT * ");
-			sb.append(" FROM " +SurveyTermDB.getTableName());
-			sb.append(" WHERE ");
-			String prefix = "";
-			for (Map.Entry<SurveyTermDB.COLUMNS, Object> entry: params.entrySet()) {
-				sb.append(prefix + " " + entry.getKey().getColumnName() + " = ? " );
-				prefix = "AND ";
-				args.add(entry.getValue());
-			}
-			return this.jdbcOperations.query (sb.toString(), args.toArray(new Object[args.size()]), SurveyTermDB.ROW_MAPPER);
-		} else {
-			throw new Exception ("getByFieldName has invalid arguments");
-		}	}
-
-
-	public List<SurveyTerm> getByFieldNames(List<SurveyTermDB.COLUMNS> columns, List<Object> values) throws Exception
-	{
-		if (columns == null || values == null || columns.size() == 0 || columns.size() != values.size()) {
-			throw new Exception("Invalid arguments");
-		}
-		Map<SurveyTermDB.COLUMNS, Object> map = new HashMap<>();
-		for (int i = 0; i < columns.size(); i++) {
-			map.put(columns.get(i), values.get(i));
-		}
-		return  getByFieldNames(map);	}
-
-
-	public Optional<SurveyTerm> getOneByFieldNameNotNull(SurveyTermDB.COLUMNS column, Object val)
-	{
-		 if (val == null) { return Optional.empty(); } 
-		String sql = "select * from " + SurveyTermDB.getTableName() + " where " + column.getColumnName() +  " = ? ";
-		List<SurveyTerm> list =  this.jdbcOperations.query (sql, new Object[] { val  }, SurveyTermDB.ROW_MAPPER);
-		 if (list != null && list.size() == 1) { return Optional.of(list.get(0)); } 
-		 return Optional.empty(); 
-	}
-
-
-	public List<SurveyTerm> getSurveyTermsBySurveyId (Long surveyId)
-	{
-		String sql = "select * from " + SurveyTermDB.getTableName() + " where " + SurveyTermDB.COLUMNS.SURVEY_ID.getColumnName() + " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { surveyId }, SurveyTermDB.ROW_MAPPER);
-	}
-
-	public List<SurveyTerm> getSurveyTermsByTermId (Long termId)
-	{
-		String sql = "select * from " + SurveyTermDB.getTableName() + " where " + SurveyTermDB.COLUMNS.TERM_ID.getColumnName() + " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { termId }, SurveyTermDB.ROW_MAPPER);
-	}
-
-
-	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
-
-	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 }
 

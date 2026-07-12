@@ -1,12 +1,13 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
+import org.publicallies.lj.jdbc.model.Ally;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
-import org.publicallies.lj.jdbc.Ally;
 import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -41,7 +42,11 @@ public class AllyDB implements EntityDB<Ally>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public AllyRowMapper getRowMappers() {
+		return new AllyRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<Ally> 
 	{
 		ID("id", false, ""),
 		PRIOR_AMERICORP("prior_americorp", false, ""),
@@ -70,12 +75,12 @@ public class AllyDB implements EntityDB<Ally>{
 		ENROLLED_COLLEGE_PERIOD("enrolled_college_period", false, ""),
 		EMPLOYMENT_PERIOD("employment_period", false, ""),
 		OLD_ID("old_id", false, ""),
-		INITIALSITEID("initialSiteId", false, ""),
-		INITIALTERMID("initialTermId", false, ""),
+		INITIAL_SITE_ID("initial_site_id", false, ""),
+		INITIAL_TERM_ID("initial_term_id", false, ""),
 		MILITARY_VETERAN("military_veteran", false, ""),
 		MARITAL_STATUS_ID("marital_status_id", false, ""),
 		SOCIAL_ASSISTS("social_assists", true, ""),
-		ALUMNI_SFID("alumni_sfId", false, ""),
+		ALUMNI_SF_ID("alumni_sf_id", false, ""),
 		SELF_UPDATE_DATE("self_update_date", false, ""),
 		CHILD_COUNT("child_count", false, ""),
 		CREATED_AT("created_at", false, ""),
@@ -138,6 +143,11 @@ public class AllyDB implements EntityDB<Ally>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<AllyDB> getEntityDBClass() {
+			return AllyDB.class;
+		}
 	}
 
 	public AllyDB ()
@@ -205,9 +215,9 @@ public class AllyDB implements EntityDB<Ally>{
 			if (rs.wasNull()) obj.setEmploymentPeriod(null);
 			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnName()));
 			if (rs.wasNull()) obj.setOldId(null);
-			obj.setInitialSiteId(rs.getShort(COLUMNS.INITIALSITEID.getColumnName()));
+			obj.setInitialSiteId(rs.getShort(COLUMNS.INITIAL_SITE_ID.getColumnName()));
 			if (rs.wasNull()) obj.setInitialSiteId(null);
-			obj.setInitialTermId(rs.getShort(COLUMNS.INITIALTERMID.getColumnName()));
+			obj.setInitialTermId(rs.getShort(COLUMNS.INITIAL_TERM_ID.getColumnName()));
 			if (rs.wasNull()) obj.setInitialTermId(null);
 			obj.setMilitaryVeteran(rs.getByte(COLUMNS.MILITARY_VETERAN.getColumnName()));
 			if (rs.wasNull()) obj.setMilitaryVeteran(null);
@@ -215,7 +225,7 @@ public class AllyDB implements EntityDB<Ally>{
 			if (rs.wasNull()) obj.setMaritalStatusId(null);
 			obj.setSocialAssists(rs.getString(COLUMNS.SOCIAL_ASSISTS.getColumnName()));
 			if (rs.wasNull()) obj.setSocialAssists(null);
-			obj.setAlumniSfId(rs.getString(COLUMNS.ALUMNI_SFID.getColumnName()));
+			obj.setAlumniSfId(rs.getString(COLUMNS.ALUMNI_SF_ID.getColumnName()));
 			if (rs.wasNull()) obj.setAlumniSfId(null);
 			obj.setSelfUpdateDate(rs.getTimestamp(COLUMNS.SELF_UPDATE_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setSelfUpdateDate(null);
@@ -274,12 +284,12 @@ public class AllyDB implements EntityDB<Ally>{
 			mapping.put(COLUMNS.ENROLLED_COLLEGE_PERIOD.getColumnName(), ally.getEnrolledCollegePeriod());
 			mapping.put(COLUMNS.EMPLOYMENT_PERIOD.getColumnName(), ally.getEmploymentPeriod());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), ally.getOldId());
-			mapping.put(COLUMNS.INITIALSITEID.getColumnName(), ally.getInitialSiteId());
-			mapping.put(COLUMNS.INITIALTERMID.getColumnName(), ally.getInitialTermId());
+			mapping.put(COLUMNS.INITIAL_SITE_ID.getColumnName(), ally.getInitialSiteId());
+			mapping.put(COLUMNS.INITIAL_TERM_ID.getColumnName(), ally.getInitialTermId());
 			mapping.put(COLUMNS.MILITARY_VETERAN.getColumnName(), ally.getMilitaryVeteran());
 			mapping.put(COLUMNS.MARITAL_STATUS_ID.getColumnName(), ally.getMaritalStatusId());
 			mapping.put(COLUMNS.SOCIAL_ASSISTS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ally.getSocialAssists()));
-			mapping.put(COLUMNS.ALUMNI_SFID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ally.getAlumniSfId()));
+			mapping.put(COLUMNS.ALUMNI_SF_ID.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(ally.getAlumniSfId()));
 			if (ally.getSelfUpdateDate() != null)
 				mapping.put(COLUMNS.SELF_UPDATE_DATE.getColumnName(), new Timestamp (ally.getSelfUpdateDate().getTime()));
 			mapping.put(COLUMNS.CHILD_COUNT.getColumnName(), ally.getChildCount());
@@ -300,66 +310,6 @@ public class AllyDB implements EntityDB<Ally>{
 	public static final RowMapper<Ally> ALIAS_ROW_MAPPER = new AllyAliasRowMapper ();
 	public static final class  AllyAliasRowMapper implements RowMapper<Ally>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadAllyStatus1 = false;
-		public void setLoadAllyStatus1 (boolean loadAllyStatus1)
-		{
-			this.loadAllyStatus1 = loadAllyStatus1;
-		}
-
-		private boolean loadEmploymentPeriod2 = false;
-		public void setLoadEmploymentPeriod2 (boolean loadEmploymentPeriod2)
-		{
-			this.loadEmploymentPeriod2 = loadEmploymentPeriod2;
-		}
-
-		private boolean loadEmploymentStatus = false;
-		public void setLoadEmploymentStatus (boolean loadEmploymentStatus)
-		{
-			this.loadEmploymentStatus = loadEmploymentStatus;
-		}
-
-		private boolean loadEnrolledCollegePeriod3 = false;
-		public void setLoadEnrolledCollegePeriod3 (boolean loadEnrolledCollegePeriod3)
-		{
-			this.loadEnrolledCollegePeriod3 = loadEnrolledCollegePeriod3;
-		}
-
-		private boolean loadInitialSiteId4 = false;
-		public void setLoadInitialSiteId4 (boolean loadInitialSiteId4)
-		{
-			this.loadInitialSiteId4 = loadInitialSiteId4;
-		}
-
-		private boolean loadInitialTermId5 = false;
-		public void setLoadInitialTermId5 (boolean loadInitialTermId5)
-		{
-			this.loadInitialTermId5 = loadInitialTermId5;
-		}
-
-		private boolean loadMaritalStatus = false;
-		public void setLoadMaritalStatus (boolean loadMaritalStatus)
-		{
-			this.loadMaritalStatus = loadMaritalStatus;
-		}
-
-		private boolean loadUnemploymentPeriod6 = false;
-		public void setLoadUnemploymentPeriod6 (boolean loadUnemploymentPeriod6)
-		{
-			this.loadUnemploymentPeriod6 = loadUnemploymentPeriod6;
-		}
-
-		private boolean loadUsers = false;
-		public void setLoadUsers (boolean loadUsers)
-		{
-			this.loadUsers = loadUsers;
-		}
-
 		public Ally mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			Ally obj = new Ally();
@@ -417,9 +367,9 @@ public class AllyDB implements EntityDB<Ally>{
 			if (rs.wasNull()) obj.setEmploymentPeriod(null);
 			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setOldId(null);
-			obj.setInitialSiteId(rs.getShort(COLUMNS.INITIALSITEID.getColumnAliasName()));
+			obj.setInitialSiteId(rs.getShort(COLUMNS.INITIAL_SITE_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setInitialSiteId(null);
-			obj.setInitialTermId(rs.getShort(COLUMNS.INITIALTERMID.getColumnAliasName()));
+			obj.setInitialTermId(rs.getShort(COLUMNS.INITIAL_TERM_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setInitialTermId(null);
 			obj.setMilitaryVeteran(rs.getByte(COLUMNS.MILITARY_VETERAN.getColumnAliasName()));
 			if (rs.wasNull()) obj.setMilitaryVeteran(null);
@@ -427,7 +377,7 @@ public class AllyDB implements EntityDB<Ally>{
 			if (rs.wasNull()) obj.setMaritalStatusId(null);
 			obj.setSocialAssists(rs.getString(COLUMNS.SOCIAL_ASSISTS.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSocialAssists(null);
-			obj.setAlumniSfId(rs.getString(COLUMNS.ALUMNI_SFID.getColumnAliasName()));
+			obj.setAlumniSfId(rs.getString(COLUMNS.ALUMNI_SF_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setAlumniSfId(null);
 			obj.setSelfUpdateDate(rs.getTimestamp(COLUMNS.SELF_UPDATE_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSelfUpdateDate(null);
@@ -449,24 +399,6 @@ public class AllyDB implements EntityDB<Ally>{
 			if (rs.wasNull()) obj.setGrownServedCity(null);
 			obj.setParticipatePoProgram(rs.getInt(COLUMNS.PARTICIPATE_PO_PROGRAM.getColumnAliasName()));
 			if (rs.wasNull()) obj.setParticipatePoProgram(null);
-			if (this.loadAllFKeys || this.loadAllyStatus1)
-				obj.setAllyStatus1(RefTableDataDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadEmploymentPeriod2)
-				obj.setEmploymentPeriod2(StpCommonPeriodDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadEmploymentStatus)
-				obj.setEmploymentStatus(StpEmployStatusDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadEnrolledCollegePeriod3)
-				obj.setEnrolledCollegePeriod3(StpCommonPeriodDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadInitialSiteId4)
-				obj.setInitialSiteId4(SiteDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadInitialTermId5)
-				obj.setInitialTermId5(TermDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadMaritalStatus)
-				obj.setMaritalStatus(StpMaritalStatusDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadUnemploymentPeriod6)
-				obj.setUnemploymentPeriod6(StpCommonPeriodDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadUsers)
-				obj.setUsers(UsersDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -484,6 +416,22 @@ public class AllyDB implements EntityDB<Ally>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<Ally> getEntityClass() {
+		return Ally.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

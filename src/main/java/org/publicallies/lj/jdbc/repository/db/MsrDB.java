@@ -1,10 +1,11 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
+import org.publicallies.lj.jdbc.model.Msr;
 import org.publicallies.lj.jdbc.common.EntityDB;
-import org.publicallies.lj.jdbc.Msr;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -41,7 +42,11 @@ public class MsrDB implements EntityDB<Msr>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public MsrRowMapper getRowMappers() {
+		return new MsrRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<Msr> 
 	{
 		ID("id", false, ""),
 		PROGRAM_YEAR_ID("program_year_id", false, ""),
@@ -141,6 +146,11 @@ public class MsrDB implements EntityDB<Msr>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<MsrDB> getEntityDBClass() {
+			return MsrDB.class;
+		}
 	}
 
 	public MsrDB ()
@@ -317,24 +327,6 @@ public class MsrDB implements EntityDB<Msr>{
 	public static final RowMapper<Msr> ALIAS_ROW_MAPPER = new MsrAliasRowMapper ();
 	public static final class  MsrAliasRowMapper implements RowMapper<Msr>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadAllyProfile = false;
-		public void setLoadAllyProfile (boolean loadAllyProfile)
-		{
-			this.loadAllyProfile = loadAllyProfile;
-		}
-
-		private boolean loadJob = false;
-		public void setLoadJob (boolean loadJob)
-		{
-			this.loadJob = loadJob;
-		}
-
 		public Msr mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			Msr obj = new Msr();
@@ -430,10 +422,6 @@ public class MsrDB implements EntityDB<Msr>{
 			if (rs.wasNull()) obj.setPosPaSatisfaction(null);
 			obj.setPmMemberSatisfaction(rs.getString(COLUMNS.PM_MEMBER_SATISFACTION.getColumnAliasName()));
 			if (rs.wasNull()) obj.setPmMemberSatisfaction(null);
-			if (this.loadAllFKeys || this.loadAllyProfile)
-				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadJob)
-				obj.setJob(JobDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -451,6 +439,22 @@ public class MsrDB implements EntityDB<Msr>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<Msr> getEntityClass() {
+		return Msr.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

@@ -1,10 +1,11 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
-import org.publicallies.lj.jdbc.AllyProfile;
+import org.publicallies.lj.jdbc.model.AllyProfile;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -41,7 +42,11 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public AllyProfileRowMapper getRowMappers() {
+		return new AllyProfileRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<AllyProfile> 
 	{
 		ID("id", false, ""),
 		PROGRAM_MANAGER_ID("program_manager_id", false, ""),
@@ -157,6 +162,11 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<AllyProfileDB> getEntityDBClass() {
+			return AllyProfileDB.class;
+		}
 	}
 
 	public AllyProfileDB ()
@@ -388,42 +398,6 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 	public static final RowMapper<AllyProfile> ALIAS_ROW_MAPPER = new AllyProfileAliasRowMapper ();
 	public static final class  AllyProfileAliasRowMapper implements RowMapper<AllyProfile>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadAllyExitReason = false;
-		public void setLoadAllyExitReason (boolean loadAllyExitReason)
-		{
-			this.loadAllyExitReason = loadAllyExitReason;
-		}
-
-		private boolean loadAlly = false;
-		public void setLoadAlly (boolean loadAlly)
-		{
-			this.loadAlly = loadAlly;
-		}
-
-		private boolean loadGraduationStatus = false;
-		public void setLoadGraduationStatus (boolean loadGraduationStatus)
-		{
-			this.loadGraduationStatus = loadGraduationStatus;
-		}
-
-		private boolean loadProgramManager = false;
-		public void setLoadProgramManager (boolean loadProgramManager)
-		{
-			this.loadProgramManager = loadProgramManager;
-		}
-
-		private boolean loadSiteProfile = false;
-		public void setLoadSiteProfile (boolean loadSiteProfile)
-		{
-			this.loadSiteProfile = loadSiteProfile;
-		}
-
 		public AllyProfile mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			AllyProfile obj = new AllyProfile();
@@ -551,16 +525,6 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 			if (rs.wasNull()) obj.setSfCaseAllyStartDate(null);
 			obj.setSfCaseStatusEffectiveDate(rs.getTimestamp(COLUMNS.SF_CASE_STATUS_EFFECTIVE_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSfCaseStatusEffectiveDate(null);
-			if (this.loadAllFKeys || this.loadAllyExitReason)
-				obj.setAllyExitReason(AllyExitReasonDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadAlly)
-				obj.setAlly(AllyDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadGraduationStatus)
-				obj.setGraduationStatus(GraduateStatusDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadProgramManager)
-				obj.setProgramManager(StaffDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadSiteProfile)
-				obj.setSiteProfile(SiteProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -578,6 +542,22 @@ public class AllyProfileDB implements EntityDB<AllyProfile>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<AllyProfile> getEntityClass() {
+		return AllyProfile.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

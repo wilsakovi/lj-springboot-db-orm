@@ -1,12 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
+import org.publicallies.lj.jdbc.model.SecurityQuestion;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
-import org.publicallies.lj.jdbc.SecurityQuestion;
 import java.util.Map;
+import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -40,7 +42,11 @@ public class SecurityQuestionDB implements EntityDB<SecurityQuestion>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public SecurityQuestionRowMapper getRowMappers() {
+		return new SecurityQuestionRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<SecurityQuestion> 
 	{
 		ID("id", false, ""),
 		NAME("name", false, ""),
@@ -98,6 +104,11 @@ public class SecurityQuestionDB implements EntityDB<SecurityQuestion>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<SecurityQuestionDB> getEntityDBClass() {
+			return SecurityQuestionDB.class;
+		}
 	}
 
 	public SecurityQuestionDB ()
@@ -168,6 +179,22 @@ public class SecurityQuestionDB implements EntityDB<SecurityQuestion>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<SecurityQuestion> getEntityClass() {
+		return SecurityQuestion.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

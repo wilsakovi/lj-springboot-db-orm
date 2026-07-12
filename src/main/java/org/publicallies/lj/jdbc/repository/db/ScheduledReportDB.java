@@ -1,13 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
-import org.publicallies.lj.jdbc.ScheduledReport;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
+import org.publicallies.lj.jdbc.model.ScheduledReport;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -41,7 +42,11 @@ public class ScheduledReportDB implements EntityDB<ScheduledReport>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public ScheduledReportRowMapper getRowMappers() {
+		return new ScheduledReportRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<ScheduledReport> 
 	{
 		ID("id", false, ""),
 		REPORT_DATA("report_data", true, ""),
@@ -111,6 +116,11 @@ public class ScheduledReportDB implements EntityDB<ScheduledReport>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<ScheduledReportDB> getEntityDBClass() {
+			return ScheduledReportDB.class;
+		}
 	}
 
 	public ScheduledReportDB ()
@@ -192,18 +202,6 @@ public class ScheduledReportDB implements EntityDB<ScheduledReport>{
 	public static final RowMapper<ScheduledReport> ALIAS_ROW_MAPPER = new ScheduledReportAliasRowMapper ();
 	public static final class  ScheduledReportAliasRowMapper implements RowMapper<ScheduledReport>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadCreatedUsers = false;
-		public void setLoadCreatedUsers (boolean loadCreatedUsers)
-		{
-			this.loadCreatedUsers = loadCreatedUsers;
-		}
-
 		public ScheduledReport mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			ScheduledReport obj = new ScheduledReport();
@@ -239,8 +237,6 @@ public class ScheduledReportDB implements EntityDB<ScheduledReport>{
 			if (rs.wasNull()) obj.setReportCodes(null);
 			obj.setDeleted(rs.getInt(COLUMNS.DELETED.getColumnAliasName()));
 			if (rs.wasNull()) obj.setDeleted(null);
-			if (this.loadAllFKeys || this.loadCreatedUsers)
-				obj.setCreatedUsers(UsersDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -258,6 +254,22 @@ public class ScheduledReportDB implements EntityDB<ScheduledReport>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<ScheduledReport> getEntityClass() {
+		return ScheduledReport.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

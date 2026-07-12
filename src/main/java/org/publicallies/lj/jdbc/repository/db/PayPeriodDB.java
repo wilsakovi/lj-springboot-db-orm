@@ -1,13 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
-import org.publicallies.lj.jdbc.PayPeriod;
 import java.sql.Timestamp;
+import org.publicallies.lj.jdbc.model.PayPeriod;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -41,7 +42,11 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public PayPeriodRowMapper getRowMappers() {
+		return new PayPeriodRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<PayPeriod> 
 	{
 		ID("id", false, ""),
 		APPROVED("approved", false, ""),
@@ -144,6 +149,11 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<PayPeriodDB> getEntityDBClass() {
+			return PayPeriodDB.class;
+		}
 	}
 
 	public PayPeriodDB ()
@@ -329,24 +339,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 	public static final RowMapper<PayPeriod> ALIAS_ROW_MAPPER = new PayPeriodAliasRowMapper ();
 	public static final class  PayPeriodAliasRowMapper implements RowMapper<PayPeriod>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadAllyProfile = false;
-		public void setLoadAllyProfile (boolean loadAllyProfile)
-		{
-			this.loadAllyProfile = loadAllyProfile;
-		}
-
-		private boolean loadJob = false;
-		public void setLoadJob (boolean loadJob)
-		{
-			this.loadJob = loadJob;
-		}
-
 		public PayPeriod mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			PayPeriod obj = new PayPeriod();
@@ -448,10 +440,6 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 			if (rs.wasNull()) obj.setPmApprovedFromIp(null);
 			obj.setReminderDateAlly(rs.getTimestamp(COLUMNS.REMINDER_DATE_ALLY.getColumnAliasName()));
 			if (rs.wasNull()) obj.setReminderDateAlly(null);
-			if (this.loadAllFKeys || this.loadAllyProfile)
-				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadJob)
-				obj.setJob(JobDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -469,6 +457,22 @@ public class PayPeriodDB implements EntityDB<PayPeriod>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<PayPeriod> getEntityClass() {
+		return PayPeriod.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

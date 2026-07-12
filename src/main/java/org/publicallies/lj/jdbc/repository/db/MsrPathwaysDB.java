@@ -1,13 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
-import org.publicallies.lj.jdbc.MsrPathways;
 import java.util.Map;
 import java.sql.Timestamp;
+import org.publicallies.lj.jdbc.model.MsrPathways;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -41,7 +42,11 @@ public class MsrPathwaysDB implements EntityDB<MsrPathways>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public MsrPathwaysRowMapper getRowMappers() {
+		return new MsrPathwaysRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<MsrPathways> 
 	{
 		ID("id", false, ""),
 		MSR_ID("msr_id", false, ""),
@@ -142,6 +147,11 @@ public class MsrPathwaysDB implements EntityDB<MsrPathways>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<MsrPathwaysDB> getEntityDBClass() {
+			return MsrPathwaysDB.class;
+		}
 	}
 
 	public MsrPathwaysDB ()
@@ -431,6 +441,22 @@ public class MsrPathwaysDB implements EntityDB<MsrPathways>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<MsrPathways> getEntityClass() {
+		return MsrPathways.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

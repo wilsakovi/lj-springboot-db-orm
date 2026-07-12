@@ -747,3 +747,27 @@ ALTER TABLE `demographic_snapshot`
 ADD COLUMN `lived_served_city_flag` varchar(15) NULL,
 ADD COLUMN `grown_served_city_flag` varchar(15) ,
 ADD COLUMN `participate_po_program_flag` varchar(15) NULL;
+
+===============================================================================
+ALTER TABLE `program_year` 
+CHANGE COLUMN `active_flag` `active_flag` TINYINT(1) NULL DEFAULT 1 ;
+
+ALTER TABLE `program_year` 
+CHANGE COLUMN `active_reporting` `active_reporting` TINYINT(1) NULL DEFAULT 1 ,
+CHANGE COLUMN `sf_flag` `sf_flag` TINYINT(1) NULL DEFAULT 0 ;
+
+ALTER TABLE `users` ADD COLUMN `secret_key` VARCHAR(64);
+ALTER TABLE `users` 
+ADD COLUMN `two_fa_enabled` TINYINT(1) NULL DEFAULT 0;
+
+ALTER TABLE `users` 
+ADD COLUMN `two_fa_failure_count` INT NULL DEFAULT 0 AFTER `two_fa_enabled`,
+CHANGE COLUMN `secret_key` `two_fa_secret_key` VARCHAR(64) NULL DEFAULT NULL ;
+
+ALTER TABLE `users` 
+CHANGE COLUMN `two_fa_failure_count` `two_fa_failure_count` INT NOT NULL DEFAULT '0' ;
+
+========================================================================
+alter table ally rename column initialSiteId to initial_site_id;
+alter table ally rename column initialTermId to initial_term_id
+alter table ally rename column alumni_sfId to alumni_sf_id;

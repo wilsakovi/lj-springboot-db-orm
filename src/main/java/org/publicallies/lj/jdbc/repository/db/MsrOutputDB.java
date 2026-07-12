@@ -1,10 +1,11 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
-import org.publicallies.lj.jdbc.MsrOutput;
+import org.publicallies.lj.jdbc.model.MsrOutput;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -41,7 +42,11 @@ public class MsrOutputDB implements EntityDB<MsrOutput>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public MsrOutputRowMapper getRowMappers() {
+		return new MsrOutputRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<MsrOutput> 
 	{
 		ID("id", false, ""),
 		TOTAL_OUTPUT("total_output", false, ""),
@@ -103,6 +108,11 @@ public class MsrOutputDB implements EntityDB<MsrOutput>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<MsrOutputDB> getEntityDBClass() {
+			return MsrOutputDB.class;
+		}
 	}
 
 	public MsrOutputDB ()
@@ -159,18 +169,6 @@ public class MsrOutputDB implements EntityDB<MsrOutput>{
 	public static final RowMapper<MsrOutput> ALIAS_ROW_MAPPER = new MsrOutputAliasRowMapper ();
 	public static final class  MsrOutputAliasRowMapper implements RowMapper<MsrOutput>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadMsrJobObjective = false;
-		public void setLoadMsrJobObjective (boolean loadMsrJobObjective)
-		{
-			this.loadMsrJobObjective = loadMsrJobObjective;
-		}
-
 		public MsrOutput mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			MsrOutput obj = new MsrOutput();
@@ -190,8 +188,6 @@ public class MsrOutputDB implements EntityDB<MsrOutput>{
 			if (rs.wasNull()) obj.setUnderservedPopulation(null);
 			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setOldId(null);
-			if (this.loadAllFKeys || this.loadMsrJobObjective)
-				obj.setMsrJobObjective(MsrJobObjectiveDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -209,6 +205,22 @@ public class MsrOutputDB implements EntityDB<MsrOutput>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<MsrOutput> getEntityClass() {
+		return MsrOutput.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

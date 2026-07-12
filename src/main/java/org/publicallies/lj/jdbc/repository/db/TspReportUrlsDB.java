@@ -1,11 +1,12 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
-import org.publicallies.lj.jdbc.TspReportUrls;
 import java.sql.ResultSet;
+import org.publicallies.lj.jdbc.model.TspReportUrls;
 import java.util.Map;
 import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
@@ -41,7 +42,11 @@ public class TspReportUrlsDB implements EntityDB<TspReportUrls>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public TspReportUrlsRowMapper getRowMappers() {
+		return new TspReportUrlsRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<TspReportUrls> 
 	{
 		ID("id", false, ""),
 		URL("url", false, ""),
@@ -101,6 +106,11 @@ public class TspReportUrlsDB implements EntityDB<TspReportUrls>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<TspReportUrlsDB> getEntityDBClass() {
+			return TspReportUrlsDB.class;
+		}
 	}
 
 	public TspReportUrlsDB ()
@@ -151,18 +161,6 @@ public class TspReportUrlsDB implements EntityDB<TspReportUrls>{
 	public static final RowMapper<TspReportUrls> ALIAS_ROW_MAPPER = new TspReportUrlsAliasRowMapper ();
 	public static final class  TspReportUrlsAliasRowMapper implements RowMapper<TspReportUrls>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadTspReport = false;
-		public void setLoadTspReport (boolean loadTspReport)
-		{
-			this.loadTspReport = loadTspReport;
-		}
-
 		public TspReportUrls mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			TspReportUrls obj = new TspReportUrls();
@@ -178,8 +176,6 @@ public class TspReportUrlsDB implements EntityDB<TspReportUrls>{
 			if (rs.wasNull()) obj.setCreatedAt(null);
 			obj.setUpdatedAt(rs.getTimestamp(COLUMNS.UPDATED_AT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setUpdatedAt(null);
-			if (this.loadAllFKeys || this.loadTspReport)
-				obj.setTspReport(TspReportDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -197,6 +193,22 @@ public class TspReportUrlsDB implements EntityDB<TspReportUrls>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<TspReportUrls> getEntityClass() {
+		return TspReportUrls.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

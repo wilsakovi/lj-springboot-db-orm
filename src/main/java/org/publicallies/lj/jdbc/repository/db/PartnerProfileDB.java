@@ -1,12 +1,13 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
+import org.publicallies.lj.jdbc.model.PartnerProfile;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
-import org.publicallies.lj.jdbc.PartnerProfile;
 import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -41,7 +42,11 @@ public class PartnerProfileDB implements EntityDB<PartnerProfile>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public PartnerProfileRowMapper getRowMappers() {
+		return new PartnerProfileRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<PartnerProfile> 
 	{
 		ID("id", false, ""),
 		PARTNER_ID("partner_id", false, ""),
@@ -133,6 +138,11 @@ public class PartnerProfileDB implements EntityDB<PartnerProfile>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<PartnerProfileDB> getEntityDBClass() {
+			return PartnerProfileDB.class;
+		}
 	}
 
 	public PartnerProfileDB ()
@@ -280,24 +290,6 @@ public class PartnerProfileDB implements EntityDB<PartnerProfile>{
 	public static final RowMapper<PartnerProfile> ALIAS_ROW_MAPPER = new PartnerProfileAliasRowMapper ();
 	public static final class  PartnerProfileAliasRowMapper implements RowMapper<PartnerProfile>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadPartner = false;
-		public void setLoadPartner (boolean loadPartner)
-		{
-			this.loadPartner = loadPartner;
-		}
-
-		private boolean loadSiteProfile = false;
-		public void setLoadSiteProfile (boolean loadSiteProfile)
-		{
-			this.loadSiteProfile = loadSiteProfile;
-		}
-
 		public PartnerProfile mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			PartnerProfile obj = new PartnerProfile();
@@ -377,10 +369,6 @@ public class PartnerProfileDB implements EntityDB<PartnerProfile>{
 			if (rs.wasNull()) obj.setActiveFlag(null);
 			obj.setProgramYearId(rs.getShort(COLUMNS.PROGRAM_YEAR_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setProgramYearId(null);
-			if (this.loadAllFKeys || this.loadPartner)
-				obj.setPartner(PartnerDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadSiteProfile)
-				obj.setSiteProfile(SiteProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -398,6 +386,22 @@ public class PartnerProfileDB implements EntityDB<PartnerProfile>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<PartnerProfile> getEntityClass() {
+		return PartnerProfile.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

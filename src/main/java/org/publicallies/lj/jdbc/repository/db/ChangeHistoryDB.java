@@ -1,10 +1,11 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
-import org.publicallies.lj.jdbc.ChangeHistory;
 import org.publicallies.lj.jdbc.common.EntityDB;
+import org.publicallies.lj.jdbc.model.ChangeHistory;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -41,7 +42,11 @@ public class ChangeHistoryDB implements EntityDB<ChangeHistory>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public ChangeHistoryRowMapper getRowMappers() {
+		return new ChangeHistoryRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<ChangeHistory> 
 	{
 		ID("id", false, ""),
 		PK_ID("pk_id", false, ""),
@@ -104,6 +109,11 @@ public class ChangeHistoryDB implements EntityDB<ChangeHistory>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<ChangeHistoryDB> getEntityDBClass() {
+			return ChangeHistoryDB.class;
+		}
 	}
 
 	public ChangeHistoryDB ()
@@ -200,6 +210,22 @@ public class ChangeHistoryDB implements EntityDB<ChangeHistory>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<ChangeHistory> getEntityClass() {
+		return ChangeHistory.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

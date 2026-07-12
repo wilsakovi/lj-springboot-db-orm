@@ -1,10 +1,11 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
+import org.publicallies.lj.jdbc.model.ActivityArea;
 import org.publicallies.lj.jdbc.common.EntityDB;
-import org.publicallies.lj.jdbc.ActivityArea;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -41,7 +42,11 @@ public class ActivityAreaDB implements EntityDB<ActivityArea>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public ActivityAreaRowMapper getRowMappers() {
+		return new ActivityAreaRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<ActivityArea> 
 	{
 		ID("id", false, ""),
 		NAME("name", false, ""),
@@ -103,6 +108,11 @@ public class ActivityAreaDB implements EntityDB<ActivityArea>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<ActivityAreaDB> getEntityDBClass() {
+			return ActivityAreaDB.class;
+		}
 	}
 
 	public ActivityAreaDB ()
@@ -194,6 +204,22 @@ public class ActivityAreaDB implements EntityDB<ActivityArea>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<ActivityArea> getEntityClass() {
+		return ActivityArea.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

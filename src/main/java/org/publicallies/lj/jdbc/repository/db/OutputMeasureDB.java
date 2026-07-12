@@ -1,12 +1,13 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
+import org.publicallies.lj.jdbc.model.OutputMeasure;
 import java.util.Map;
-import org.publicallies.lj.jdbc.OutputMeasure;
 import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -41,7 +42,11 @@ public class OutputMeasureDB implements EntityDB<OutputMeasure>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public OutputMeasureRowMapper getRowMappers() {
+		return new OutputMeasureRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<OutputMeasure> 
 	{
 		ID("id", false, ""),
 		NAME("name", false, ""),
@@ -112,6 +117,11 @@ public class OutputMeasureDB implements EntityDB<OutputMeasure>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<OutputMeasureDB> getEntityDBClass() {
+			return OutputMeasureDB.class;
+		}
 	}
 
 	public OutputMeasureDB ()
@@ -194,24 +204,6 @@ public class OutputMeasureDB implements EntityDB<OutputMeasure>{
 	public static final RowMapper<OutputMeasure> ALIAS_ROW_MAPPER = new OutputMeasureAliasRowMapper ();
 	public static final class  OutputMeasureAliasRowMapper implements RowMapper<OutputMeasure>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadActivityArea = false;
-		public void setLoadActivityArea (boolean loadActivityArea)
-		{
-			this.loadActivityArea = loadActivityArea;
-		}
-
-		private boolean loadOutputMeasureMain = false;
-		public void setLoadOutputMeasureMain (boolean loadOutputMeasureMain)
-		{
-			this.loadOutputMeasureMain = loadOutputMeasureMain;
-		}
-
 		public OutputMeasure mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			OutputMeasure obj = new OutputMeasure();
@@ -249,10 +241,6 @@ public class OutputMeasureDB implements EntityDB<OutputMeasure>{
 			if (rs.wasNull()) obj.setCapBuildingFlag(null);
 			obj.setActiveFlag(rs.getByte(COLUMNS.ACTIVE_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
-			if (this.loadAllFKeys || this.loadActivityArea)
-				obj.setActivityArea(ActivityAreaDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadOutputMeasureMain)
-				obj.setOutputMeasureMain(OutputMeasureMainDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -270,6 +258,22 @@ public class OutputMeasureDB implements EntityDB<OutputMeasure>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<OutputMeasure> getEntityClass() {
+		return OutputMeasure.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

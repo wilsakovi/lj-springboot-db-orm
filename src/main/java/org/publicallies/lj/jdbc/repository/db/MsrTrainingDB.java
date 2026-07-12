@@ -1,11 +1,12 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
+import org.publicallies.lj.jdbc.model.MsrTraining;
 import java.sql.ResultSet;
-import org.publicallies.lj.jdbc.MsrTraining;
 import java.util.Map;
 import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
@@ -41,7 +42,11 @@ public class MsrTrainingDB implements EntityDB<MsrTraining>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public MsrTrainingRowMapper getRowMappers() {
+		return new MsrTrainingRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<MsrTraining> 
 	{
 		ID("id", false, ""),
 		ACTIVITY_TITLE("activity_title", false, ""),
@@ -107,6 +112,11 @@ public class MsrTrainingDB implements EntityDB<MsrTraining>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<MsrTrainingDB> getEntityDBClass() {
+			return MsrTrainingDB.class;
+		}
 	}
 
 	public MsrTrainingDB ()
@@ -176,24 +186,6 @@ public class MsrTrainingDB implements EntityDB<MsrTraining>{
 	public static final RowMapper<MsrTraining> ALIAS_ROW_MAPPER = new MsrTrainingAliasRowMapper ();
 	public static final class  MsrTrainingAliasRowMapper implements RowMapper<MsrTraining>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadMsr = false;
-		public void setLoadMsr (boolean loadMsr)
-		{
-			this.loadMsr = loadMsr;
-		}
-
-		private boolean loadTrainingType1 = false;
-		public void setLoadTrainingType1 (boolean loadTrainingType1)
-		{
-			this.loadTrainingType1 = loadTrainingType1;
-		}
-
 		public MsrTraining mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			MsrTraining obj = new MsrTraining();
@@ -221,10 +213,6 @@ public class MsrTrainingDB implements EntityDB<MsrTraining>{
 			if (rs.wasNull()) obj.setReactionLevel(null);
 			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setOldId(null);
-			if (this.loadAllFKeys || this.loadMsr)
-				obj.setMsr(MsrDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadTrainingType1)
-				obj.setTrainingType1(StpTrainingTypeDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -242,6 +230,22 @@ public class MsrTrainingDB implements EntityDB<MsrTraining>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<MsrTraining> getEntityClass() {
+		return MsrTraining.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

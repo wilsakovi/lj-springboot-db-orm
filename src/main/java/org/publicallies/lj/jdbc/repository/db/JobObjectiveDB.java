@@ -1,11 +1,12 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
+import org.publicallies.lj.jdbc.model.JobObjective;
 import java.sql.ResultSet;
-import org.publicallies.lj.jdbc.JobObjective;
 import java.util.Map;
 import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
@@ -41,7 +42,11 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public JobObjectiveRowMapper getRowMappers() {
+		return new JobObjectiveRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<JobObjective> 
 	{
 		ID("id", false, ""),
 		TITLE("title", false, ""),
@@ -112,6 +117,11 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<JobObjectiveDB> getEntityDBClass() {
+			return JobObjectiveDB.class;
+		}
 	}
 
 	public JobObjectiveDB ()
@@ -198,18 +208,6 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 	public static final RowMapper<JobObjective> ALIAS_ROW_MAPPER = new JobObjectiveAliasRowMapper ();
 	public static final class  JobObjectiveAliasRowMapper implements RowMapper<JobObjective>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadJob = false;
-		public void setLoadJob (boolean loadJob)
-		{
-			this.loadJob = loadJob;
-		}
-
 		public JobObjective mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			JobObjective obj = new JobObjective();
@@ -247,8 +245,6 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 			if (rs.wasNull()) obj.setProgramYearId(null);
 			obj.setApprovedFlag(rs.getInt(COLUMNS.APPROVED_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setApprovedFlag(null);
-			if (this.loadAllFKeys || this.loadJob)
-				obj.setJob(JobDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -266,6 +262,22 @@ public class JobObjectiveDB implements EntityDB<JobObjective>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<JobObjective> getEntityClass() {
+		return JobObjective.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

@@ -1,10 +1,11 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
-import org.publicallies.lj.jdbc.MsrVolunteer;
 import org.publicallies.lj.jdbc.common.EntityDB;
+import org.publicallies.lj.jdbc.model.MsrVolunteer;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -41,7 +42,11 @@ public class MsrVolunteerDB implements EntityDB<MsrVolunteer>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public MsrVolunteerRowMapper getRowMappers() {
+		return new MsrVolunteerRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<MsrVolunteer> 
 	{
 		ID("id", false, ""),
 		TOTAL_VOLUNTEER_HOURS("total_volunteer_hours", false, ""),
@@ -111,6 +116,11 @@ public class MsrVolunteerDB implements EntityDB<MsrVolunteer>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<MsrVolunteerDB> getEntityDBClass() {
+			return MsrVolunteerDB.class;
+		}
 	}
 
 	public MsrVolunteerDB ()
@@ -193,18 +203,6 @@ public class MsrVolunteerDB implements EntityDB<MsrVolunteer>{
 	public static final RowMapper<MsrVolunteer> ALIAS_ROW_MAPPER = new MsrVolunteerAliasRowMapper ();
 	public static final class  MsrVolunteerAliasRowMapper implements RowMapper<MsrVolunteer>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadMsr = false;
-		public void setLoadMsr (boolean loadMsr)
-		{
-			this.loadMsr = loadMsr;
-		}
-
 		public MsrVolunteer mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			MsrVolunteer obj = new MsrVolunteer();
@@ -240,8 +238,6 @@ public class MsrVolunteerDB implements EntityDB<MsrVolunteer>{
 			if (rs.wasNull()) obj.setPosCommentDate(null);
 			obj.setStaffCommentDate(rs.getTimestamp(COLUMNS.STAFF_COMMENT_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setStaffCommentDate(null);
-			if (this.loadAllFKeys || this.loadMsr)
-				obj.setMsr(MsrDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -259,6 +255,22 @@ public class MsrVolunteerDB implements EntityDB<MsrVolunteer>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<MsrVolunteer> getEntityClass() {
+		return MsrVolunteer.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

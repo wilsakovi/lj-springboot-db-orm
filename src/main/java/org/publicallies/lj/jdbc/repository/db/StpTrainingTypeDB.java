@@ -1,12 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
-import org.publicallies.lj.jdbc.StpTrainingType;
 import org.publicallies.lj.jdbc.common.EntityDB;
+import org.publicallies.lj.jdbc.model.StpTrainingType;
 import java.sql.ResultSet;
 import java.util.Map;
+import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -40,7 +42,11 @@ public class StpTrainingTypeDB implements EntityDB<StpTrainingType>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public StpTrainingTypeRowMapper getRowMappers() {
+		return new StpTrainingTypeRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<StpTrainingType> 
 	{
 		ID("id", false, ""),
 		NAME("name", false, ""),
@@ -98,6 +104,11 @@ public class StpTrainingTypeDB implements EntityDB<StpTrainingType>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<StpTrainingTypeDB> getEntityDBClass() {
+			return StpTrainingTypeDB.class;
+		}
 	}
 
 	public StpTrainingTypeDB ()
@@ -168,6 +179,22 @@ public class StpTrainingTypeDB implements EntityDB<StpTrainingType>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<StpTrainingType> getEntityClass() {
+		return StpTrainingType.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

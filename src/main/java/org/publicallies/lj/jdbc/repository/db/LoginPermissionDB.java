@@ -1,13 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
-import org.publicallies.lj.jdbc.LoginPermission;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
+import org.publicallies.lj.jdbc.model.LoginPermission;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -41,7 +42,11 @@ public class LoginPermissionDB implements EntityDB<LoginPermission>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public LoginPermissionRowMapper getRowMappers() {
+		return new LoginPermissionRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<LoginPermission> 
 	{
 		ID("id", false, ""),
 		CREATED_AT("created_at", false, ""),
@@ -103,6 +108,11 @@ public class LoginPermissionDB implements EntityDB<LoginPermission>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<LoginPermissionDB> getEntityDBClass() {
+			return LoginPermissionDB.class;
+		}
 	}
 
 	public LoginPermissionDB ()
@@ -194,6 +204,22 @@ public class LoginPermissionDB implements EntityDB<LoginPermission>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<LoginPermission> getEntityClass() {
+		return LoginPermission.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

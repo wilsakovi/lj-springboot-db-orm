@@ -1,12 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
-import org.publicallies.lj.jdbc.StpActsCategory;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.model.StpActsCategory;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
+import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -40,7 +42,11 @@ public class StpActsCategoryDB implements EntityDB<StpActsCategory>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public StpActsCategoryRowMapper getRowMappers() {
+		return new StpActsCategoryRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<StpActsCategory> 
 	{
 		ID("id", false, ""),
 		CODE("code", false, ""),
@@ -98,6 +104,11 @@ public class StpActsCategoryDB implements EntityDB<StpActsCategory>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<StpActsCategoryDB> getEntityDBClass() {
+			return StpActsCategoryDB.class;
+		}
 	}
 
 	public StpActsCategoryDB ()
@@ -168,6 +179,22 @@ public class StpActsCategoryDB implements EntityDB<StpActsCategory>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<StpActsCategory> getEntityClass() {
+		return StpActsCategory.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

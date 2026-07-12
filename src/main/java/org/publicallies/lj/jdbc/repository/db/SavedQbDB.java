@@ -1,10 +1,11 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
+import org.publicallies.lj.jdbc.model.SavedQb;
 import org.publicallies.lj.jdbc.common.EntityDB;
-import org.publicallies.lj.jdbc.SavedQb;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -41,7 +42,11 @@ public class SavedQbDB implements EntityDB<SavedQb>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public SavedQbRowMapper getRowMappers() {
+		return new SavedQbRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<SavedQb> 
 	{
 		ID("id", false, ""),
 		QB_STATE("qb_state", true, ""),
@@ -106,6 +111,11 @@ public class SavedQbDB implements EntityDB<SavedQb>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<SavedQbDB> getEntityDBClass() {
+			return SavedQbDB.class;
+		}
 	}
 
 	public SavedQbDB ()
@@ -212,6 +222,22 @@ public class SavedQbDB implements EntityDB<SavedQb>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<SavedQb> getEntityClass() {
+		return SavedQb.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

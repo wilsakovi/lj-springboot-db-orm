@@ -1,12 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
+import org.publicallies.lj.jdbc.model.StatReportUsage;
 import org.publicallies.lj.jdbc.common.EntityDB;
-import org.publicallies.lj.jdbc.StatReportUsage;
 import java.sql.ResultSet;
 import java.util.Map;
+import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -40,7 +42,11 @@ public class StatReportUsageDB implements EntityDB<StatReportUsage>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public StatReportUsageRowMapper getRowMappers() {
+		return new StatReportUsageRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<StatReportUsage> 
 	{
 		ID("id", false, ""),
 		STAT_YEAR("stat_year", false, ""),
@@ -102,6 +108,11 @@ public class StatReportUsageDB implements EntityDB<StatReportUsage>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<StatReportUsageDB> getEntityDBClass() {
+			return StatReportUsageDB.class;
+		}
 	}
 
 	public StatReportUsageDB ()
@@ -156,18 +167,6 @@ public class StatReportUsageDB implements EntityDB<StatReportUsage>{
 	public static final RowMapper<StatReportUsage> ALIAS_ROW_MAPPER = new StatReportUsageAliasRowMapper ();
 	public static final class  StatReportUsageAliasRowMapper implements RowMapper<StatReportUsage>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadSite = false;
-		public void setLoadSite (boolean loadSite)
-		{
-			this.loadSite = loadSite;
-		}
-
 		public StatReportUsage mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			StatReportUsage obj = new StatReportUsage();
@@ -187,8 +186,6 @@ public class StatReportUsageDB implements EntityDB<StatReportUsage>{
 			if (rs.wasNull()) obj.setGenerateLocation(null);
 			obj.setTotal(rs.getInt(COLUMNS.TOTAL.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTotal(null);
-			if (this.loadAllFKeys || this.loadSite)
-				obj.setSite(SiteDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -206,6 +203,22 @@ public class StatReportUsageDB implements EntityDB<StatReportUsage>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<StatReportUsage> getEntityClass() {
+		return StatReportUsage.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

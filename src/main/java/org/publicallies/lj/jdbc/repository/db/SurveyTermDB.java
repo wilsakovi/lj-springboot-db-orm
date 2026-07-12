@@ -1,12 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.model.SurveyTerm;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
-import org.publicallies.lj.jdbc.SurveyTerm;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
+import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -40,7 +42,11 @@ public class SurveyTermDB implements EntityDB<SurveyTerm>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public SurveyTermRowMapper getRowMappers() {
+		return new SurveyTermRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<SurveyTerm> 
 	{
 		ID("id", false, ""),
 		SURVEY_ID("survey_id", false, ""),
@@ -97,6 +103,11 @@ public class SurveyTermDB implements EntityDB<SurveyTerm>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<SurveyTermDB> getEntityDBClass() {
+			return SurveyTermDB.class;
+		}
 	}
 
 	public SurveyTermDB ()
@@ -136,24 +147,6 @@ public class SurveyTermDB implements EntityDB<SurveyTerm>{
 	public static final RowMapper<SurveyTerm> ALIAS_ROW_MAPPER = new SurveyTermAliasRowMapper ();
 	public static final class  SurveyTermAliasRowMapper implements RowMapper<SurveyTerm>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadSurvey = false;
-		public void setLoadSurvey (boolean loadSurvey)
-		{
-			this.loadSurvey = loadSurvey;
-		}
-
-		private boolean loadTerm = false;
-		public void setLoadTerm (boolean loadTerm)
-		{
-			this.loadTerm = loadTerm;
-		}
-
 		public SurveyTerm mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			SurveyTerm obj = new SurveyTerm();
@@ -163,10 +156,6 @@ public class SurveyTermDB implements EntityDB<SurveyTerm>{
 			if (rs.wasNull()) obj.setSurveyId(null);
 			obj.setTermId(rs.getShort(COLUMNS.TERM_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTermId(null);
-			if (this.loadAllFKeys || this.loadSurvey)
-				obj.setSurvey(SurveyDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadTerm)
-				obj.setTerm(TermDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -184,6 +173,22 @@ public class SurveyTermDB implements EntityDB<SurveyTerm>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<SurveyTerm> getEntityClass() {
+		return SurveyTerm.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

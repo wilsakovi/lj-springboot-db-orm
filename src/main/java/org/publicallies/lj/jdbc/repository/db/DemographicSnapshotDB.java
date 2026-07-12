@@ -1,10 +1,11 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
-import org.publicallies.lj.jdbc.DemographicSnapshot;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
+import org.publicallies.lj.jdbc.model.DemographicSnapshot;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -41,7 +42,11 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public DemographicSnapshotRowMapper getRowMappers() {
+		return new DemographicSnapshotRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<DemographicSnapshot> 
 	{
 		ID("id", false, ""),
 		ALLY_PROFILE_ID("ally_profile_id", false, ""),
@@ -147,6 +152,11 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<DemographicSnapshotDB> getEntityDBClass() {
+			return DemographicSnapshotDB.class;
+		}
 	}
 
 	public DemographicSnapshotDB ()
@@ -336,18 +346,6 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 	public static final RowMapper<DemographicSnapshot> ALIAS_ROW_MAPPER = new DemographicSnapshotAliasRowMapper ();
 	public static final class  DemographicSnapshotAliasRowMapper implements RowMapper<DemographicSnapshot>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadAllyProfile = false;
-		public void setLoadAllyProfile (boolean loadAllyProfile)
-		{
-			this.loadAllyProfile = loadAllyProfile;
-		}
-
 		public DemographicSnapshot mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			DemographicSnapshot obj = new DemographicSnapshot();
@@ -455,8 +453,6 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 			if (rs.wasNull()) obj.setGrownServedCityFlag(null);
 			obj.setParticipatePoProgramFlag(rs.getString(COLUMNS.PARTICIPATE_PO_PROGRAM_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setParticipatePoProgramFlag(null);
-			if (this.loadAllFKeys || this.loadAllyProfile)
-				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -474,6 +470,22 @@ public class DemographicSnapshotDB implements EntityDB<DemographicSnapshot>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<DemographicSnapshot> getEntityClass() {
+		return DemographicSnapshot.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

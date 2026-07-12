@@ -1,11 +1,12 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
-import org.publicallies.lj.jdbc.Document;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
+import org.publicallies.lj.jdbc.model.Document;
 import java.util.Map;
 import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
@@ -41,7 +42,11 @@ public class DocumentDB implements EntityDB<Document>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public DocumentRowMapper getRowMappers() {
+		return new DocumentRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<Document> 
 	{
 		ID("id", false, ""),
 		OLD_ID("old_id", false, ""),
@@ -114,6 +119,11 @@ public class DocumentDB implements EntityDB<Document>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<DocumentDB> getEntityDBClass() {
+			return DocumentDB.class;
+		}
 	}
 
 	public DocumentDB ()
@@ -203,24 +213,6 @@ public class DocumentDB implements EntityDB<Document>{
 	public static final RowMapper<Document> ALIAS_ROW_MAPPER = new DocumentAliasRowMapper ();
 	public static final class  DocumentAliasRowMapper implements RowMapper<Document>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadDocumentType = false;
-		public void setLoadDocumentType (boolean loadDocumentType)
-		{
-			this.loadDocumentType = loadDocumentType;
-		}
-
-		private boolean loadStaff = false;
-		public void setLoadStaff (boolean loadStaff)
-		{
-			this.loadStaff = loadStaff;
-		}
-
 		public Document mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			Document obj = new Document();
@@ -262,10 +254,6 @@ public class DocumentDB implements EntityDB<Document>{
 			if (rs.wasNull()) obj.setSiteProfileId(null);
 			obj.setStaffId(rs.getInt(COLUMNS.STAFF_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setStaffId(null);
-			if (this.loadAllFKeys || this.loadDocumentType)
-				obj.setDocumentType(DocumentTypeDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadStaff)
-				obj.setStaff(StaffDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -283,6 +271,22 @@ public class DocumentDB implements EntityDB<Document>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<Document> getEntityClass() {
+		return Document.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

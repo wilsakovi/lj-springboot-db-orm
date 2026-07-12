@@ -1,12 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.model.CapacityBuildingActivities;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
-import org.publicallies.lj.jdbc.CapacityBuildingActivities;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
+import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -40,7 +42,11 @@ public class CapacityBuildingActivitiesDB implements EntityDB<CapacityBuildingAc
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public CapacityBuildingActivitiesRowMapper getRowMappers() {
+		return new CapacityBuildingActivitiesRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<CapacityBuildingActivities> 
 	{
 		ID("id", false, ""),
 		NAME("name", false, ""),
@@ -99,6 +105,11 @@ public class CapacityBuildingActivitiesDB implements EntityDB<CapacityBuildingAc
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<CapacityBuildingActivitiesDB> getEntityDBClass() {
+			return CapacityBuildingActivitiesDB.class;
+		}
 	}
 
 	public CapacityBuildingActivitiesDB ()
@@ -144,18 +155,6 @@ public class CapacityBuildingActivitiesDB implements EntityDB<CapacityBuildingAc
 	public static final RowMapper<CapacityBuildingActivities> ALIAS_ROW_MAPPER = new CapacityBuildingActivitiesAliasRowMapper ();
 	public static final class  CapacityBuildingActivitiesAliasRowMapper implements RowMapper<CapacityBuildingActivities>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadActivityArea = false;
-		public void setLoadActivityArea (boolean loadActivityArea)
-		{
-			this.loadActivityArea = loadActivityArea;
-		}
-
 		public CapacityBuildingActivities mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			CapacityBuildingActivities obj = new CapacityBuildingActivities();
@@ -169,8 +168,6 @@ public class CapacityBuildingActivitiesDB implements EntityDB<CapacityBuildingAc
 			if (rs.wasNull()) obj.setActivityAreaId(null);
 			obj.setActiveFlag(rs.getByte(COLUMNS.ACTIVE_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
-			if (this.loadAllFKeys || this.loadActivityArea)
-				obj.setActivityArea(ActivityAreaDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -188,6 +185,22 @@ public class CapacityBuildingActivitiesDB implements EntityDB<CapacityBuildingAc
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<CapacityBuildingActivities> getEntityClass() {
+		return CapacityBuildingActivities.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

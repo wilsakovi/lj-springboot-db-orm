@@ -1,18 +1,7 @@
 package org.publicallies.lj.jdbc.repository;
 
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
-import org.springframework.jdbc.core.JdbcOperations;
-import org.jboss.logging.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import java.util.HashMap;
-import com.nurkiewicz.jdbcrepository.JdbcRepository;
-import java.util.ArrayList;
-import org.publicallies.lj.jdbc.LjTask;
-import java.util.List;
-import org.publicallies.lj.jdbc.repository.db.LjTaskDB;
-import java.util.Map;
-import org.springframework.jdbc.core.RowMapper;
-import java.util.Optional;
+import org.publicallies.lj.jdbc.model.LjTask;
+import org.publicallies.lj.jdbc.common.LjJdbcRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -21,90 +10,8 @@ import org.springframework.stereotype.Repository;
  * @author Spring Data Jdbc Code Generator
  */
 @Repository
-public class LjTaskRepository extends JdbcRepository<LjTask, Integer>
+public interface LjTaskRepository extends LjJdbcRepository<LjTask, Integer>
 {
-
-	final static Logger logger = Logger.getLogger (LjTaskRepository.class);
-
-	@Autowired
-	private JdbcOperations jdbcOperations;
-
-	protected JdbcOperations getJdbcOperations()
-	{
-		return this.jdbcOperations;
-	}
-
-	public LjTaskRepository()
-	{
-		super (LjTaskDB.ROW_MAPPER, LjTaskDB.ROW_UNMAPPER, LjTaskDB.getTableName ());
-	}
-
-	public LjTaskRepository(RowMapper<LjTask> rowMapper, RowUnmapper<LjTask> rowUnmapper, String idColumn)
-	{
-		super (LjTaskDB.ROW_MAPPER, LjTaskDB.ROW_UNMAPPER, LjTaskDB.getTableName (), idColumn);
-	}
-
-	@Override
-	protected LjTask postCreate(LjTask entity, Number generatedId)
-	{
-		entity.setId(generatedId.intValue());
-		entity.setPersisted(true);
-		return entity;
-	}
-
-
-	public List<LjTask> getByFieldName(LjTaskDB.COLUMNS column, Object val)
-	{
-		String sql = "select * from " + LjTaskDB.getTableName() + " where " + column.getColumnName() +  " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { val  }, LjTaskDB.ROW_MAPPER);
-	}
-
-
-	public List<LjTask> getByFieldNames(Map<LjTaskDB.COLUMNS, Object> params) throws Exception
-	{
-		List<Object> args =  new ArrayList<>();
-		if (params != null && params.size() > 0 ) {
-			StringBuilder sb = new StringBuilder("SELECT * ");
-			sb.append(" FROM " +LjTaskDB.getTableName());
-			sb.append(" WHERE ");
-			String prefix = "";
-			for (Map.Entry<LjTaskDB.COLUMNS, Object> entry: params.entrySet()) {
-				sb.append(prefix + " " + entry.getKey().getColumnName() + " = ? " );
-				prefix = "AND ";
-				args.add(entry.getValue());
-			}
-			return this.jdbcOperations.query (sb.toString(), args.toArray(new Object[args.size()]), LjTaskDB.ROW_MAPPER);
-		} else {
-			throw new Exception ("getByFieldName has invalid arguments");
-		}	}
-
-
-	public List<LjTask> getByFieldNames(List<LjTaskDB.COLUMNS> columns, List<Object> values) throws Exception
-	{
-		if (columns == null || values == null || columns.size() == 0 || columns.size() != values.size()) {
-			throw new Exception("Invalid arguments");
-		}
-		Map<LjTaskDB.COLUMNS, Object> map = new HashMap<>();
-		for (int i = 0; i < columns.size(); i++) {
-			map.put(columns.get(i), values.get(i));
-		}
-		return  getByFieldNames(map);	}
-
-
-	public Optional<LjTask> getOneByFieldNameNotNull(LjTaskDB.COLUMNS column, Object val)
-	{
-		 if (val == null) { return Optional.empty(); } 
-		String sql = "select * from " + LjTaskDB.getTableName() + " where " + column.getColumnName() +  " = ? ";
-		List<LjTask> list =  this.jdbcOperations.query (sql, new Object[] { val  }, LjTaskDB.ROW_MAPPER);
-		 if (list != null && list.size() == 1) { return Optional.of(list.get(0)); } 
-		 return Optional.empty(); 
-	}
-
-
-
-	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
-
-	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 }
 

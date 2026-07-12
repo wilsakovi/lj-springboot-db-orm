@@ -1,9 +1,10 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
-import org.publicallies.lj.jdbc.SurveySiteProfile;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
+import org.publicallies.lj.jdbc.model.SurveySiteProfile;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
@@ -41,7 +42,11 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public SurveySiteProfileRowMapper getRowMappers() {
+		return new SurveySiteProfileRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<SurveySiteProfile> 
 	{
 		ID("id", false, ""),
 		SURVEY_ID("survey_id", false, ""),
@@ -120,6 +125,11 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<SurveySiteProfileDB> getEntityDBClass() {
+			return SurveySiteProfileDB.class;
+		}
 	}
 
 	public SurveySiteProfileDB ()
@@ -229,36 +239,6 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 	public static final RowMapper<SurveySiteProfile> ALIAS_ROW_MAPPER = new SurveySiteProfileAliasRowMapper ();
 	public static final class  SurveySiteProfileAliasRowMapper implements RowMapper<SurveySiteProfile>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadCollector = false;
-		public void setLoadCollector (boolean loadCollector)
-		{
-			this.loadCollector = loadCollector;
-		}
-
-		private boolean loadRespondentGroup = false;
-		public void setLoadRespondentGroup (boolean loadRespondentGroup)
-		{
-			this.loadRespondentGroup = loadRespondentGroup;
-		}
-
-		private boolean loadSiteProfile = false;
-		public void setLoadSiteProfile (boolean loadSiteProfile)
-		{
-			this.loadSiteProfile = loadSiteProfile;
-		}
-
-		private boolean loadSurvey = false;
-		public void setLoadSurvey (boolean loadSurvey)
-		{
-			this.loadSurvey = loadSurvey;
-		}
-
 		public SurveySiteProfile mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			SurveySiteProfile obj = new SurveySiteProfile();
@@ -312,14 +292,6 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 			if (rs.wasNull()) obj.setAllyProgramStatusFlag(null);
 			obj.setGraduateStatusIds(rs.getString(COLUMNS.GRADUATE_STATUS_IDS.getColumnAliasName()));
 			if (rs.wasNull()) obj.setGraduateStatusIds(null);
-			if (this.loadAllFKeys || this.loadCollector)
-				obj.setCollector(SurveyCollectorDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadRespondentGroup)
-				obj.setRespondentGroup(StpSurveyRtypeDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadSiteProfile)
-				obj.setSiteProfile(SiteProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadSurvey)
-				obj.setSurvey(SurveyDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -337,6 +309,22 @@ public class SurveySiteProfileDB implements EntityDB<SurveySiteProfile>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<SurveySiteProfile> getEntityClass() {
+		return SurveySiteProfile.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

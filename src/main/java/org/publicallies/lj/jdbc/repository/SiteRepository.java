@@ -1,18 +1,8 @@
 package org.publicallies.lj.jdbc.repository;
 
-import org.publicallies.lj.jdbc.Site;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
-import org.springframework.jdbc.core.JdbcOperations;
-import org.jboss.logging.Logger;
-import org.publicallies.lj.jdbc.repository.db.SiteDB;
-import org.springframework.beans.factory.annotation.Autowired;
-import java.util.HashMap;
-import com.nurkiewicz.jdbcrepository.JdbcRepository;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import org.springframework.jdbc.core.RowMapper;
-import java.util.Optional;
+import org.publicallies.lj.jdbc.common.LjJdbcRepository;
+import org.publicallies.lj.jdbc.model.Site;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -21,96 +11,8 @@ import org.springframework.stereotype.Repository;
  * @author Spring Data Jdbc Code Generator
  */
 @Repository
-public class SiteRepository extends JdbcRepository<Site, Short>
+public interface SiteRepository extends LjJdbcRepository<Site, Short>
 {
-
-	final static Logger logger = Logger.getLogger (SiteRepository.class);
-
-	@Autowired
-	private JdbcOperations jdbcOperations;
-
-	protected JdbcOperations getJdbcOperations()
-	{
-		return this.jdbcOperations;
-	}
-
-	public SiteRepository()
-	{
-		super (SiteDB.ROW_MAPPER, SiteDB.ROW_UNMAPPER, SiteDB.getTableName ());
-	}
-
-	public SiteRepository(RowMapper<Site> rowMapper, RowUnmapper<Site> rowUnmapper, String idColumn)
-	{
-		super (SiteDB.ROW_MAPPER, SiteDB.ROW_UNMAPPER, SiteDB.getTableName (), idColumn);
-	}
-
-	@Override
-	protected Site postCreate(Site entity, Number generatedId)
-	{
-		entity.setId(generatedId.shortValue());
-		entity.setPersisted(true);
-		return entity;
-	}
-
-
-	public List<Site> getByFieldName(SiteDB.COLUMNS column, Object val)
-	{
-		String sql = "select * from " + SiteDB.getTableName() + " where " + column.getColumnName() +  " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { val  }, SiteDB.ROW_MAPPER);
-	}
-
-
-	public List<Site> getByFieldNames(Map<SiteDB.COLUMNS, Object> params) throws Exception
-	{
-		List<Object> args =  new ArrayList<>();
-		if (params != null && params.size() > 0 ) {
-			StringBuilder sb = new StringBuilder("SELECT * ");
-			sb.append(" FROM " +SiteDB.getTableName());
-			sb.append(" WHERE ");
-			String prefix = "";
-			for (Map.Entry<SiteDB.COLUMNS, Object> entry: params.entrySet()) {
-				sb.append(prefix + " " + entry.getKey().getColumnName() + " = ? " );
-				prefix = "AND ";
-				args.add(entry.getValue());
-			}
-			return this.jdbcOperations.query (sb.toString(), args.toArray(new Object[args.size()]), SiteDB.ROW_MAPPER);
-		} else {
-			throw new Exception ("getByFieldName has invalid arguments");
-		}	}
-
-
-	public List<Site> getByFieldNames(List<SiteDB.COLUMNS> columns, List<Object> values) throws Exception
-	{
-		if (columns == null || values == null || columns.size() == 0 || columns.size() != values.size()) {
-			throw new Exception("Invalid arguments");
-		}
-		Map<SiteDB.COLUMNS, Object> map = new HashMap<>();
-		for (int i = 0; i < columns.size(); i++) {
-			map.put(columns.get(i), values.get(i));
-		}
-		return  getByFieldNames(map);	}
-
-
-	public Optional<Site> getOneByFieldNameNotNull(SiteDB.COLUMNS column, Object val)
-	{
-		 if (val == null) { return Optional.empty(); } 
-		String sql = "select * from " + SiteDB.getTableName() + " where " + column.getColumnName() +  " = ? ";
-		List<Site> list =  this.jdbcOperations.query (sql, new Object[] { val  }, SiteDB.ROW_MAPPER);
-		 if (list != null && list.size() == 1) { return Optional.of(list.get(0)); } 
-		 return Optional.empty(); 
-	}
-
-
-	public List<Site> getSitesByStateId (Long stateId)
-	{
-		String sql = "select * from " + SiteDB.getTableName() + " where " + SiteDB.COLUMNS.STATE_ID.getColumnName() + " = ? ";
-		return this.jdbcOperations.query (sql, new Object[] { stateId }, SiteDB.ROW_MAPPER);
-	}
-
-
-	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
-
-	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 }
 

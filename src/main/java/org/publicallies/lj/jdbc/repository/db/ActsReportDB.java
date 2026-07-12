@@ -1,10 +1,11 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
+import org.publicallies.lj.jdbc.model.ActsReport;
 import org.publicallies.lj.jdbc.common.EntityDB;
-import org.publicallies.lj.jdbc.ActsReport;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -41,7 +42,11 @@ public class ActsReportDB implements EntityDB<ActsReport>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public ActsReportRowMapper getRowMappers() {
+		return new ActsReportRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<ActsReport> 
 	{
 		ID("id", false, ""),
 		SUCCESS_NOTE("success_note", false, ""),
@@ -112,6 +117,11 @@ public class ActsReportDB implements EntityDB<ActsReport>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<ActsReportDB> getEntityDBClass() {
+			return ActsReportDB.class;
+		}
 	}
 
 	public ActsReportDB ()
@@ -196,18 +206,6 @@ public class ActsReportDB implements EntityDB<ActsReport>{
 	public static final RowMapper<ActsReport> ALIAS_ROW_MAPPER = new ActsReportAliasRowMapper ();
 	public static final class  ActsReportAliasRowMapper implements RowMapper<ActsReport>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadObjective = false;
-		public void setLoadObjective (boolean loadObjective)
-		{
-			this.loadObjective = loadObjective;
-		}
-
 		public ActsReport mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			ActsReport obj = new ActsReport();
@@ -245,8 +243,6 @@ public class ActsReportDB implements EntityDB<ActsReport>{
 			if (rs.wasNull()) obj.setReviewNote(null);
 			obj.setReviewSubmittedDate(rs.getTimestamp(COLUMNS.REVIEW_SUBMITTED_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setReviewSubmittedDate(null);
-			if (this.loadAllFKeys || this.loadObjective)
-				obj.setObjective(ActsObjectiveDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -264,6 +260,22 @@ public class ActsReportDB implements EntityDB<ActsReport>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<ActsReport> getEntityClass() {
+		return ActsReport.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

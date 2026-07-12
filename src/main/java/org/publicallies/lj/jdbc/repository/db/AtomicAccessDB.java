@@ -1,12 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
-import org.publicallies.lj.jdbc.AtomicAccess;
+import org.publicallies.lj.jdbc.model.AtomicAccess;
 import java.util.Map;
+import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -40,7 +42,11 @@ public class AtomicAccessDB implements EntityDB<AtomicAccess>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public AtomicAccessRowMapper getRowMappers() {
+		return new AtomicAccessRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<AtomicAccess> 
 	{
 		ID("id", false, ""),
 		CODE("code", false, ""),
@@ -101,6 +107,11 @@ public class AtomicAccessDB implements EntityDB<AtomicAccess>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<AtomicAccessDB> getEntityDBClass() {
+			return AtomicAccessDB.class;
+		}
 	}
 
 	public AtomicAccessDB ()
@@ -152,18 +163,6 @@ public class AtomicAccessDB implements EntityDB<AtomicAccess>{
 	public static final RowMapper<AtomicAccess> ALIAS_ROW_MAPPER = new AtomicAccessAliasRowMapper ();
 	public static final class  AtomicAccessAliasRowMapper implements RowMapper<AtomicAccess>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadType1 = false;
-		public void setLoadType1 (boolean loadType1)
-		{
-			this.loadType1 = loadType1;
-		}
-
 		public AtomicAccess mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			AtomicAccess obj = new AtomicAccess();
@@ -181,8 +180,6 @@ public class AtomicAccessDB implements EntityDB<AtomicAccess>{
 			if (rs.wasNull()) obj.setType(null);
 			obj.setDescrtiption(rs.getString(COLUMNS.DESCRTIPTION.getColumnAliasName()));
 			if (rs.wasNull()) obj.setDescrtiption(null);
-			if (this.loadAllFKeys || this.loadType1)
-				obj.setType1(RefTableDataDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -200,6 +197,22 @@ public class AtomicAccessDB implements EntityDB<AtomicAccess>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<AtomicAccess> getEntityClass() {
+		return AtomicAccess.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

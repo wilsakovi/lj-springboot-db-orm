@@ -1,12 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
 import org.publicallies.lj.jdbc.common.EntityDB;
-import org.publicallies.lj.jdbc.JobAssessment;
+import org.publicallies.lj.jdbc.model.JobAssessment;
 import java.sql.ResultSet;
 import java.util.Map;
+import java.sql.Timestamp;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -40,7 +42,11 @@ public class JobAssessmentDB implements EntityDB<JobAssessment>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public JobAssessmentRowMapper getRowMappers() {
+		return new JobAssessmentRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<JobAssessment> 
 	{
 		ID("id", false, ""),
 		JOB_ID("job_id", false, ""),
@@ -99,6 +105,11 @@ public class JobAssessmentDB implements EntityDB<JobAssessment>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<JobAssessmentDB> getEntityDBClass() {
+			return JobAssessmentDB.class;
+		}
 	}
 
 	public JobAssessmentDB ()
@@ -144,24 +155,6 @@ public class JobAssessmentDB implements EntityDB<JobAssessment>{
 	public static final RowMapper<JobAssessment> ALIAS_ROW_MAPPER = new JobAssessmentAliasRowMapper ();
 	public static final class  JobAssessmentAliasRowMapper implements RowMapper<JobAssessment>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadJob = false;
-		public void setLoadJob (boolean loadJob)
-		{
-			this.loadJob = loadJob;
-		}
-
-		private boolean loadOutputMeasure = false;
-		public void setLoadOutputMeasure (boolean loadOutputMeasure)
-		{
-			this.loadOutputMeasure = loadOutputMeasure;
-		}
-
 		public JobAssessment mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			JobAssessment obj = new JobAssessment();
@@ -175,10 +168,6 @@ public class JobAssessmentDB implements EntityDB<JobAssessment>{
 			if (rs.wasNull()) obj.setPreAssessRank(null);
 			obj.setPostAssessRank(rs.getFloat(COLUMNS.POST_ASSESS_RANK.getColumnAliasName()));
 			if (rs.wasNull()) obj.setPostAssessRank(null);
-			if (this.loadAllFKeys || this.loadJob)
-				obj.setJob(JobDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadOutputMeasure)
-				obj.setOutputMeasure(OutputMeasureDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -196,6 +185,22 @@ public class JobAssessmentDB implements EntityDB<JobAssessment>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<JobAssessment> getEntityClass() {
+		return JobAssessment.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

@@ -1,12 +1,14 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
-import org.publicallies.lj.jdbc.StpPathwaysType;
 import org.publicallies.lj.jdbc.common.EntityDB;
 import java.sql.ResultSet;
 import java.util.Map;
+import java.sql.Timestamp;
+import org.publicallies.lj.jdbc.model.StpPathwaysType;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
@@ -40,7 +42,11 @@ public class StpPathwaysTypeDB implements EntityDB<StpPathwaysType>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public StpPathwaysTypeRowMapper getRowMappers() {
+		return new StpPathwaysTypeRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<StpPathwaysType> 
 	{
 		ID("id", false, ""),
 		CODE("code", false, ""),
@@ -97,6 +103,11 @@ public class StpPathwaysTypeDB implements EntityDB<StpPathwaysType>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<StpPathwaysTypeDB> getEntityDBClass() {
+			return StpPathwaysTypeDB.class;
+		}
 	}
 
 	public StpPathwaysTypeDB ()
@@ -162,6 +173,22 @@ public class StpPathwaysTypeDB implements EntityDB<StpPathwaysType>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<StpPathwaysType> getEntityClass() {
+		return StpPathwaysType.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/

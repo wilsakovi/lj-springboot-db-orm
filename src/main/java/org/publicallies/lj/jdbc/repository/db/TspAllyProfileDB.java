@@ -1,10 +1,11 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+import org.publicallies.lj.jdbc.common.DbColumn;
+import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
-import com.nurkiewicz.jdbcrepository.RowUnmapper;
+import org.publicallies.lj.jdbc.model.TspAllyProfile;
 import org.publicallies.lj.jdbc.common.EntityDB;
-import org.publicallies.lj.jdbc.TspAllyProfile;
 import java.sql.ResultSet;
 import java.util.Map;
 import java.sql.Timestamp;
@@ -41,7 +42,11 @@ public class TspAllyProfileDB implements EntityDB<TspAllyProfile>{
 		return (useAlias[0] ? TABLE_ALIAS : TABLE_NAME) + ".*";
 	}
 
-	public enum COLUMNS
+	@Override
+	public TspAllyProfileRowMapper getRowMappers() {
+		return new TspAllyProfileRowMapper();
+	}
+	public enum COLUMNS implements DbColumn<TspAllyProfile> 
 	{
 		ID("id", false, ""),
 		ALLY_PROFILE_ID("ally_profile_id", false, ""),
@@ -107,6 +112,11 @@ public class TspAllyProfileDB implements EntityDB<TspAllyProfile>{
 			return TABLE_ALIAS + "_" + this.columnName;
 		}
 
+
+		@Override
+		public Class<TspAllyProfileDB> getEntityDBClass() {
+			return TspAllyProfileDB.class;
+		}
 	}
 
 	public TspAllyProfileDB ()
@@ -175,24 +185,6 @@ public class TspAllyProfileDB implements EntityDB<TspAllyProfile>{
 	public static final RowMapper<TspAllyProfile> ALIAS_ROW_MAPPER = new TspAllyProfileAliasRowMapper ();
 	public static final class  TspAllyProfileAliasRowMapper implements RowMapper<TspAllyProfile>
 	{
-		private boolean loadAllFKeys = false;
-		public void setLoadAllFKeys (boolean loadAllFKeys)
-		{
-			this.loadAllFKeys = loadAllFKeys;
-		}
-
-		private boolean loadAllyProfile = false;
-		public void setLoadAllyProfile (boolean loadAllyProfile)
-		{
-			this.loadAllyProfile = loadAllyProfile;
-		}
-
-		private boolean loadTsp = false;
-		public void setLoadTsp (boolean loadTsp)
-		{
-			this.loadTsp = loadTsp;
-		}
-
 		public TspAllyProfile mapRow(ResultSet rs, int rowNum) throws SQLException 
 		{
 			TspAllyProfile obj = new TspAllyProfile();
@@ -220,10 +212,6 @@ public class TspAllyProfileDB implements EntityDB<TspAllyProfile>{
 			if (rs.wasNull()) obj.setGoals(null);
 			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnAliasName()));
 			if (rs.wasNull()) obj.setHistory(null);
-			if (this.loadAllFKeys || this.loadAllyProfile)
-				obj.setAllyProfile(AllyProfileDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
-			if (this.loadAllFKeys || this.loadTsp)
-				obj.setTsp(TspDB.ALIAS_ROW_MAPPER.mapRow(rs, rowNum));
 			return obj;
 		}
 	}
@@ -241,6 +229,22 @@ public class TspAllyProfileDB implements EntityDB<TspAllyProfile>{
 		return strBuf;
 	}
 
+	@Override
+	public String getTableRawName() {
+		return getTableName();
+	}
+	@Override
+	public String getTableFullAlias() {
+		return getTableAlias();
+	}
+	@Override
+	public String getTableRawAlias() {
+		return getAlias();
+	}
+	@Override
+	public Class<TspAllyProfile> getEntityClass() {
+		return TspAllyProfile.class;
+	}
 	/* START Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
 
 	/* END Do not remove/edit this line. CodeGenerator will preserve any code between start and end tags.*/
