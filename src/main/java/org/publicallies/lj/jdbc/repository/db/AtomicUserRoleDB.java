@@ -58,7 +58,7 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 		ACTIVE_FLAG("active_flag", false, ""),
 		EDITABLE_FLAG("editable_flag", false, ""),
 		REQUIRED_SITE_FLAG("required_site_flag", false, ""),
-		HOMEPAGE("homePage", false, ""),
+		HOME_PAGE("home_page", false, ""),
 		;
 
 		private String columnName;
@@ -149,7 +149,7 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 			if (rs.wasNull()) obj.setEditableFlag(null);
 			obj.setRequiredSiteFlag(rs.getByte(COLUMNS.REQUIRED_SITE_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setRequiredSiteFlag(null);
-			obj.setHomePage(rs.getString(COLUMNS.HOMEPAGE.getColumnName()));
+			obj.setHomePage(rs.getString(COLUMNS.HOME_PAGE.getColumnName()));
 			if (rs.wasNull()) obj.setHomePage(null);
 			return obj;
 		}
@@ -172,7 +172,7 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), atomicuserrole.getActiveFlag());
 			mapping.put(COLUMNS.EDITABLE_FLAG.getColumnName(), atomicuserrole.getEditableFlag());
 			mapping.put(COLUMNS.REQUIRED_SITE_FLAG.getColumnName(), atomicuserrole.getRequiredSiteFlag());
-			mapping.put(COLUMNS.HOMEPAGE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicuserrole.getHomePage()));
+			mapping.put(COLUMNS.HOME_PAGE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(atomicuserrole.getHomePage()));
 			return mapping;
 		}
 	}
@@ -203,7 +203,7 @@ public class AtomicUserRoleDB implements EntityDB<AtomicUserRole>{
 			if (rs.wasNull()) obj.setEditableFlag(null);
 			obj.setRequiredSiteFlag(rs.getByte(COLUMNS.REQUIRED_SITE_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setRequiredSiteFlag(null);
-			obj.setHomePage(rs.getString(COLUMNS.HOMEPAGE.getColumnAliasName()));
+			obj.setHomePage(rs.getString(COLUMNS.HOME_PAGE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setHomePage(null);
 			return obj;
 		}

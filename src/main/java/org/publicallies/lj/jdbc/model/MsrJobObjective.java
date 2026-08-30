@@ -38,7 +38,7 @@ public class MsrJobObjective implements Serializable , CommonIdCUH<Integer>
 	private Integer allyProfileId;
 
 	@Column("activity_description")
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	@Lob
 	private String activityDescription;
 
@@ -58,12 +58,12 @@ public class MsrJobObjective implements Serializable , CommonIdCUH<Integer>
 	private Integer oldId;
 
 	@Column("success_comment")
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	@Lob
 	private String successComment;
 
 	@Column("learning_comment")
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	@Lob
 	private String learningComment;
 
@@ -74,12 +74,12 @@ public class MsrJobObjective implements Serializable , CommonIdCUH<Integer>
 	private Integer msrId;
 
 	@Column("recent_activity_at_po")
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	@Lob
 	private String recentActivityAtPo;
 
 	@Column("planned_activity")
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	@Lob
 	private String plannedActivity;
 
@@ -87,12 +87,12 @@ public class MsrJobObjective implements Serializable , CommonIdCUH<Integer>
 	private String history;
 
 	@Column("pos_comment")
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	@Lob
 	private String posComment;
 
 	@Column("staff_comment")
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	@Lob
 	private String staffComment;
 
@@ -111,12 +111,12 @@ public class MsrJobObjective implements Serializable , CommonIdCUH<Integer>
 	private Date staffCommentDate;
 
 	@Column("pos_commit_comment")
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	@Lob
 	private String posCommitComment;
 
 	@Column("staff_commit_comment")
-	@Size (max = 65535)
+	@Size (max = 16777215)
 	@Lob
 	private String staffCommitComment;
 

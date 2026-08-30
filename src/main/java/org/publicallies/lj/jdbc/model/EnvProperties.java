@@ -37,9 +37,9 @@ public class EnvProperties implements Serializable
 	@Size (max = 20)
 	private String keycode;
 
-	@Column("keyValue")
+	@Column("keyvalue")
 	@Size (max = 100)
-	private String keyValue;
+	private String keyvalue;
 
 	@Column("active_flag")
 	@NotNull
@@ -76,14 +76,14 @@ public class EnvProperties implements Serializable
 		return this.keycode;
 	}
 
-	public void setKeyValue (String keyValue)
+	public void setKeyvalue (String keyvalue)
 	{
-		this.keyValue = keyValue;
+		this.keyvalue = keyvalue;
 	}
 
-	public String getKeyValue ()
+	public String getKeyvalue ()
 	{
-		return this.keyValue;
+		return this.keyvalue;
 	}
 
 	public void setActiveFlag (Byte activeFlag)

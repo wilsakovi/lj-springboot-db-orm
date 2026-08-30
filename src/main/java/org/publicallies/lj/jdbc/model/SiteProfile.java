@@ -158,6 +158,9 @@ public class SiteProfile implements Serializable , CommonIdCUH<Integer>
 	@Column("msr_req_sections")
 	private String msrReqSections;
 
+	@Column("holiday_config")
+	private String holidayConfig;
+
 	@Column("history")
 	private String history;
 
@@ -548,6 +551,16 @@ public class SiteProfile implements Serializable , CommonIdCUH<Integer>
 	public String getMsrReqSections ()
 	{
 		return this.msrReqSections;
+	}
+
+	public void setHolidayConfig (String holidayConfig)
+	{
+		this.holidayConfig = holidayConfig;
+	}
+
+	public String getHolidayConfig ()
+	{
+		return this.holidayConfig;
 	}
 
 	public void setHistory (String history)

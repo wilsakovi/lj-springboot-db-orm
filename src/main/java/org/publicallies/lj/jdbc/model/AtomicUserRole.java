@@ -70,7 +70,7 @@ public class AtomicUserRole implements Serializable
 	@Column("required_site_flag")
 	private Byte requiredSiteFlag;
 
-	@Column("homePage")
+	@Column("home_page")
 	@Size (max = 65535)
 	@Lob
 	private String homePage;

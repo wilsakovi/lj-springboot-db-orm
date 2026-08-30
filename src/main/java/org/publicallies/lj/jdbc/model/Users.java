@@ -230,7 +230,7 @@ public class Users implements Serializable , CommonIdCUHLu<Integer>
 
 	@Column("account_locked_flag")
 	@NotNull
-	private Byte accountLockedFlag;
+	private Byte accountLockedFlag = 0;
 
 	@Column("paassword_temp")
 	@Size (max = 100)
@@ -293,6 +293,18 @@ public class Users implements Serializable , CommonIdCUHLu<Integer>
 	@Column("two_fa_failure_count")
 	@NotNull
 	private Integer twoFaFailureCount = 0;
+
+	@Column("password_lockout_stage")
+	@NotNull
+	private Integer passwordLockoutStage = 0;
+
+	@Column("new_app_activated")
+	@NotNull
+	private Byte newAppActivated = 0;
+
+	@Column("new_app_activated_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date newAppActivatedDate;
 
 
 	@Transient
@@ -1057,6 +1069,36 @@ public class Users implements Serializable , CommonIdCUHLu<Integer>
 	public Integer getTwoFaFailureCount ()
 	{
 		return this.twoFaFailureCount;
+	}
+
+	public void setPasswordLockoutStage (Integer passwordLockoutStage)
+	{
+		this.passwordLockoutStage = passwordLockoutStage;
+	}
+
+	public Integer getPasswordLockoutStage ()
+	{
+		return this.passwordLockoutStage;
+	}
+
+	public void setNewAppActivated (Byte newAppActivated)
+	{
+		this.newAppActivated = newAppActivated;
+	}
+
+	public Byte getNewAppActivated ()
+	{
+		return this.newAppActivated;
+	}
+
+	public void setNewAppActivatedDate (Date newAppActivatedDate)
+	{
+		this.newAppActivatedDate = newAppActivatedDate;
+	}
+
+	public Date getNewAppActivatedDate ()
+	{
+		return this.newAppActivatedDate;
 	}
 
 	public void setDefaultTerm (Term defaultTerm)

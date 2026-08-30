@@ -50,7 +50,7 @@ public class EnvPropertiesDB implements EntityDB<EnvProperties>{
 	{
 		ID("id", false, ""),
 		KEYCODE("keycode", false, ""),
-		KEYVALUE("keyValue", false, ""),
+		KEYVALUE("keyvalue", false, ""),
 		ACTIVE_FLAG("active_flag", false, ""),
 		;
 
@@ -126,8 +126,8 @@ public class EnvPropertiesDB implements EntityDB<EnvProperties>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setKeycode(rs.getString(COLUMNS.KEYCODE.getColumnName()));
 			if (rs.wasNull()) obj.setKeycode(null);
-			obj.setKeyValue(rs.getString(COLUMNS.KEYVALUE.getColumnName()));
-			if (rs.wasNull()) obj.setKeyValue(null);
+			obj.setKeyvalue(rs.getString(COLUMNS.KEYVALUE.getColumnName()));
+			if (rs.wasNull()) obj.setKeyvalue(null);
 			obj.setActiveFlag(rs.getByte(COLUMNS.ACTIVE_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
 			return obj;
@@ -142,7 +142,7 @@ public class EnvPropertiesDB implements EntityDB<EnvProperties>{
 			Map<String, Object> mapping = new LinkedHashMap<String, Object>();
 			mapping.put(COLUMNS.ID.getColumnName(), envproperties.getId());
 			mapping.put(COLUMNS.KEYCODE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(envproperties.getKeycode()));
-			mapping.put(COLUMNS.KEYVALUE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(envproperties.getKeyValue()));
+			mapping.put(COLUMNS.KEYVALUE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(envproperties.getKeyvalue()));
 			mapping.put(COLUMNS.ACTIVE_FLAG.getColumnName(), envproperties.getActiveFlag());
 			return mapping;
 		}
@@ -158,8 +158,8 @@ public class EnvPropertiesDB implements EntityDB<EnvProperties>{
 			if (rs.wasNull()) obj.setId(null);
 			obj.setKeycode(rs.getString(COLUMNS.KEYCODE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setKeycode(null);
-			obj.setKeyValue(rs.getString(COLUMNS.KEYVALUE.getColumnAliasName()));
-			if (rs.wasNull()) obj.setKeyValue(null);
+			obj.setKeyvalue(rs.getString(COLUMNS.KEYVALUE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setKeyvalue(null);
 			obj.setActiveFlag(rs.getByte(COLUMNS.ACTIVE_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setActiveFlag(null);
 			return obj;

@@ -771,3 +771,37 @@ CHANGE COLUMN `two_fa_failure_count` `two_fa_failure_count` INT NOT NULL DEFAULT
 alter table ally rename column initialSiteId to initial_site_id;
 alter table ally rename column initialTermId to initial_term_id
 alter table ally rename column alumni_sfId to alumni_sf_id;
+
+ALTER TABLE atomic_user_role RENAME COLUMN homePage TO home_page;
+
+ALTER TABLE env_properties RENAME COLUMN keyValue TO keyvalue;
+
+ALTER TABLE job RENAME COLUMN id_FK TO id_fk;
+
+ALTER TABLE `users`
+
+ADD COLUMN `new_app_activated` TINYINT(1) NOT NULL DEFAULT 0,
+
+ADD COLUMN `new_app_activated_date` DATETIME NULL DEFAULT NULL;
+
+====================================== 08/09/26 ===================================================
+ALTER TABLE site_profile
+ADD COLUMN holiday_config JSON NULL DEFAULT NULL AFTER msr_req_sections;
+
+====================================================================================================
+
+CREATE TABLE IF NOT EXISTS report_snapshot_cache (
+  id INT NOT NULL AUTO_INCREMENT,
+  report_type VARCHAR(64) NOT NULL,
+  term_id SMALLINT NOT NULL DEFAULT 0 COMMENT '0 when report is not term-scoped',
+  payload_json LONGTEXT NOT NULL,
+  generated_at DATETIME NOT NULL,
+  generated_by VARCHAR(255) NOT NULL COMMENT 'User full name or System',
+  PRIMARY KEY (id),
+  UNIQUE KEY uk_report_snapshot_type_term (report_type, term_id),
+  KEY idx_report_snapshot_generated_at (generated_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE users
+  ADD COLUMN password_lockout_stage TINYINT NOT NULL DEFAULT 0
+  COMMENT '0=none, 1=15-minute lock used, 2=30-minute lock used';

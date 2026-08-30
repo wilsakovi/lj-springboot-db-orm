@@ -121,6 +121,9 @@ public class UsersDB implements EntityDB<Users>{
 		TWO_FA_SECRET_KEY("two_fa_secret_key", false, ""),
 		TWO_FA_ENABLED("two_fa_enabled", false, ""),
 		TWO_FA_FAILURE_COUNT("two_fa_failure_count", false, ""),
+		PASSWORD_LOCKOUT_STAGE("password_lockout_stage", false, ""),
+		NEW_APP_ACTIVATED("new_app_activated", false, ""),
+		NEW_APP_ACTIVATED_DATE("new_app_activated_date", false, ""),
 		;
 
 		private String columnName;
@@ -337,6 +340,12 @@ public class UsersDB implements EntityDB<Users>{
 			if (rs.wasNull()) obj.setTwoFaEnabled(null);
 			obj.setTwoFaFailureCount(rs.getInt(COLUMNS.TWO_FA_FAILURE_COUNT.getColumnName()));
 			if (rs.wasNull()) obj.setTwoFaFailureCount(null);
+			obj.setPasswordLockoutStage(rs.getInt(COLUMNS.PASSWORD_LOCKOUT_STAGE.getColumnName()));
+			if (rs.wasNull()) obj.setPasswordLockoutStage(null);
+			obj.setNewAppActivated(rs.getByte(COLUMNS.NEW_APP_ACTIVATED.getColumnName()));
+			if (rs.wasNull()) obj.setNewAppActivated(null);
+			obj.setNewAppActivatedDate(rs.getTimestamp(COLUMNS.NEW_APP_ACTIVATED_DATE.getColumnName()));
+			if (rs.wasNull()) obj.setNewAppActivatedDate(null);
 			return obj;
 		}
 	}
@@ -426,6 +435,10 @@ public class UsersDB implements EntityDB<Users>{
 			mapping.put(COLUMNS.TWO_FA_SECRET_KEY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getTwoFaSecretKey()));
 			mapping.put(COLUMNS.TWO_FA_ENABLED.getColumnName(), users.getTwoFaEnabled());
 			mapping.put(COLUMNS.TWO_FA_FAILURE_COUNT.getColumnName(), users.getTwoFaFailureCount());
+			mapping.put(COLUMNS.PASSWORD_LOCKOUT_STAGE.getColumnName(), users.getPasswordLockoutStage());
+			mapping.put(COLUMNS.NEW_APP_ACTIVATED.getColumnName(), users.getNewAppActivated());
+			if (users.getNewAppActivatedDate() != null)
+				mapping.put(COLUMNS.NEW_APP_ACTIVATED_DATE.getColumnName(), new Timestamp (users.getNewAppActivatedDate().getTime()));
 			return mapping;
 		}
 	}
@@ -582,6 +595,12 @@ public class UsersDB implements EntityDB<Users>{
 			if (rs.wasNull()) obj.setTwoFaEnabled(null);
 			obj.setTwoFaFailureCount(rs.getInt(COLUMNS.TWO_FA_FAILURE_COUNT.getColumnAliasName()));
 			if (rs.wasNull()) obj.setTwoFaFailureCount(null);
+			obj.setPasswordLockoutStage(rs.getInt(COLUMNS.PASSWORD_LOCKOUT_STAGE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPasswordLockoutStage(null);
+			obj.setNewAppActivated(rs.getByte(COLUMNS.NEW_APP_ACTIVATED.getColumnAliasName()));
+			if (rs.wasNull()) obj.setNewAppActivated(null);
+			obj.setNewAppActivatedDate(rs.getTimestamp(COLUMNS.NEW_APP_ACTIVATED_DATE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setNewAppActivatedDate(null);
 			return obj;
 		}
 	}

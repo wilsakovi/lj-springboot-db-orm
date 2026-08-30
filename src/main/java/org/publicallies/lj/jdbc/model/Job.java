@@ -102,8 +102,8 @@ public class Job implements Serializable , CommonIdCUHLu<Integer>
 	@Column("old_id")
 	private Integer oldId;
 
-	@Column("id_FK")
-	private Integer idFK;
+	@Column("id_fk")
+	private Integer idFk;
 
 	@Column("activity_serve_community")
 	@Size (max = 65535)
@@ -415,14 +415,14 @@ public class Job implements Serializable , CommonIdCUHLu<Integer>
 		return this.oldId;
 	}
 
-	public void setIdFK (Integer idFK)
+	public void setIdFk (Integer idFk)
 	{
-		this.idFK = idFK;
+		this.idFk = idFk;
 	}
 
-	public Integer getIdFK ()
+	public Integer getIdFk ()
 	{
-		return this.idFK;
+		return this.idFk;
 	}
 
 	public void setActivityServeCommunity (String activityServeCommunity)

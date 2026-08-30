@@ -68,7 +68,7 @@ public class JobDB implements EntityDB<Job>{
 		ACTIVITY_AREA_TERM_ID("activity_area_term_id", false, ""),
 		PROGRAM_YEAR_ID("program_year_id", false, ""),
 		OLD_ID("old_id", false, ""),
-		ID_FK("id_FK", false, ""),
+		ID_FK("id_fk", false, ""),
 		ACTIVITY_SERVE_COMMUNITY("activity_serve_community", false, ""),
 		SUBMITTED_BY_USERS_ID("submitted_by_users_id", false, ""),
 		SUBMISSION_COMMENT("submission_comment", false, ""),
@@ -201,8 +201,8 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setProgramYearId(null);
 			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnName()));
 			if (rs.wasNull()) obj.setOldId(null);
-			obj.setIdFK(rs.getInt(COLUMNS.ID_FK.getColumnName()));
-			if (rs.wasNull()) obj.setIdFK(null);
+			obj.setIdFk(rs.getInt(COLUMNS.ID_FK.getColumnName()));
+			if (rs.wasNull()) obj.setIdFk(null);
 			obj.setActivityServeCommunity(rs.getString(COLUMNS.ACTIVITY_SERVE_COMMUNITY.getColumnName()));
 			if (rs.wasNull()) obj.setActivityServeCommunity(null);
 			obj.setSubmittedByUsersId(rs.getInt(COLUMNS.SUBMITTED_BY_USERS_ID.getColumnName()));
@@ -281,7 +281,7 @@ public class JobDB implements EntityDB<Job>{
 			mapping.put(COLUMNS.ACTIVITY_AREA_TERM_ID.getColumnName(), job.getActivityAreaTermId());
 			mapping.put(COLUMNS.PROGRAM_YEAR_ID.getColumnName(), job.getProgramYearId());
 			mapping.put(COLUMNS.OLD_ID.getColumnName(), job.getOldId());
-			mapping.put(COLUMNS.ID_FK.getColumnName(), job.getIdFK());
+			mapping.put(COLUMNS.ID_FK.getColumnName(), job.getIdFk());
 			mapping.put(COLUMNS.ACTIVITY_SERVE_COMMUNITY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getActivityServeCommunity()));
 			mapping.put(COLUMNS.SUBMITTED_BY_USERS_ID.getColumnName(), job.getSubmittedByUsersId());
 			mapping.put(COLUMNS.SUBMISSION_COMMENT.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(job.getSubmissionComment()));
@@ -357,8 +357,8 @@ public class JobDB implements EntityDB<Job>{
 			if (rs.wasNull()) obj.setProgramYearId(null);
 			obj.setOldId(rs.getInt(COLUMNS.OLD_ID.getColumnAliasName()));
 			if (rs.wasNull()) obj.setOldId(null);
-			obj.setIdFK(rs.getInt(COLUMNS.ID_FK.getColumnAliasName()));
-			if (rs.wasNull()) obj.setIdFK(null);
+			obj.setIdFk(rs.getInt(COLUMNS.ID_FK.getColumnAliasName()));
+			if (rs.wasNull()) obj.setIdFk(null);
 			obj.setActivityServeCommunity(rs.getString(COLUMNS.ACTIVITY_SERVE_COMMUNITY.getColumnAliasName()));
 			if (rs.wasNull()) obj.setActivityServeCommunity(null);
 			obj.setSubmittedByUsersId(rs.getInt(COLUMNS.SUBMITTED_BY_USERS_ID.getColumnAliasName()));

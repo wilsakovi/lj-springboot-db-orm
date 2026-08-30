@@ -84,6 +84,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 		SRC_FUND_ID("src_fund_id", false, ""),
 		ADDITIONAL_INFO("additional_info", false, ""),
 		MSR_REQ_SECTIONS("msr_req_sections", true, ""),
+		HOLIDAY_CONFIG("holiday_config", true, ""),
 		HISTORY("history", true, ""),
 		;
 
@@ -227,6 +228,8 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			if (rs.wasNull()) obj.setAdditionalInfo(null);
 			obj.setMsrReqSections(rs.getString(COLUMNS.MSR_REQ_SECTIONS.getColumnName()));
 			if (rs.wasNull()) obj.setMsrReqSections(null);
+			obj.setHolidayConfig(rs.getString(COLUMNS.HOLIDAY_CONFIG.getColumnName()));
+			if (rs.wasNull()) obj.setHolidayConfig(null);
 			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnName()));
 			if (rs.wasNull()) obj.setHistory(null);
 			return obj;
@@ -285,6 +288,7 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			mapping.put(COLUMNS.SRC_FUND_ID.getColumnName(), siteprofile.getSrcFundId());
 			mapping.put(COLUMNS.ADDITIONAL_INFO.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getAdditionalInfo()));
 			mapping.put(COLUMNS.MSR_REQ_SECTIONS.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getMsrReqSections()));
+			mapping.put(COLUMNS.HOLIDAY_CONFIG.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getHolidayConfig()));
 			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(siteprofile.getHistory()));
 			return mapping;
 		}
@@ -368,6 +372,8 @@ public class SiteProfileDB implements EntityDB<SiteProfile>{
 			if (rs.wasNull()) obj.setAdditionalInfo(null);
 			obj.setMsrReqSections(rs.getString(COLUMNS.MSR_REQ_SECTIONS.getColumnAliasName()));
 			if (rs.wasNull()) obj.setMsrReqSections(null);
+			obj.setHolidayConfig(rs.getString(COLUMNS.HOLIDAY_CONFIG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setHolidayConfig(null);
 			obj.setHistory(rs.getString(COLUMNS.HISTORY.getColumnAliasName()));
 			if (rs.wasNull()) obj.setHistory(null);
 			return obj;
