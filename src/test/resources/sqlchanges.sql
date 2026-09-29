@@ -805,3 +805,14 @@ CREATE TABLE IF NOT EXISTS report_snapshot_cache (
 ALTER TABLE users
   ADD COLUMN password_lockout_stage TINYINT NOT NULL DEFAULT 0
   COMMENT '0=none, 1=15-minute lock used, 2=30-minute lock used';
+
+====================================== 09/19/26 ===================================================
+ALTER TABLE report_snapshot_cache
+  ADD COLUMN site_profile_id INT NOT NULL DEFAULT 0
+    COMMENT '0 = national (all sites); otherwise site_profile.id'
+    AFTER term_id;
+
+ALTER TABLE report_snapshot_cache
+  DROP INDEX uk_report_snapshot_type_term,
+  ADD UNIQUE KEY uk_report_snapshot_type_term_sp (report_type, term_id, site_profile_id),
+  ADD KEY idx_report_snapshot_site_profile (site_profile_id);
