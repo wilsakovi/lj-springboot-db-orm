@@ -14,7 +14,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 /**
- * Cached dashboard / report payload keyed by report type, term, and site profile.
+ * Cached dashboard / report payload keyed by report type, term, site profile, and site.
  */
 @Table(name = "report_snapshot_cache")
 public class ReportSnapshotCache implements Serializable {
@@ -37,6 +37,10 @@ public class ReportSnapshotCache implements Serializable {
 	@Column("site_profile_id")
 	@NotNull
 	private Integer siteProfileId;
+
+	@Column("site_id")
+	@NotNull
+	private Short siteId;
 
 	@Column("payload_json")
 	@NotEmpty
@@ -90,6 +94,14 @@ public class ReportSnapshotCache implements Serializable {
 
 	public Integer getSiteProfileId() {
 		return this.siteProfileId;
+	}
+
+	public void setSiteId(Short siteId) {
+		this.siteId = siteId;
+	}
+
+	public Short getSiteId() {
+		return this.siteId;
 	}
 
 	public void setPayloadJson(String payloadJson) {

@@ -816,3 +816,13 @@ ALTER TABLE report_snapshot_cache
   DROP INDEX uk_report_snapshot_type_term,
   ADD UNIQUE KEY uk_report_snapshot_type_term_sp (report_type, term_id, site_profile_id),
   ADD KEY idx_report_snapshot_site_profile (site_profile_id);
+
+====================================== 10/03/26 ===================================================
+ALTER TABLE report_snapshot_cache
+  ADD COLUMN site_id SMALLINT NOT NULL DEFAULT 0
+    COMMENT '0 for national and per-profile rows; site.id for the site-and-term dashboard'
+    AFTER site_profile_id;
+
+ALTER TABLE report_snapshot_cache
+  DROP INDEX uk_report_snapshot_type_term_sp,
+  ADD UNIQUE KEY uk_report_snapshot_scope (report_type, term_id, site_profile_id, site_id);

@@ -43,6 +43,7 @@ public class ReportSnapshotCacheDB implements EntityDB<ReportSnapshotCache> {
 		REPORT_TYPE("report_type", false, ""),
 		TERM_ID("term_id", false, ""),
 		SITE_PROFILE_ID("site_profile_id", false, ""),
+		SITE_ID("site_id", false, ""),
 		PAYLOAD_JSON("payload_json", false, ""),
 		GENERATED_AT("generated_at", false, ""),
 		GENERATED_BY("generated_by", false, ""),
@@ -112,6 +113,9 @@ public class ReportSnapshotCacheDB implements EntityDB<ReportSnapshotCache> {
 			obj.setSiteProfileId(rs.getInt(COLUMNS.SITE_PROFILE_ID.getColumnName()));
 			if (rs.wasNull())
 				obj.setSiteProfileId(null);
+			obj.setSiteId(rs.getShort(COLUMNS.SITE_ID.getColumnName()));
+			if (rs.wasNull())
+				obj.setSiteId(null);
 			obj.setPayloadJson(rs.getString(COLUMNS.PAYLOAD_JSON.getColumnName()));
 			if (rs.wasNull())
 				obj.setPayloadJson(null);
@@ -135,6 +139,7 @@ public class ReportSnapshotCacheDB implements EntityDB<ReportSnapshotCache> {
 					org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(row.getReportType()));
 			mapping.put(COLUMNS.TERM_ID.getColumnName(), row.getTermId());
 			mapping.put(COLUMNS.SITE_PROFILE_ID.getColumnName(), row.getSiteProfileId());
+			mapping.put(COLUMNS.SITE_ID.getColumnName(), row.getSiteId());
 			mapping.put(COLUMNS.PAYLOAD_JSON.getColumnName(),
 					org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(row.getPayloadJson()));
 			if (row.getGeneratedAt() != null)
@@ -162,6 +167,9 @@ public class ReportSnapshotCacheDB implements EntityDB<ReportSnapshotCache> {
 			obj.setSiteProfileId(rs.getInt(COLUMNS.SITE_PROFILE_ID.getColumnAliasName()));
 			if (rs.wasNull())
 				obj.setSiteProfileId(null);
+			obj.setSiteId(rs.getShort(COLUMNS.SITE_ID.getColumnAliasName()));
+			if (rs.wasNull())
+				obj.setSiteId(null);
 			obj.setPayloadJson(rs.getString(COLUMNS.PAYLOAD_JSON.getColumnAliasName()));
 			if (rs.wasNull())
 				obj.setPayloadJson(null);
