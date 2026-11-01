@@ -91,6 +91,7 @@ public class AllyDB implements EntityDB<Ally>{
 		LIVED_SERVED_CITY("lived_served_city", false, ""),
 		GROWN_SERVED_CITY("grown_served_city", false, ""),
 		PARTICIPATE_PO_PROGRAM("participate_po_program", false, ""),
+		ROLE_DISABLED_FLAG("role_disabled_flag", false, ""),
 		;
 
 		private String columnName;
@@ -247,6 +248,8 @@ public class AllyDB implements EntityDB<Ally>{
 			if (rs.wasNull()) obj.setGrownServedCity(null);
 			obj.setParticipatePoProgram(rs.getInt(COLUMNS.PARTICIPATE_PO_PROGRAM.getColumnName()));
 			if (rs.wasNull()) obj.setParticipatePoProgram(null);
+			obj.setRoleDisabledFlag(rs.getByte(COLUMNS.ROLE_DISABLED_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setRoleDisabledFlag(null);
 			return obj;
 		}
 	}
@@ -303,6 +306,7 @@ public class AllyDB implements EntityDB<Ally>{
 			mapping.put(COLUMNS.LIVED_SERVED_CITY.getColumnName(), ally.getLivedServedCity());
 			mapping.put(COLUMNS.GROWN_SERVED_CITY.getColumnName(), ally.getGrownServedCity());
 			mapping.put(COLUMNS.PARTICIPATE_PO_PROGRAM.getColumnName(), ally.getParticipatePoProgram());
+			mapping.put(COLUMNS.ROLE_DISABLED_FLAG.getColumnName(), ally.getRoleDisabledFlag());
 			return mapping;
 		}
 	}
@@ -399,6 +403,8 @@ public class AllyDB implements EntityDB<Ally>{
 			if (rs.wasNull()) obj.setGrownServedCity(null);
 			obj.setParticipatePoProgram(rs.getInt(COLUMNS.PARTICIPATE_PO_PROGRAM.getColumnAliasName()));
 			if (rs.wasNull()) obj.setParticipatePoProgram(null);
+			obj.setRoleDisabledFlag(rs.getByte(COLUMNS.ROLE_DISABLED_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setRoleDisabledFlag(null);
 			return obj;
 		}
 	}

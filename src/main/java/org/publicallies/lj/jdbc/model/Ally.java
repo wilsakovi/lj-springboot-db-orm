@@ -166,6 +166,10 @@ public class Ally implements Serializable , CommonIdCUHLu<Integer>
 	@Column("participate_po_program")
 	private Integer participatePoProgram = 3;
 
+	@Column("role_disabled_flag")
+	@NotNull
+	private Byte roleDisabledFlag = 0;
+
 
 	@Transient
 	private RefTableData allyStatus1;
@@ -632,6 +636,16 @@ public class Ally implements Serializable , CommonIdCUHLu<Integer>
 	public Integer getParticipatePoProgram ()
 	{
 		return this.participatePoProgram;
+	}
+
+	public void setRoleDisabledFlag (Byte roleDisabledFlag)
+	{
+		this.roleDisabledFlag = roleDisabledFlag;
+	}
+
+	public Byte getRoleDisabledFlag ()
+	{
+		return this.roleDisabledFlag;
 	}
 
 	public void setAllyStatus1 (RefTableData allyStatus1)

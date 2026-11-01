@@ -66,6 +66,7 @@ public class StaffDB implements EntityDB<Staff>{
 		UPDATED_AT("updated_at", false, ""),
 		HISTORY("history", true, ""),
 		SF_FAILED_FLAG("sf_failed_flag", false, ""),
+		ROLE_DISABLED_FLAG("role_disabled_flag", false, ""),
 		;
 
 		private String columnName;
@@ -172,6 +173,8 @@ public class StaffDB implements EntityDB<Staff>{
 			if (rs.wasNull()) obj.setHistory(null);
 			obj.setSfFailedFlag(rs.getInt(COLUMNS.SF_FAILED_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
+			obj.setRoleDisabledFlag(rs.getByte(COLUMNS.ROLE_DISABLED_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setRoleDisabledFlag(null);
 			return obj;
 		}
 	}
@@ -204,6 +207,7 @@ public class StaffDB implements EntityDB<Staff>{
 				mapping.put(COLUMNS.UPDATED_AT.getColumnName(), new Timestamp (staff.getUpdatedAt().getTime()));
 			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(staff.getHistory()));
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), staff.getSfFailedFlag());
+			mapping.put(COLUMNS.ROLE_DISABLED_FLAG.getColumnName(), staff.getRoleDisabledFlag());
 			return mapping;
 		}
 	}
@@ -250,6 +254,8 @@ public class StaffDB implements EntityDB<Staff>{
 			if (rs.wasNull()) obj.setHistory(null);
 			obj.setSfFailedFlag(rs.getInt(COLUMNS.SF_FAILED_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
+			obj.setRoleDisabledFlag(rs.getByte(COLUMNS.ROLE_DISABLED_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setRoleDisabledFlag(null);
 			return obj;
 		}
 	}

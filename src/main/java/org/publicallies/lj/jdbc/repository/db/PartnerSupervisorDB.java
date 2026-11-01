@@ -64,6 +64,7 @@ public class PartnerSupervisorDB implements EntityDB<PartnerSupervisor>{
 		LAST_UPDATED_USERS_ID("last_updated_users_id", false, ""),
 		HISTORY("history", true, ""),
 		SF_FAILED_FLAG("sf_failed_flag", false, ""),
+		ROLE_DISABLED_FLAG("role_disabled_flag", false, ""),
 		;
 
 		private String columnName;
@@ -166,6 +167,8 @@ public class PartnerSupervisorDB implements EntityDB<PartnerSupervisor>{
 			if (rs.wasNull()) obj.setHistory(null);
 			obj.setSfFailedFlag(rs.getInt(COLUMNS.SF_FAILED_FLAG.getColumnName()));
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
+			obj.setRoleDisabledFlag(rs.getByte(COLUMNS.ROLE_DISABLED_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setRoleDisabledFlag(null);
 			return obj;
 		}
 	}
@@ -195,6 +198,7 @@ public class PartnerSupervisorDB implements EntityDB<PartnerSupervisor>{
 			mapping.put(COLUMNS.LAST_UPDATED_USERS_ID.getColumnName(), partnersupervisor.getLastUpdatedUsersId());
 			mapping.put(COLUMNS.HISTORY.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(partnersupervisor.getHistory()));
 			mapping.put(COLUMNS.SF_FAILED_FLAG.getColumnName(), partnersupervisor.getSfFailedFlag());
+			mapping.put(COLUMNS.ROLE_DISABLED_FLAG.getColumnName(), partnersupervisor.getRoleDisabledFlag());
 			return mapping;
 		}
 	}
@@ -237,6 +241,8 @@ public class PartnerSupervisorDB implements EntityDB<PartnerSupervisor>{
 			if (rs.wasNull()) obj.setHistory(null);
 			obj.setSfFailedFlag(rs.getInt(COLUMNS.SF_FAILED_FLAG.getColumnAliasName()));
 			if (rs.wasNull()) obj.setSfFailedFlag(null);
+			obj.setRoleDisabledFlag(rs.getByte(COLUMNS.ROLE_DISABLED_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setRoleDisabledFlag(null);
 			return obj;
 		}
 	}
