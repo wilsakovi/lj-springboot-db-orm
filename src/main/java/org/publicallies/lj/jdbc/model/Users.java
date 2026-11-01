@@ -306,6 +306,25 @@ public class Users implements Serializable , CommonIdCUHLu<Integer>
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date newAppActivatedDate;
 
+	@Column("sms_consent")
+	private Byte smsConsent;
+
+	@Column("sms_consent_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date smsConsentDate;
+
+	@Column("sms_consent_phone")
+	@Size (max = 20)
+	private String smsConsentPhone;
+
+	@Column("phone_cell_verified")
+	@Size (max = 20)
+	private String phoneCellVerified;
+
+	@Column("phone_cell_verified_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date phoneCellVerifiedDate;
+
 
 	@Transient
 	private Term defaultTerm;
@@ -1099,6 +1118,56 @@ public class Users implements Serializable , CommonIdCUHLu<Integer>
 	public Date getNewAppActivatedDate ()
 	{
 		return this.newAppActivatedDate;
+	}
+
+	public void setSmsConsent (Byte smsConsent)
+	{
+		this.smsConsent = smsConsent;
+	}
+
+	public Byte getSmsConsent ()
+	{
+		return this.smsConsent;
+	}
+
+	public void setSmsConsentDate (Date smsConsentDate)
+	{
+		this.smsConsentDate = smsConsentDate;
+	}
+
+	public Date getSmsConsentDate ()
+	{
+		return this.smsConsentDate;
+	}
+
+	public void setSmsConsentPhone (String smsConsentPhone)
+	{
+		this.smsConsentPhone = smsConsentPhone;
+	}
+
+	public String getSmsConsentPhone ()
+	{
+		return this.smsConsentPhone;
+	}
+
+	public void setPhoneCellVerified (String phoneCellVerified)
+	{
+		this.phoneCellVerified = phoneCellVerified;
+	}
+
+	public String getPhoneCellVerified ()
+	{
+		return this.phoneCellVerified;
+	}
+
+	public void setPhoneCellVerifiedDate (Date phoneCellVerifiedDate)
+	{
+		this.phoneCellVerifiedDate = phoneCellVerifiedDate;
+	}
+
+	public Date getPhoneCellVerifiedDate ()
+	{
+		return this.phoneCellVerifiedDate;
 	}
 
 	public void setDefaultTerm (Term defaultTerm)
