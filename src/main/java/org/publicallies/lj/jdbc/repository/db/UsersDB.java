@@ -124,6 +124,11 @@ public class UsersDB implements EntityDB<Users>{
 		PASSWORD_LOCKOUT_STAGE("password_lockout_stage", false, ""),
 		NEW_APP_ACTIVATED("new_app_activated", false, ""),
 		NEW_APP_ACTIVATED_DATE("new_app_activated_date", false, ""),
+		SMS_CONSENT("sms_consent", false, ""),
+		SMS_CONSENT_DATE("sms_consent_date", false, ""),
+		SMS_CONSENT_PHONE("sms_consent_phone", false, ""),
+		PHONE_CELL_VERIFIED("phone_cell_verified", false, ""),
+		PHONE_CELL_VERIFIED_DATE("phone_cell_verified_date", false, ""),
 		;
 
 		private String columnName;
@@ -346,6 +351,16 @@ public class UsersDB implements EntityDB<Users>{
 			if (rs.wasNull()) obj.setNewAppActivated(null);
 			obj.setNewAppActivatedDate(rs.getTimestamp(COLUMNS.NEW_APP_ACTIVATED_DATE.getColumnName()));
 			if (rs.wasNull()) obj.setNewAppActivatedDate(null);
+			obj.setSmsConsent(rs.getByte(COLUMNS.SMS_CONSENT.getColumnName()));
+			if (rs.wasNull()) obj.setSmsConsent(null);
+			obj.setSmsConsentDate(rs.getTimestamp(COLUMNS.SMS_CONSENT_DATE.getColumnName()));
+			if (rs.wasNull()) obj.setSmsConsentDate(null);
+			obj.setSmsConsentPhone(rs.getString(COLUMNS.SMS_CONSENT_PHONE.getColumnName()));
+			if (rs.wasNull()) obj.setSmsConsentPhone(null);
+			obj.setPhoneCellVerified(rs.getString(COLUMNS.PHONE_CELL_VERIFIED.getColumnName()));
+			if (rs.wasNull()) obj.setPhoneCellVerified(null);
+			obj.setPhoneCellVerifiedDate(rs.getTimestamp(COLUMNS.PHONE_CELL_VERIFIED_DATE.getColumnName()));
+			if (rs.wasNull()) obj.setPhoneCellVerifiedDate(null);
 			return obj;
 		}
 	}
@@ -439,6 +454,13 @@ public class UsersDB implements EntityDB<Users>{
 			mapping.put(COLUMNS.NEW_APP_ACTIVATED.getColumnName(), users.getNewAppActivated());
 			if (users.getNewAppActivatedDate() != null)
 				mapping.put(COLUMNS.NEW_APP_ACTIVATED_DATE.getColumnName(), new Timestamp (users.getNewAppActivatedDate().getTime()));
+			mapping.put(COLUMNS.SMS_CONSENT.getColumnName(), users.getSmsConsent());
+			if (users.getSmsConsentDate() != null)
+				mapping.put(COLUMNS.SMS_CONSENT_DATE.getColumnName(), new Timestamp (users.getSmsConsentDate().getTime()));
+			mapping.put(COLUMNS.SMS_CONSENT_PHONE.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getSmsConsentPhone()));
+			mapping.put(COLUMNS.PHONE_CELL_VERIFIED.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(users.getPhoneCellVerified()));
+			if (users.getPhoneCellVerifiedDate() != null)
+				mapping.put(COLUMNS.PHONE_CELL_VERIFIED_DATE.getColumnName(), new Timestamp (users.getPhoneCellVerifiedDate().getTime()));
 			return mapping;
 		}
 	}
@@ -601,6 +623,16 @@ public class UsersDB implements EntityDB<Users>{
 			if (rs.wasNull()) obj.setNewAppActivated(null);
 			obj.setNewAppActivatedDate(rs.getTimestamp(COLUMNS.NEW_APP_ACTIVATED_DATE.getColumnAliasName()));
 			if (rs.wasNull()) obj.setNewAppActivatedDate(null);
+			obj.setSmsConsent(rs.getByte(COLUMNS.SMS_CONSENT.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSmsConsent(null);
+			obj.setSmsConsentDate(rs.getTimestamp(COLUMNS.SMS_CONSENT_DATE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSmsConsentDate(null);
+			obj.setSmsConsentPhone(rs.getString(COLUMNS.SMS_CONSENT_PHONE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setSmsConsentPhone(null);
+			obj.setPhoneCellVerified(rs.getString(COLUMNS.PHONE_CELL_VERIFIED.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPhoneCellVerified(null);
+			obj.setPhoneCellVerifiedDate(rs.getTimestamp(COLUMNS.PHONE_CELL_VERIFIED_DATE.getColumnAliasName()));
+			if (rs.wasNull()) obj.setPhoneCellVerifiedDate(null);
 			return obj;
 		}
 	}

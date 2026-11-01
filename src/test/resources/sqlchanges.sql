@@ -826,3 +826,50 @@ ALTER TABLE report_snapshot_cache
 ALTER TABLE report_snapshot_cache
   DROP INDEX uk_report_snapshot_type_term_sp,
   ADD UNIQUE KEY uk_report_snapshot_scope (report_type, term_id, site_profile_id, site_id);
+
+====================================== 10/31/26 ===================================================
+-- Role disabling by a System Admin (1 = the user does not get this role at sign-in). Separate from the
+-- logical-deletion fields (ally.ally_status, partner_supervisor.active_flag, staff.active_status).
+ALTER TABLE ally ADD COLUMN role_disabled_flag TINYINT NOT NULL DEFAULT 0
+  COMMENT '1 = Ally role disabled by a System Admin';
+ALTER TABLE partner_supervisor ADD COLUMN role_disabled_flag TINYINT NOT NULL DEFAULT 0
+  COMMENT '1 = Supervisor role disabled by a System Admin';
+ALTER TABLE staff ADD COLUMN role_disabled_flag TINYINT NOT NULL DEFAULT 0
+  COMMENT '1 = Staff role disabled by a System Admin';
+
+
+====================================== 10/31/26 (SMS consent) =====================================
+-- Consent to receive text messages from the Leadership Journal.
+-- sms_consent: NULL = never asked, 1 = agreed, 0 = declined or unsubscribed.
+-- sms_consent_phone: the E.164 number the answer applies to. When users.phone_cell changes to another
+-- number, the answer no longer applies and the user is asked again.
+-- Password reset codes do not depend on this consent.
+ALTER TABLE users
+  ADD COLUMN sms_consent TINYINT NULL DEFAULT NULL COMMENT 'NULL=never asked, 1=agreed, 0=declined/unsubscribed',
+  ADD COLUMN sms_consent_date DATETIME NULL DEFAULT NULL COMMENT 'When sms_consent was last set',
+  ADD COLUMN sms_consent_phone VARCHAR(20) NULL DEFAULT NULL COMMENT 'E.164 number sms_consent applies to';
+
+
+====================================== 10/31/26 (mobile confirmation) ============================
+-- Mobile number confirmation. phone_cell_verified is the E.164 number the user last confirmed with a texted
+-- code. When users.phone_cell no longer matches it (changed by the user, by staff or by a Salesforce pull),
+-- the number is unconfirmed and the user must confirm it at their next sign-in.
+ALTER TABLE users
+  ADD COLUMN phone_cell_verified VARCHAR(20) NULL DEFAULT NULL COMMENT 'E.164 number last confirmed by a texted code',
+  ADD COLUMN phone_cell_verified_date DATETIME NULL DEFAULT NULL COMMENT 'When phone_cell_verified was confirmed';
+
+
+====================================== 10/31/26 (dashboard access by role) =======================
+-- Dashboard access per role moves from lj-runtime.properties (lj.dashboard.role.*.enabled) into env_properties,
+-- set by a System Admin under Administration > Dashboard Access. A missing row is off.
+-- Seeds the current values; rows that already exist are left alone.
+INSERT INTO env_properties (keycode, keyvalue, active_flag)
+SELECT v.keycode, v.keyvalue, 1
+FROM (
+  SELECT 'DASHBOARD_ROLE_HD' AS keycode, 'true' AS keyvalue UNION ALL
+  SELECT 'DASHBOARD_ROLE_NA', 'true' UNION ALL
+  SELECT 'DASHBOARD_ROLE_SD', 'true' UNION ALL
+  SELECT 'DASHBOARD_ROLE_PM', 'true' UNION ALL
+  SELECT 'DASHBOARD_ROLE_ALLY', 'false'
+) v
+WHERE NOT EXISTS (SELECT 1 FROM env_properties e WHERE e.keycode = v.keycode);

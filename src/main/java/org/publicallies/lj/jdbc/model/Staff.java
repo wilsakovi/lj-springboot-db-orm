@@ -94,6 +94,10 @@ public class Staff implements Serializable , CommonIdCUHLu<Integer>
 	@Column("sf_failed_flag")
 	private Integer sfFailedFlag = 0;
 
+	@Column("role_disabled_flag")
+	@NotNull
+	private Byte roleDisabledFlag = 0;
+
 
 	@Transient
 	private Users users;
@@ -286,6 +290,16 @@ public class Staff implements Serializable , CommonIdCUHLu<Integer>
 	public Integer getSfFailedFlag ()
 	{
 		return this.sfFailedFlag;
+	}
+
+	public void setRoleDisabledFlag (Byte roleDisabledFlag)
+	{
+		this.roleDisabledFlag = roleDisabledFlag;
+	}
+
+	public Byte getRoleDisabledFlag ()
+	{
+		return this.roleDisabledFlag;
 	}
 
 	public void setUsers (Users users)
