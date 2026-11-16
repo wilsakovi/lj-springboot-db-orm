@@ -39,7 +39,7 @@ public class PartnerSupervisor implements Serializable , CommonIdCUHLu<Integer>
 	private String notes;
 
 	@Column("active_flag")
-	private Byte activeFlag;
+	private Byte activeFlag = 1;
 
 	@Column("created_at")
 	@Temporal(TemporalType.TIMESTAMP)

@@ -1,6 +1,9 @@
 package org.publicallies.lj.jdbc.repository.db;
 
 import java.util.LinkedHashMap;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.publicallies.lj.jdbc.common.DbColumn;
 import org.publicallies.lj.jdbc.common.RowUnmapper;
 import java.sql.SQLException;
@@ -94,15 +97,19 @@ public class MsrDB implements EntityDB<Msr>{
 		REMINDER_DATE_ALLY("reminder_date_ally", false, ""),
 		POS_PA_SATISFACTION("pos_pa_satisfaction", false, ""),
 		PM_MEMBER_SATISFACTION("pm_member_satisfaction", false, ""),
+		THREE_WAY_MEETING_FLAG("three_way_meeting_flag", false, ""),
 		;
 
-		private String columnName;
+		@Getter
+        @Setter
+        private String columnName;
 
 
 		private boolean jsonFlag;
 
 
-		private String sqlFunction;
+		@Getter
+        private String sqlFunction;
 
 		private COLUMNS (String columnName, boolean jsonFlag, String sqlFunction)
 		{
@@ -111,27 +118,12 @@ public class MsrDB implements EntityDB<Msr>{
 			this.sqlFunction = sqlFunction;
 		}
 
-		public void setColumnName (String columnName)
-		{
-			this.columnName = columnName;
-		}
-
-		public String getColumnName ()
-		{
-			return this.columnName;
-		}
-
-		public boolean getJsonFlag ()
+        public boolean getJsonFlag ()
 		{
 			return this.jsonFlag;
 		}
 
-		public String getSqlFunction ()
-		{
-			return this.sqlFunction;
-		}
-
-		public String getColumnAlias ()
+        public String getColumnAlias ()
 		{
 			return TABLE_ALIAS + "." + this.columnName;
 		}
@@ -256,6 +248,8 @@ public class MsrDB implements EntityDB<Msr>{
 			if (rs.wasNull()) obj.setPosPaSatisfaction(null);
 			obj.setPmMemberSatisfaction(rs.getString(COLUMNS.PM_MEMBER_SATISFACTION.getColumnName()));
 			if (rs.wasNull()) obj.setPmMemberSatisfaction(null);
+			obj.setThreeWayMeetingFlag(rs.getByte(COLUMNS.THREE_WAY_MEETING_FLAG.getColumnName()));
+			if (rs.wasNull()) obj.setThreeWayMeetingFlag(null);
 			return obj;
 		}
 	}
@@ -320,6 +314,7 @@ public class MsrDB implements EntityDB<Msr>{
 				mapping.put(COLUMNS.REMINDER_DATE_ALLY.getColumnName(), new Timestamp (msr.getReminderDateAlly().getTime()));
 			mapping.put(COLUMNS.POS_PA_SATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPosPaSatisfaction()));
 			mapping.put(COLUMNS.PM_MEMBER_SATISFACTION.getColumnName(), org.publicallies.lj.jdbc.common.CommonUtils.cleanStringForSqlInsertion(msr.getPmMemberSatisfaction()));
+			mapping.put(COLUMNS.THREE_WAY_MEETING_FLAG.getColumnName(), msr.getThreeWayMeetingFlag());
 			return mapping;
 		}
 	}
@@ -422,6 +417,8 @@ public class MsrDB implements EntityDB<Msr>{
 			if (rs.wasNull()) obj.setPosPaSatisfaction(null);
 			obj.setPmMemberSatisfaction(rs.getString(COLUMNS.PM_MEMBER_SATISFACTION.getColumnAliasName()));
 			if (rs.wasNull()) obj.setPmMemberSatisfaction(null);
+			obj.setThreeWayMeetingFlag(rs.getByte(COLUMNS.THREE_WAY_MEETING_FLAG.getColumnAliasName()));
+			if (rs.wasNull()) obj.setThreeWayMeetingFlag(null);
 			return obj;
 		}
 	}

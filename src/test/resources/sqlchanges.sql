@@ -873,3 +873,108 @@ FROM (
   SELECT 'DASHBOARD_ROLE_ALLY', 'false'
 ) v
 WHERE NOT EXISTS (SELECT 1 FROM env_properties e WHERE e.keycode = v.keycode);
+
+====================================== 11/01/26 (password reset abuse limits) ======================
+-- Forgotten password limits (PasswordResetGuard) count login_log rows by account and by IP address on every
+-- reset attempt. Skip a statement if an index on the same columns already exists (SHOW INDEX FROM login_log).
+CREATE INDEX idx_login_log_user_type_created ON login_log (users_id, login_type, created_at);
+CREATE INDEX idx_login_log_ip_type_created ON login_log (ip, login_type, created_at);
+
+====================================== 11/10/26 (supervisor active flag) ==========================
+-- New partner_supervisor rows were inserted with an explicit NULL active_flag (the entity had no default),
+-- which hid them from the partner's Supervisors tab (it filters on active_flag = 1). The entity now
+-- defaults to 1; this sets the existing NULL rows to 1.
+UPDATE partner_supervisor SET active_flag = 1 WHERE active_flag IS NULL;
+
+
+====================================== 11/14/26 (application error log) ===========================
+-- One row per request that ended in an unhandled exception or an HTTP 5xx response, i.e. the user saw
+-- "An error occured while processing the request" or the error page. Written by the web app's
+-- AppErrorCaptureFilter (while lj.app.error.log.enabled is on) and listed for System Admins on
+-- Dashboards > System > Application errors, where they mark rows handled. A weekly job deletes rows that are
+-- handled or older than 3 months.
+CREATE TABLE app_error_log (
+  id INT NOT NULL AUTO_INCREMENT,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  users_id INT NULL DEFAULT NULL COMMENT 'Signed-in user; NULL when not signed in',
+  role_type VARCHAR(10) NULL DEFAULT NULL COMMENT 'Role type selected in the session: ALLY, POS or STAFF',
+  http_method VARCHAR(10) NULL DEFAULT NULL,
+  request_path VARCHAR(500) NULL DEFAULT NULL COMMENT 'Request URI without the query string',
+  query_string VARCHAR(1000) NULL DEFAULT NULL,
+  route VARCHAR(300) NULL DEFAULT NULL COMMENT 'Mapped URL pattern, e.g. /msr/edit/{id}',
+  handler VARCHAR(200) NULL DEFAULT NULL COMMENT 'Controller.method that handled the request',
+  page_url VARCHAR(500) NULL DEFAULT NULL COMMENT 'Page the user was on (Referer path), for AJAX calls',
+  ajax_flag TINYINT NOT NULL DEFAULT 0 COMMENT '1 = AJAX call (the browser showed the alert)',
+  http_status INT NULL DEFAULT NULL,
+  exception_class VARCHAR(255) NULL DEFAULT NULL,
+  message VARCHAR(1000) NULL DEFAULT NULL,
+  stack_trace MEDIUMTEXT NULL,
+  ip VARCHAR(64) NULL DEFAULT NULL,
+  user_agent VARCHAR(500) NULL DEFAULT NULL,
+  handled_flag TINYINT NOT NULL DEFAULT 0 COMMENT '1 = a System Admin marked it handled',
+  handled_at DATETIME NULL DEFAULT NULL,
+  handled_by_users_id INT NULL DEFAULT NULL COMMENT 'System Admin who marked it handled',
+  PRIMARY KEY (id),
+  KEY idx_app_error_log_created (created_at),
+  KEY idx_app_error_log_user_created (users_id, created_at),
+  KEY idx_app_error_log_handled (handled_flag, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+====================================== 11/14/26 (user feedback) ====================================
+-- Feedback asked right after a user finishes a feature (Time Logs, MSR, TSP, Query Builder, pre-formatted
+-- reports), while lj.feedback.enabled is on. Each user is asked on their 1st, 2nd or 3rd use of a feature (a
+-- stable random third per role; uses counted in feedback_usage). A row is an answer (rating 1-5 + comment) or a
+-- skip (skipped_flag = 1, no rating); either stops the prompt for that user and feature for 3 months. When an
+-- answer is marked IMPLEMENTED (follow_up_pending = 1) the user is asked again at their next use.
+-- System Admins review answers under Dashboard > Feedback and move status:
+-- NEW -> ACKNOWLEDGED, or NEW -> WILL_IMPLEMENT -> IN_PROGRESS -> IMPLEMENTED (each step can be undone).
+CREATE TABLE feedback (
+  id INT NOT NULL AUTO_INCREMENT,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NULL DEFAULT NULL,
+  users_id INT NOT NULL,
+  role_type VARCHAR(10) NULL DEFAULT NULL COMMENT 'Role type selected when asked: ALLY, POS or STAFF',
+  term_id INT NULL DEFAULT NULL COMMENT 'users.default_term_id when asked',
+  area VARCHAR(30) NOT NULL COMMENT 'TIME_LOG, MSR, TSP, QUERY_BUILDER or PREFORMATTED_REPORTS',
+  rating TINYINT NULL DEFAULT NULL COMMENT '1-5 stars; NULL when skipped',
+  comment TEXT NULL,
+  page_url VARCHAR(500) NULL DEFAULT NULL COMMENT 'Page the user was on when asked',
+  skipped_flag TINYINT NOT NULL DEFAULT 0,
+  status VARCHAR(20) NULL DEFAULT NULL COMMENT 'NEW, ACKNOWLEDGED, WILL_IMPLEMENT, IN_PROGRESS, IMPLEMENTED; NULL when skipped',
+  follow_up_pending TINYINT NOT NULL DEFAULT 0 COMMENT '1 = IMPLEMENTED; ask the user again at their next use',
+  follow_up_of_id INT NULL DEFAULT NULL COMMENT 'For a follow-up answer: the feedback row that was implemented',
+  history TEXT NULL COMMENT 'Status changes (TrackingHistory JSON)',
+  last_updated_users_id INT NULL DEFAULT NULL,
+  PRIMARY KEY (id),
+  KEY idx_feedback_user_area_created (users_id, area, created_at),
+  KEY idx_feedback_skipped_created (skipped_flag, created_at),
+  KEY idx_feedback_follow_up (users_id, area, follow_up_pending)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Uses of a feature since the user was last asked about it (reset on each answer or skip).
+CREATE TABLE feedback_usage (
+  id INT NOT NULL AUTO_INCREMENT,
+  users_id INT NOT NULL,
+  area VARCHAR(30) NOT NULL,
+  use_count INT NOT NULL DEFAULT 0,
+  updated_at DATETIME NULL DEFAULT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_feedback_usage_user_area (users_id, area)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+====================================== 11/15/26 (MSR three-way meeting) ====================================
+-- Asked of the Ally on the MSR Final Comments tab, program years 2026-2027 and later (term_rank >= 2026):
+-- "Did you have a Three-Way Meeting this month between you, your Program Manager (or Public Allies staff),
+-- and your Partner Organization Supervisor?" 1 = Yes, 0 = No, NULL = not answered / earlier program year.
+ALTER TABLE msr
+ADD COLUMN `three_way_meeting_flag` TINYINT NULL DEFAULT NULL AFTER `pm_member_satisfaction`;
+
+
+====================================== 11/15/26 (capacity increase options) ====================================
+-- Three more options for the End of Year Capacity Building question "Please select the options that best describe
+-- the capacity increase you experienced" (old_cap_flag = 1; shown when program_year.cap_build_assess_flag = 1).
+INSERT INTO `stp_cap_increase_exp` (`code`, `name`, `old_cap_flag`, `active_flag`) VALUES ('OC', 'Improved outreach or community engagement', 1, 1);
+INSERT INTO `stp_cap_increase_exp` (`code`, `name`, `old_cap_flag`, `active_flag`) VALUES ('SY', 'Improved systems, processes, or operations', 1, 1);
+INSERT INTO `stp_cap_increase_exp` (`code`, `name`, `old_cap_flag`, `active_flag`) VALUES ('DM', 'Improved data collection and / or management, evaluation, or reporting', 1, 1);
